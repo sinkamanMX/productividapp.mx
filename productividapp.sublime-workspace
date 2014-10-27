@@ -1,0 +1,1265 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"items",
+				"itemsModule"
+			],
+			[
+				"contr",
+				"controlMenu"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"cl",
+				"click  (function)"
+			],
+			[
+				"va",
+				"valueInput"
+			],
+			[
+				"da",
+				"datapersonal"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"data",
+				"datainfo"
+			],
+			[
+				"inp",
+				"inputCheck"
+			],
+			[
+				"id",
+				"idValue"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"res",
+				"resultY"
+			],
+			[
+				"s",
+				"showDetail"
+			],
+			[
+				"sho",
+				"showForm"
+			],
+			[
+				"colonia",
+				"coloniaO"
+			],
+			[
+				"opt",
+				"options"
+			],
+			[
+				"ido",
+				"idFromObject"
+			],
+			[
+				"cent",
+				"centerInfo"
+			],
+			[
+				"cen",
+				"centerInfo"
+			],
+			[
+				"cet",
+				"centerInfo"
+			],
+			[
+				"cente",
+				"centerSelected"
+			],
+			[
+				"lo",
+				"longitude"
+			],
+			[
+				"add",
+				"addMaker"
+			],
+			[
+				"op",
+				"optionSelect"
+			],
+			[
+				"prod",
+				"prod_estatus"
+			],
+			[
+				"html",
+				"htmlentities"
+			],
+			[
+				"bo",
+				"border-top"
+			],
+			[
+				"utf8_",
+				"utf8_encode"
+			],
+			[
+				"div",
+				"div-error"
+			],
+			[
+				"upda",
+				"UpdateData"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"min",
+				"min-height"
+			],
+			[
+				"pa",
+				"padding-bottom"
+			],
+			[
+				"fon",
+				"font-weight"
+			],
+			[
+				"col",
+				"color"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"font-",
+				"font-weight"
+			],
+			[
+				"FFF",
+				"FFFFFF"
+			],
+			[
+				"sAp",
+				"sApm"
+			],
+			[
+				"err",
+				"errorDesc"
+			],
+			[
+				"sA",
+				"sApm"
+			],
+			[
+				"l",
+				"label	Tag"
+			],
+			[
+				"sl",
+				"sl2-img-r"
+			],
+			[
+				"bloque",
+				"bloque-description"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"insi",
+				"inside-right"
+			],
+			[
+				"fis_ed",
+				"fisc_edo"
+			],
+			[
+				"fis_no",
+				"fisc_noext"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"reg",
+				"registro-data-login"
+			],
+			[
+				"re",
+				"registro-login"
+			],
+			[
+				"c",
+				"car-label-button"
+			],
+			[
+				"color",
+				"colorSelected"
+			],
+			[
+				"pro",
+				"products"
+			],
+			[
+				"gra",
+				"grantot"
+			],
+			[
+				"pre",
+				"price"
+			],
+			[
+				"peso",
+				"pesoProduct"
+			],
+			[
+				"input",
+				"input-append"
+			],
+			[
+				"spa",
+				"span-precio"
+			],
+			[
+				"sp",
+				"span-clave"
+			],
+			[
+				"margi",
+				"margin-left"
+			],
+			[
+				"car",
+				"car-div-description"
+			],
+			[
+				"car-",
+				"car-item"
+			],
+			[
+				"ma",
+				"margin"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"shop",
+				"shop-long-description"
+			],
+			[
+				"for",
+				"formMessage"
+			],
+			[
+				"form",
+				"formEmail"
+			],
+			[
+				"formT",
+				"formTypeMsg"
+			],
+			[
+				"fot",
+				"font-size"
+			],
+			[
+				"d",
+				"direccion"
+			],
+			[
+				"contct",
+				"contacto"
+			],
+			[
+				"list",
+				"listLatLon"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"auto",
+				"autocontrol"
+			],
+			[
+				"end",
+				"endforeach"
+			],
+			[
+				"item",
+				"items"
+			],
+			[
+				"th",
+				"this"
+			],
+			[
+				"current",
+				"CURRENT_TIMESTAMP"
+			],
+			[
+				"paralla",
+				"parallaxsl3"
+			],
+			[
+				"up",
+				"updateUser"
+			],
+			[
+				"M",
+				"My_Model_Orders"
+			],
+			[
+				"appr",
+				"apprfc"
+			],
+			[
+				"apprazon",
+				"apprazon"
+			],
+			[
+				"appra",
+				"apprazon"
+			],
+			[
+				"no",
+				"noext"
+			],
+			[
+				"cur",
+				"currentpos"
+			],
+			[
+				"curre",
+				"currentpos"
+			],
+			[
+				"SLH",
+				"slh1"
+			],
+			[
+				"param",
+				"params"
+			],
+			[
+				"UTF",
+				"utf8_encode"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "application/modules/users/views/scripts/profiles/index.phtml",
+			"settings":
+			{
+				"buffer_size": 15098,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/modules/dashboard/views/scripts/main/index.phtml",
+			"settings":
+			{
+				"buffer_size": 15098,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 67.0,
+		"selected_items":
+		[
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 602.0
+	},
+	"console":
+	{
+		"height": 153.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/layout.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/header.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/profiles/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/blank.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/views/scripts/profiles/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/app.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/core/app.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/menu.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/css/style-responsive.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/layout_login.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/footer.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/layout_blank.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/login/login.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/custom/login-soft.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/docs.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/foundation.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/index.phtml",
+		"/Users/itecno2/Downloads/image.php",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/atn/views/scripts/rastreo/reporte.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/controllers/MainController.php",
+		"/Users/itecno2/Documents/workspace/zendblog.net/payipn.php",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/callcenter/newservice.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/newservice/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/callservice/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/callservice/cardetail.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/callservice/datefinish.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/newservice/datefinish.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/newservice/cardetail.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/callcenter/cardetail.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/callcenter/datefinish.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/controllers/MainController.php",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/layout_blank.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/layout_login.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/layout.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/siames/index.html",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/assets/styles.css",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/modules/login.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/activos/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/validateActivos.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/activos/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/equipment/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/tableUser.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/tableActivos.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/tableProfiles.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/phones/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/units/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/units/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/validateUsers.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/users/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/validatePhones.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/phones/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/profiles/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/controllers/PhonesController.php",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/controllers/MapController.php",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/blank.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/footer.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/profiles/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/validateProfile.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/users/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/validateEquipments.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/equipment/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/infoEquipments.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/modules/functionGral.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/phones/searchactivos.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/searchActivos.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/infoPhones.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/controllers/EquipmentController.php",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/callcenter/lastStepCall.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/callservice/finish.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/callservice/instalation.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/callcenter/instalation.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/rastreotels.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/rastreo/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/services/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/rastreo/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/rastreo/reporte.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/service.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/mainDetalle.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/reporteRastreo.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/rastreo/mapa.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/assets/DT_bootstrap.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/controllers/RastreoController.php",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/services/getinformation.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/services/ .phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/vendors/graphs/js/jquery.circliful.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/newservice/instalation.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/callcenter/mapDetail.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/map.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/map/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/css/slider.css",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/menu.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/jquery.countdown360.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/controllers/MainController.php",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/vendors/fullcalendar/fullcalendar.css",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/equipment/searchactivos.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/main/searchcitas.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/main/citadetalle.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/mainAtnSearch.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/mainAtn.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/productividad.sublime-project",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/vendors/fullcalendar/fullcalendar.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/vendors/jquery-validation/dist/jquery.validate.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/configs/app.ini",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/index.php",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/conection.php",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/newservice/finish.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/bootstrap-datetimepicker.min.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/bootstrap-datepicker.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/map/infotravel.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/controllers/DashboardController.php",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/header.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/registerdate/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/modules/registerdate.js",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/controllers/registerdateController.php",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/bootstrap/css/bootstrap.min.css",
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/css/style.css",
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/controllers/MainController.php",
+		"/Users/itecno2/Documents/workspace/petlocator/public/modules/admin/admin.js",
+		"/Users/itecno2/Documents/workspace/petlocator/public/modules/untitled",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/admin/views/scripts/catalogos/productos.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/admin/views/scripts/catalogos/registerproducto.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/admin/views/scripts/catalogos/registermarca.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/admin/views/scripts/catalogos/registercategoria.phtml"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"<open folders>",
+			"/Users/itecno2/Documents/workspace/taccsi/library/Zend",
+			"<open folders>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Zend",
+			"width",
+			"min-width",
+			"handleResponsive()",
+			"handleResponsiveOnResize",
+			"min-hei",
+			"ro",
+			"src=\"assets/",
+			">",
+			"label",
+			"image",
+			"images",
+			"top-bar",
+			"bar",
+			"top-bar",
+			"Rellene",
+			"rellene",
+			"button",
+			"sucess\nsucess",
+			"sucess",
+			"btn",
+			"/newservice/",
+			"ico",
+			"equipment/",
+			"/phones/",
+			"My_model_Activos()",
+			"eventAction",
+			"layout_blank",
+			"moder",
+			"/users/",
+			"/main/",
+			"/users/",
+			"=\"\"",
+			"/equipment/",
+			"/phones/",
+			"/equipment/",
+			"confirmDelete",
+			"text",
+			"/equipment/",
+			"equipment",
+			"/callcenter/newservice/",
+			"/callcenter/newservice/index",
+			"2D66F5",
+			"getAll",
+			"sDom",
+			"nPaging",
+			"Data",
+			"filter",
+			"span6",
+			"inputTecnico",
+			"margin",
+			"chosen",
+			"ORDER BY NAME ASC",
+			"inputTipo",
+			"margin-left",
+			"CONSOLE.LO",
+			"timerUpdate",
+			"startingOp",
+			"setDataTable",
+			"console.log",
+			"timerUpdate()",
+			"margin-top",
+			"margin",
+			"padding",
+			"COLOR",
+			"refresh",
+			"h500",
+			"h300",
+			"margin-left",
+			"margin",
+			"rules",
+			"margin",
+			"min-he",
+			"infoMarkerTable",
+			"getselect",
+			"<div class=\"span6\">",
+			"control-label",
+			"boostrap",
+			"gpsTrackerIMEI",
+			"                \n",
+			"Categorias",
+			"gree",
+			"calendar.html",
+			"/admin_css/",
+			"https://www.paypal.com/cgi-bin/webscr",
+			"validate",
+			"Debug",
+			"echo",
+			"Zend_Debug",
+			"row",
+			"margin-le",
+			"margin-top",
+			"text",
+			"bottom",
+			"margin-top",
+			"orange",
+			"margin-bottom",
+			"text",
+			"margin-top",
+			" <?",
+			"chapul",
+			"+'KOTA",
+			"	&,	",
+			",&",
+			"	&,&	",
+			"	&	",
+			"	\"",
+			"&",
+			"INSERT INTO pet_distribuidores (nombre,calle,no_int,no_ext,colonia,id_municipio,id_estado,cp,web_url,contacto,contacto_email,contacto_tel,contacto_tel2,contacto_tel3,horario,dias,status,latitud,longitud) VALUES																																							\n		NOMBRE		CALLE		NOINT		NOEXT				MUNICIPIO		ESTADO		CP		WEB_RUL		CONTACTO		CONTACTO_EMAIL		TEL		TEL2		TEL3		HORARIO		DIAS		ESTATUS		LATITUD		LONGITUD	\n(	&	Dog Depot 	&,&	Prolongación Blv. Zertuche	&,&		&,&	2003	&,&	Pórticos del Mar 	&,	1	,	2	,&	22875	&,&		&,&	Ernesto Rangel Vitti	&,&	vzarinamariscal@hotmail.com	&,&	(045) 64 61 81 32 32	&,&		&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	Doggie Door 	&,&	Bayoneta 	&,&		&,&	13	&,&	Lomas del Chamizal	&,	3	,	9	,&		&,&	www.doggiedoor.com.mx 	&,&	Alberto Nanes	&,&	alberto@doggiedoor.com.mx 	&,&	(0155) 2167-9567 	&,&		&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	Pet City 	&,&	Prolongación Juárez	&,&		&,&	580-A	&,&	Contadero	&,	3	,	9	,&	5370	&,&	www.pet-city.com.mx 	&,&	Jennifer Vera	&,&		&,&	(0155) 65 88 61 06 	&,&	044 55 55 03 30 36 	&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	+'KOTA	&,&	Av. Vasco de Quiroga	&,&	Loc. 474	&,&	3800	&,&	Santa Fe	&,	3	,	9	,&	5109	&,&		&,&		&,&	santafe21@prodigy.net.mx	&,&	(0155) 5258 - 0874 	&,&		&,&		&,&	11:00 am a 8:30 pm	&,&	L-D	&,	1	,	0	,	0	),\n(	&	Smart Dogs 	&,&	Parroquia	&,&		&,&	412	&,&	del Valle 	&,	13	,	9	,&		&,&	www.smartdogs.com 	&,&	Sylvana Lozada	&,&	sylvana.loza@gmail.com 	&,&	(0155) 5524 8336 	&,&		&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	+'KOTA	&,&	Av Universidad 	&,&	Local C 134-136	&,&	1000	&,&	Santa Cruz Atoyac	&,	13	,	9	,&	3310	&,&		&,&		&,&	universidad147@prodigy.net.mx	&,&	(0155) 5601 - 8116	&,&		&,&		&,&	10:30 am a 9:00 pm 	&,&	L-D	&,	1	,	0	,	0	),\n(	&	H. de Especialidades Veterinarias San Jerónimo SC 	&,&	Av San Jerónimo	&,&		&,&	1431	&,&	San Jerónimo Lidice	&,	7	,	9	,&	10200	&,&	www.vetsanjeronimo.com 	&,&	M.V.Z Riad Katrib	&,&	k_trib@yahoo.com 	&,&	(0155) 5681-2078 	&,&		&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	Clínica Veterinaria Parque San Andrés 	&,&	América	&,&		&,&	103	&,&	Parque San Andrés 	&,	2	,	9	,&	4040	&,&	www.centroveterinariopsa.com 	&,&	MVZ Luis Fernando Martínez	&,&	recepcion_parquesa@hotmail.com 	&,&	(0155) 5689. 9624 	&,&		&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	Centro Médico Veterinario México 	&,&	Calzada Ermita Iztapalapa	&,&		&,&	2720	&,&	Sta Cruz Neyehuyalco	&,	6	,	9	,&	9290	&,&		&,&	MVZ Raul Alvarado Canchola	&,&	alvaradocanchola@gmail.com 	&,&	(01 55) 1546 18 25	&,&		&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	Pak's Kennel	&,&	Cerrada de Flor Silvestre	&,&		&,&	8	&,&	San Pedro Mártir 	&,	11	,	9	,&	14 64	&,&	www.pakskennel.com.mx 	&,&	Aldo Eduardo Sánchez Vargas	&,&	pakskennel@live.com.mx 	&,&	(01 55)54 8511 59 	&,&		&,&		&,&	10:30 am a 9:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n(	&	+'KOTA Perisur	&,&	Av. Anillo Periférico, Centro Comercial Perisur	&,&	Local 27	&,&	469	&,&	Jardines del Pedregal de San Angel	&,	2	,	9	,&	1404500	&,&		&,&		&,&	perisur11@prodigy.net.mx	&,&	(01 55)5606 - 0058 	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	Tochtli Mascotas	&,&	Mar Caribe	&,&	Local 2,5 y 6	&,&	8	&,&	Popotla	&,	15	,	9	,&		&,&	https://www.facebook.com/tochtli.mascotas 	&,&	Citlali Alethia Villalobos	&,&	comvilsa@yahoo.com 	&,&	(01 55) 24 52 43 44	&,&	(01 55) 63 63 31 04 	&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	+'KOTA Lomas	&,&	Prado Norte	&,&		&,&	381	&,&	Lomas de Chapultepec 	&,	15	,	9	,&	11000	&,&		&,&		&,&	lomas12@prodigy.net.mx	&,&	(01 55) 5540 - 0379	&,&		&,&		&,&	L-S de 10:00 am a 9:00 pm y D de 11:00 am a 8:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n(	&	+'KOTA Pabellón Polanco	&,&	Av. Ejército Nacional	&,&	Loc. 147	&,&	980	&,&	Polanco	&,	15	,	9	,&	11510	&,&		&,&		&,&	polanco23@prodigy.net.mx	&,&	(01 55) 5580 - 0736 	&,&		&,&		&,&	11:00 am a 8:00 pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	+'KOTA Parque Lindavista	&,&	Colector 13	&,&	Locales 214 y 214-A 	&,&	280	&,&	Magdalena de las Salinas 	&,	4	,	9	,&	7760	&,&		&,&		&,&	parquelindavista126@prodigy.net.mx	&,&	(01 55) 5754 - 4214	&,&		&,&		&,&	11:00 am a 8:30 pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	+'KOTA Acoxpa	&,&	AV. Acoxpa 	&,&		&,&	447	&,&	Villa Lazaro Cardenes 	&,	11	,	9	,&	14370	&,&		&,&		&,&	acoxpa132@prodigy.net.mx	&,&	(01 55) 5603 - 0957 	&,&		&,&		&,&	L-S de 10:00 am a 9:00 pm y D de 10:00 am a 8:00pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	+'KOTA Galerias Coapa	&,&	Calzada del Hueso,Centro Comercial GalerÃ­as Coapa	&,&	Loc. 138	&,&	519	&,&	Residencial Acoxpa 	&,	11	,	9	,&	14300	&,&		&,&		&,&	coapa015@prodigy.net.mx	&,&	(01 55) 5679 - 7991	&,&		&,&		&,&	11:00 am a 9:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n(	&	+'KOTA Paseo Acoxpa	&,&	Avenida Acoxpa	&,&	Loc. 93	&,&	430	&,&	Exhacienda Coapa 	&,	11	,	9	,&	4980	&,&		&,&		&,&	paseoacoxpa159@gmail.com	&,&	(01 55) 5677 - 7918	&,&		&,&		&,&	11:00 am a 9:00 pm 	&,&	L-V	&,	1	,	1	,	0	),\n																																							\n(	&	Hospital Veterinario Chapultepets 	&,&	Blvd. Pedro Infante	&,&		&,&	56	&,&	Recursos Hidráulicos	&,	6	,	25	&,	80100	&,&	www.chapultepets.com 	&,&	Santiago López Gerardo	&,&	contacto@chapultepets.com	&,&	(01) (667) 716?4243	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	ICE Instrucción Canina Especializada 	&,&	Faisan 	&,&		&,&	207	&,&	Fraccionamiento Real del Mezcal 	&,	5	,	10	&,	34199	&,&	www.icedurango.com 	&,&	Martín Alejandro Sánchez de la Vega 	&,&	icedurango@gmail.com 	&,&	(01 618) 197 55 12 	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n																																							\n(	&	Educandog	&,&	Arlequín	&,&		&,&	34	&,&	Vergel de Arboledas	&,	13	,	15	&,	52942	&,&	http://www.educandog.mx 	&,&		&,&	contacto@educandog.mx 	&,&	(044 55) 34 99 30 57	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Av. Ruíz Cortines	&,&	Local 134 	&,&	255 Mz-2 Lt- 1	&,&	Las Margaritas 	&,	13	,	15	&,	52977	&,&		&,&		&,&	gatizapan1210@prodigy.net.mx	&,&	(0155) 1668 - 9055 	&,&		&,&		&,&	11:00 am a 9:00 pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Blvd. Magnocentr	&,&	Local 112-1 PB	&,&	26 Mz. 1 Lote 2	&,&	Centro Urbano San Fernando 	&,	37	,	15	&,	52760	&,&		&,&		&,&	interlomas58@prodigy.net.mx	&,&	(0155) 5290 - 7674 	&,&		&,&		&,&	11:00 am a 8:00 pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Vialidad de la Barranca 	&,&	Local N2-05 	&,&	6	&,&	Ex Hda Jesús del Monte 	&,	37	,	15	&,	52772	&,&		&,&		&,&	Interlomas138@gmail.com	&,&	(0155) 5290 - 6361 	&,&		&,&		&,&	11:00 am a 8:00 pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Boulevard Toluca Ixtapan 	&,&	Local 101 PB	&,&	126	&,&	Metepec	&,	54	,	15	&,	52169	&,&		&,&		&,&	metepec017@prodigy.net.mx	&,&	(01 72) 2232 - 1292 	&,&		&,&		&,&	1:00 am a 9:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Circuito Centro 	&,&	Loc. R368 y R370	&,&	2251	&,&	Ciudad Satélite	&,	57	,	15	&,	53100	&,&		&,&		&,&	satelite14@prodigy.net.mx	&,&	(0155) 5572 - 5680	&,&		&,&		&,&	11:00 am a 8:30 pm	&,&	L-D	&,	1	,	1	,	0	),\n																																							\n(	&	#¿NOMBRE?	&,&	Av. Las Torres,	&,&	 Local 1248 	&,&	1032	&,&		&,	20	,	11	&,	37150	&,&		&,&		&,&	leon32@prodigy.net.mx	&,&	(01 47) 7779 - 5986	&,&		&,&		&,&	11:00 am a 9:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Blvd. Puerta de Hierro	&,&	Local UP67-127	&,&	4965	&,&		&,	120	,	14	&,	45116	&,&		&,&		&,&	andares129@prodigy.net.mx	&,&	(01 33) 3611 - 3123	&,&		&,&		&,&	10:00 am a 9:00 pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	Pet n Go 	&,&	Paseo de Los Eucaliptos	&,&		&,&	5007	&,&		&,	39	,	19	&,	64920	&,&	www.petngo.com.mx	&,&		&,&		&,&	01 800 839 1299 	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Boulevard del NiÃ±o Poblano 	&,&	Local 201-S / 202 S	&,&	2510	&,&		&,	114	,	21	&,	72450	&,&		&,&		&,&	angelopolis117@prodigy.net.mx	&,&	(01 22) 2225 - 2842 	&,&		&,&		&,&	11:00 am a 9:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n																																							\n(	&	Veterinaria Dr. Memo 	&,&	15 de Mayo	&,&		&,&	77	&,&	Centro Histórico	&,	14	,	22	&,	76000	&,&		&,&	M.V.Z. Guillermo Espindola , M.V.Z. Alma Luna	&,&	veterinariamemo@yahoo.com.mx 	&,&	(01) (442) 224?3800 	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	Aquazon	&,&	Porvenir	&,&		&,&	26	&,&	Espa?a Querétaro	&,	14	,	22	&,	76158	&,&	www.a4patas.mx 	&,&	Juan Pablo Carrillo Espinosa	&,&	animalesvivos2008@gmail.com 	&,&	(01442) 391.2884 	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Av. 5 de Febrero 	&,&	local 227 	&,&	99	&,&	Los Virreyes 	&,	14	,	22	&,	76175	&,&		&,&		&,&	queretaro55@prodigy.net.mx	&,&	(0144) 2215 - 0477 	&,&		&,&		&,&	11:00 am a 9:00 pm 	&,&	L-D	&,	1	,	1	,	0	),\n																																							\n(	&	#¿NOMBRE?	&,&	Blv. Antonio Rocha Cordero 	&,&	Local C-25	&,&	700	&,&	Fracc Lomas del Tecnológico	&,	28	,	24	&,	78215	&,&		&,&		&,&	plazasanluis152@gmail.com	&,&	(01 44) 4813 - 0140 	&,&		&,&		&,&	11:00 a.m. a 8:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n(	&	Dog Hunter/ Grupo Emeritense 	&,&	105 Diagonal # 313 Cruzamiento 	&,&		&,&	32A y 34	&,&	Francisco Villa 	&,	50	,	31	&,	97219	&,&	www.facebook.com/grupoEmeritense 	&,&	M.V.Z. Fidel León	&,&	fnleon@hotmail.com 	&,&	(01 999) 253 02 71 	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n	&	",
+			"controlEstado",
+			"autocontrol",
+			"h",
+			"error",
+			"mailte",
+			"mail",
+			"white",
+			"control-label",
+			"bg",
+			">'+",
+			">'+ ",
+			"col-xs-2",
+			"form",
+			"caption",
+			"modal",
+			"display: none",
+			"none",
+			"display",
+			"hidde"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"src=\"/assets/",
+			"/callservice/",
+			"activos/",
+			"/activos/",
+			"/profiles/",
+			"/users/",
+			"phones",
+			"/callcenter/callservice/",
+			"/callcenter/callservice/index",
+			"<div class=\"span5\">",
+			"control-label-lg",
+			"",
+			"/astyle/",
+			"\",	",
+			",\"",
+			"\",\"",
+			"\"",
+			"",
+			"col-xs-3",
+			"class=\"col-xs-2 ",
+			"col-xs-10",
+			"                <",
+			"$this->errors",
+			"Cerrar",
+			"/js/",
+			"/css/",
+			"../fonts/",
+			" ",
+			"<article class=\"ac-small100\">",
+			"class=\"ac-small\">",
+			"type=\"checkbox\"",
+			"parallaxv2",
+			"parallaxv2.",
+			"parallaxsl3",
+			">",
+			"<",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "application/modules/users/views/scripts/profiles/index.phtml",
+					"settings":
+					{
+						"buffer_size": 15098,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								15098
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"function_name_status_row": 0,
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "application/modules/dashboard/views/scripts/main/index.phtml",
+					"settings":
+					{
+						"buffer_size": 15098,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15098,
+								15098
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2.0,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5.0,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10.0,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"function_name_status_row": 690,
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublime_auto_complete": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 11086.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"application/modules/main/views/scripts/shop/shops.phtml"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 255.0,
+	"status_bar_visible": true
+}

@@ -1,0 +1,137 @@
+<?php $this->headScript()->appendFile('/js/modules/users/validateProfiles.js') ?>  
+<?php $disabled = ($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==1) ? 'disabled':'';?>				
+<input type="hidden" id="inputModule" value="<?php echo $this->moduleInfo['SCRIPT']; ?>"/>
+<div class="row">
+	<div class="col-md-12">
+		<ul class="page-breadcrumb breadcrumb">
+			<li>
+				<i class="fa fa-home"></i>
+				<a href="/main/main/inicio">
+					Inicio
+				</a>
+				<i class="fa fa-angle-right"></i>
+			</li>
+			<li>
+				<a href="<?php echo $this->moduleInfo['SCRIPT'];?>">
+					<?php echo $this->moduleInfo['DESCRIPCION'];?>
+				</a>
+				<i class="fa fa-angle-right"></i>
+			</li>
+			<li>
+				<a href="#">
+					Detalle del Perfil
+				</a>
+			</li>							
+		</ul>
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>Información del perfil
+		</div>
+		<div class="tools">
+			<!--<a href="javascript:;" class="reload">
+			</a>			
+			<a href="javascript:;" class="collapse">
+			</a>
+			<a href="#portlet-config" data-toggle="modal" class="config">
+			</a>
+
+			<a href="javascript:;" class="remove">
+			</a>-->
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<?php if($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==0): ?>
+			<div id="divpErrorLogin" class="alert alert-danger alert-dismissable" style="display:block;">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+			  <h4>Error</h4>
+			  <div>Usted no tiene permiso para ver esta información</div>
+			</div>						
+		<?php else:?>
+			<!-- BEGIN FORM-->
+			<?php if($disabled!='disabled'):?>
+				<form name="FormData" id="FormData" method="POST" action="<?php echo str_replace('index', 'getinfo', $this->moduleInfo['SCRIPT']); ;?>" class="form-horizontal">
+			<?php endif;?>
+				<input type="hidden" name="optReg" value="<?php echo ($this->idToUpdate>0) ? 'update': 'new';?>" />
+		    	<input type="hidden" name="catId"  value="<?php echo $this->catId; ?>" id="catId" />
+				<div class="alert alert-danger display-hide">
+					<button class="close" data-close="alert"></button>
+					El registro contiene uno o mas errores, favor de verificarlos.
+				</div>
+				<div class="alert alert-success display-hide">
+					<button class="close" data-close="alert"></button>
+					Información correcta
+				</div>		    	
+		        <?php if($this->resultOp=='okRegister'): ?>
+		            <div class="alert alert-success alert-dismissable">
+		                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+		                Datos se almacenaron correctamente.
+		            </div>  		              
+		        <?php endif; ?>		
+
+		    	<div class="form-body">
+					<div class="form-group">
+						<label class="col-md-3 control-label">Descripción<span class="required">*</span></label>
+						<div class="col-md-4">
+							<input type="text" name="inputDescripcion" id="inputDescripcion" data-required="1" class="form-control" placeholder="Descripción" value="<?php echo @$this->data['DESCRIPCION']; ?>"  <?php echo $disabled;?> autocomplete="off" >										
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label">Opciones<span class="required">*</span></label>
+						<div class="col-md-4">
+							<input type="checkbox" onClick="optionAll(this.checked);" <?php echo (@$this->data['INSERTAR']==1 && @$this->data['LECTURA']==1 && @$this->data['EDITAR']==1 && @$this->data['ELIMINAR']==1) ? 'checked':'';?>>&nbsp;Todas 
+							&nbsp;
+							<br />
+							<input name="inputAgregar" class="chkOn" type="checkbox" <?php echo (@$this->data['INSERTAR']==1) ? 'checked':'';?>>&nbsp;Agregar 
+							&nbsp;
+							<br />
+							<input name="inputLeer"    class="chkOn" type="checkbox" <?php echo (@$this->data['LECTURA']==1)? 'checked':'';?>>&nbsp;Leer
+							&nbsp;
+							<br />
+							<input name="inputEditar"  class="chkOn" type="checkbox" <?php echo (@$this->data['EDITAR']==1)? 'checked':'';?>>&nbsp;Editar
+							&nbsp;
+							<br />
+							<input name="inputBorrar"  class="chkOn" type="checkbox" <?php echo (@$this->data['ELIMINAR']==1)? 'checked':'';?>>&nbsp;Borrar
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label">Activo<span class="required">*</span></label>
+						<div class="col-md-4">
+							<select class="form-control input-sm" name="inputEstatus" id="inputEstatus" <?php echo $disabled;?> >
+								<option value="">Seleccionar una opción</option>
+	                            <?php echo $this->aStatus;?>
+							</select>
+						</div>
+					</div>
+				<?php if($disabled!='disabled'):?>
+				<div class="form-actions fluid">
+					<div class="col-md-offset-3 col-md-9">
+						<button type="submit" class="btn blue">Guardar</button>
+						<button type="button" class="btn default" onClick="location.href='<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>
+					</div>
+				</div>			
+				<?php endif;?>	
+			<?php if($disabled!='disabled'):?>
+			</form>
+			<?php endif;?>
+		<!-- END FORM-->
+		<?php endif;?>		
+	</div>
+</div>
+	<div class="modal fade" id="ajax" role="basic" aria-hidden="true">
+		<div class="page-loading page-loading-boxed">
+			<img src="/assets/img/loading-spinner-grey.gif" alt="" class="loading">
+			<span>
+				&nbsp;&nbsp;Loading...
+			</span>
+		</div>
+		<div class="modal-dialog">
+			<div class="modal-content">
+			</div>
+		</div>
+	</div>	
