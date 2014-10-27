@@ -1,17 +1,4 @@
 $().ready(function() {
-
-	/*$("#FormData").validate({
-        rules: {
-            inputDescripcion:  "required",    
-        },
-        messages: {
-            inputDescripcion   : "Campo Requerido",                           
-        },
-        submitHandler: function(form) {
-            form.submit();
-        }
-    });	*/
-
     var formData = $('#FormData');
     var dError   = $('.alert-danger' , formData);
     var dSucess  = $('.alert-success', formData);
@@ -29,9 +16,9 @@ $().ready(function() {
         },
 
         invalidHandler: function (event, validator) { //display error alert on form submit              
-            dSucess.hide();
-            dError.show();
-            App.scrollTo(dError, -200);
+            success1.hide();
+            error1.show();
+            App.scrollTo(error1, -200);
         },
 
         highlight: function (element) { // hightlight error inputs
@@ -45,14 +32,15 @@ $().ready(function() {
         },
 
         success: function (label) {
-            App.startPageLoading();
-            form.submit();
+            label
+                .closest('.form-group').removeClass('has-error'); // set success class to the control group
         },
 
         submitHandler: function (form) {
-            dSucess.show();
-            dError.hide();
-        }
+            App.startPageLoading();
+            $('.btnSave').attr("disabled", true);  
+            form.submit();          
+        } 
     });    
 });
 

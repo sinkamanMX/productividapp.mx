@@ -121,7 +121,7 @@ class My_Model_Usuarios extends My_Db_Table
     }	
 
 	
-	public function getDataTables($dataUser){
+	public function getDataTables($idEmpresa){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
     	$sql ="SELECT   U.ID_USUARIO, 
@@ -135,9 +135,8 @@ class My_Model_Usuarios extends My_Db_Table
 						U.ACTIVO
 				FROM USUARIOS U
 				INNER JOIN PERFILES    P ON P.ID_PERFIL  = U.ID_PERFIL
-				INNER JOIN USR_EMPRESA R ON U.ID_USUARIO = R.ID_USUARIO
-				INNER JOIN SUCURSALES  S ON R.ID_SUCURSAL = S.ID_SUCURSAL
-				WHERE S.ID_EMPRESA = ".$dataUser['ID_EMPRESA']."
+				INNER JOIN SUCURSALES  S ON U.ID_SUCURSAL = S.ID_SUCURSAL
+				WHERE S.ID_EMPRESA = ".$idEmpresa."
 				ORDER BY NOMBRE ASC";
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
@@ -152,8 +151,7 @@ class My_Model_Usuarios extends My_Db_Table
     	$sql ="SELECT  U.*,P.*,S.*
 				FROM USUARIOS U
 				INNER JOIN PERFILES    P ON P.ID_PERFIL  = U.ID_PERFIL
-				INNER JOIN USR_EMPRESA R ON U.ID_USUARIO = R.ID_USUARIO
-				INNER JOIN SUCURSALES  S ON R.ID_SUCURSAL = S.ID_SUCURSAL
+				INNER JOIN SUCURSALES  S ON U.ID_SUCURSAL = S.ID_SUCURSAL
 				WHERE U.$this->_primary = $idObject LIMIT 1";	
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
@@ -185,6 +183,7 @@ class My_Model_Usuarios extends My_Db_Table
         
         $sql="INSERT INTO $this->_name	
         			SET ID_PERFIL	=   ".$data['inputPerfil'].",
+        				ID_SUCURSAL =   ".$data['inputSucursal'].",
 						USUARIO		=  '".$data['inputUsuario']."',
 						PASSWORD	=  SHA1('".$data['inputPassword']."'),
 						NOMBRE		=  '".$data['inputNombre']."',
@@ -199,12 +198,8 @@ class My_Model_Usuarios extends My_Db_Table
     		$sql_id ="SELECT LAST_INSERT_ID() AS ID_LAST;";
 			$query_id   = $this->query($sql_id);
 			if(count($query_id)>0){
-				$data['catId'] = $query_id[0]['ID_LAST'];  			 	
-				$insertRel = $this->setSucursal($data);
-				if($insertRel){
-					$result['id']	   = $query_id[0]['ID_LAST'];
-					$result['status']  = true;	
-				}					
+				$result['id']	   = $query_id[0]['ID_LAST'];
+				$result['status']  = true;
 			}	
         }catch(Exception $e) {
             echo $e->getMessage();
@@ -224,6 +219,7 @@ class My_Model_Usuarios extends My_Db_Table
 
         $sql="UPDATE $this->_name	
         			SET ID_PERFIL	=   ".$data['inputPerfil'].",
+        				ID_SUCURSAL =   ".$data['inputSucursal'].",
 						USUARIO		=  '".$data['inputUsuario']."',
 						$sPassword			
 						NOMBRE		=  '".$data['inputNombre']."',
@@ -237,10 +233,7 @@ class My_Model_Usuarios extends My_Db_Table
         try{            
     		$query   = $this->query($sql,false);
 			if($query){
-				$insertRel = $this->setSucursal($data);
-				if($insertRel){
-					$result['status']  = true;	
-				}									
+				$result['status']  = true;												
 			}	
         }catch(Exception $e) {
             echo $e->getMessage();
@@ -248,27 +241,6 @@ class My_Model_Usuarios extends My_Db_Table
         }
 		return $result;
     }  
-
-    public function setSucursal($data){
-		$result = false;    	
-    	try{    	
-			$sql  	= "DELETE FROM USR_EMPRESA WHERE ID_USUARIO = ".$data['catId']." LIMIT 1";
-    		$query   = $this->query($sql,false);
-			if($query){
-        		$sqlInsert="INSERT INTO USR_EMPRESA
-        			SET ID_SUCURSAL	=  ".$data['inputSucursal'].",
-						ID_USUARIO	=  ".$data['catId'];
-    			$queryInsert   = $this->query($sqlInsert,false);				
-				if($queryInsert){
-					$result = true;	
-				}					
-			}	
-        }catch(Exception $e) {
-            echo $e->getMessage();
-            echo $e->getErrorMessage();
-        }
-		return $result;	       	
-    }
     
     public function deleteRow($data){
 		$result = false;    	

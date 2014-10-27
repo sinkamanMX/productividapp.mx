@@ -48,7 +48,7 @@ var Datatable = function () {
                     ],
                     "iDisplayLength": 10, // default records per page
                     "oLanguage": {  // language settings
-                        "sProcessing": '<img src="assets/img/loading-spinner-grey.gif"/><span>&nbsp;&nbsp;Loading...</span>',
+                        "sProcessing": '<img src="/assets/img/loading-spinner-grey.gif"/><span>&nbsp;&nbsp;Loading...</span>',
                         "sLengthMenu": "<span class='seperator'>|</span>View _MENU_ records",
                         "sInfo": "<span class='seperator'>|</span>Found total _TOTAL_ records",
                         "sInfoEmpty": "No records found to show",
