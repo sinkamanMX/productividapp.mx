@@ -171,7 +171,7 @@ class users_UsersController extends My_Controller_Action
 				$delete = $classObject->deleteRow($this->_dataIn);
 				if($delete){
 					$answer = Array('answer' => 'deleted'); 
-				}	
+				}
 	
 		        echo Zend_Json::encode($answer);
 		        die();   			
@@ -183,7 +183,7 @@ class users_UsersController extends My_Controller_Action
     	    		$aHorarios  	= $cHorarios->getAllDataByUser($dataInfo['ID_SUCURSAL'],$this->_idUpdate);
 					$this->view->eventAction = true;
 				}
-			}			
+			}
 
 			if(count($this->_aErrors)>0 && $this->_dataOp!=""){
 				$dataInfo['ID_PERFIL'] 		= $this->_dataIn['inputPerfil'];
