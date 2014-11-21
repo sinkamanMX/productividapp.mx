@@ -99,3 +99,12 @@
 .white-text{
   color:#FFFFFF;
 }
+#ex1Slider .slider-selection {
+  background: #BABABA;
+}
+
+#countdown {
+    margin-left: 88%;
+    margin-top: -12%;
+    position: relative;
+}

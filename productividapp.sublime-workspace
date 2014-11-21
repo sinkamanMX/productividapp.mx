@@ -392,26 +392,26 @@
 	"buffers":
 	[
 		{
-			"file": "application/modules/config/views/scripts/company/index.phtml",
+			"file": "application/modules/location/views/scripts/main/index.phtml",
 			"settings":
 			{
-				"buffer_size": 26439,
+				"buffer_size": 3202,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/js/modules/config/validateConfig.js",
+			"file": "public/js/modules/location/rastreotels.js",
 			"settings":
 			{
-				"buffer_size": 6732,
+				"buffer_size": 8980,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/js/modules/users/validateProfiles.js",
+			"file": "application/modules/users/views/scripts/users/index.phtml",
 			"settings":
 			{
-				"buffer_size": 1776,
+				"buffer_size": 5334,
 				"line_ending": "Unix"
 			}
 		},
@@ -419,24 +419,16 @@
 			"file": "application/views/layouts/layout.phtml",
 			"settings":
 			{
-				"buffer_size": 6950,
+				"buffer_size": 7023,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/assets/scripts/core/app.js",
+			"file": "public/css/app.css",
 			"settings":
 			{
-				"buffer_size": 49385,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "public/assets/css/custom.css",
-			"settings":
-			{
-				"buffer_size": 141,
-				"line_ending": "Windows"
+				"buffer_size": 1455,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -468,24 +460,28 @@
 	},
 	"file_history":
 	[
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/users/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/users/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/config/views/scripts/company/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/config/validateConfig.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/users/validateProfiles.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/layout.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/core/app.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/css/custom.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/app.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/users/index.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/controllers/UsersController.php",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/controllers/MainController.php",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/library/My/Model/Perfiles.php",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/library/My/Controller/Functions.php",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/users/getinfo.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/library/My/Model/Usuarios.php",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/controllers/ProfilesController.php",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/profiles/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/main/index.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/controllers/MainController.php",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/views/scripts/main/index.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/configuracion/controllers/confGeneralController.php",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/users/validateUsers.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/users/validateProfiles.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/profiles/getinfo.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/core/app.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/core/datatable.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/gralTables.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/custom/table-managed.js",
@@ -494,7 +490,6 @@
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/menu.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/header.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/blank.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/app.css",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/css/style-responsive.css",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/layout_login.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/footer.phtml",
@@ -592,10 +587,7 @@
 		"/Users/itecno2/Documents/workspace/productividad.mx/public/vendors/fullcalendar/fullcalendar.js",
 		"/Users/itecno2/Documents/workspace/productividad.mx/public/vendors/jquery-validation/dist/jquery.validate.js",
 		"/Users/itecno2/Documents/workspace/productividad.mx/application/configs/app.ini",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/index.php",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/conection.php",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/newservice/finish.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/bootstrap-datetimepicker.min.js"
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/index.php"
 	],
 	"find":
 	{
@@ -616,6 +608,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"CHOSEN",
+			"aTecnicos",
 			"init",
 			"aPerfiles",
 			"/img/loading-spinner-grey.gif",
@@ -741,9 +735,7 @@
 			"h",
 			"error",
 			"mailte",
-			"mail",
-			"white",
-			"control-label"
+			"mail"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -751,6 +743,7 @@
 		"regex": true,
 		"replace_history":
 		[
+			"aPersonal",
 			"form-control",
 			"src=\"/assets/",
 			"/callservice/",
@@ -804,85 +797,79 @@
 			[
 				{
 					"buffer": 0,
-					"file": "application/modules/config/views/scripts/company/index.phtml",
+					"file": "application/modules/location/views/scripts/main/index.phtml",
 					"settings":
 					{
-						"buffer_size": 26439,
+						"buffer_size": 3202,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5083,
-								5083
+								247,
+								247
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false,
 							"word_wrap": false
 						},
-						"translation.x": 187.0,
-						"translation.y": 3063.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "public/js/modules/config/validateConfig.js",
+					"file": "public/js/modules/location/rastreotels.js",
 					"settings":
 					{
-						"buffer_size": 6732,
+						"buffer_size": 8980,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3101,
-								3101
+								5194,
+								5160
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1890.0,
+						"translation.y": 2607.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "public/js/modules/users/validateProfiles.js",
+					"file": "application/modules/users/views/scripts/users/index.phtml",
 					"settings":
 					{
-						"buffer_size": 1776,
+						"buffer_size": 5334,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								378,
-								378
+								340,
+								340
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 100.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -892,15 +879,15 @@
 					"file": "application/views/layouts/layout.phtml",
 					"settings":
 					{
-						"buffer_size": 6950,
+						"buffer_size": 7023,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6414,
-								6417
+								6065,
+								6065
 							]
 						],
 						"settings":
@@ -910,61 +897,35 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1030.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "public/assets/scripts/core/app.js",
+					"file": "public/css/app.css",
 					"settings":
 					{
-						"buffer_size": 49385,
+						"buffer_size": 1455,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								37488,
-								37492
+								1455,
+								1455
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 16122.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "public/assets/css/custom.css",
-					"settings":
-					{
-						"buffer_size": 141,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								81,
-								73
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 955.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

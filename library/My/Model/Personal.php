@@ -12,7 +12,7 @@
  * @package library.My.Models
  * @author EPENA
  */
-class My_Model_Tecnicos extends My_Db_Table
+class My_Model_Personal extends My_Db_Table
 {
     protected $_schema 	= 'gtp_bd';
 	protected $_name 	= 'USUARIOS';
@@ -22,13 +22,13 @@ class My_Model_Tecnicos extends My_Db_Table
 		$result= Array();
 		$this->query("SET NAMES utf8",false);
 		$sIdSearch = ($selectId==0) ? 'T.ID_TELEFONO': 'U.ID_USUARIO'; 		
-    	$sql ="SELECT $sIdSearch AS ID, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME, E.ID_SUCURSAL
-				FROM USR_EMPRESA E
-				INNER JOIN USUARIOS   U ON E.ID_USUARIO  = U.ID_USUARIO AND U.FLAG_OPERACIONES = 1 
-				INNER JOIN SUCURSALES S ON E.ID_SUCURSAL  = S.ID_SUCURSAL
+    	$sql ="SELECT $sIdSearch AS ID, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME, U.ID_SUCURSAL
+				FROM USUARIOS  U   
+				INNER JOIN SUCURSALES S 	   ON U.ID_SUCURSAL= S.ID_SUCURSAL
 				INNER JOIN PROD_USR_TELEFONO T ON U.ID_USUARIO = T.ID_USUARIO
 				WHERE S.ID_EMPRESA = $idObject
-				ORDER BY E.ID_SUCURSAL ASC, NAME ASC";
+				  AND U.FLAG_OPERACIONES = 1
+				ORDER BY U.ID_SUCURSAL ASC, NAME ASC";
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
 			$result = $query;			
@@ -40,11 +40,10 @@ class My_Model_Tecnicos extends My_Db_Table
 	public function getCbo($idObject){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
-    	$sql ="SELECT E.ID_USUARIO AS ID, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME
-				FROM USR_EMPRESA E
-				INNER JOIN USUARIOS U ON E.ID_USUARIO = U.ID_USUARIO 
-										AND U.FLAG_OPERACIONES = 1 
+    	$sql ="SELECT U.ID_USUARIO AS ID, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME
+				FROM USUARIOS U 										
 				WHERE ID_SUCURSAL = $idObject
+				  AND U.FLAG_OPERACIONES = 1
 				ORDER BY NAME ASC";
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
@@ -69,7 +68,7 @@ class My_Model_Tecnicos extends My_Db_Table
 				U.UBICACION
 				FROM PROD_ULTIMA_POSICION U
 				INNER JOIN PROD_EVENTOS   E ON U.ID_EVENTO = E.ID_EVENTO
-				WHERE U.ID_TELEFONO IN ($values)";
+				WHERE U.ID_TELEFONO IN ($values)"; 	
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
 			$result = $query;			
@@ -82,12 +81,12 @@ class My_Model_Tecnicos extends My_Db_Table
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
     	$sql ="SELECT U.ID_USUARIO AS ID, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME, E.ID_SUCURSAL
-				FROM USR_EMPRESA E
-				INNER JOIN USUARIOS   U ON E.ID_USUARIO  = U.ID_USUARIO AND U.FLAG_OPERACIONES = 1 
-				INNER JOIN SUCURSALES S ON E.ID_SUCURSAL  = S.ID_SUCURSAL
+				FROM USUARIOS   U  
+				INNER JOIN SUCURSALES 		 S ON U.ID_SUCURSAL= S.ID_SUCURSAL
 				INNER JOIN PROD_USR_TELEFONO T ON U.ID_USUARIO = T.ID_USUARIO
 				WHERE E.ID_SUCURSAL IN ($values)
 				 AND  S.ID_EMPRESA = $idEmpresa
+				 AND  U.FLAG_OPERACIONES = 1
 				ORDER BY E.ID_SUCURSAL ASC, NAME ASC";
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
@@ -101,11 +100,11 @@ class My_Model_Tecnicos extends My_Db_Table
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
     	$sql ="SELECT U.ID_USUARIO AS ID, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME
-				FROM USR_EMPRESA E
-				INNER JOIN USUARIOS   U ON E.ID_USUARIO  = U.ID_USUARIO AND U.FLAG_OPERACIONES = 1 
-				INNER JOIN SUCURSALES S ON E.ID_SUCURSAL  = S.ID_SUCURSAL
+				FROM USUARIOS U   
+				INNER JOIN SUCURSALES S ON U.ID_SUCURSAL  = S.ID_SUCURSAL
 				INNER JOIN PROD_USR_TELEFONO T ON U.ID_USUARIO = T.ID_USUARIO
 				WHERE S.ID_EMPRESA = $idEmpresa
+				  AND U.FLAG_OPERACIONES = 1
 				ORDER BY E.ID_SUCURSAL ASC, NAME ASC";
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
