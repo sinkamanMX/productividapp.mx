@@ -108,3 +108,29 @@
     margin-top: -12%;
     position: relative;
 }
+/*This will work for firefox*/
+@-moz-document url-prefix() {
+   #divSliderC{
+    margin-top: 0% !important;
+  }
+}
+
+#divSliderC{
+  margin-top: 3%;
+}
+#map_canvas img {
+  max-width: none !important;
+}
+#mapCanvas label { width: auto !important; display:inline !important; }
+#mapCanvas img { max-width: none !important; }
+.gm-style-iw{
+    height: 100% !important;
+    overflow: hidden !important;
+}
+/** FIX for Bootstrap and Google Maps Info window styes problem **/
+img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
+  max-width: none;
+}
+img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
+  max-width: none !important;
+}
