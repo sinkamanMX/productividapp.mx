@@ -1026,6 +1026,7 @@ var App = function () {
             handleGoTop(); //handles scroll to top functionality in the footer
             handleTheme(); // handles style customer tool
 
+            /*
             //ui component handlers
             handleFancybox() // handle fancy box
             handleSelect2(); // handle custom Select2 dropdowns
@@ -1037,7 +1038,8 @@ var App = function () {
             handlePopovers(); // handles bootstrap popovers
             handleAccordions(); //handles accordions 
             handleModals(); // handle modals
-            handleFullScreenMode(); // handles full screen
+            handleFullScreenMode(); // handles full screen            
+            */
         },
 
         //main function to initiate core javascript after ajax complete

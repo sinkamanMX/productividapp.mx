@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"str",
+				"strUrlSend"
+			],
+			[
+				"inp",
+				"inputFecIn"
+			],
+			[
 				"L",
 				"LatLng"
 			],
@@ -50,10 +58,6 @@
 			[
 				"data",
 				"datainfo"
-			],
-			[
-				"inp",
-				"inputCheck"
 			],
 			[
 				"id",
@@ -395,6 +399,78 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "application/modules/location/views/scripts/main/index.phtml",
+			"settings":
+			{
+				"buffer_size": 3562,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/modules/location/rastreotels.js",
+			"settings":
+			{
+				"buffer_size": 9065,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/modules/location/views/scripts/main/reporte.phtml",
+			"settings":
+			{
+				"buffer_size": 4931,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/modules/location/reporteRastreo.js",
+			"settings":
+			{
+				"buffer_size": 6861,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js",
+			"settings":
+			{
+				"buffer_size": 52681,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/layouts/layout.phtml",
+			"settings":
+			{
+				"buffer_size": 7221,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/layouts/layout_blank.phtml",
+			"settings":
+			{
+				"buffer_size": 6316,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/css/app.css",
+			"settings":
+			{
+				"buffer_size": 2089,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js",
+			"settings":
+			{
+				"buffer_size": 11391,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -424,6 +500,7 @@
 	},
 	"file_history":
 	[
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js",
 		"/Users/itecno2/Desktop/modificacionespetLocator",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/location/views/scripts/main/index.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/location/rastreotels.js",
@@ -550,8 +627,7 @@
 		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/equipment/searchactivos.phtml",
 		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/main/searchcitas.phtml",
 		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/main/citadetalle.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/mainAtnSearch.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/mainAtn.js"
+		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/mainAtnSearch.js"
 	],
 	"find":
 	{
@@ -559,7 +635,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
 			"<open folders>",
@@ -572,6 +648,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ajax-modal",
+			"startPageLoading",
+			"progress",
+			"line",
+			"poly",
+			"map",
+			"arrayTravels",
+			"printPositionsMap",
+			"bounds",
+			"markers",
+			"Jan",
+			"infoWindow",
+			"map",
+			"myModalMapa",
 			"divSliderC",
 			"Loading...",
 			"startPageLoading",
@@ -685,21 +775,7 @@
 			"margin-top",
 			"orange",
 			"margin-bottom",
-			"text",
-			"margin-top",
-			" <?",
-			"chapul",
-			"+'KOTA",
-			"	&,	",
-			",&",
-			"	&,&	",
-			"	&	",
-			"	\"",
-			"&",
-			"INSERT INTO pet_distribuidores (nombre,calle,no_int,no_ext,colonia,id_municipio,id_estado,cp,web_url,contacto,contacto_email,contacto_tel,contacto_tel2,contacto_tel3,horario,dias,status,latitud,longitud) VALUES																																							\n		NOMBRE		CALLE		NOINT		NOEXT				MUNICIPIO		ESTADO		CP		WEB_RUL		CONTACTO		CONTACTO_EMAIL		TEL		TEL2		TEL3		HORARIO		DIAS		ESTATUS		LATITUD		LONGITUD	\n(	&	Dog Depot 	&,&	Prolongación Blv. Zertuche	&,&		&,&	2003	&,&	Pórticos del Mar 	&,	1	,	2	,&	22875	&,&		&,&	Ernesto Rangel Vitti	&,&	vzarinamariscal@hotmail.com	&,&	(045) 64 61 81 32 32	&,&		&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	Doggie Door 	&,&	Bayoneta 	&,&		&,&	13	&,&	Lomas del Chamizal	&,	3	,	9	,&		&,&	www.doggiedoor.com.mx 	&,&	Alberto Nanes	&,&	alberto@doggiedoor.com.mx 	&,&	(0155) 2167-9567 	&,&		&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	Pet City 	&,&	Prolongación Juárez	&,&		&,&	580-A	&,&	Contadero	&,	3	,	9	,&	5370	&,&	www.pet-city.com.mx 	&,&	Jennifer Vera	&,&		&,&	(0155) 65 88 61 06 	&,&	044 55 55 03 30 36 	&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	+'KOTA	&,&	Av. Vasco de Quiroga	&,&	Loc. 474	&,&	3800	&,&	Santa Fe	&,	3	,	9	,&	5109	&,&		&,&		&,&	santafe21@prodigy.net.mx	&,&	(0155) 5258 - 0874 	&,&		&,&		&,&	11:00 am a 8:30 pm	&,&	L-D	&,	1	,	0	,	0	),\n(	&	Smart Dogs 	&,&	Parroquia	&,&		&,&	412	&,&	del Valle 	&,	13	,	9	,&		&,&	www.smartdogs.com 	&,&	Sylvana Lozada	&,&	sylvana.loza@gmail.com 	&,&	(0155) 5524 8336 	&,&		&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	+'KOTA	&,&	Av Universidad 	&,&	Local C 134-136	&,&	1000	&,&	Santa Cruz Atoyac	&,	13	,	9	,&	3310	&,&		&,&		&,&	universidad147@prodigy.net.mx	&,&	(0155) 5601 - 8116	&,&		&,&		&,&	10:30 am a 9:00 pm 	&,&	L-D	&,	1	,	0	,	0	),\n(	&	H. de Especialidades Veterinarias San Jerónimo SC 	&,&	Av San Jerónimo	&,&		&,&	1431	&,&	San Jerónimo Lidice	&,	7	,	9	,&	10200	&,&	www.vetsanjeronimo.com 	&,&	M.V.Z Riad Katrib	&,&	k_trib@yahoo.com 	&,&	(0155) 5681-2078 	&,&		&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	Clínica Veterinaria Parque San Andrés 	&,&	América	&,&		&,&	103	&,&	Parque San Andrés 	&,	2	,	9	,&	4040	&,&	www.centroveterinariopsa.com 	&,&	MVZ Luis Fernando Martínez	&,&	recepcion_parquesa@hotmail.com 	&,&	(0155) 5689. 9624 	&,&		&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	Centro Médico Veterinario México 	&,&	Calzada Ermita Iztapalapa	&,&		&,&	2720	&,&	Sta Cruz Neyehuyalco	&,	6	,	9	,&	9290	&,&		&,&	MVZ Raul Alvarado Canchola	&,&	alvaradocanchola@gmail.com 	&,&	(01 55) 1546 18 25	&,&		&,&		&,&		&,&		&,	1	,	0	,	0	),\n(	&	Pak's Kennel	&,&	Cerrada de Flor Silvestre	&,&		&,&	8	&,&	San Pedro Mártir 	&,	11	,	9	,&	14 64	&,&	www.pakskennel.com.mx 	&,&	Aldo Eduardo Sánchez Vargas	&,&	pakskennel@live.com.mx 	&,&	(01 55)54 8511 59 	&,&		&,&		&,&	10:30 am a 9:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n(	&	+'KOTA Perisur	&,&	Av. Anillo Periférico, Centro Comercial Perisur	&,&	Local 27	&,&	469	&,&	Jardines del Pedregal de San Angel	&,	2	,	9	,&	1404500	&,&		&,&		&,&	perisur11@prodigy.net.mx	&,&	(01 55)5606 - 0058 	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	Tochtli Mascotas	&,&	Mar Caribe	&,&	Local 2,5 y 6	&,&	8	&,&	Popotla	&,	15	,	9	,&		&,&	https://www.facebook.com/tochtli.mascotas 	&,&	Citlali Alethia Villalobos	&,&	comvilsa@yahoo.com 	&,&	(01 55) 24 52 43 44	&,&	(01 55) 63 63 31 04 	&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	+'KOTA Lomas	&,&	Prado Norte	&,&		&,&	381	&,&	Lomas de Chapultepec 	&,	15	,	9	,&	11000	&,&		&,&		&,&	lomas12@prodigy.net.mx	&,&	(01 55) 5540 - 0379	&,&		&,&		&,&	L-S de 10:00 am a 9:00 pm y D de 11:00 am a 8:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n(	&	+'KOTA Pabellón Polanco	&,&	Av. Ejército Nacional	&,&	Loc. 147	&,&	980	&,&	Polanco	&,	15	,	9	,&	11510	&,&		&,&		&,&	polanco23@prodigy.net.mx	&,&	(01 55) 5580 - 0736 	&,&		&,&		&,&	11:00 am a 8:00 pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	+'KOTA Parque Lindavista	&,&	Colector 13	&,&	Locales 214 y 214-A 	&,&	280	&,&	Magdalena de las Salinas 	&,	4	,	9	,&	7760	&,&		&,&		&,&	parquelindavista126@prodigy.net.mx	&,&	(01 55) 5754 - 4214	&,&		&,&		&,&	11:00 am a 8:30 pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	+'KOTA Acoxpa	&,&	AV. Acoxpa 	&,&		&,&	447	&,&	Villa Lazaro Cardenes 	&,	11	,	9	,&	14370	&,&		&,&		&,&	acoxpa132@prodigy.net.mx	&,&	(01 55) 5603 - 0957 	&,&		&,&		&,&	L-S de 10:00 am a 9:00 pm y D de 10:00 am a 8:00pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	+'KOTA Galerias Coapa	&,&	Calzada del Hueso,Centro Comercial GalerÃ­as Coapa	&,&	Loc. 138	&,&	519	&,&	Residencial Acoxpa 	&,	11	,	9	,&	14300	&,&		&,&		&,&	coapa015@prodigy.net.mx	&,&	(01 55) 5679 - 7991	&,&		&,&		&,&	11:00 am a 9:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n(	&	+'KOTA Paseo Acoxpa	&,&	Avenida Acoxpa	&,&	Loc. 93	&,&	430	&,&	Exhacienda Coapa 	&,	11	,	9	,&	4980	&,&		&,&		&,&	paseoacoxpa159@gmail.com	&,&	(01 55) 5677 - 7918	&,&		&,&		&,&	11:00 am a 9:00 pm 	&,&	L-V	&,	1	,	1	,	0	),\n																																							\n(	&	Hospital Veterinario Chapultepets 	&,&	Blvd. Pedro Infante	&,&		&,&	56	&,&	Recursos Hidráulicos	&,	6	,	25	&,	80100	&,&	www.chapultepets.com 	&,&	Santiago López Gerardo	&,&	contacto@chapultepets.com	&,&	(01) (667) 716?4243	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	ICE Instrucción Canina Especializada 	&,&	Faisan 	&,&		&,&	207	&,&	Fraccionamiento Real del Mezcal 	&,	5	,	10	&,	34199	&,&	www.icedurango.com 	&,&	Martín Alejandro Sánchez de la Vega 	&,&	icedurango@gmail.com 	&,&	(01 618) 197 55 12 	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n																																							\n(	&	Educandog	&,&	Arlequín	&,&		&,&	34	&,&	Vergel de Arboledas	&,	13	,	15	&,	52942	&,&	http://www.educandog.mx 	&,&		&,&	contacto@educandog.mx 	&,&	(044 55) 34 99 30 57	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Av. Ruíz Cortines	&,&	Local 134 	&,&	255 Mz-2 Lt- 1	&,&	Las Margaritas 	&,	13	,	15	&,	52977	&,&		&,&		&,&	gatizapan1210@prodigy.net.mx	&,&	(0155) 1668 - 9055 	&,&		&,&		&,&	11:00 am a 9:00 pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Blvd. Magnocentr	&,&	Local 112-1 PB	&,&	26 Mz. 1 Lote 2	&,&	Centro Urbano San Fernando 	&,	37	,	15	&,	52760	&,&		&,&		&,&	interlomas58@prodigy.net.mx	&,&	(0155) 5290 - 7674 	&,&		&,&		&,&	11:00 am a 8:00 pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Vialidad de la Barranca 	&,&	Local N2-05 	&,&	6	&,&	Ex Hda Jesús del Monte 	&,	37	,	15	&,	52772	&,&		&,&		&,&	Interlomas138@gmail.com	&,&	(0155) 5290 - 6361 	&,&		&,&		&,&	11:00 am a 8:00 pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Boulevard Toluca Ixtapan 	&,&	Local 101 PB	&,&	126	&,&	Metepec	&,	54	,	15	&,	52169	&,&		&,&		&,&	metepec017@prodigy.net.mx	&,&	(01 72) 2232 - 1292 	&,&		&,&		&,&	1:00 am a 9:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Circuito Centro 	&,&	Loc. R368 y R370	&,&	2251	&,&	Ciudad Satélite	&,	57	,	15	&,	53100	&,&		&,&		&,&	satelite14@prodigy.net.mx	&,&	(0155) 5572 - 5680	&,&		&,&		&,&	11:00 am a 8:30 pm	&,&	L-D	&,	1	,	1	,	0	),\n																																							\n(	&	#¿NOMBRE?	&,&	Av. Las Torres,	&,&	 Local 1248 	&,&	1032	&,&		&,	20	,	11	&,	37150	&,&		&,&		&,&	leon32@prodigy.net.mx	&,&	(01 47) 7779 - 5986	&,&		&,&		&,&	11:00 am a 9:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Blvd. Puerta de Hierro	&,&	Local UP67-127	&,&	4965	&,&		&,	120	,	14	&,	45116	&,&		&,&		&,&	andares129@prodigy.net.mx	&,&	(01 33) 3611 - 3123	&,&		&,&		&,&	10:00 am a 9:00 pm 	&,&	L-D	&,	1	,	1	,	0	),\n(	&	Pet n Go 	&,&	Paseo de Los Eucaliptos	&,&		&,&	5007	&,&		&,	39	,	19	&,	64920	&,&	www.petngo.com.mx	&,&		&,&		&,&	01 800 839 1299 	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Boulevard del NiÃ±o Poblano 	&,&	Local 201-S / 202 S	&,&	2510	&,&		&,	114	,	21	&,	72450	&,&		&,&		&,&	angelopolis117@prodigy.net.mx	&,&	(01 22) 2225 - 2842 	&,&		&,&		&,&	11:00 am a 9:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n																																							\n(	&	Veterinaria Dr. Memo 	&,&	15 de Mayo	&,&		&,&	77	&,&	Centro Histórico	&,	14	,	22	&,	76000	&,&		&,&	M.V.Z. Guillermo Espindola , M.V.Z. Alma Luna	&,&	veterinariamemo@yahoo.com.mx 	&,&	(01) (442) 224?3800 	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	Aquazon	&,&	Porvenir	&,&		&,&	26	&,&	Espa?a Querétaro	&,	14	,	22	&,	76158	&,&	www.a4patas.mx 	&,&	Juan Pablo Carrillo Espinosa	&,&	animalesvivos2008@gmail.com 	&,&	(01442) 391.2884 	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n(	&	#¿NOMBRE?	&,&	Av. 5 de Febrero 	&,&	local 227 	&,&	99	&,&	Los Virreyes 	&,	14	,	22	&,	76175	&,&		&,&		&,&	queretaro55@prodigy.net.mx	&,&	(0144) 2215 - 0477 	&,&		&,&		&,&	11:00 am a 9:00 pm 	&,&	L-D	&,	1	,	1	,	0	),\n																																							\n(	&	#¿NOMBRE?	&,&	Blv. Antonio Rocha Cordero 	&,&	Local C-25	&,&	700	&,&	Fracc Lomas del Tecnológico	&,	28	,	24	&,	78215	&,&		&,&		&,&	plazasanluis152@gmail.com	&,&	(01 44) 4813 - 0140 	&,&		&,&		&,&	11:00 a.m. a 8:00 pm	&,&	L-D	&,	1	,	1	,	0	),\n(	&	Dog Hunter/ Grupo Emeritense 	&,&	105 Diagonal # 313 Cruzamiento 	&,&		&,&	32A y 34	&,&	Francisco Villa 	&,	50	,	31	&,	97219	&,&	www.facebook.com/grupoEmeritense 	&,&	M.V.Z. Fidel León	&,&	fnleon@hotmail.com 	&,&	(01 999) 253 02 71 	&,&		&,&		&,&		&,&		&,	1	,	1	,	0	),\n	&	",
-			"controlEstado",
-			"autocontrol",
-			"h"
+			"text"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -707,6 +783,10 @@
 		"regex": true,
 		"replace_history":
 		[
+			"arrayTravelsRep",
+			"boundsRep",
+			"markersRep",
+			"infoWindowRep",
 			"aPersonal",
 			"form-control",
 			"src=\"/assets/",
@@ -756,8 +836,255 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "application/modules/location/views/scripts/main/index.phtml",
+					"settings":
+					{
+						"buffer_size": 3562,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3562,
+								3562
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "public/js/modules/location/rastreotels.js",
+					"settings":
+					{
+						"buffer_size": 9065,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9065,
+								9065
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3923.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "application/modules/location/views/scripts/main/reporte.phtml",
+					"settings":
+					{
+						"buffer_size": 4931,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "public/js/modules/location/reporteRastreo.js",
+					"settings":
+					{
+						"buffer_size": 6861,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								140,
+								140
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "public/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js",
+					"settings":
+					{
+						"buffer_size": 52681,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								40651,
+								40651
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 18394.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "application/views/layouts/layout.phtml",
+					"settings":
+					{
+						"buffer_size": 7221,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5708,
+								5708
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "application/views/layouts/layout_blank.phtml",
+					"settings":
+					{
+						"buffer_size": 6316,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6171,
+								6171
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 685.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "public/css/app.css",
+					"settings":
+					{
+						"buffer_size": 2089,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2089,
+								2089
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1345.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "public/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js",
+					"settings":
+					{
+						"buffer_size": 11391,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

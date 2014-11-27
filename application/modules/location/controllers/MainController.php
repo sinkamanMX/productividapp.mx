@@ -34,7 +34,7 @@ class location_MainController extends My_Controller_Action
     }
 
     public function indexAction()
-    {
+    {    	
 		try{
 			$cInstalaciones = new My_Model_Cinstalaciones();
 			$cFunciones		= new My_Controller_Functions();
@@ -110,7 +110,7 @@ class location_MainController extends My_Controller_Action
 			$this->_helper->viewRenderer->setNoRender();
 			$cTelefonos = new My_Model_Telefonos();
 			
-			if(isset($this->_dataIn['strInput'])  	 && $this->_dataIn['strInput']!=""     && 
+			if(isset($this->_dataIn['strInput'])  	  && $this->_dataIn['strInput']!=""     && 
 			   isset($this->_dataIn['inputFechaIn'])  && $this->_dataIn['inputFechaIn']!="" && 
 			   isset($this->_dataIn['inputFechaFin']) && $this->_dataIn['inputFechaFin']!=""){
 			   	

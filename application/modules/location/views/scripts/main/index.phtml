@@ -2,6 +2,9 @@
 <?php $this->headLink()->appendStylesheet('/assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css') ?>
 <?php $this->headScript()->appendFile('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false') ?>
 <?php $this->headScript()->appendFile('/assets/scripts/custom/components-jqueryui-sliders.js'); ?> 
+<?php $this->headScript()->appendFile('/assets/plugins/select2/select2.min.js'); ?> 
+<?php $this->headScript()->appendFile('/assets/plugins/data-tables/jquery.dataTables.js'); ?> 
+<?php $this->headScript()->appendFile('/assets/plugins/data-tables/DT_bootstrap.js'); ?> 
 <?php $this->headScript()->appendFile('/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js'); ?>
 <?php $this->headScript()->appendFile('/assets/plugins/bootstrap-modal/js/bootstrap-modal.js'); ?>
 <?php $this->headScript()->appendFile('/assets/scripts/custom/ui-extended-modals.js'); ?>
@@ -82,5 +85,5 @@
 			</div>				
 		</div>
 	</div>	
-								<div id="ajax-modal" class="modal fade" tabindex="-1">
-							</div>
+
+	<div id="ajax-modal" class="modal fade" tabindex="-1"></div>
