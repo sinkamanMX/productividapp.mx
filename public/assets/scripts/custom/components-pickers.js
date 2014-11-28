@@ -67,7 +67,7 @@ var ComponentsPickers = function () {
                 startDate: moment().subtract('days', 29),
                 endDate: moment(),
                 minDate: '01/01/2012',
-                maxDate: '12/31/2014',
+                maxDate: '12/31/2015',
             },
             function (start, end) {
                 $('#defaultrange_modal input').val(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));

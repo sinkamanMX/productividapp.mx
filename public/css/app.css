@@ -141,3 +141,36 @@ img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
 .h-350{
   height: 350px !important;
 }
+.btn.brown {
+    background-color: #623f18;
+    color: white;
+    text-shadow: none;
+}
+.divLocation{  
+  -moz-border-radius-bottomright: 10px; 
+  -moz-border-radius-topright: 10px; 
+  color: #FFFFFF; 
+  margin: 0; 
+}
+.textLocation{
+  font-family: "Open Sans",sans-serif;
+  font-size: 15px;
+  font-weight: 300 !important;
+  position: relative;
+  width: 100%;
+}
+.divLocation{
+    color: #FFFFFF; 
+}
+
+.divToolsMap{
+  position: relative;
+  top: 15px;
+  z-index: 12;
+}
+.tittlePortlet{
+  font-size: 15px !important;
+}
+.no-margin-b{
+  margin-bottom: 0px !important;
+}
