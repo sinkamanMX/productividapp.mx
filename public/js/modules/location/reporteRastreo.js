@@ -8,10 +8,7 @@ var arrayTravelsRep="";
 parent.App.startPageLoading();
 
 $( document ).ready(function() {
-
-  /*$(".chosen-select").chosen({disable_search_threshold: 10});*/
-   /* $('#tabs').tab();*/
-    var nowTemp = new Date();
+     var nowTemp = new Date();
     var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
     var dateInter  = parseInt(nowTemp.getMonth())+1;  
     var todayMonth = (dateInter<10) ? "0"+dateInter : dateInter;
@@ -26,13 +23,15 @@ $( document ).ready(function() {
     }
     
     var checkin = $('#inputFechaIn').datetimepicker({
-        format: "yyyy-mm-dd HH:ii",
+        format: "yyyy-mm-dd hh:ii",
         showMeridian: false,
         autoclose: true,
         todayBtn: true,
-        startDate:"1920-01-01 01:01:01"
+        startDate:"2000-01-01 01:01"
     }).on('changeDate', function(ev) {
+      console.log(ev.date.valueOf());
       if(ev.date.valueOf() > $('#inputFechaFin').datetimepicker('getDate').valueOf()){
+        console.log(ev.date);
         $('#inputFechaFin').datetimepicker('setDate', ev.date);   
       }
 
@@ -42,23 +41,16 @@ $( document ).ready(function() {
     });
 
     var checkout = $('#inputFechaFin').datetimepicker({
-        format: "yyyy-mm-dd HH:ii",
+        format: "yyyy-mm-dd hh:ii",
         showMeridian: false,
         autoclose: true,
         todayBtn: true,
-        startDate:"1920-01-01 01:01:01"
+        startDate:"1920-01-01 01:01"
     }).on('changeDate', function(ev) {
 
       $('#inputFechaIn').datetimepicker('setEndDate', ev.date);
     });
 
-/*  
-    setTimeout(function(){
-        initMapToDraw();
-        google.maps.event.trigger(mapReport, "resize");
-        mapReport.setZoom( mapReport.getZoom() );
-        
-    }, 1000);  */
     initMapToDraw();
     App.stopPageLoading();
 });
