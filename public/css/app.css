@@ -174,3 +174,14 @@ img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
 .no-margin-b{
   margin-bottom: 0px !important;
 }
+.blog-twitter-block {
+    border-right: 2px solid #ddd;
+    margin-bottom: 10px;
+    min-height: 55px;
+    padding: 5px;
+    position: relative;
+}
+.aTimeAgo{
+    color: #999 !important;
+    font-style: italic;
+}

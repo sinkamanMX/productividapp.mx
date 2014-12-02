@@ -1,0 +1,80 @@
+<?php $this->headScript()->appendFile('/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js') ?>  
+<?php $this->headScript()->appendFile('/assets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') ?>  
+<?php $this->headScript()->appendFile('/assets/plugins/jquery.blockui.min.js') ?> 
+<?php $this->headScript()->appendFile('/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js') ?> 
+<?php $this->headScript()->appendFile('/js/modules/messages/index.js') ?>  
+<?php $this->headLink()->appendStylesheet('/assets/css/pages/blog.css') ?>
+<div class="row">
+	<div class="col-md-12">
+		<h3 class="page-title">
+		Mensajes <small>Envio de mensajes a teléfonos.</small>
+		</h3>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-4">
+			<div class="portlet  box green no-margin-b">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-user"></i>Contactos
+					</div>
+				</div>
+				<div class="portlet-body form">
+					<div class="blog-twitter scroller" style="height: 490px;">
+						<?php  foreach($this->listContact as $key => $items):?>
+							<a href="javascript:getConversation(<?php echo $items['ID'];?>);">
+							<div class="blog-twitter-block">	
+								<div class="">
+									<img src="/images/icons/<?php echo ($items['TEL']!="NULL" && $items['TEL']!=NULL) ? 'icon-phone.png': 'icon-user.png';?>" class="img-responsive col-md-3" alt="">								
+								</div>
+								<div>
+									<?php echo $items['NOMBRE'];?> <?php echo ($items['TEL']!="NULL" && $items['TEL']!=NULL) ? ' - Tel. '.$items['TEL'] : '';?>								
+									<p class="aTimeAgo">
+										<?php echo mb_strimwidth($items['MENSAJE'], 0, 40, "...");?>
+									</p>	
+									<span class="pull-right aTimeAgo">
+										 <i class="fa fa-clock-o"></i> 
+										 	<?php if($items['HAGODAYS']>0):?>
+										 		Mas de <?php echo $items['HAGODAYS'];?> dia (s).
+										 	<?php elseif($items['HAGOHOURS']>0): ?>
+										 		Hace <?php echo $items['HAGOHOURS'];?> hora (s).
+										 	<?php elseif($items['HAGOMINS']>0): ?>
+										 		Hace <?php echo $items['HAGOMINS'];?> minuto (s).
+											<?php endif;?>
+									</span>								
+								</div>						
+							</div>	
+							</a>				
+						<?php endforeach;?>																			
+					</div>
+				</div>
+			</div>	
+		</div>	
+		<div class="col-md-8">
+					<div class="portlet   box green no-margin-b">
+						<div class="portlet-title line">
+							<div class="caption">
+								<i class="fa fa-comments"></i>Chats
+							</div>
+							<div class="tools">
+								<a href="" class="collapse">
+								</a>
+								<a href="#portlet-config" data-toggle="modal" class="config">
+								</a>
+								<a href="" class="reload">
+								</a>
+								<a href="" class="remove">
+								</a>
+							</div>
+						</div>
+						<div class="portlet-body" id="chats" style="min-height: 490px;">
+
+						</div>
+					</div>
+					<!-- END PORTLET-->				
+			</div>	
+		</div>
+	</div>
+</div>		
