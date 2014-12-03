@@ -181,7 +181,28 @@ img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
     padding: 5px;
     position: relative;
 }
-.aTimeAgo{
+.aTimeAgo {
     color: #999 !important;
     font-style: italic;
+    position: relative;
+    top: 15px;
+}
+.aTimeAgoMsg {
+    color: #999 !important;
+    font-style: italic;
+    position: relative;
+}
+.avatar {
+    border-radius: 50% !important;
+    height: 45px;
+    width: 45px;
+}
+.tittleContact {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+}
+
+.minHeight50{
+  min-height: 50px
 }

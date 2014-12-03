@@ -55,6 +55,7 @@ class messages_MainController extends My_Controller_Action
 			if(isset($this->_idUpdate)){
 				$this->view->layout()->setLayout('layout_blank');			
 				$cMensajes = new My_Model_Mensajes();
+				$cUsuarios = new My_Model_Usuarios();
 								
 				if($this->_dataOp=="new"){
 					$aDataInsert = Array();
@@ -67,6 +68,7 @@ class messages_MainController extends My_Controller_Action
 				
 				$aConversation = $cMensajes->getConversacion($this->_dataUser['ID_USUARIO'],$this->_idUpdate);				
 				$this->view->aConversacion = $aConversation;
+				$this->view->aContacto     = $cUsuarios->getData($this->_idUpdate);
 			}else{
         		$this->_redirect("/main/main/index");
         	}  

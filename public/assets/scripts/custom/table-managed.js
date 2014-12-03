@@ -38,7 +38,7 @@ var TableManaged = function () {
                     { "bSearchable": false, "aTargets": [ 0 ] }
                 ]*/
             });
-
+            /*
             jQuery('#dataTable .group-checkable').change(function () {
                 var set = jQuery(this).attr("data-set");
                 var checked = jQuery(this).is(":checked");
@@ -61,6 +61,7 @@ var TableManaged = function () {
             jQuery('#dataTable_wrapper .dataTables_filter input').addClass("form-control input-small input-inline"); // modify table search input
             jQuery('#dataTable_wrapper .dataTables_length select').addClass("form-control input-xsmall"); // modify table per page dropdown
             jQuery('#dataTable_wrapper .dataTables_length select').select2(); // initialize select2 dropdown            
+            */
         }
     };
 

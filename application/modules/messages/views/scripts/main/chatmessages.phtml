@@ -1,4 +1,14 @@
-							
+
+<div class="portlet-title line">
+	<div class="caption">
+		<i class="fa fa-comments"></i> Mensajes de <?php echo @$this->aContacto['NOMBRE']." ".@$this->aContacto['APELLIDOS']; ?>
+	</div>
+	<div class="tools">
+		
+	</div>
+</div>
+<div class="portlet-body"  style="min-height: 450px;">
+
 	<div class="scroller" style="height: 400px;" data-always-visible="1" data-rail-visible1="1">
 		<ul class="chats">
 			<?php foreach($this->aConversacion as $key => $items):?>
@@ -9,15 +19,17 @@
 							<span class="arrow">
 							</span>
 							<div class="name">
-								 <?php echo $items['N_ENVIA'];?> <?php echo ($items['TEL_RECIBE']!="NULL" && $items['TEL_RECIBE']!=NULL) ? ' - Tel. '.$items['TEL_RECIBE'] : '';?>	
+								<?php echo $items['N_ENVIA'];?> <?php echo ($items['TEL_RECIBE']!="NULL" && $items['TEL_RECIBE']!=NULL) ? ' - Tel. '.$items['TEL_RECIBE'] : '';?>	
+
+								<span class="aTimeAgoMsg">
+									<i class="fa fa-clock-o"></i> 
+									 	<?php echo $items['CREADO'];?>
+								</span>									 
 							</div>
-							<span class="datetime">
-								 <?php echo $items['CREADO'];?>
-							</span>
 							<span class="body">
-								<?php echo $items['MENSAJE'];?>
+								<?php echo $items['MENSAJE'];?>								
 							</span>
-						</div>
+						</div>					
 					</li>
 				<?php else:?>
 					<li class="out">
@@ -26,11 +38,11 @@
 							<span class="arrow">
 							</span>
 							<div class="name">
-								 YO
-							</div>
-							<span class="datetime">
-								 <?php echo $items['CREADO'];?>
-							</span>
+								<span class="aTimeAgoMsg">
+									<i class="fa fa-clock-o"></i> 
+									 	<?php echo $items['CREADO'];?>
+								</span>
+							</div>							
 							<span class="body">
 								<?php echo $items['MENSAJE'];?>
 							</span>
@@ -53,3 +65,4 @@
 			</a>
 		</div>
 	</div>
+</div>	

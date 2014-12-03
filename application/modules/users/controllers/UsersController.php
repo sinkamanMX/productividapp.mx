@@ -67,7 +67,7 @@ class users_UsersController extends My_Controller_Action
 			 * idUpdate
 			 */						
 			if(isset($this->_dataIn['catId']) && $this->validateNumbers->isValid($this->_dataIn['catId'])){
-				$this->_idUpdate = $this->_dataIn['catId'];				
+				$this->_idUpdate = $this->_dataIn['catId'];
 			}else{
 				$this->_idUpdate 	   	  = -1;
 				$this->_aErrors['status'] = 'no-info';				

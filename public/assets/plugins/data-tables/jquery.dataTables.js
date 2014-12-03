@@ -2079,7 +2079,8 @@
 			  sSearchStr==="" ? '<input type="text" />' : sSearchStr+' <input type="text" />';
 			
 			var nFilter = document.createElement( 'div' );
-			nFilter.className = oSettings.oClasses.sFilter;
+			nFilter.className = 'pull-right ';
+			nFilter.className = nFilter.className+ oSettings.oClasses.sFilter;
 			nFilter.innerHTML = '<label>'+sSearchStr+'</label>';
 			if ( !oSettings.aanFeatures.f )
 			{

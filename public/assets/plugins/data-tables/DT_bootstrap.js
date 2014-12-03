@@ -44,7 +44,7 @@ $.extend( $.fn.dataTableExt.oPagination, {
 
 			// pagination with prev, next link icons
 			$(nPaging).append(
-				'<ul class="pagination">'+
+				'<ul class="pagination pull-right">'+
 					'<li class="prev disabled"><a href="#" title="'+oLang.sPrevious+'"><i class="fa fa-angle-left"></i></a></li>'+
 					'<li class="next disabled"><a href="#" title="'+oLang.sNext+'"><i class="fa fa-angle-right"></i></a></li>'+
 				'</ul>'
@@ -129,7 +129,7 @@ $.extend( $.fn.dataTableExt.oPagination, {
             };
  
             $(nPaging).append(
-                '<ul class="pagination">' +
+                '<ul class="pagination pull-right">' +
                     '<li class="prev disabled"><a href="#" title="' + oLang.sFirst + '"><i class="fa fa-angle-double-left"></i></a></li>' +
                     '<li class="prev disabled"><a href="#" title="' + oLang.sPrevious + '"><i class="fa fa-angle-left"></i></a></li>'+
                     '<li class="next disabled"><a href="#" title="' + oLang.sNext + '"><i class="fa fa-angle-right"></i></a></li>' +
@@ -220,7 +220,7 @@ $.extend( $.fn.dataTableExt.oPagination, {
             };
  
             $(nPaging).append(
-                '<div class="pagination-panel"> ' + oLang.sPage + ' ' +
+                '<div class="pagination-panel pull-right"> ' + oLang.sPage + ' ' +
                 '<a href="#" class="btn btn-sm default prev disabled" title="' + oLang.sPrevious + '"><i class="fa fa-angle-left"></i></a>' +
                 '<input type="text" class="pagination-panel-input form-control input-mini input-inline input-sm" maxlenght="5" style="text-align:center; margin: 0 5px;">' + 
                 '<a href="#" class="btn btn-sm default next disabled" title="' + oLang.sNext + '"><i class="fa fa-angle-right"></i></a> ' +
