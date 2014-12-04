@@ -36,7 +36,7 @@ class users_ProfilesController extends My_Controller_Action
 	        	 */
 		        $this->_dataUser   = $sessions->getContentSession(); 	
 			}else{
-				$this->_redirect("/main/main/index");
+				$this->_redirect("/");
 			}
 			
 			/**

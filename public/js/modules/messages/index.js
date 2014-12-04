@@ -7,31 +7,142 @@ $( document ).ready(function() {
 
     var idFirst = $("#txtContactFirst").val();
     if(idFirst>-1){
-    	getConversation(idFirst,'','');
+    	setNameContact($("#txtNameFirst").val());
+    	getConversation(idFirst,'','',0);  	    	 
     }
+	setTimeout(function() {
+	     scrolling()
+	}, 100);
+
+    $("#inputMessage").keypress(function (e) {
+        if (e.which == 13) {
+            if ($("#inputMessage").val()!="") {
+                sendMessage();
+            }else{
+	            var shortCutFunction= 'error';
+	            var msg             = "Debe de ingresar un mensaje a enviar.";
+	            var title           = "Atención!"
+
+	            toastr.options = {
+	              "closeButton": true,
+	              "debug": false,
+	              "positionClass": "toast-top-right",
+	              "showDuration": "1000",
+	              "hideDuration": "1000",
+	              "timeOut": "5000",
+	              "extendedTimeOut": "1000",
+	              "showEasing": "swing",
+	              "hideEasing": "linear",
+	              "showMethod": "fadeIn",
+	              "hideMethod": "fadeOut"
+	            }
+	            var $toast = toastr[shortCutFunction](msg, title);      
+            }
+            return false;
+        }
+    });
+
+    var showNotif = $("#inputShowAlert").val();
+    if(showNotif==1){
+        var shortCutFunction= 'success';
+        var msg             = "El Mensaje se ha enviado Correctamente.";
+        var title           = "Atención!"
+
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "positionClass": "toast-top-right",
+          "showDuration": "1000",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+        var $toast = toastr[shortCutFunction](msg, title);
+    }           
 });
 
+function scrolling(){
+    var cont = $('#chats');
+    var list = $('.chats', cont);
+    $('.scroller', cont).slimScroll({
+        scrollTo: list.height()
+    }); 
+
+	$('#inputMessage').attr("disabled", false);
+	$('#buttonSend').attr("disabled", false);
+}
+
+function setNameContact(nameContact){
+	$("#txtNameContacto").html("Mensajes de "+nameContact);
+}
+
 function getConversation(inputContacto,Message,action){
-	$("#chats").modalmanager('loading');
+	$("#divChat").modalmanager('loading');
+	$("#txtInput").val(inputContacto);	
+	$('#inputMessage').attr("disabled", true);
+	$('#buttonSend').attr("disabled", true);
+	var iTimeShow = $("#txtInputTime").val();
+
 	App.startPageLoading();	
-	$('#chats').html('');
-    $.ajax( {
-      type: "POST",
-      url: "/messages/main/chatmessages",
-      data: {catId: inputContacto, inputMsg: Message, optReg: action},
-        success: function(data) {
-        	$('#chats').html(data);
+	$('#divChat').html('');	
+	validation = false;
 
-			var cont = $('#chats');
-			var list = $('.chats', cont);
-			$('.scroller', cont).slimScroll({
-	        	scrollTo: list.height()
-	        });
+	if(action==""){
+		validation = true;	    
+	}else if(action=="new" && Message!="" ){
+		validation = true;
+    }else{
+        var shortCutFunction= 'error';
+        var msg             = "Debe de ingresar un mensaje a enviar.";
+        var title           = "Atención!"
 
-			$("#chats").modalmanager('removeLoading');
-			App.stopPageLoading();
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "positionClass": "toast-top-right",
+          "showDuration": "1000",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
         }
-    });	
+        var $toast = toastr[shortCutFunction](msg, title);      
+    }
+
+    if(validation){
+	    $.ajax( {
+	      type: "POST",
+	      url: "/messages/main/chatmessages",
+	      data: {catId: inputContacto, inputMsg: Message, optReg: action, iTime : iTimeShow},
+	        success: function(data) {
+	        	$('#divChat').html(data);
+	        	$("#inputMessage").val("");
+				setTimeout(function() {
+				     scrolling()
+				}, 100);
+
+				$("#divChat").modalmanager('removeLoading');
+				App.stopPageLoading();
+	        }
+	    });    	
+    }
+}
+
+function setTimetoShow(iTime){
+	if(!$(".time"+iTime).hasClass("active")){
+		$(".btnTime").removeClass("active");
+		$("#txtInputTime").val(iTime);
+		$(".time"+iTime).addClass("active");
+		var idContacto = $("#txtInput").val();	
+		getConversation(idContacto,'','');			
+	}
 }
 
 function sendMessage(){

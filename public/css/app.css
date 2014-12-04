@@ -1,6 +1,9 @@
 .image-responsive{
 	width:100%;
 }
+.margin-t0{
+  margin-top: 0px !important;
+}
 .margin-t5{
 	margin-top: 5%;
 }
@@ -188,7 +191,8 @@ img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
     top: 15px;
 }
 .aTimeAgoMsg {
-    color: #999 !important;
+   color: #999 !important;
+    font-size: 10px;
     font-style: italic;
     position: relative;
 }
@@ -205,4 +209,7 @@ img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
 
 .minHeight50{
   min-height: 50px
+}
+.pand0{
+  padding: 0px !important;
 }

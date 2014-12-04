@@ -36,7 +36,7 @@ class users_UsersController extends My_Controller_Action
 	        	 */
 		        $this->_dataUser   = $sessions->getContentSession(); 	
 			}else{
-				$this->_redirect("/main/main/index");
+				$this->_redirect("/");
 			}
 			
 			/**
@@ -90,6 +90,9 @@ class users_UsersController extends My_Controller_Action
     		 */
 			$classObject = new My_Model_Usuarios();
 			$this->view->datatTable = $classObject->getDataTables($this->_dataUser['ID_EMPRESA']);
+			if(isset($this->_dataIn['strNotif']) && strlen($this->_dataIn['strNotif']) ==5){
+				$this->view->resultOp = 1;	
+			}			
 		} catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
@@ -130,13 +133,14 @@ class users_UsersController extends My_Controller_Action
 					 if($validateUser){
 						$updated = $classObject->updateRow($this->_dataIn);
 						 if($updated['status']){	
-					 		$dataInfo    	= $classObject->getData($this->_idUpdate);
+						 	$this->_redirect($this->view->moduleInfo['SCRIPT']."?strNotif=".$cFunctions->getRandomCode());
+					 		/*$dataInfo    	= $classObject->getData($this->_idUpdate);
 			    	    	$sPerfil		= $dataInfo['ID_PERFIL'];
 			    	    	$sEstatus		= $dataInfo['ACTIVO'];
 							$sOperaciones	= $dataInfo['FLAG_OPERACIONES'];
 							$sSucursales	= $dataInfo['ID_SUCURSAL'];	
 							$aHorarios  	= $cHorarios->getAllDataByUser($dataInfo['ID_SUCURSAL'],$this->_idUpdate);				 		
-					 		$this->_resultOp = 'okRegister';
+					 		$this->_resultOp = 'okRegister';*/
 						 }
 					 }else{
 					 	$this->_aErrors['eUsuario'] = '1';
@@ -149,13 +153,14 @@ class users_UsersController extends My_Controller_Action
 				 if($validateUser){
 				 	$insert = $classObject->insertRow($this->_dataIn);
 			 		if($insert['status']){
-			 			$this->_idUpdate = $insert['id'];
+						$this->_redirect($this->view->moduleInfo['SCRIPT']."?strNotif=".$cFunctions->getRandomCode());			 			
+			 			/*$this->_idUpdate = $insert['id'];
 				 		$dataInfo    	= $classObject->getData($this->_idUpdate);
 		    	    	$sPerfil		= $dataInfo['ID_PERFIL'];
 		    	    	$sEstatus		= $dataInfo['ACTIVO'];
 						$sOperaciones	= $dataInfo['FLAG_OPERACIONES'];
 						$sSucursales	= $dataInfo['ID_SUCURSAL'];	
-						$aHorarios  	= $cHorarios->getAllDataByUser($dataInfo['ID_SUCURSAL'],$this->_idUpdate);			 		
+						$aHorarios  	= $cHorarios->getAllDataByUser($dataInfo['ID_SUCURSAL'],$this->_idUpdate);	*/		 		
 				 		$this->_resultOp = 'okRegister';
 					}else{
 						$this->_aErrors['status'] = 'no-insert';

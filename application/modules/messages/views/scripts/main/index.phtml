@@ -4,7 +4,8 @@
 <?php $this->headScript()->appendFile('/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js') ?> 
 <?php $this->headScript()->appendFile('/js/modules/messages/index.js') ?>  
 <?php $this->headLink()->appendStylesheet('/assets/css/pages/blog.css') ?>
-<?php $counter=0; $idFirst=-1;?>
+<?php $counter=0; $idFirst=-1; $nameContact='';?>
+<input type="hidden" id="inputShowAlert" value="<?php echo (isset($this->resultOp)) ?  '1': '0'; ?>"/>   
 <div class="row">
 	<div class="col-md-12">
 		<h3 class="page-title">
@@ -18,22 +19,30 @@
 		<div class="col-md-3">
 			<div class="portlet no-margin-b">
 				<div class="portlet-title">
-					<div class="caption">
-						<i class="fa fa-user"></i>Contactos
-					</div>
+					<div class="caption col-md-12">
+						<div class="col-md-8">
+							<i class="fa fa-user"></i>Contactos
+						</div>
+						<div class="col-md-4">
+							<div class="pull-right">
+								<button class="btn btn-default btn-sm" type="button" onClick="location.href='/messages/main/newmessage'"><i class="fa fa-edit"></i></button>
+							</div>
+						</div>
+					</div>					
 				</div>
 				<div class="portlet-body form">
-					<div class="list-group contact scroller" style="height: 450px;">
+					<div class="list-group contact scroller" style="height: 430px;">
 						<?php  foreach($this->listContact as $key => $items):?>
 							<?php if($counter==0):?>
-								<?php $idFirst = $items['ID'];?>
+								<?php $idFirst 		= $items['ID'];?>
+								<?php $nameContact 	= $items['NOMBRE'];?>
 							<?php endif;?>
 							<?php $counter++;?>
-							<a class="list-group-item minHeight50" href="javascript:getConversation(<?php echo $items['ID'];?>);">								
-								<img src="/images/icons/<?php echo ($items['TEL']!="NULL" && $items['TEL']!=NULL) ? 'icon-phone.png': 'icon-user.png';?>" class="avatar" alt="">
+							<a class="list-group-item minHeight50" href="javascript:getConversation(<?php echo $items['ID'];?>,'','');setNameContact('<?php echo $items['NOMBRE'];?>');">								
+								<img src="/images/icons/icon-user.png" class="avatar" alt="">
 								<span  class="tittleContact">
-									<?php echo $items['NOMBRE'];?> <?php echo ($items['TEL']!="NULL" && $items['TEL']!=NULL) ? ' - Tel. '.$items['TEL'] : '';?>
-								</span>																
+									<?php echo $items['NOMBRE'];?>
+								</span>												
 								<span class="aTimeAgo">
 									 <i class="fa fa-clock-o"></i> 
 									 	<?php if($items['HAGODAYS']>0):?>
@@ -43,21 +52,53 @@
 									 	<?php elseif($items['HAGOMINS']>0): ?>
 									 		Hace <?php echo $items['HAGOMINS'];?> minuto (s).
 										<?php endif;?>
-								</span>									
+								</span>
 							</a>
 						<?php endforeach;?>
 						<input type="hidden" id="txtContactFirst" value="<?php echo $idFirst;?>"/>
+						<input type="hidden" id="txtNameFirst"    value="<?php echo $nameContact;?>"/>
 					</div>					
 				</div>
 			</div>	
 		</div>	
 		<div class="col-md-9">
-			<div class="portlet solid light-grey bordered no-margin-b">
-				<div id="chats" >
-
+			<div class="portlet no-margin-b">
+				<div class="portlet-title line">
+					<div class="caption col-md-12">
+						<div class="col-md-5">
+							<i class="fa fa-comments"></i> <span id="txtNameContacto">Mensajes</span>
+						</div>
+						<div class="col-md-7">
+							<div class="pull-right">					
+								<small>	Ver desde: </small>
+								<button type="button" onClick="setTimetoShow(1);"  class="active btnTime btn btn-sm btn-default time1"><i class="fa fa-clock-o"></i> Hoy </button>
+								<button type="button" onClick="setTimetoShow(2);"  class=" btnTime btn btn-sm btn-default time2"><i class="fa fa-clock-o"></i> Ayer </button>
+								<button type="button" onClick="setTimetoShow(7);"  class=" btnTime btn btn-sm btn-default time7"><i class="fa fa-clock-o"></i> Ult. Semana</button>
+								<button type="button" onClick="setTimetoShow(30);" class=" btnTime btn btn-sm btn-default time30"><i class="fa fa-clock-o"></i> Ult .Mes</button>
+							</div>	
+						</div>						
+					</div>					
+				</div>
+				<div class="portlet-body" id="chats">
+					<div id="divChat" class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible1="1">
+						
+					</div>
+					<div class="chat-form">
+						<input type="hidden" id="txtInput"     value=""/>
+						<input type="hidden" id="txtInputTime" value="1"/>
+						<div class="input-cont">
+							<input  id="inputMessage"  class="form-control" type="text" placeholder="Enviar Mensaje a este contacto"/>
+						</div>
+						<div class="btn-cont">
+							<span class="arrow">
+							</span>
+							<a id="buttonSend" href="javascript:sendMessage();" class="btn blue icn-only">
+								<i class="fa fa-check icon-white"></i>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
-			<!-- END PORTLET-->				
 		</div>	
 	</div>
 </div>	

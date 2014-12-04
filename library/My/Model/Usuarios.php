@@ -261,4 +261,35 @@ class My_Model_Usuarios extends My_Db_Table
         }
 		return $result;    	
     }
+    
+	public function getUserOperation($idEmpresa,$idSucursal=-1){
+		$result= Array();		
+		$this->query("SET NAMES utf8",false);
+		$sFilter = ($idSucursal>-1) ? " AND U.ID_SUCURSAL = $idSucursal" : "";  		
+    	$sql ="SELECT   U.ID_USUARIO, 
+						U.ID_PERFIL,
+						P.DESCRIPCION AS PERFIL,
+						U.USUARIO,
+						CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NOMBRE,
+						U.EMAIL,
+						U.ULTIMO_ACCESO,
+						U.FLAG_OPERACIONES,
+						U.ACTIVO,
+						T.IDENTIFICADOR,
+						T.DESCRIPCION,
+						T.TELEFONO
+				FROM USUARIOS U
+				INNER JOIN PERFILES    P ON P.ID_PERFIL  = U.ID_PERFIL
+				INNER JOIN SUCURSALES  S ON U.ID_SUCURSAL = S.ID_SUCURSAL				
+				 LEFT JOIN PROD_USR_TELEFONO R ON U.ID_USUARIO =  R.ID_USUARIO
+				 LEFT JOIN PROD_TELEFONOS T ON T.ID_TELEFONO = R.ID_TELEFONO
+				WHERE S.ID_EMPRESA = ".$idEmpresa."
+					$sFilter
+				ORDER BY NOMBRE ASC";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	        
+		return $result;			
+	}     
 }

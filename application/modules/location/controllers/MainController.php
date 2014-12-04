@@ -11,7 +11,7 @@ class location_MainController extends My_Controller_Action
 	        if($sessions->validateSession()){
 		        $this->_dataUser   = $sessions->getContentSession(); 	
 			}else{
-				$this->_redirect("/main/main/index");
+				$this->_redirect("/");
 			}    		
 			$this->view->dataUser   = $this->_dataUser;
 			$this->view->modules    = $perfiles->getModules($this->_dataUser['ID_PERFIL']);

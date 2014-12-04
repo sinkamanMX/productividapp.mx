@@ -60,9 +60,27 @@ $( "#FormData" ).submit(function( event ) {
         },
 
         invalidHandler: function (event, validator) { //display error alert on form submit              
-            dSucess.hide();
+            /*dSucess.hide();
             dError.show();
-            App.scrollTo(dError, -200);
+            App.scrollTo(dError, -200);*/
+            var shortCutFunction= 'error';
+            var msg             = "El registro contiene uno o mas errores, favor de verificarlos.";
+            var title           = "Atención!"
+
+            toastr.options = {
+              "closeButton": true,
+              "debug": false,
+              "positionClass": "toast-top-right",
+              "showDuration": "1000",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+            var $toast = toastr[shortCutFunction](msg, title);            
         },
 
         highlight: function (element) { // hightlight error inputs

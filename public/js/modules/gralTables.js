@@ -1,3 +1,4 @@
+var toastCount  = 0;
 $( document ).ready(function() {
     $('#dataTable').dataTable( {
         "bDestroy": true,
@@ -23,7 +24,29 @@ $( document ).ready(function() {
                 "sNext": "Siguiente"
               }          
           }
-    } );    
+    } ); 
+
+    var showNotif = $("#inputShowAlert").val();
+    if(showNotif==1){
+        var shortCutFunction= 'success';
+        var msg             = "Datos se almacenaron correctamente.";
+        var title           = "Atención!"
+
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "positionClass": "toast-top-right",
+          "showDuration": "1000",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+        var $toast = toastr[shortCutFunction](msg, title);
+    }   
 });
 
 function beforeDelete(idtableRow){
