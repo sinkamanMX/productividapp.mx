@@ -32,8 +32,8 @@ class My_Model_Mensajes extends My_Db_Table
 					OR (M.ID_USR_TO = $idObject OR M.ID_USR_SEND IN(SELECT ID_TELEFONO
 														FROM PROD_TELEFONOS 
 														WHERE  ID_EMPRESA = $idEmpresa))		
-								GROUP BY 	M.ID_USR_TO, M.ID_USR_SEND
-								ORDER BY 	M.CREADO DESC";
+								/*GROUP BY 	M.ID_USR_TO, M.ID_USR_SEND*/
+								ORDER BY 	M.CREADO ASC";
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
 			$result = $query;			
