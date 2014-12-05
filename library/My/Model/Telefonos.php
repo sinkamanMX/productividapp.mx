@@ -11,9 +11,6 @@ class My_Model_Telefonos extends My_Db_Table
 	protected $_name 	= 'PROD_TELEFONOS';
 	protected $_primary = 'ID_TELEFONO';
 	
-	
-	
-	/*
 	public function getDataTables($idEmpresa){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
@@ -34,7 +31,7 @@ class My_Model_Telefonos extends My_Db_Table
 		}	
         
 		return $result;			
-	}  	*/
+	}
 	
 	public function getReporte($data){
 		$result= Array();
@@ -98,7 +95,7 @@ class My_Model_Telefonos extends My_Db_Table
         
 		return $result;			
 	}	
-	/*
+
 	public function getDataRow($idObject){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
@@ -125,7 +122,6 @@ class My_Model_Telefonos extends My_Db_Table
 		return $result;			
 	}	
 
-	
 	public function getEventos($idObject){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
@@ -145,7 +141,7 @@ class My_Model_Telefonos extends My_Db_Table
         
 		return $result;		
 	}
-	
+
 	public function getRelEventos($idObject){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
@@ -160,15 +156,14 @@ class My_Model_Telefonos extends My_Db_Table
         
 		return $result;				
 	}
-	
+
 	public function getDataNoAssign($idEmpresa){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
     	$sql ="SELECT U.USUARIO, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME, U.ID_USUARIO
 					FROM USUARIOS U
-					INNER JOIN USR_EMPRESA E ON U.ID_USUARIO  = E.ID_USUARIO
-					INNER JOIN SUCURSALES  L ON E.ID_SUCURSAL = L.ID_SUCURSAL					
-					INNER JOIN EMPRESAS    S ON L.ID_EMPRESA  = S.ID_EMPRESA	
+					INNER JOIN SUCURSALES  L ON U.ID_SUCURSAL = L.ID_SUCURSAL					
+					INNER JOIN EMPRESAS    S ON L.ID_EMPRESA  = S.ID_EMPRESA		
 					WHERE U.FLAG_OPERACIONES = 1
 					 AND S.ID_EMPRESA	 	 = $idEmpresa
 					 AND U.ID_USUARIO NOT IN
@@ -176,8 +171,7 @@ class My_Model_Telefonos extends My_Db_Table
 					 SELECT U.ID_USUARIO
 					 FROM PROD_USR_TELEFONO T
 					 INNER JOIN USUARIOS    U ON T.ID_USUARIO  = U.ID_USUARIO
-					 INNER JOIN USR_EMPRESA E ON U.ID_USUARIO  = E.ID_USUARIO
-					 INNER JOIN SUCURSALES  L ON E.ID_SUCURSAL = L.ID_SUCURSAL
+					 INNER JOIN SUCURSALES  L ON U.ID_SUCURSAL = L.ID_SUCURSAL
 					 INNER JOIN EMPRESAS    S ON L.ID_EMPRESA  = S.ID_EMPRESA
 					WHERE S.ID_EMPRESA = $idEmpresa
 					 )
@@ -205,8 +199,7 @@ class My_Model_Telefonos extends My_Db_Table
         
 		return $result;		    	
     }	
-    
-    
+     
     public function insertRow($data){
         $result     = Array();
         $result['status']  = false;
@@ -226,6 +219,7 @@ class My_Model_Telefonos extends My_Db_Table
     		$sql_id ="SELECT LAST_INSERT_ID() AS ID_LAST;";
 			$query_id   = $this->query($sql_id);
 			if(count($query_id)>0){
+				$this->insertAllEvents($query_id[0]['ID_LAST']);
 				$result['id']	   = $query_id[0]['ID_LAST'];
 				$result['status']  = true;					
 			}	
@@ -236,6 +230,48 @@ class My_Model_Telefonos extends My_Db_Table
 		return $result;	
     }
     
+    public function insertAllEvents($idObject){
+		$result= false;
+		$this->query("SET NAMES utf8",false); 		
+    	$sql ="INSERT INTO PROD_EVENTO_TELEFONO (ID_EVENTO,ID_TELEFONO)
+				( SELECT ID_EVENTO AS ID, $idObject
+					FROM PROD_EVENTOS
+					WHERE ID_EVENTO NOT IN
+							(
+								SELECT ID_EVENTO
+								FROM PROD_EVENTO_TELEFONO
+								WHERE ID_TELEFONO = $idObject
+							)
+				)";    	
+		$query   = $this->query($sql,false);
+		if($query){		  
+			$result = true;			
+		}	
+        
+		return $result;			
+    }
+    
+
+    public function setUser($idObject,$idUsuario){
+        $result  = false;
+        try{   
+	        $sqlDel  = "DELETE FROM PROD_USR_TELEFONO WHERE ID_TELEFONO = $idObject";
+	        $queryDel   = $this->query($sqlDel,false);
+	        
+	        $sql="INSERT INTO PROD_USR_TELEFONO		 
+						SET ID_TELEFONO =  $idObject,
+						ID_USUARIO		=  $idUsuario";
+    		$query   = $this->query($sql,false);
+			if($query){
+				$result = true;					
+			}	
+        }catch(Exception $e) {
+            echo $e->getMessage();
+            echo $e->getErrorMessage();
+        }
+		return $result;	    	
+    }  
+        
     public function updateRow($data){
        $result     = Array();
         $result['status']  = false;
@@ -284,27 +320,6 @@ class My_Model_Telefonos extends My_Db_Table
 		return $result;	     	
     }   
 
-    public function setUser($idObject,$idUsuario){
-        $result  = false;
-        try{   
-	        $sqlDel  = "DELETE FROM PROD_USR_TELEFONO WHERE ID_TELEFONO = $idObject";
-	        $queryDel   = $this->query($sqlDel,false);
-	        
-	        $sql="INSERT INTO PROD_USR_TELEFONO		 
-						SET ID_TELEFONO =  $idObject,
-						ID_USUARIO		=  $idUsuario";
-         
-    		$query   = $this->query($sql,false);
-			if($query){
-				$result = true;					
-			}	
-        }catch(Exception $e) {
-            echo $e->getMessage();
-            echo $e->getErrorMessage();
-        }
-		return $result;	    	
-    }  
-
     public function deleteRelAction($data){
     	try{    	
        		$result     = Array();
@@ -322,6 +337,7 @@ class My_Model_Telefonos extends My_Db_Table
 		return $result;	         	
     }  
 
+/*
 	public function setRelEventos($data){
         $result     = Array();
         $result['status']  = false;

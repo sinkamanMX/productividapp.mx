@@ -1,7 +1,7 @@
 $().ready(function() {
-$( "#FormData" ).submit(function( event ) {
-  event.preventDefault();
-});
+    $( "#FormData" ).submit(function( event ) {
+      event.preventDefault();
+    });
 
     var formData = $('#FormData');
     var dError   = $('.alert-danger' , formData);

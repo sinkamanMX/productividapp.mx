@@ -12,7 +12,7 @@ class My_Model_Mensajes extends My_Db_Table
 	
 	public function getContactos($idObject,$idEmpresa,$filter = -1){
 		$result= Array();
-		$filtro = ($filter>-1) ? '	A.ID_SUCURSAL = $filter OR I.ID_SUCURSAL = $filter OR': '';
+		$filtro = ($filter>-1) ? '	A.ID_SUCURSAL = '.$filter.' OR I.ID_SUCURSAL = '.$filter.' OR ': '';
 		$this->query("SET NAMES utf8",false); 		
     	$sql ="SELECT A.ID_USUARIO AS RECIBIO, I.ID_USUARIO AS ENVIO, M.CREADO, M.MENSAJE,
 				  FLOOR(HOUR(TIMEDIFF(M.CREADO, CURRENT_TIMESTAMP)) / 24) AS HAGODAYS,

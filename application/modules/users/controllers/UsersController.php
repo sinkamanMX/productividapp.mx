@@ -92,7 +92,9 @@ class users_UsersController extends My_Controller_Action
 			$this->view->datatTable = $classObject->getDataTables($this->_dataUser['ID_EMPRESA']);
 			if(isset($this->_dataIn['strNotif']) && strlen($this->_dataIn['strNotif']) ==5){
 				$this->view->resultOp = 1;	
-			}			
+			}elseif(isset($this->_dataIn['strNotifDel']) && strlen($this->_dataIn['strNotifDel']) ==5){
+				$this->view->resultOp = 2;	
+			}		
 		} catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
@@ -134,13 +136,6 @@ class users_UsersController extends My_Controller_Action
 						$updated = $classObject->updateRow($this->_dataIn);
 						 if($updated['status']){	
 						 	$this->_redirect($this->view->moduleInfo['SCRIPT']."?strNotif=".$cFunctions->getRandomCode());
-					 		/*$dataInfo    	= $classObject->getData($this->_idUpdate);
-			    	    	$sPerfil		= $dataInfo['ID_PERFIL'];
-			    	    	$sEstatus		= $dataInfo['ACTIVO'];
-							$sOperaciones	= $dataInfo['FLAG_OPERACIONES'];
-							$sSucursales	= $dataInfo['ID_SUCURSAL'];	
-							$aHorarios  	= $cHorarios->getAllDataByUser($dataInfo['ID_SUCURSAL'],$this->_idUpdate);				 		
-					 		$this->_resultOp = 'okRegister';*/
 						 }
 					 }else{
 					 	$this->_aErrors['eUsuario'] = '1';
@@ -153,14 +148,7 @@ class users_UsersController extends My_Controller_Action
 				 if($validateUser){
 				 	$insert = $classObject->insertRow($this->_dataIn);
 			 		if($insert['status']){
-						$this->_redirect($this->view->moduleInfo['SCRIPT']."?strNotif=".$cFunctions->getRandomCode());			 			
-			 			/*$this->_idUpdate = $insert['id'];
-				 		$dataInfo    	= $classObject->getData($this->_idUpdate);
-		    	    	$sPerfil		= $dataInfo['ID_PERFIL'];
-		    	    	$sEstatus		= $dataInfo['ACTIVO'];
-						$sOperaciones	= $dataInfo['FLAG_OPERACIONES'];
-						$sSucursales	= $dataInfo['ID_SUCURSAL'];	
-						$aHorarios  	= $cHorarios->getAllDataByUser($dataInfo['ID_SUCURSAL'],$this->_idUpdate);	*/		 		
+						$this->_redirect($this->view->moduleInfo['SCRIPT']."?strNotif=".$cFunctions->getRandomCode());
 				 		$this->_resultOp = 'okRegister';
 					}else{
 						$this->_aErrors['status'] = 'no-insert';
@@ -223,6 +211,6 @@ class users_UsersController extends My_Controller_Action
 		} catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
-        } 
+        }
     }       
 }    

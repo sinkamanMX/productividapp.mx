@@ -74,8 +74,46 @@ function deleteRow(){
        		App.stopPageLoading();     
 
             if(result == 'deleted'){
+                var shortCutFunction= 'success';
+                var msg             = "El registro fue eliminado correctamente.";
+                var title           = "Atención!"
+
+                toastr.options = {
+                  "closeButton": true,
+                  "debug": false,
+                  "positionClass": "toast-top-right",
+                  "showDuration": "1000",
+                  "hideDuration": "1000",
+                  "timeOut": "5000",
+                  "extendedTimeOut": "1000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+                var $toast = toastr[shortCutFunction](msg, title);
+
               location.reload();
             }else{
+              var shortCutFunction= 'error';
+              var msg             = "Ocurrio un error al eliminar el registro.";
+              var title           = "Atención!"
+
+              toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-top-right",
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+              }
+              var $toast = toastr[shortCutFunction](msg, title);            
+
               divError.show();
             }
         }
