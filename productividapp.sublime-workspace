@@ -411,6 +411,70 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "public/js/modules/users/validateUsers.js",
+			"settings":
+			{
+				"buffer_size": 4665,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/modules/main/views/scripts/phones/getinfo.phtml",
+			"settings":
+			{
+				"buffer_size": 8030,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/modules/main/validatePhones.js",
+			"settings":
+			{
+				"buffer_size": 9205,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/modules/main/views/scripts/phones/index.phtml",
+			"settings":
+			{
+				"buffer_size": 5938,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/css/app.css",
+			"settings":
+			{
+				"buffer_size": 3492,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/modules/main/views/scripts/phones/searchactivos.phtml",
+			"settings":
+			{
+				"buffer_size": 1395,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/modules/main/searchActivos.js",
+			"settings":
+			{
+				"buffer_size": 983,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/layouts/layout_blank.phtml",
+			"settings":
+			{
+				"buffer_size": 2653,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -440,23 +504,24 @@
 	},
 	"file_history":
 	[
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/app.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/functionGral.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/users/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/views/scripts/phones/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/gralTables.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/users/index.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/messages/index.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/messages/views/scripts/main/index.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/messages/views/scripts/main/newmessage.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/messages/newmessages.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/messages/views/scripts/main/chatmessages.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/app.css",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/gralTables.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/layout.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/users/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/users/getinfo.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/profiles/index.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/users/validateUsers.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/users/validateProfiles.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/custom/table-managed.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/plugins/data-tables/DT_bootstrap.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/plugins/data-tables/jquery.dataTables.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/functionGral.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/location/views/scripts/main/index.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/location/reporteRastreo.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/location/views/scripts/main/reporte.phtml",
@@ -566,8 +631,7 @@
 		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/reporteRastreo.js",
 		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/rastreo/mapa.phtml",
 		"/Users/itecno2/Documents/workspace/productividad.mx/public/assets/DT_bootstrap.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/controllers/RastreoController.php",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/services/getinformation.phtml"
+		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/controllers/RastreoController.php"
 	],
 	"find":
 	{
@@ -588,6 +652,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"no-",
 			"divChat",
 			"ui-icon-triangle-1-n",
 			"DataTables_sort_icon",
@@ -714,8 +779,7 @@
 			"min-he",
 			"infoMarkerTable",
 			"getselect",
-			"<div class=\"span6\">",
-			"control-label"
+			"<div class=\"span6\">"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -776,8 +840,234 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "public/js/modules/users/validateUsers.js",
+					"settings":
+					{
+						"buffer_size": 4665,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								23,
+								3979
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1255.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "application/modules/main/views/scripts/phones/getinfo.phtml",
+					"settings":
+					{
+						"buffer_size": 8030,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6492,
+								6504
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1762.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "public/js/modules/main/validatePhones.js",
+					"settings":
+					{
+						"buffer_size": 9205,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3000,
+								3000
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 851.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "application/modules/main/views/scripts/phones/index.phtml",
+					"settings":
+					{
+						"buffer_size": 5938,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								95,
+								109
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "public/css/app.css",
+					"settings":
+					{
+						"buffer_size": 3492,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3492,
+								3492
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2590.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "application/modules/main/views/scripts/phones/searchactivos.phtml",
+					"settings":
+					{
+						"buffer_size": 1395,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "public/js/modules/main/searchActivos.js",
+					"settings":
+					{
+						"buffer_size": 983,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								61,
+								61
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "application/views/layouts/layout_blank.phtml",
+					"settings":
+					{
+						"buffer_size": 2653,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2464,
+								2464
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

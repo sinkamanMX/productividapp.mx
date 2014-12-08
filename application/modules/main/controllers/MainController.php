@@ -18,14 +18,13 @@ class main_MainController extends My_Controller_Action
 	        if($sessions->validateSession()){
 	            $this->_redirect('/main/main/inicio');		
 			}
-						
-			if (isset($_COOKIE["NickUser"]) && isset($_COOKIE["PassUser"])){
-   				if ($_COOKIE["NickUser"]!="" || $_COOKIE["PassUser"]!=""){
-   					$this->view->sNameUser = $_COOKIE["NickUser"];
-   					$this->view->sPassUser = $_COOKIE["PassUser"];		
-   				}
-			}
 			
+			$sessionRemeber = new My_Controller_Remember();
+			if($sessionRemeber->validateSession()){
+				$aDataRemember  = $sessionRemeber->getContentSession();
+				$this->view->sNameUser = $aDataRemember['NickUser'];
+   				$this->view->sPassUser = $aDataRemember['PassUser'];	
+			}						
         } catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
@@ -35,8 +34,8 @@ class main_MainController extends My_Controller_Action
     public function loginAction(){
 		try{   			
 			$this->_helper->layout->disableLayout();
-			$this->_helper->viewRenderer->setNoRender();    
-	                
+			$this->_helper->viewRenderer->setNoRender();   
+			
 	        $answer = Array('answer' => 'no-data');
 			$data = $this->_request->getParams();
 	        if(isset($data['inputUsuario']) && isset($data['inputPassword'])){
@@ -49,15 +48,18 @@ class main_MainController extends My_Controller_Action
 	                 $sessions->startSession();
 	                 $usuarios->setLastAccess($dataUser);
 	                 
+	                 $sessionRemeber = new My_Controller_Remember();                 	                 
 	                 if(isset($data['remember'])){
-	                 	Zend_Debug::dump("se recordaran");
-						setcookie("NickUser", $data['inputUsuario'],432000);
-      					setcookie("PassUser", $data['inputPassword'],432000);
-      					Zend_Debug::dump($_COOKIE);
+	                 	$dataRemember = Array(
+	                 		'NickUser' => $data['inputUsuario'],
+	                 		'PassUser' => $data['inputPassword']
+	                 	);
+	                 	$sessionRemeber->setContentSession($dataRemember);
+	                 	$sessionRemeber->startSession();
 	                 }else{
-						unset($_COOKIE['inputUsuario']);
-	                 	unset($_COOKIE['inputPassword']);
-	                 }	                 
+				    	$sessionRemeber = new My_Controller_Auth(); 
+				    	$sessionRemeber->endSession();                	
+	                 }
 				     $answer = Array('answer' => 'logged');
 				}else{ 
 				    $answer = Array('answer' => 'no-perm'); 
@@ -72,12 +74,16 @@ class main_MainController extends My_Controller_Action
         }
     }
     
-    public function logoutAction(){
+    public function logoutAction(){    	
+    	$sessions = new My_Controller_Auth(); 
+    	$sessions->endSession();
+    	/*
 		$mysession= new Zend_Session_Namespace('gtpSession');
 		$mysession->unsetAll();
 		
 		Zend_Session::namespaceUnset('gtpSession');
 		Zend_Session::destroy();
+		*/
 		
 		$this->_redirect('/');
     }  

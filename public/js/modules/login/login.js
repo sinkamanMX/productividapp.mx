@@ -134,6 +134,7 @@ function validateLogin(){
       data: form.serialize(),
         success: function(data) {
             var result = data.answer;
+
             if(result == 'logged'){
                 location.href='/main/main/inicio';
             }else if(result == 'problem'){
@@ -143,6 +144,7 @@ function validateLogin(){
                 $("#divpErrorLogin").addClass('alert-error').show('slow');
                 $("#pErrorLogin").html("Usuario y/o contraseña incorrectos");
             }
+
         }
     });
 }
