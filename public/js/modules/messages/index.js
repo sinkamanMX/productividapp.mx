@@ -2,17 +2,18 @@ parent.App.startPageLoading();
 $("body").modalmanager('loading');
 
 $( document ).ready(function() {
-    App.stopPageLoading();
-    $("body").modalmanager('removeLoading');
-
     var idFirst = $("#txtContactFirst").val();
     if(idFirst>-1){
     	setNameContact($("#txtNameFirst").val());
     	getConversation(idFirst,'','',0);  	    	 
+    }else{
+      App.stopPageLoading();
+      $("body").modalmanager('removeLoading');
     }
-	setTimeout(function() {
-	     scrolling()
-	}, 100);
+
+  	setTimeout(function() {
+  	     scrolling()
+  	}, 100);
 
     $("#inputMessage").keypress(function (e) {
         if (e.which == 13) {
@@ -81,7 +82,7 @@ function setNameContact(nameContact){
 }
 
 function getConversation(inputContacto,Message,action){
-	$("#divChat").modalmanager('loading');
+  $("body").modalmanager('loading');
 	$("#txtInput").val(inputContacto);	
 	$('#inputMessage').attr("disabled", true);
 	$('#buttonSend').attr("disabled", true);
@@ -91,10 +92,10 @@ function getConversation(inputContacto,Message,action){
 	$('#divChat').html('');	
 	validation = false;
 
-	if(action==""){
-		validation = true;	    
-	}else if(action=="new" && Message!="" ){
-		validation = true;
+  	if(action==""){
+  		validation = true;	    
+  	}else if(action=="new" && Message!="" ){
+		  validation = true;
     }else{
         var shortCutFunction= 'error';
         var msg             = "Debe de ingresar un mensaje a enviar.";
@@ -121,17 +122,18 @@ function getConversation(inputContacto,Message,action){
 	      type: "POST",
 	      url: "/messages/main/chatmessages",
 	      data: {catId: inputContacto, inputMsg: Message, optReg: action, iTime : iTimeShow},
-	        success: function(data) {
+	        success: function(data) {            
 	        	$('#divChat').html(data);
-	        	$("#inputMessage").val("");
-				setTimeout(function() {
-				     scrolling()
-				}, 100);
-
-				$("#divChat").modalmanager('removeLoading');
-				App.stopPageLoading();
+	        	$("#inputMessage").val("");            
+            setTimeout(function() {
+                           scrolling()
+                      }, 100);
+            App.stopPageLoading();
+            $("body").modalmanager('removeLoading');
 	        }
 	    });    	
+      /*App.stopPageLoading();
+      $("body").modalmanager('removeLoading');  */        
     }
 }
 
