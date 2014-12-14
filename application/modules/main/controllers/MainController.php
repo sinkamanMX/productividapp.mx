@@ -56,8 +56,8 @@ class main_MainController extends My_Controller_Action
 	                 	);
 	                 	$sessionRemeber->setContentSession($dataRemember);
 	                 	$sessionRemeber->startSession();
-	                 }else{
-				    	$sessionRemeber = new My_Controller_Auth(); 
+	                 }elseif($sessionRemeber->validateSession()){
+				    	$sessionRemeber = new My_Controller_Auth('sesRemember'); 
 				    	$sessionRemeber->endSession();                	
 	                 }
 				     $answer = Array('answer' => 'logged');
@@ -91,7 +91,7 @@ class main_MainController extends My_Controller_Action
     public function inicioAction(){
 		$this->_helper->layout->disableLayout();
 		$this->_helper->viewRenderer->setNoRender();    
-		$sessions = new My_Controller_Auth();		
+		$sessions = new My_Controller_Auth();	
         if($sessions->validateSession()){
             $profile = new My_Model_Perfiles();            
             $dataUser = $sessions->getContentSession();

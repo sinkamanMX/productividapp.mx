@@ -41,7 +41,8 @@ class location_MainController extends My_Controller_Action
 			$cTecnicos		= new My_Model_Personal();
 			$cEmpresas		= new My_Model_Empresas();			
 			$dataCenter		= $cInstalaciones->getCbo($this->_dataUser['ID_EMPRESA']);
-			$idSucursal     = -1;
+			$idSucursal     = -1;			
+			$codeStatus		= (isset($this->_dataIn['iStatus']) && $this->_dataIn['iStatus']!="") ? $this->_dataIn['iStatus'] : "S";
 			
 			if($this->_dataOp=="search" && $this->_dataUser['VISUALIZACION']==2){
 				$idSucursal = $this->_dataIn['cboInstalacion'];
@@ -55,6 +56,8 @@ class location_MainController extends My_Controller_Action
 			$aProcess		= $cTecnicos->processInfo($aConfig,$aPositions,$idSucursal);
 	
 			$this->view->aLastPositions = $aProcess;
+			Zend_Debug::dump($codeStatus);
+			$this->view->iStatus		= $codeStatus;
         } catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                

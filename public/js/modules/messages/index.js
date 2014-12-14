@@ -132,8 +132,8 @@ function getConversation(inputContacto,Message,action){
             $("body").modalmanager('removeLoading');
 	        }
 	    });    	
-      /*App.stopPageLoading();
-      $("body").modalmanager('removeLoading');  */        
+      App.stopPageLoading();
+      $("body").modalmanager('removeLoading'); 
     }
 }
 

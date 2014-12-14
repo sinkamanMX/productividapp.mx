@@ -411,6 +411,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "public/js/modules/messages/index.js",
+			"settings":
+			{
+				"buffer_size": 4580,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -575,7 +583,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
 			"<open folders>",
@@ -588,6 +596,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Quick View",
 			"modalmanager",
 			"no-",
 			"divChat",
@@ -714,8 +723,7 @@
 			"rules",
 			"margin",
 			"min-he",
-			"infoMarkerTable",
-			"getselect"
+			"infoMarkerTable"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -776,8 +784,37 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "public/js/modules/messages/index.js",
+					"settings":
+					{
+						"buffer_size": 4580,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4142,
+								4142
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1627.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

@@ -6,6 +6,7 @@
 <?php $this->headScript()->appendFile('/assets/plugins/fancybox/source/jquery.fancybox.pack.js'); ?> 
 <?php $this->headScript()->appendFile('/assets/scripts/custom/portfolio.js'); ?> 
 <?php $this->headScript()->appendFile('/js/modules/location/rastreotels.js'); ?>
+<input type="hidden" id="istatus" value="<?php echo $this->iStatus?>"/>
 <div class="row">
 	<div class="col-md-12">
 		<div class="col-md-8">
@@ -35,19 +36,19 @@
 	<div class="col-md-12">
 		<div class="margin-top-10">
 			<ul class="mix-filter">
-				<li class="filter btn" data-filter="all">
+				<li id="liAll" class="filter btn " data-filter="all">
 					 Todos
 				</li>
-				<li class="filter btn green" data-filter="catEncendido">
+				<li id="li1"  class="filter btn green " data-filter="catEncendido">
 					Encendidos
 				</li>
-				<li class="filter btn red" data-filter="catApagado">
+				<li id="li2"  class="filter btn red " data-filter="catApagado">
 					Apagados
 				</li>
-				<li class="filter btn dark" data-filter="catNoReporte">
+				<li id="li3"  class="filter btn dark " data-filter="catNoReporte">
 					 Sin reportar
 				</li>
-				<li class="filter btn brown" data-filter="catXsinReporte">
+				<li id="li4"  class="filter btn brown" data-filter="catXsinReporte">
 					 Más de 24 hrs sin Reportar
 				</li>
 				<!--
