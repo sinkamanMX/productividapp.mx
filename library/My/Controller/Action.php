@@ -44,6 +44,12 @@ class My_Controller_Action extends Zend_Controller_Action
      * 
      * @var array 
      */
+    protected $_colorContenedor;  
+
+    /**
+     * 
+     * @var array 
+     */
     protected $_dataOp;    
     /**
      * 
