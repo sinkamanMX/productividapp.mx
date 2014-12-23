@@ -56,7 +56,6 @@ class location_MainController extends My_Controller_Action
 			$aProcess		= $cTecnicos->processInfo($aConfig,$aPositions,$idSucursal);
 	
 			$this->view->aLastPositions = $aProcess;
-			Zend_Debug::dump($codeStatus);
 			$this->view->iStatus		= $codeStatus;
         } catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";

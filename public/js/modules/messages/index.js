@@ -1,7 +1,10 @@
 parent.App.startPageLoading();
 $("body").modalmanager('loading');
-
 $( document ).ready(function() {
+    App.stopPageLoading();
+    $("body").modalmanager('removeLoading'); 
+     
+  /*
     var idFirst = $("#txtContactFirst").val();
     if(idFirst>-1){
     	setNameContact($("#txtNameFirst").val());
@@ -63,10 +66,12 @@ $( document ).ready(function() {
           "hideMethod": "fadeOut"
         }
         var $toast = toastr[shortCutFunction](msg, title);
-    }           
+    }    
+    */       
 });
 
 function scrolling(){
+  /*
     var cont = $('#chats');
     var list = $('.chats', cont);
     $('.scroller', cont).slimScroll({
@@ -75,14 +80,17 @@ function scrolling(){
 
 	$('#inputMessage').attr("disabled", false);
 	$('#buttonSend').attr("disabled", false);
+  */
 }
 
 function setNameContact(nameContact){
-	$("#txtNameContacto").html("Mensajes de "+nameContact);
+
+	/*$("#txtNameContacto").html("Mensajes de "+nameContact);*/
+
 }
 
 function getConversation(inputContacto,Message,action){
-  $("body").modalmanager('loading');
+  /*$("body").modalmanager('loading');
 	$("#txtInput").val(inputContacto);	
 	$('#inputMessage').attr("disabled", true);
 	$('#buttonSend').attr("disabled", true);
@@ -134,10 +142,11 @@ function getConversation(inputContacto,Message,action){
 	    });    	
       App.stopPageLoading();
       $("body").modalmanager('removeLoading'); 
-    }
+    }*/
 }
 
 function setTimetoShow(iTime){
+  /*
 	if(!$(".time"+iTime).hasClass("active")){
 		$(".btnTime").removeClass("active");
 		$("#txtInputTime").val(iTime);
@@ -145,11 +154,19 @@ function setTimetoShow(iTime){
 		var idContacto = $("#txtInput").val();	
 		getConversation(idContacto,'','');			
 	}
+  */
 }
 
 function sendMessage(){
+
+/*
 	var inputCatId = $("#txtInput").val();
 	var message    = $("#inputMessage").val();
 	
 	getConversation(inputCatId,message,'new');
+
+
+*/
+
+
 }

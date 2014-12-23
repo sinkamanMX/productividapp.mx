@@ -25,15 +25,10 @@ class My_Model_Mensajes extends My_Db_Table
 				FROM PROD_MENSAJES M
 				INNER JOIN USUARIOS          A ON A.ID_USUARIO  = M.ID_USR_TO
 				INNER JOIN USUARIOS          I ON I.ID_USUARIO  = M.ID_USR_SEND
-				WHERE $filtro 
-					(M.ID_USR_SEND  = $idObject OR M.ID_USR_TO   IN(SELECT ID_TELEFONO
-															FROM PROD_TELEFONOS 
-															WHERE  ID_EMPRESA = $idEmpresa))
-					OR (M.ID_USR_TO = $idObject OR M.ID_USR_SEND IN(SELECT ID_TELEFONO
-														FROM PROD_TELEFONOS 
-														WHERE  ID_EMPRESA = $idEmpresa))		
-								/*GROUP BY 	M.ID_USR_TO, M.ID_USR_SEND*/
-								ORDER BY 	M.CREADO ASC";
+				WHERE M.ID_USR_SEND  = $idObject
+				   OR M.ID_USR_TO    = $idObject		
+				/* GROUP BY M.ID_USR_SEND, M.ID_USR_TO */
+				ORDER BY M.CREADO DESC";
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
 			$result = $query;			
@@ -45,32 +40,33 @@ class My_Model_Mensajes extends My_Db_Table
 	public function processListContactos($aDataprocess,$idUsuario){
 		$aDataUnica = Array();
 		
-		foreach($aDataprocess as $items){			
-			$idContacto = 0;
+		foreach($aDataprocess as $items){
+			$idContacto=0;
 			if($items['RECIBIO']!=$idUsuario && $items['ENVIO']==$idUsuario){
-				$idContacto = $items['RECIBIO'];	
-				$aDataUnica[$idContacto]['ID'] = $idContacto;								 
-				$aDataUnica[$idContacto]['NOMBRE']  = $items['N_RECIBE'];
-				$aDataUnica[$idContacto]['MENSAJE'] 	= $items['MENSAJE'];
-				$aDataUnica[$idContacto]['CREADO']  	= $items['CREADO'];
-				$aDataUnica[$idContacto]['HAGODAYS']  	= $items['HAGODAYS'];
-				$aDataUnica[$idContacto]['HAGOHOURS'] 	= $items['HAGOHOURS'];
-				$aDataUnica[$idContacto]['HAGOMINS'] 	= $items['HAGOMINS'];			
-				$aDataUnica[$idContacto]['PROCESADO'] 	= $items['PROCESADO'];
-				$aDataUnica[$idContacto]['LEIDO'] 		= $items['LEIDO'];							
+				$idContacto =  $items['RECIBIO']; 					 							
 			}else if($items['ENVIO']!=$idUsuario && $items['RECIBIO']==$idUsuario){
-				$idContacto = $items['ENVIO'];		
-				$aDataUnica[$idContacto]['ID'] = $idContacto;
-				$aDataUnica[$idContacto]['NOMBRE']  = $items['N_ENVIA'];
+				$idContacto =  $items['ENVIO'];												
+			}
+			
+			if(!isset($aDataUnica[$idContacto]) && $idContacto>0){
+				if($items['RECIBIO']!=$idUsuario && $items['ENVIO']==$idUsuario){
+					$aDataUnica[$idContacto]['ID'] = $idContacto;				
+					$aDataUnica[$idContacto]['NOMBRE']      = $items['N_RECIBE'];								 							
+				}else if($items['ENVIO']!=$idUsuario && $items['RECIBIO']==$idUsuario){
+					$aDataUnica[$idContacto]['ID']          = $idContacto;
+					$aDataUnica[$idContacto]['NOMBRE']      = $items['N_ENVIA'];																	
+				}
+	
 				$aDataUnica[$idContacto]['MENSAJE'] 	= $items['MENSAJE'];
 				$aDataUnica[$idContacto]['CREADO']  	= $items['CREADO'];
 				$aDataUnica[$idContacto]['HAGODAYS']  	= $items['HAGODAYS'];
 				$aDataUnica[$idContacto]['HAGOHOURS'] 	= $items['HAGOHOURS'];
 				$aDataUnica[$idContacto]['HAGOMINS'] 	= $items['HAGOMINS'];			
 				$aDataUnica[$idContacto]['PROCESADO'] 	= $items['PROCESADO'];
-				$aDataUnica[$idContacto]['LEIDO'] 		= $items['LEIDO'];													
-			} 									
+				$aDataUnica[$idContacto]['LEIDO'] 		= $items['LEIDO'];	
+			}
 		}
+
 		return $aDataUnica;	
 	}
 	
