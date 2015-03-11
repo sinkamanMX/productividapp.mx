@@ -257,5 +257,19 @@ class My_Controller_Functions
 	            substr($an, rand(0, $su), 1) .
 	            substr($an, rand(0, $su), 1) .
 	            substr($an, rand(0, $su), 1);
-	}     
+	} 
+
+	function getRandomCodeReset(){
+	    $an = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!?$%&/Á";
+	    $su = strlen($an) - 1;
+	    return  substr($an, rand(0, $su), 1) .
+	            substr($an, rand(0, $su), 1) .
+	            substr($an, rand(0, $su), 1) .
+	            substr($an, rand(0, $su), 1) .
+	            substr($an, rand(0, $su), 1) .
+	            substr($an, rand(0, $su), 1) .
+	            substr($an, rand(0, $su), 1) .
+	            substr($an, rand(0, $su), 1) .
+	            substr($an, rand(0, $su), 1);
+	} 	
 }

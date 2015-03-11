@@ -1,0 +1,230 @@
+.image-responsive{
+	width:100%;
+}
+.margin-t0{
+  margin-top: 0px !important;
+}
+.margin-t5{
+	margin-top: 5%;
+}
+.margin-t10{
+	margin-top: 10%;
+}
+.margin-t20{
+	margin-top: 20%;
+}
+
+.bg-body{
+	background-color: #f3f5f9;
+}
+.bg-white{
+	background-color:#FFFFFF;
+}
+.text-white{
+	color:#FFFFFF;
+}
+.text-black{
+	color:#000000;
+}
+.sidebar {
+	background: #fafafa;
+	padding: 32px 20px;
+}
+.config-icon {
+    color: white;
+    height: 2.5rem;
+    margin-left: 30%;
+    padding: 0;
+    position: relative;
+    transform: translate3d(0px, 0px, 0px);
+    width: 2.5rem;
+    float:left;
+}
+
+.row-min-h30{
+  min-height: 30px;
+}
+.row-min-h{
+  min-height: 550px;
+}
+.row-min-h200{
+  min-height: 200px;
+}
+.row-min-h300{
+  min-height: 300px;
+}
+.row-min-h350{
+  min-height: 350px;
+}
+.row-min-h450{
+  min-height: 450px;
+}
+.row-min-h470{
+  min-height: 470px;
+}
+.row-min-h550{
+  min-height: 550px;
+}
+.row-min-h600{
+  min-height: 600px;
+}
+.row-min-h650{
+  min-height: 650px;
+}
+.row-min-h700{
+  min-height: 700px;
+}
+.cursor-hand{
+	cursor: pointer;	
+}
+.font-white{
+	color: #FFFFFF !important;
+}
+.image-logo {
+  display: block;
+  font-size: 0.9rem !important;
+  height: 100%;
+  width: 45px;
+}
+.margin-l15{
+  margin-left: 15px;
+}
+.margin-l5{
+  margin-left: 5px;
+}
+.float-r{
+  float:right;
+}
+.tittle-bar{
+  font-weight: normal !important;
+  font-size: 15px !important;
+}
+.white-text{
+  color:#FFFFFF;
+}
+#ex1Slider .slider-selection {
+  background: #BABABA;
+}
+
+#countdown {
+    margin-left: 88%;
+    margin-top: -12%;
+    position: relative;
+}
+/*This will work for firefox*/
+@-moz-document url-prefix() {
+   #divSliderC{
+    margin-top: 0% !important;
+  }
+}
+
+#divSliderC{
+  margin-top: 3% !important;
+}
+#map_canvas img {
+  max-width: none !important;
+}
+#mapCanvas label { width: auto !important; display:inline !important; }
+#mapCanvas img { max-width: none !important; }
+.gm-style-iw{
+    height: 100% !important;
+    overflow: hidden !important;
+}
+/** FIX for Bootstrap and Google Maps Info window styes problem **/
+img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
+  max-width: none;
+}
+img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
+  max-width: none !important;
+}
+/* here you can put your own css to customize and override the theme */
+.minh-420{
+  min-height: 420px;
+}
+.h-350{
+  height: 350px !important;
+}
+.btn.brown {
+    background-color: #623f18;
+    color: white;
+    text-shadow: none;
+}
+.divLocation{  
+  -moz-border-radius-bottomright: 10px; 
+  -moz-border-radius-topright: 10px; 
+  color: #FFFFFF; 
+  margin: 0; 
+}
+.textLocation{
+  font-family: "Open Sans",sans-serif;
+  font-size: 15px;
+  font-weight: 300 !important;
+  position: relative;
+  width: 100%;
+}
+.divLocation{
+    color: #FFFFFF; 
+}
+
+.divToolsMap{
+  position: relative;
+  top: 15px;
+  z-index: 12;
+}
+.tittlePortlet{
+  font-size: 15px !important;
+}
+.no-margin-b{
+  margin-bottom: 0px !important;
+}
+.blog-twitter-block {
+    border-right: 2px solid #ddd;
+    margin-bottom: 10px;
+    min-height: 55px;
+    padding: 5px;
+    position: relative;
+}
+.aTimeAgo {
+  color: #999 !important;
+  font-size: 12px;
+  position: absolute;
+  right: 5px;
+  top: 45px;
+}
+.aTimeAgoMsg {
+  color: #999 !important;
+  font-size: 12px;
+  font-style: italic;
+  position: absolute;
+  right: 10px;
+  top: 25px;
+}
+.avatar {
+    border-radius: 50% !important;
+    height: 45px;
+    width: 45px;
+}
+.tittleContact {
+  font-size: 14px;
+  margin-left: 5px;
+  position: absolute;
+  top: 10px;
+  width: 100%;
+}
+
+.minHeight50{
+  min-height: 50px
+}
+.pand0{
+  padding: 0px !important;
+}
+.hmodal550 {
+  height: 550px;
+  width: 99.9%;
+}
+.listSelect{
+  background-color: #F5F5F5;
+}
+.newMessage{
+  background-color: #7FDA97 !important;
+}

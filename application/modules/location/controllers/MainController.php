@@ -34,8 +34,11 @@ class location_MainController extends My_Controller_Action
     }
 
     public function indexAction()
-    {    	
-		try{			
+    {
+    	//Zend_Debug::dump($this->_dataUser);
+    	//die();
+    	/*
+		try{						
 			$cInstalaciones = new My_Model_Cinstalaciones();
 			$cFunciones		= new My_Controller_Functions();
 			$cTecnicos		= new My_Model_Personal();
@@ -61,6 +64,7 @@ class location_MainController extends My_Controller_Action
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
         }
+        */
     }
     
     public function getlastpAction(){

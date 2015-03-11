@@ -132,7 +132,7 @@ class main_PhonesController extends My_Controller_Action
 				 if($validateIMEI){			 	
 			 		$insert = $classObject->insertRow($this->_dataIn);
 			 		if($insert['status']){	
-			 			$this->_dataIn = $insert['id'];					 	
+			 			//$this->_dataIn = $insert['id'];					 	
 					 	if($this->_dataIn['inputIdAssign']!=""){
 						 	$insertRel = $classObject->setUser($insert['id'],$this->_dataIn['inputIdAssign']);
 						 	if($insertRel){				

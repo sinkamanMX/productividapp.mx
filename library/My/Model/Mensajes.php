@@ -10,9 +10,10 @@ class My_Model_Mensajes extends My_Db_Table
 	protected $_name 	= 'PROD_MENSAJES';
 	protected $_primary = 'ID_MENSAJE';
 	
-	public function getContactos($idObject,$idEmpresa,$filter = -1){
+	public function getContactos($idObject,$idEmpresa,$filter = -1,$limitOption=false){
 		$result= Array();
-		$filtro = ($filter>-1) ? '	A.ID_SUCURSAL = '.$filter.' OR I.ID_SUCURSAL = '.$filter.' OR ': '';
+		//$filtro = ($filter>-1) ? '	A.ID_SUCURSAL = '.$filter.' OR I.ID_SUCURSAL = '.$filter.' OR ': '';
+		$filtro = ($limitOption) ? 'LIMIT 1 ': '';
 		$this->query("SET NAMES utf8",false); 		
     	$sql ="SELECT A.ID_USUARIO AS RECIBIO, I.ID_USUARIO AS ENVIO, M.CREADO, M.MENSAJE,
 				  FLOOR(HOUR(TIMEDIFF(M.CREADO, CURRENT_TIMESTAMP)) / 24) AS HAGODAYS,
@@ -21,14 +22,15 @@ class My_Model_Mensajes extends My_Db_Table
 				  CONCAT(A.NOMBRE,' ',A.APELLIDOS) AS N_RECIBE,
 				  CONCAT(I.NOMBRE,' ',I.APELLIDOS) AS N_ENVIA,
 				  M.PROCESADO,
-				  M.LEIDO
+				  M.LEIDO,
+				  M.ID_MENSAJE
 				FROM PROD_MENSAJES M
 				INNER JOIN USUARIOS          A ON A.ID_USUARIO  = M.ID_USR_TO
 				INNER JOIN USUARIOS          I ON I.ID_USUARIO  = M.ID_USR_SEND
 				WHERE M.ID_USR_SEND  = $idObject
 				   OR M.ID_USR_TO    = $idObject		
 				/* GROUP BY M.ID_USR_SEND, M.ID_USR_TO */
-				ORDER BY M.CREADO DESC";
+				ORDER BY M.CREADO DESC $filtro";
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
 			$result = $query;			
@@ -37,36 +39,66 @@ class My_Model_Mensajes extends My_Db_Table
 		return $result;			
 	}	
 	
-	public function processListContactos($aDataprocess,$idUsuario){
+	public function processListContactos($aDataprocess,$idUsuario,$process=true){
 		$aDataUnica = Array();
 		
-		foreach($aDataprocess as $items){
-			$idContacto=0;
-			if($items['RECIBIO']!=$idUsuario && $items['ENVIO']==$idUsuario){
-				$idContacto =  $items['RECIBIO']; 					 							
-			}else if($items['ENVIO']!=$idUsuario && $items['RECIBIO']==$idUsuario){
-				$idContacto =  $items['ENVIO'];												
-			}
-			
-			if(!isset($aDataUnica[$idContacto]) && $idContacto>0){
+		if($process){
+			foreach($aDataprocess as $items){
+				$idContacto=0;
 				if($items['RECIBIO']!=$idUsuario && $items['ENVIO']==$idUsuario){
-					$aDataUnica[$idContacto]['ID'] = $idContacto;				
-					$aDataUnica[$idContacto]['NOMBRE']      = $items['N_RECIBE'];								 							
+					$idContacto =  $items['RECIBIO']; 					 							
 				}else if($items['ENVIO']!=$idUsuario && $items['RECIBIO']==$idUsuario){
-					$aDataUnica[$idContacto]['ID']          = $idContacto;
-					$aDataUnica[$idContacto]['NOMBRE']      = $items['N_ENVIA'];																	
+					$idContacto =  $items['ENVIO'];												
 				}
-	
-				$aDataUnica[$idContacto]['MENSAJE'] 	= $items['MENSAJE'];
-				$aDataUnica[$idContacto]['CREADO']  	= $items['CREADO'];
-				$aDataUnica[$idContacto]['HAGODAYS']  	= $items['HAGODAYS'];
-				$aDataUnica[$idContacto]['HAGOHOURS'] 	= $items['HAGOHOURS'];
-				$aDataUnica[$idContacto]['HAGOMINS'] 	= $items['HAGOMINS'];			
-				$aDataUnica[$idContacto]['PROCESADO'] 	= $items['PROCESADO'];
-				$aDataUnica[$idContacto]['LEIDO'] 		= $items['LEIDO'];	
-			}
+				
+				if(!isset($aDataUnica[$idContacto]) && $idContacto>0){
+					if($items['RECIBIO']!=$idUsuario && $items['ENVIO']==$idUsuario){
+						$aDataUnica[$idContacto]['ID'] = $idContacto;				
+						$aDataUnica[$idContacto]['NOMBRE']      = $items['N_RECIBE'];								 							
+					}else if($items['ENVIO']!=$idUsuario && $items['RECIBIO']==$idUsuario){
+						$aDataUnica[$idContacto]['ID']          = $idContacto;
+						$aDataUnica[$idContacto]['NOMBRE']      = $items['N_ENVIA'];																	
+					}
+					
+					$aDataUnica[$idContacto]['ID_MENSAJE'] 	= $items['ID_MENSAJE'];
+					$aDataUnica[$idContacto]['MENSAJE'] 	= $items['MENSAJE'];
+					$aDataUnica[$idContacto]['CREADO']  	= $items['CREADO'];
+					$aDataUnica[$idContacto]['HAGODAYS']  	= $items['HAGODAYS'];
+					$aDataUnica[$idContacto]['HAGOHOURS'] 	= $items['HAGOHOURS'];
+					$aDataUnica[$idContacto]['HAGOMINS'] 	= $items['HAGOMINS'];			
+					$aDataUnica[$idContacto]['PROCESADO'] 	= $items['PROCESADO'];
+					$aDataUnica[$idContacto]['LEIDO'] 		= $items['LEIDO'];	
+					
+				}
+			}			
+		}else{
+			foreach($aDataprocess as $items){
+				$idContacto=0;
+				if($items['RECIBIO']!=$idUsuario && $items['ENVIO']==$idUsuario){
+					$idContacto =  $items['RECIBIO']; 					 							
+				}else if($items['ENVIO']!=$idUsuario && $items['RECIBIO']==$idUsuario){
+					$idContacto =  $items['ENVIO'];												
+				}				
+				
+				if($items['RECIBIO']!=$idUsuario && $items['ENVIO']==$idUsuario){
+					$aDataUnica['ID'] = $idContacto;				
+					$aDataUnica['NOMBRE']      = $items['N_RECIBE'];								 							
+				}else if($items['ENVIO']!=$idUsuario && $items['RECIBIO']==$idUsuario){
+					$aDataUnica['ID']          = $idContacto;
+					$aDataUnica['NOMBRE']      = $items['N_ENVIA'];																	
+				}
+				
+				$aDataUnica['ID_MENSAJE'] 	= $items['ID_MENSAJE'];
+				$aDataUnica['MENSAJE'] 		= $items['MENSAJE'];
+				$aDataUnica['CREADO']  		= $items['CREADO'];
+				$aDataUnica['HAGODAYS']  	= $items['HAGODAYS'];
+				$aDataUnica['HAGOHOURS'] 	= $items['HAGOHOURS'];
+				$aDataUnica['HAGOMINS'] 	= $items['HAGOMINS'];			
+				$aDataUnica['PROCESADO'] 	= $items['PROCESADO'];
+				$aDataUnica['LEIDO'] 		= $items['LEIDO'];		
+			}			
 		}
-
+		
 		return $aDataUnica;	
 	}
 	
@@ -100,22 +132,51 @@ class My_Model_Mensajes extends My_Db_Table
 	}
 	
 	public function newMessage($data){
-        $result  = false;
+        $result     = Array();
+        $result['status']  = false;
         
         $sql="INSERT INTO PROD_MENSAJES
 				SET ID_USR_SEND		=  ".$data['inputSend'].",
 					ID_USR_TO		=  ".$data['inputTo'].",
 					MENSAJE			=  '".$data['inputMsg']."',
 					CREADO			= CURRENT_TIMESTAMP";
-        try{            
+        try{
     		$query   = $this->query($sql,false);
-			if($query){
-				$result  = true;					
+    		$sql_id ="SELECT LAST_INSERT_ID() AS ID_LAST;";
+			$query_id   = $this->query($sql_id);
+			if(count($query_id)>0){
+				$result['id']	   = $query_id[0]['ID_LAST'];
+				$result['status']  = true;					
 			}	
         }catch(Exception $e) {
             echo $e->getMessage();
             echo $e->getErrorMessage();
         }
-		return $result;			
+		return $result;	  		
 	}
+	
+	public function getMessageById($idObject){
+		$result= Array();
+		$this->query("SET NAMES utf8",false); 		
+    	$sql ="SELECT A.ID_USUARIO AS RECIBIO, I.ID_USUARIO AS ENVIO, M.CREADO, M.MENSAJE,
+				  FLOOR(HOUR(TIMEDIFF(M.CREADO, CURRENT_TIMESTAMP)) / 24) AS HAGODAYS,
+				  MOD(HOUR(TIMEDIFF(M.CREADO, CURRENT_TIMESTAMP)), 24)   AS HAGOHOURS,  
+				  MINUTE(TIMEDIFF(M.CREADO, CURRENT_TIMESTAMP))  AS HAGOMINS,
+				  CONCAT(A.NOMBRE,' ',A.APELLIDOS) AS N_RECIBE,
+				  CONCAT(I.NOMBRE,' ',I.APELLIDOS) AS N_ENVIA,
+				  M.PROCESADO,
+				  M.LEIDO,
+				  M.ID_MENSAJE
+				FROM PROD_MENSAJES M
+				INNER JOIN USUARIOS          A ON A.ID_USUARIO  = M.ID_USR_TO
+				INNER JOIN USUARIOS          I ON I.ID_USUARIO  = M.ID_USR_SEND
+				WHERE M.ID_MENSAJE = $idObject
+				ORDER BY M.CREADO DESC LIMIT 1";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;			
+	}		
 }

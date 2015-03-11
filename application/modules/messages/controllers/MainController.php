@@ -41,7 +41,7 @@ class messages_MainController extends My_Controller_Action
 	
 			$idTipoUsuario  = ($this->_dataUser['VISUALIZACION']!=2) ? $this->_dataUser['ID_SUCURSAL'] : -1;
 			$aContactos		= $cMensajes->getContactos($this->_dataUser['ID_USUARIO'],$this->_dataUser['ID_EMPRESA'],$idTipoUsuario);
-			$aProcesado  	= $cMensajes->processListContactos($aContactos,$this->_dataUser['ID_USUARIO']);
+			$aProcesado  	= $cMensajes->processListContactos($aContactos,$this->_dataUser['ID_USUARIO']);			
 			if(isset($this->_dataIn['strNotif']) && strlen($this->_dataIn['strNotif']) ==5){
 				$this->view->resultOp = 1;	
 			}					
@@ -147,5 +147,48 @@ class messages_MainController extends My_Controller_Action
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
         }     	
+    }
+    
+    public function sendmessagesAction(){
+		$this->_helper->layout->disableLayout();
+		$this->_helper->viewRenderer->setNoRender();
+		
+		$cMensajes 	= new My_Model_Mensajes();
+		$cUsuarios 	= new My_Model_Usuarios();		
+		$aProcesado = Array();
+
+		$sResponse = 0;
+		if(isset($this->_dataIn['idSendTo'])){
+			$aDataInsert = Array();
+			$aDataInsert['inputSend'] 	= $this->_dataUser['ID_USUARIO'];
+			$aDataInsert['inputTo'] 	= $this->_dataIn['idSendTo'];
+			$aDataInsert['inputMsg'] 	= $this->_dataIn['inputMsg'];	
+			$aInsertData = $cMensajes->newMessage($aDataInsert);
+			if($aInsertData['status']){
+				$sResponse 	  = 1;
+				$aDataMessage = $cMensajes->getMessageById($aInsertData['id']);
+				$aProcesado   = $cMensajes->processListContactos($aDataMessage,$this->_dataUser['ID_USUARIO'],false);					
+			}else{
+				$sResponse    = 2;
+			}
+
+			$sAnswer = Array('ResponseStatus'=> $sResponse,
+							 'DataMessage'	 => $aProcesado);
+			echo Zend_Json::encode($sAnswer);
+		}
+		
+    }
+    
+    public function checkmessageAction(){
+		$this->_helper->layout->disableLayout();
+		$this->_helper->viewRenderer->setNoRender();   
+			    	
+		$cMensajes	 	= new My_Model_Mensajes();
+		$cFunciones		= new My_Controller_Functions();
+
+		$idTipoUsuario  = ($this->_dataUser['VISUALIZACION']!=2) ? $this->_dataUser['ID_SUCURSAL'] : -1;
+		$aContactos		= $cMensajes->getContactos($this->_dataUser['ID_USUARIO'],$this->_dataUser['ID_EMPRESA'],$idTipoUsuario,true);
+		$aProcesado  	= $cMensajes->processListContactos($aContactos,$this->_dataUser['ID_USUARIO'],false);
+		echo Zend_Json::encode($aProcesado);
     }
 }	

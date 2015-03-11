@@ -1,9 +1,9 @@
 
-<ul class="chats">
+<ul class="chats" id="listChats">
 	<?php foreach($this->aConversacion as $key => $items):?>
 		<?php if($items['RECIBIO']==$this->dataUser['ID_USUARIO']):?>
 			<li class="in">
-				<img class="avatar img-responsive" alt="" src="/images/icons/<?php echo ($items['TEL_RECIBE']!="NULL" && $items['TEL_RECIBE']!=NULL) ? 'icon-phone.png': 'icon-user.png';?>"/>
+				<img class="avatar img-responsive" alt="" src="/images/icons/icon-user.png"/>
 				<div class="message">
 					<span class="arrow">
 					</span>
@@ -11,7 +11,7 @@
 						<?php echo $items['MENSAJE'];?>								
 					</span>					
 					<div class="name">
-						<?php echo $items['N_ENVIA'];?> <?php echo ($items['TEL_RECIBE']!="NULL" && $items['TEL_RECIBE']!=NULL) ? ' - Tel. '.$items['TEL_RECIBE'] : '';?>
+						<?php echo $items['N_ENVIA'];?> <?php //echo ($items['TEL_RECIBE']!="NULL" && $items['TEL_RECIBE']!=NULL) ? ' - Tel. '.$items['TEL_RECIBE'] : '';?>
 						<span class="aTimeAgoMsg">
 							<span class="badge badge-success badge-roundless pand0">
 								<i class="fa fa-check "></i> 								
