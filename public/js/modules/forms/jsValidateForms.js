@@ -99,7 +99,6 @@ function validateFormA(){
 function addFieldForm(){
     var countElement = $("#inputCountElements").val();
 
-
     var cboStatus    = $("#divSelectStatus").html();
     var cboCats      = $("#divSelectCats").html();
     var cboType      = $("#divSelectTipos").html();
@@ -240,7 +239,9 @@ function showCloseSubOptions(idInput){
 }
 
 function deleteSubFieldForm(objectTable,idInput,inputIdRow){   
+    $('.iDivSubsopts'+idInput).hide(); 
     $("#inputSubOp"+idInput).val('del');
+
     var td = $(objectTable).parent().parent().parent();    
     var tr = td.parent();
         tr.fadeOut(400, function(){
@@ -263,7 +264,7 @@ function addSubElements(inputIdRow,idDepende){
     var cboType      = $("#divSelectTipos").html();
     var cboReq       = $("#divSelectReq").html();
 
-    $('#tableDepend'+inputIdRow+' tr:last').after(
+    $('#divTableSubs'+inputIdRow+' tr:last').after(
         '<tr>'+
             '<td>'+
                 '<i class="fa fa-minus"></i>'+
@@ -297,7 +298,7 @@ function addSubElements(inputIdRow,idDepende){
             '<td>'+
                 '<div class="col-xs-12 no-margin-l">'+
                     '<div class="col-xs-4 no-margin-l">'+
-                        '<button id="buttonOps'+inputIdRow+'_'+countElement+'" class="btn btn-default btn-sm icon-only" onClick="showCloseSubOptions('+countElement+');return false;"><i id="spanSubOptions'+countElement+'" class="fa fa-sort-down"></i></button>'+
+                        '<button id="buttonOps'+inputIdRow+'_'+countElement+'" class="btn btn-default btn-sm icon-only" style="display:none;"onClick="showCloseSubOptions('+countElement+');return false;"><i id="spanSubOptions'+countElement+'" class="fa fa-sort-down"></i></button>'+
                     '</div>'+
                     '<div class="col-xs-4 no-margin-l">'+
                         '<button class="btn btn-default btn-sm icon-only deleteLink" onClick="deleteSubFieldForm(this,'+countElement+','+inputIdRow+');return false;"><i class="fa  fa-times-circle-o"></i></button>'+

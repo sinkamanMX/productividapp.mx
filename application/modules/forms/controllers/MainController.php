@@ -156,7 +156,7 @@ class forms_MainController extends My_Controller_Action
 			$this->view->catId		= $this->_idUpdate;
 			$this->view->idToUpdate = $this->_idUpdate;
 			$this->view->aErrorFields= $this->_aErrorsFields;    		
-    		$this->view->tabSelected= $tabSelected;			
+    		$this->view->tabSelected= $tabSelected;		    			
 		} catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
