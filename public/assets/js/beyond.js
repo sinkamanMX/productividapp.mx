@@ -513,6 +513,7 @@ function setCookiesForFixedSettings() {
 /*#endregion handle Settings*/
 
 //Chat
+/*
 $("#chat-link").click(function () {
     $('.page-chatbar').toggleClass('open');
     $("#chat-link").toggleClass('open');
@@ -526,6 +527,7 @@ $('.page-chatbar .chatbar-messages .back').on('click', function (e) {
     $('.page-chatbar .chatbar-contacts').show();
     $('.page-chatbar .chatbar-messages').hide();
 });
+
 var position = (readCookie("rtl-support") || location.pathname == "/index-rtl-fa.html" || location.pathname == "/index-rtl-ar.html") ? 'right' : 'left';
 $('.chatbar-messages .messages-list').slimscroll({
     position: position,
@@ -539,6 +541,7 @@ $('.chatbar-contacts .contacts-list').slimscroll({
     color: themeprimary,
     height: $(window).height() - 86,
 });
+*/
 //End Chat
 
 /*#region Get Colors*/

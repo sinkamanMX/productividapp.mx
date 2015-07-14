@@ -1,0 +1,110 @@
+<?php $this->headScript()->appendFile('/js/modules/gralTables.js') ?>   
+<?php $disabled   = ($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==1) ? 'disabled':'';?> 
+<?php $urlActions = ($this->DbmanInfo['CUSTOM_ACTIONS']==1) ? $this->DbmanInfo['CUSTOM_URL'].'?catId=' : '/dbman/main/getdatainfo?ssIdource='.$this->DbmanInfo['CLAVE_MODULO'].'&catId='; ?>
+    <input type="hidden" id="inputModule" value="<?php echo $this->DbmanInfo['CLAVE_MODULO']; ?>"/>
+    <input type="hidden" id="inputDelete" value="-1"/>
+
+    <!-- Page Header -->
+    <div class="page-header position-relative">
+        <div class="header-title">
+            <h1>
+                <?php echo $this->DbmanInfo['TITULO']; ?>
+            </h1>
+            <small>administración</small>
+        </div>
+        <!--Header Buttons-->
+        <div class="header-buttons">
+
+        </div>
+        <!--Header Buttons End-->
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header ">
+                        <span class="widget-caption"><?php echo $this->DbmanInfo['NOMBRE']; ?> Registrados </span>
+                        <div class="widget-buttons">
+                            <a href="#" data-toggle="maximize">
+                                <i class="fa fa-expand"></i>
+                            </a>
+                            <a href="#" data-toggle="collapse">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <!--<a href="#" data-toggle="dispose">
+                                <i class="fa fa-times"></i>
+                            </a>-->
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <div class="table-toolbar">
+                            <?php if($this->dataUser['INSERTAR']==1 && $this->DbmanInfo['AGREGAR']==1): ?>                                
+                                <a href="<?php echo $urlActions.'-1'; ?>" class="btn btn-success tooltip-success white">
+                                    Agregar 
+                                </a>
+                            <?php endif;?>
+                            <div class="btn-group pull-right">
+                                <!--
+                                <a class="btn btn-default" href="javascript:void(0);">Tools</a>
+                                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"><i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu dropdown-default">
+                                    <li>
+                                        <a href="javascript:void(0);">Action</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">Another action</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">Something else here</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="javascript:void(0);">Separated link</a>
+                                    </li>
+                                </ul>-->
+                            </div>
+                        </div>
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead> 
+                                <tr role="row">
+                                    <?php for($i=0;$i<count($this->aTittles);$i++):?>
+                                        <th>
+                                            <?php echo $this->aTittles[$i];?>
+                                        </th>
+                                    <?php endfor;?>
+                                    <th class="col-xs-2 col-md-2">
+                                        Opciones
+                                    </th>
+                                </tr>                                
+                            </thead>                        
+                            <tbody>                      
+                                <?php foreach($this->aDataTable as $key => $items):?>
+                                    <tr>
+                                        <?php for($i=0;$i<count($this->aNamesTable);$i++):?>
+                                            <?php $nameField = "".$this->aNamesTable[$i]; ?>
+                                            <?php if($nameField!="ID"):?>
+                                                <td><?php echo $items[$nameField];?> </td>
+                                            <?php endif;?>
+                                        <?php endfor;?>
+                                        <td>
+                                            <?php if($this->dataUser['LECTURA']==1 && $this->DbmanInfo['MODIFICAR']==1): ?>
+                                                <a class="btn btn-info btn-sm icon-only white tooltip-info" href="<?php echo $urlActions.$items['ID'] ?>" data-toggle="tooltip" data-placement="top" data-original-title="Editar"><i class="fa fa-edit"></i></a>                                                
+                                            <?php endif;?> 
+                                            <?php if($this->dataUser['ELIMINAR']==1 && $this->DbmanInfo['ELIMINAR']==1): ?>
+                                                <a class="btn btn-danger btn-sm icon-only white tooltip-danger" onclick="beforeDelete('<?php echo $items['ID']; ?>')" data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar"><i class="fa fa-times "></i></a>
+                                            <?php endif;?>
+
+                                        </td>
+                                    </tr>
+                                <?php endforeach;?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->

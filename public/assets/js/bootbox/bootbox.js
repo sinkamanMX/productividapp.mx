@@ -771,8 +771,11 @@
     },
     en : {
       OK      : "OK",
+      CANCEL  : "Cancelar",
+      CONFIRM : "Aceptar"      
+      /*OK      : "OK",
       CANCEL  : "Cancel",
-      CONFIRM : "OK"
+      CONFIRM : "OK"*/
     },
     es : {
       OK      : "OK",

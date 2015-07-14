@@ -1,5 +1,7 @@
-function getoptionsCbo(idCboTo,classObject,idObject,chosen,options){    
+function getoptionsCbo(idCboTo,classObject,idObject,chosen,options){      
+    revalidate('input'+idCboTo);
     $("#div"+idCboTo).html('<img id="loader1" class="col-xs-offset-4" src="/images/loading.gif" alt="loading gif"/>');
+    $('#input'+idCboTo).find('option').remove().end().hide('slow');
     var classChosen = (chosen) ? 'chosen-select': '';
     var claseFind   = (options=='coloniaO') ? 'colonia': options;
     var optionSelect= (options!='') ? 'getoptionsCbo("'+options+'","'+claseFind+'",this.value,false,"");': '';
@@ -9,50 +11,81 @@ function getoptionsCbo(idCboTo,classObject,idObject,chosen,options){
         type: "GET",
         data: { catId : idObject, 
                 oprDb : classObject },
-        success: function(data) { 
+        success: function(data) {   
             $("#div"+idCboTo).html("");
-            var dataCbo = '<select class="form-control input-sm" id="input'+idCboTo+'" name="input'+idCboTo+'" onChange=\''+optionSelect+' '+optsCP+'\'>';
             if(data!="no-info"){
-                dataCbo += '<option value="">Seleccionar una opción</option>'+data+'</select>';
+                $('#input'+idCboTo).append('<option value="">Seleccionar una opción</option>'+data+'</select>');
             }else{
-                dataCbo += '<option value="">Sin Información</option>';
+                $('#input'+idCboTo).append('<option value="">Sin Información</option>');
             }
-            dataCbo += '</select>';
-                                    
-            $("#div"+idCboTo).html(dataCbo);
-            /*$(".chosen-select").chosen({disable_search_threshold: 10});*/
+            $('#input'+idCboTo).show('slow');            
         }
-    });     
-}
-/*
-function getCPdir(idObject,nameObject){
-    var mun      = '';    
-    var toObject = '';
-    if(nameObject=='colonia'){
-        mun      = $("#inputMunicipio").val();
-        toObject = "inputCP";
-    }else if(nameObject=='coloniaO'){
-        mun = $("#inputMunicipioO").val();
-        toObject = "inputCPO";
-    }
-
-    $.ajax({
-        url: "/main/dashboard/getcp",
-        type: "GET",
-        dataType : 'json',
-        data: { catId : idObject ,
-                munId : mun},
-        success: function(data) { 
-            var result = data.answer; 
-            $("#"+toObject).val(result);
-        }
-    });
+    });        
 }
 
-function backToMain(){
-    location.href='/callcenter/newservice/cancel';
-}*/
 function goToMainModule(){
     var moduleUrl = $("#inputModule").val();
     location.href = moduleUrl;  
+}
+
+function getContentDiv(sNameDiv,sUrlContent,sParams){
+    $('#'+sNameDiv).html('<img id="loader1" class="col-xs-offset-4" src="/images/loading.gif" alt="loading gif"/>');
+    $('#'+sNameDiv).load(sUrlContent + sParams);
+}
+
+function optionAll(inputCheck){
+    if(inputCheck){
+        $('.chkOn').prop('checked', true);         
+    }else{
+        $('.chkOn').prop('checked', false);
+    }
+}
+
+function validateListCheks(sNameForm){
+    var selected = '';    
+    $('#'+sNameForm+' input[type=checkbox]').each(function(){
+        if (this.checked) {
+            selected += $(this).val()+', ';
+        }
+    }); 
+
+    if (selected != ''){
+        $("#"+sNameForm).submit();
+    }else{
+        Notify('Debe de seleccionar al menos una opción', 'top-right', '5000', 'danger', 'fa-exclamation-circle', true); 
+    }       
+
+    return false;    
+}
+
+function showNotification(sType,sMessage){
+    if(sType=="registerOk"){
+        Notify('Los Datos se almacenaron correctamente.', 'top-right', '5000', 'success', 'fa-check', true);
+    }
+}
+
+function setTabSelected(iCurrentTab){
+    $("#strTabSelected").val(iCurrentTab);
+}
+
+function setValueInput(sValue,inputFile){
+    $("#"+inputFile).val(sValue);
+}
+
+function validateRangeHour(nameInputMin,nameInputmax,checkType){
+    var nowTemp = new Date();    
+
+    var valueMin = $("#"+nameInputMin).val().split(':');
+    var valueMax = $("#"+nameInputmax).val().split(':');
+
+    var tDateIn  = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(),valueMin[0],valueMin[1]);
+    var tDateEnd = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(),valueMax[0],valueMax[1]);
+
+    if(tDateIn.valueOf()>tDateEnd.valueOf() && checkType==1){
+        $("#"+nameInputmax).val($("#"+nameInputMin).val());
+    }
+
+    if(tDateIn.valueOf()>tDateEnd.valueOf() && checkType==2){
+        $("#"+nameInputMin).val($("#"+nameInputmax).val());
+    }
 }

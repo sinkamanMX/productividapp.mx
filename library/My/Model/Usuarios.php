@@ -43,7 +43,7 @@ class My_Model_Usuarios extends My_Db_Table
 				INNER JOIN PERFILES    P  ON U.ID_PERFIL     = P.ID_PERFIL
 				INNER JOIN SUCURSALES  S  ON U.ID_SUCURSAL   = S.ID_SUCURSAL
 				INNER JOIN EMPRESAS    E  ON S.ID_EMPRESA    = E.ID_EMPRESA
-                WHERE U.ID_USUARIO = $idObject";			         	
+                WHERE U.ID_USUARIO = $idObject";	         	
 		$query   = $this->query($sql);
 		if(count($query)>0){
 			$result	 = $query[0];			
@@ -148,7 +148,7 @@ class My_Model_Usuarios extends My_Db_Table
     public function getData($idObject){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 
-    	$sql ="SELECT  U.*,P.*,S.*
+    	$sql ="SELECT  U.*,P.*,S.*, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS N_USER
 				FROM USUARIOS U
 				INNER JOIN PERFILES    P ON P.ID_PERFIL  = U.ID_PERFIL
 				INNER JOIN SUCURSALES  S ON U.ID_SUCURSAL = S.ID_SUCURSAL

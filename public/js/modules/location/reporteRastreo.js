@@ -5,7 +5,6 @@ var infoLocation;
 var markersRep = [];
 var boundsRep;
 var arrayTravelsRep="";
-parent.App.startPageLoading();
 
 $( document ).ready(function() {
      var nowTemp = new Date();
@@ -29,7 +28,6 @@ $( document ).ready(function() {
         todayBtn: true,
         startDate:"2000-01-01 01:01"
     }).on('changeDate', function(ev) {
-      console.log(ev.date.valueOf());
       if(ev.date.valueOf() > $('#inputFechaFin').datetimepicker('getDate').valueOf()){
         console.log(ev.date);
         $('#inputFechaFin').datetimepicker('setDate', ev.date);   
@@ -52,18 +50,15 @@ $( document ).ready(function() {
     });
 
     initMapToDraw();
-    App.stopPageLoading();
 });
 
 
 function getReportAuto(timeAuto){
   $("#iTime").val(timeAuto);
-  parent.App.startPageLoading();
   $("#FormData").submit();
 }
 
 function getReportManual(){
-  parent.App.startPageLoading();
   $("#FormData2").submit();
 }
 

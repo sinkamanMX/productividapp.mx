@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--
+BeyondAdmin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.1
+Version: 1.2.2
+Purchase: http://wrapbootstrap.com
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>Parvadapps :: Bienvenido</title>
+
+    <meta name="description" content="blank page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/assets/css/weather-icons.min.css" rel="stylesheet" />
+
+    <!--Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300"
+          rel="stylesheet" type="text/css">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="/assets/css/beyond.css" rel="stylesheet" />
+    <link href="/assets/css/demo.min.css" rel="stylesheet" />
+    <link href="/assets/css/typicons.min.css" rel="stylesheet" />
+    <link href="/assets/css/animate.min.css" rel="stylesheet" />
+    <link href="/css/loading.css" rel="stylesheet">    
+    <link href="/css/style.css" rel="stylesheet" />
+    <link id="skin-link" href="" rel="stylesheet" type="text/css" />    
+      <?php echo $this->headStyle(); ?>
+    <script src="/assets/js/skins.js"></script>
+    <!--Page Related styles-->
+    <link href="/assets/css/dataTables.bootstrap.css" rel="stylesheet" />      
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+
+    <!-- Main Container -->
+    <div class="main-container container-fluid">
+   		<?php echo $this->layout()->content; ?>                    
+    </div>
+
+
+    <!--Basic Scripts-->
+    <script src="/assets/js/jquery-2.0.3.min.js"></script>
+    <script src="/assets/js/bootstrap.js"></script>
+    <script src="/assets/js/slimscroll/jquery.slimscroll.js"></script>
+    <script src="/assets/js/beyond.js"></script>    
+    <script src="/assets/js/toastr/toastr.js"></script>
+    <script src="/assets/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="/assets/js/datatable/ZeroClipboard.js"></script>
+    <script src="/assets/js/datatable/dataTables.tableTools.min.js"></script>
+    <script src="/assets/js/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="/assets/js/bootbox/bootbox.js"></script>
+    <script src="/assets/js/validation/bootstrapValidator.js"></script> 
+    <script src="/assets/js/select2/select2.js"></script>   
+
+    <?php echo $this->headLink(); ?>    
+    <?php echo $this->headScript(); ?>      
+</body>
+<!--  /Body -->
+</html>

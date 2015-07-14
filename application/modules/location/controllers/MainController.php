@@ -6,26 +6,8 @@ class location_MainController extends My_Controller_Action
     public function init()
     {
     	try{    		
-    		$sessions = new My_Controller_Auth();
-			$perfiles = new My_Model_Perfiles();
-	        if($sessions->validateSession()){
-		        $this->_dataUser   = $sessions->getContentSession(); 	
-			}else{
-				$this->_redirect("/");
-			}    		
-			$this->view->dataUser   = $this->_dataUser;
-			$this->view->modules    = $perfiles->getModules($this->_dataUser['ID_PERFIL']);
-			$this->view->moduleInfo = $perfiles->getDataModule($this->_clase);
-						
-			$this->_dataIn 					= $this->_request->getParams();
-			$this->_dataIn['userCreate']	= $this->_dataUser['ID_USUARIO'];
-	    	if(isset($this->_dataIn['optReg'])){
-				$this->_dataOp = $this->_dataIn['optReg'];				
-			}
-			
-			if(isset($this->_dataIn['catId'])){
-				$this->_idUpdate = $this->_dataIn['catId'];				
-			}			
+    		$this->validateSession();
+			$this->chatOptions();			
 						
 		} catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
@@ -35,6 +17,32 @@ class location_MainController extends My_Controller_Action
 
     public function indexAction()
     {
+    	try{
+			$cInstalaciones = new My_Model_Cinstalaciones();
+			$cFunciones		= new My_Controller_Functions();
+			$cTecnicos		= new My_Model_Personal();
+			$cEmpresas		= new My_Model_Empresas();			
+			$dataCenter		= $cInstalaciones->getCbo($this->_dataUser['ID_EMPRESA']);
+			$idSucursal     = -1;			
+			$codeStatus		= (isset($this->_dataIn['iStatus']) && $this->_dataIn['iStatus']!="") ? $this->_dataIn['iStatus'] : "S";
+			
+			if($this->_dataOp=="search" && $this->_dataUser['VISUALIZACION']==2){
+				$idSucursal = $this->_dataIn['cboInstalacion'];
+			}else{
+				$idSucursal = $this->_dataUser['ID_SUCURSAL'];
+			}
+
+			$this->view->cInstalaciones = $cFunciones->selectDb($dataCenter,$idSucursal);			
+			$aPositions     = $cTecnicos->getPositions($this->_dataUser['ID_EMPRESA'],$idSucursal);
+			$aConfig        = $cEmpresas->getConfiguracion($this->_dataUser['ID_EMPRESA']);			
+			$aProcess		= $cTecnicos->processInfo($aConfig,$aPositions,$idSucursal);
+	
+			$this->view->aLastPositions = $aProcess;
+			$this->view->iStatus		= $codeStatus;			
+    	 } catch (Zend_Exception $e) {
+            echo "Caught exception: " . get_class($e) . "\n";
+        	echo "Message: " . $e->getMessage() . "\n";                
+        }			    	
     	//Zend_Debug::dump($this->_dataUser);
     	//die();
     	/*

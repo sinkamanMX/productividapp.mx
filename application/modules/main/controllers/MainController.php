@@ -108,6 +108,7 @@ class main_MainController extends My_Controller_Action
 		}		   	
     }
     
+    
     /*
     public function recoveryAction(){
     	try{   	
@@ -164,6 +165,6 @@ class main_MainController extends My_Controller_Action
     */
     
     public function errorprofileAction(){
-    	
+		$this->view->layout()->setLayout('error');    	
     }
 }

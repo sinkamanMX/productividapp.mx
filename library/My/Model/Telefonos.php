@@ -337,7 +337,6 @@ class My_Model_Telefonos extends My_Db_Table
 		return $result;	         	
     }  
 
-/*
 	public function setRelEventos($data){
         $result     = Array();
         $result['status']  = false;
@@ -358,21 +357,18 @@ class My_Model_Telefonos extends My_Db_Table
         }
 		return $result;			
 	}
-	
-	public function setAllEventos($data){
+
+	public function setAllEventos($idObject,$idModel){
         $result     = Array();
         $result['status']  = false;        
 		$sql = "INSERT INTO PROD_EVENTO_TELEFONO (ID_EVENTO,ID_TELEFONO)
-				(
-					SELECT ID_EVENTO, ".$data['catId']." 
-					FROM PROD_EVENTOS
-					WHERE ID_EVENTO NOT IN 
-					(
-						SELECT ID_EVENTO
-						FROM PROD_EVENTO_TELEFONO
-						WHERE ID_TELEFONO = ".$data['catId']."
-					)
-				)";      
+				(SELECT M.ID_EVENTO AS ID, $idObject
+					FROM PROD_EVENTOS_MODELO M
+					INNER JOIN PROD_EVENTOS E ON M.ID_EVENTO  = E.ID_EVENTO
+					 LEFT JOIN PROD_EVENTO_TELEFONO T ON M.ID_EVENTO = T.ID_EVENTO AND T.ID_TELEFONO = $idObject
+					WHERE M.ID_MODELO 	= $idModel
+					 AND T.ID_EVENTO_TELEFONO IS NULL
+					ORDER BY M.ID_EVENTO ASC)";      
         try{    
     		$query   = $this->query($sql,false);
 			if($query){
@@ -384,13 +380,14 @@ class My_Model_Telefonos extends My_Db_Table
         }
 		return $result;			
 	}	
-	
-	public function deleteRelEvent($idRel){
+
+
+	public function deleteRelEvent($idObject){
         $result     = Array();
         $result['status']  = false;
 
         $sql="DELETE FROM  PROD_EVENTO_TELEFONO
-					 WHERE ID_EVENTO_TELEFONO = ".$idRel."  LIMIT 1";
+					 WHERE ID_TELEFONO = $idObject";
         try{            
     		$query   = $this->query($sql,false);
 			if($query){
@@ -400,7 +397,7 @@ class My_Model_Telefonos extends My_Db_Table
             echo $e->getMessage();
             echo $e->getErrorMessage();
         }
-		return $result;	 		
+		return $result['status'];	 		
 	}    
-	*/
+
 }

@@ -60,7 +60,7 @@ class My_Controller_Functions
 		array("id"=>"N",'name'=>'No' )    
     );        
 
-    public function dateToText($fecha_db){
+    public  function dateToText($fecha_db){
     	$fecha=explode("-",$fecha_db);
     	$mes_digito= (int) $fecha[1];
     	$fecha_texto=date("d",strtotime($fecha_db))." de $aMont[$mes_digito], ".date("Y ",strtotime($fecha_db))."";
@@ -72,7 +72,7 @@ class My_Controller_Functions
     	return $fecha_texto;
     }
     
-    public function sendMail($data,$config){	
+    public  function sendMail($data,$config){	
 		$headers  = "MIME-Version: 1.0\n";
 		$headers .= "Content-type: text/html; charset=iso-8859-1\n";
 		$headers .= "X-Priority: 3\n";
@@ -83,7 +83,7 @@ class My_Controller_Functions
 		return $enviado;    	
     }
     
-    public function cboStatus($option=''){
+    public  function cboStatus($option=''){
 		$options='';
 		for($p=0;$p<count($this->optionStatus);$p++){
 			$select='';
@@ -93,7 +93,7 @@ class My_Controller_Functions
 		return $options;
     }
     
-    public function cboStatusString($option=''){
+    public  function cboStatusString($option=''){
 		$options='';
 		for($p=0;$p<count($this->optionStatusString);$p++){
 			$select='';
@@ -104,7 +104,7 @@ class My_Controller_Functions
     } 
 
     
-    public function cboStatusYesNo($option=''){
+    public  function cboStatusYesNo($option=''){
 		$options='';
 		for($p=0;$p<count($this->aOptionsString);$p++){
 			$select='';
@@ -114,7 +114,7 @@ class My_Controller_Functions
 		return $options;
     }        
     
-	public function cbo_from_array($array,$option=''){
+	public  function cbo_from_array($array,$option=''){
 		$options='';
 		for($p=0;$p<count($array);$p++){
 			$select='';
@@ -124,7 +124,7 @@ class My_Controller_Functions
 		return $options;		
 	}
 
-	public function cbo_number($n,$option=''){
+	public  function cbo_number($n,$option=''){
 	  for($i=0; $i<$n; $i++){
 		  $h = ($i<=9)?"0".$i:$i;
 		  $current = ($h==$option) ? 'selected': '';
@@ -133,8 +133,8 @@ class My_Controller_Functions
 	  return $select;  		    
 	}
 	
-	public function selectDb($dataTable,$option=''){	
-		$result='';	
+	public  function selectDb($dataTable,$option=''){	
+		$result='';			
 		if(count($dataTable)>0){
 			foreach($dataTable as $key => $items){
 				$select='';
@@ -147,7 +147,7 @@ class My_Controller_Functions
 		return $result;			
 	}
 	
-	public function creationClass($nameClass){
+	public  function creationClass($nameClass){
 		switch($nameClass) {
 		   case "mun":
 		       return new My_Model_Municipios();
@@ -166,7 +166,7 @@ class My_Controller_Functions
 		}		
 	}
 	
-	public function arrayToStringDb($dataTable){
+	public  function arrayToStringDb($dataTable){
 		$result='';
 		foreach($dataTable as $key => $items){
 			if($items['ID']!="NULL"){
@@ -177,7 +177,7 @@ class My_Controller_Functions
 		return $result;
 	}
 	
-    public function cboGenero($option=''){
+    public  function cboGenero($option=''){
 		$options='';
 		for($p=0;$p<count($this->aGenero);$p++){
 			$select='';
@@ -187,7 +187,7 @@ class My_Controller_Functions
 		return $options;
     }	
     
-    public function cboTipoCliente($option=''){
+   public  function cboTipoCliente($option=''){
 		$options='';
 		for($p=0;$p<count($this->aTipoCliente);$p++){
 			$select='';
@@ -197,7 +197,7 @@ class My_Controller_Functions
 		return $options;
     }	    
     
-    public function cboOptions($option=''){
+    public  function cboOptions($option=''){
 		$options='';
 		for($p=0;$p<count($this->aOptions);$p++){
 			$select='';
@@ -249,7 +249,7 @@ class My_Controller_Functions
     }
     
     
-	public function getRandomCode(){
+	public  function getRandomCode(){
 	    $an = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	    $su = strlen($an) - 1;
 	    return substr($an, rand(0, $su), 1) .
@@ -259,7 +259,7 @@ class My_Controller_Functions
 	            substr($an, rand(0, $su), 1);
 	} 
 
-	function getRandomCodeReset(){
+	public  function getRandomCodeReset(){
 	    $an = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!?$%&/Á";
 	    $su = strlen($an) - 1;
 	    return  substr($an, rand(0, $su), 1) .
@@ -271,5 +271,19 @@ class My_Controller_Functions
 	            substr($an, rand(0, $su), 1) .
 	            substr($an, rand(0, $su), 1) .
 	            substr($an, rand(0, $su), 1);
-	} 	
+	} 
+
+	public function getCboHoursDate($option){
+		$select='';
+		for($i=0; $i<=23; $i++){
+			$h = ($i<=9)?"0".$i:$i;
+			for($x=0;$x<=29;$x++){
+				$m = ($x<=9) ? "0".$x:$x;
+				$valueHour = $h.":".$m;
+				$current = ($valueHour.":00"==$option) ? 'selected': '';
+				$select .= '<option '.$current.' value="'.$valueHour.':00" >'.$valueHour.'</option>';	
+			}
+		}
+	  	return $select;  		    		
+	}
 }

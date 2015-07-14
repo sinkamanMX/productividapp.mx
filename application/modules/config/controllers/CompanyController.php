@@ -90,7 +90,7 @@ class config_CompanyController extends My_Controller_Action
 			$cFunctions = new My_Controller_Functions();			
 			
 			$aDataInfo 	= $cEmpresas->getDataInfo($this->_dataUser['ID_EMPRESA']); 
-			$aConfiguracion = $cEmpresas->getConfiguracion($this->_dataUser['ID_EMPRESA']);
+			$aConfiguracion = $cEmpresas->getConfiguracion($this->_dataUser['ID_EMPRESA']);			
 			$aModulos	= $cEmpresas->getModulos($this->_dataUser['ID_EMPRESA']);
 			$aConsumo	= $cEmpresas->getConsumido($this->_dataUser['ID_EMPRESA']);
 					
@@ -131,9 +131,9 @@ class config_CompanyController extends My_Controller_Action
 				$aDataForm['idEmpresa'] = $this->_dataIn['idEmpresa'];
 				$aValuesForm = $this->_dataIn['formsValues'];
 
-				$aErrorsModules = 0;
-				
+				$aErrorsModules = 0;				
 				if(count($aValuesForm)>0){
+
 					$moduleOff = $classObject->modulesOff($this->_dataIn['idEmpresa']);
 					for($i=0;$i<count($aValuesForm);$i++){
 						$aDataForm['idModulo']= $aValuesForm[$i];
@@ -142,16 +142,18 @@ class config_CompanyController extends My_Controller_Action
 							Zend_Debug::dump("error al insertar el formulario ".$aValuesForm[$i]);
 							$aErrorsModules++;
 						}						
-					}					
+					}
+					
 				}else{
 					$aErrorsModules++;
 				}
 				
 				if($aErrorsModules==0){
+					/*
     				$aModulos		 = $cEmpresas->getModulos($this->_dataUser['ID_EMPRESA']);
-					$this->_resultOp = 'okModules';					
+					$this->_resultOp = 'okModules';*/					
 				}else{
-					$this->_aErrors['errorModules']   = '1';
+					//$this->_aErrors['errorModules']   = '1';
 				}		
 			}				
 					

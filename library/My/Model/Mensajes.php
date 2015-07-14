@@ -12,7 +12,6 @@ class My_Model_Mensajes extends My_Db_Table
 	
 	public function getContactos($idObject,$idEmpresa,$filter = -1,$limitOption=false){
 		$result= Array();
-		//$filtro = ($filter>-1) ? '	A.ID_SUCURSAL = '.$filter.' OR I.ID_SUCURSAL = '.$filter.' OR ': '';
 		$filtro = ($limitOption) ? 'LIMIT 1 ': '';
 		$this->query("SET NAMES utf8",false); 		
     	$sql ="SELECT A.ID_USUARIO AS RECIBIO, I.ID_USUARIO AS ENVIO, M.CREADO, M.MENSAJE,
@@ -23,7 +22,9 @@ class My_Model_Mensajes extends My_Db_Table
 				  CONCAT(I.NOMBRE,' ',I.APELLIDOS) AS N_ENVIA,
 				  M.PROCESADO,
 				  M.LEIDO,
-				  M.ID_MENSAJE
+				  M.ID_MENSAJE,
+				  A.CONECTADO AS CHAT_RECIBE,
+				  I.CONECTADO AS CHAT_ENVIA
 				FROM PROD_MENSAJES M
 				INNER JOIN USUARIOS          A ON A.ID_USUARIO  = M.ID_USR_TO
 				INNER JOIN USUARIOS          I ON I.ID_USUARIO  = M.ID_USR_SEND
@@ -35,8 +36,8 @@ class My_Model_Mensajes extends My_Db_Table
 		if(count($query)>0){		  
 			$result = $query;			
 		}	
-        
-		return $result;			
+               
+		return $result;        		
 	}	
 	
 	public function processListContactos($aDataprocess,$idUsuario,$process=true){
@@ -54,10 +55,14 @@ class My_Model_Mensajes extends My_Db_Table
 				if(!isset($aDataUnica[$idContacto]) && $idContacto>0){
 					if($items['RECIBIO']!=$idUsuario && $items['ENVIO']==$idUsuario){
 						$aDataUnica[$idContacto]['ID'] = $idContacto;				
-						$aDataUnica[$idContacto]['NOMBRE']      = $items['N_RECIBE'];								 							
+						$aDataUnica[$idContacto]['NOMBRE']      = $items['N_RECIBE'];
+						$aDataUnica[$idContacto]['CONECTADO']   = $items['CHAT_RECIBE'];
+						$aDataUnica[$idContacto]['OPTION']   	= 'OUT';										 							
 					}else if($items['ENVIO']!=$idUsuario && $items['RECIBIO']==$idUsuario){
 						$aDataUnica[$idContacto]['ID']          = $idContacto;
-						$aDataUnica[$idContacto]['NOMBRE']      = $items['N_ENVIA'];																	
+						$aDataUnica[$idContacto]['NOMBRE']      = $items['N_ENVIA'];
+						$aDataUnica[$idContacto]['CONECTADO']   = $items['CHAT_ENVIA'];
+						$aDataUnica[$idContacto]['OPTION']   	= 'IN';																			
 					}
 					
 					$aDataUnica[$idContacto]['ID_MENSAJE'] 	= $items['ID_MENSAJE'];
@@ -82,10 +87,12 @@ class My_Model_Mensajes extends My_Db_Table
 				
 				if($items['RECIBIO']!=$idUsuario && $items['ENVIO']==$idUsuario){
 					$aDataUnica['ID'] = $idContacto;				
-					$aDataUnica['NOMBRE']      = $items['N_RECIBE'];								 							
+					$aDataUnica['NOMBRE']      = $items['N_RECIBE'];
+					$aDataUnica['CONECTADO']   = $items['CHAT_RECIBE'];									 							
 				}else if($items['ENVIO']!=$idUsuario && $items['RECIBIO']==$idUsuario){
 					$aDataUnica['ID']          = $idContacto;
-					$aDataUnica['NOMBRE']      = $items['N_ENVIA'];																	
+					$aDataUnica['NOMBRE']      = $items['N_ENVIA'];
+					$aDataUnica['CONECTADO']   = $items['CHAT_ENVIA'];																	
 				}
 				
 				$aDataUnica['ID_MENSAJE'] 	= $items['ID_MENSAJE'];
@@ -98,7 +105,7 @@ class My_Model_Mensajes extends My_Db_Table
 				$aDataUnica['LEIDO'] 		= $items['LEIDO'];		
 			}			
 		}
-		
+
 		return $aDataUnica;	
 	}
 	
@@ -166,7 +173,9 @@ class My_Model_Mensajes extends My_Db_Table
 				  CONCAT(I.NOMBRE,' ',I.APELLIDOS) AS N_ENVIA,
 				  M.PROCESADO,
 				  M.LEIDO,
-				  M.ID_MENSAJE
+				  M.ID_MENSAJE,
+				  A.CONECTADO AS CHAT_RECIBE,
+				  I.CONECTADO AS CHAT_ENVIA
 				FROM PROD_MENSAJES M
 				INNER JOIN USUARIOS          A ON A.ID_USUARIO  = M.ID_USR_TO
 				INNER JOIN USUARIOS          I ON I.ID_USUARIO  = M.ID_USR_SEND

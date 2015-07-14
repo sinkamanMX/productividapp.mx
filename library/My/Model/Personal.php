@@ -43,7 +43,7 @@ class My_Model_Personal extends My_Db_Table
 		$optionSuc = ($option!=-1) ? ' AND U.ID_SUCURSAL = '.$option: ''; 					
 		$sql = "SELECT P.ID_TELEFONO AS ID,
 				CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME,
-				P.FECHA_GPS AS FECHA_GPS,
+				P.FECHA_TELEFONO AS FECHA_GPS,
 				E.DESCRIPCION_EVENTO AS EVENTO,
 				P.LATITUD,
 				P.LONGITUD,
@@ -52,7 +52,7 @@ class My_Model_Personal extends My_Db_Table
 				P.NIVEL_BATERIA,
 				P.ANGULO,
 				P.UBICACION,
-				TIMESTAMPDIFF(MINUTE,FECHA_GPS,CURRENT_TIMESTAMP) AS UREPORTE				
+				TIMESTAMPDIFF(MINUTE,P.FECHA_TELEFONO,CURRENT_TIMESTAMP) AS UREPORTE				
 				FROM USUARIOS  U   
 				INNER JOIN SUCURSALES S 	   ON U.ID_SUCURSAL= S.ID_SUCURSAL
 				INNER JOIN PROD_USR_TELEFONO T ON U.ID_USUARIO = T.ID_USUARIO
@@ -80,24 +80,24 @@ class My_Model_Personal extends My_Db_Table
 			/* Se valida que el equipo este encendido*/
 			if($items['UREPORTE']<=$aConfig['TIEMPO_ENCENDIDO']){
 				$items['STATREP']   = 'catEncendido';
-				$items['STATCOLOR'] = 'green';
+				$items['STATCOLOR'] = 'btn-palegreen';
 				$items['STATEXT']   = 'Encendido';
 			/* Se valida que el equipo no halla reportado  */	
 			}else if($items['UREPORTE']>$aConfig['TIEMPO_ENCENDIDO'] && $items['UREPORTE']<$aConfig['TIEMPO_APAGADO']){
 				$items['STATREP']   = 'catNoReporte';
-				$items['STATCOLOR'] = 'grey dark';
+				$items['STATCOLOR'] = 'btn-darkorange';
 				$items['STATEXT']   = 'Sin Reportar';
 			/* Se valida que el equipo este apagado  */
 			}else if($items['UREPORTE']>$aConfig['TIEMPO_APAGADO']){
 				$items['STATREP']  = 'catApagado';
-				$items['STATCOLOR'] = 'red';
+				$items['STATCOLOR'] = 'btn-purple';
 				$items['STATEXT']   = 'Apagado';							
 			}
 			
 			/* Se valida que el X tiempo sin reportar */
 			if($items['UREPORTE']>$aConfig['TIEMPO_X_SIN_REPORTAR']){
 				$items['STATREP']   = 'catXsinReporte';
-				$items['STATCOLOR'] = 'brown';
+				$items['STATCOLOR'] = 'btn-yellow';
 				$items['STATEXT']   = $aConfig['TITULO_TIEMPO_X_SIN_REPORTAR'];
 			}
 					

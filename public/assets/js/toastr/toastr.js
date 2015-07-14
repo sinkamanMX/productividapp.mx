@@ -252,16 +252,18 @@
 
                 publish(response);
                 var PlaySound = 0;
-                PlaySound = 1;
+                //PlaySound = 1;
                 if (isIE8orlower() == 0) {
+                    /*
                     var audioElement = document.createElement("audio");
-                    audioElement.setAttribute("src", "assets/sound/alert.mp3");
+                    audioElement.setAttribute("src", "/assets/sound/alert.mp3");
                     $.get();
                     audioElement.addEventListener("load", function () {
                         audioElement.play()
                     }, true);
                     audioElement.pause();
                     audioElement.play()
+                    */
                 }
 
                 if (options.debug && console) {
