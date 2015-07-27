@@ -208,7 +208,7 @@ function scrolling(){
 	    position: 'right',
 	    size: '4px',
 	    color: themeprimary,
-	    height: $(window).height() - 86,
+	    height: $("#divListElements").height() - 86,
 	});	
 
     var cont = $('.chats');

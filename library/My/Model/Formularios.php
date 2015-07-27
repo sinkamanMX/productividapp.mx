@@ -194,24 +194,28 @@ class My_Model_Formularios extends My_Db_Table
         $result     = Array();
         $result['status']  = false;
         
-        $sql= "INSERT INTO PROD_ELEMENTOS  
+        $sql= "INSERT INTO PROD_ELEMENTOS
         		SET ID_FORMULARIO	= $idObject,
-					ID_TIPO			= ".$aDataElement['tipo'].",
-					DESCRIPCION		='".@$aDataElement['desc']."',
-					VALORES_CONFIG	='".@$aDataElement['options']."',
-					REQUERIDO		= ".@$aDataElement['requerido'].",
-					VALORES_MIN_MAX	='".@$aDataElement['inputmin'].",".@$aDataElement['inputmax']."',
-					ID_USR_CATALOGO	= ".@$aDataElement['idcatalog'].",
-					ORDEN			= ".@$aDataElement['orden'].",
-					ESTATUS			= ".@$aDataElement['status'].",
-					DEPENDE			= ".(($aDataElement['depende']=="") ? 'NULL': $aDataElement['depende']).",
-					ESPERA			= '".$aDataElement['when']."',
+					ID_TIPO			= ". $aDataElement['inputTipo'].",
+					DESCRIPCION		='".addslashes(@$aDataElement['inputDescripcion'])."',
+					VALORES_CONFIG	='".addslashes(@$aDataElement['inputOpciones'])."',
+					REQUERIDO		= ".@$aDataElement['inputRequerido'].",
+					VALORES_MIN_MAX	='".@$aDataElement['inputMin'].",".@$aDataElement['inputMax']."',
+					ID_USR_CATALOGO	= ".@$aDataElement['inputCatalogo'].",
+					ORDEN			= ".@$aDataElement['inputOrden'].",
+					SUBORDEN		= ".(($aDataElement['inputSubOrden']=="") ? '-1': $aDataElement['inputDepende']).",					
+					ESTATUS			= ".@$aDataElement['inputStatus'].",
+					DEPENDE			= ".(($aDataElement['inputDepende']=="NULL") ? 'NULL': $aDataElement['inputDepende']).",
+					ESPERA			= '".addslashes($aDataElement['inputEspera'])."',
 					CREADO			= CURRENT_TIMESTAMP";
         try{            
     		$query   = $this->query($sql,false);
-    		if(count($query)>0){
-    			$result['status']  = true;		
-    		}
+    		$sql_id ="SELECT LAST_INSERT_ID() AS ID_LAST;";
+			$query_id   = $this->query($sql_id);
+			if(count($query_id)>0){
+				$result['id']	   = $query_id[0]['ID_LAST'];
+				$result['status']  = true;					
+			}	
         }catch(Exception $e) {
             echo $e->getMessage();
             echo $e->getErrorMessage();
@@ -225,12 +229,13 @@ class My_Model_Formularios extends My_Db_Table
      * @param Array $aDataElement
      * @param int $idObject
      */
-    public function deleteRowRel($aDataElement,$idObject){
+    public function deleteRowRel($idElement,$idObject){
         $result     = Array();
         $result['status']  = false;  
         
         $sql="DELETE FROM  PROD_ELEMENTOS
-					 WHERE ID_ELEMENTO = ".$aDataElement['id']." LIMIT 1";
+					 WHERE ID_ELEMENTO   = ".$idElement."
+					   AND ID_FORMULARIO = ".$idObject." LIMIT 1";
         try{            
     		$query   = $this->query($sql,false);
 			if($query){
@@ -254,17 +259,18 @@ class My_Model_Formularios extends My_Db_Table
         $result['status']  = false;
         
        $sql="UPDATE PROD_ELEMENTOS
-        		SET ID_TIPO			= ".$aDataElement['tipo'].",
-					DESCRIPCION		='".@$aDataElement['desc']."',
-					VALORES_CONFIG	='".@$aDataElement['options']."',
-					REQUERIDO		= ".@$aDataElement['requerido'].",
-					VALORES_MIN_MAX	='".@$aDataElement['inputmin'].",".@$aDataElement['inputmax']."',
-					ID_USR_CATALOGO	= ".@$aDataElement['idcatalog'].",
-					ORDEN			= ".@$aDataElement['orden'].",
-					ESTATUS			= ".@$aDataElement['status'].",
-					DEPENDE			= ".(($aDataElement['depend']=="") ? 'NULL': $aDataElement['depend']).",
-					ESPERA			= '".$aDataElement['when']."'
-			WHERE ID_ELEMENTO = ".$aDataElement['id']." LIMIT 1";				        
+        		SET ID_TIPO			= ". $aDataElement['inputTipo'].",
+					DESCRIPCION		='".@$aDataElement['inputDescripcion']."',
+					VALORES_CONFIG	='".@$aDataElement['inputOpciones']."',
+					REQUERIDO		= ".@$aDataElement['inputRequerido'].",
+					VALORES_MIN_MAX	='".@$aDataElement['inputMin'].",".@$aDataElement['inputMax']."',
+					ID_USR_CATALOGO	= ".@$aDataElement['inputCatalogo'].",
+					ORDEN			= ".@$aDataElement['inputOrden'].",
+					SUBORDEN		= ".(($aDataElement['inputSubOrden']=="") ? 'NULL': $aDataElement['inputDepende']).",					
+					ESTATUS			= ".@$aDataElement['inputStatus'].",
+					DEPENDE			= ".(($aDataElement['inputDepende']=="NULL") ? 'NULL': $aDataElement['inputDepende']).",
+					ESPERA			= '".$aDataElement['inputEspera']."'
+			WHERE ID_ELEMENTO = ".$aDataElement['id']." LIMIT 1";
 		try{            
     		$query   = $this->query($sql,false);
 			if($query){
@@ -294,4 +300,181 @@ class My_Model_Formularios extends My_Db_Table
         
 		return $result;	    	
     }
+    
+	/**
+	 * 
+	 * Actualiza un elemento del formulario
+	 * @param Array $aDataIn
+	 * @return Boolean Estatus de la operacion
+	 */
+    public function reOrderElement($aDataElement){
+        $result     = Array();
+        $result['status']  = false;
+        
+       $sql="UPDATE PROD_ELEMENTOS
+        		SET ORDEN			= ".@$aDataElement['orden'].",
+        			SUBORDEN		= ".@$aDataElement['suborden'].",
+					DEPENDE			= ".(($aDataElement['depende']=="") ? 'NULL': $aDataElement['depende'])."
+			WHERE ID_ELEMENTO = ".$aDataElement['id']." LIMIT 1";
+		try{            
+    		$query   = $this->query($sql,false);
+			if($query){
+				$result['status']  = true;					
+			}	
+        }catch(Exception $e) {
+            echo $e->getMessage();
+            echo $e->getErrorMessage();
+        }
+		return $result;
+    }   
+
+	/**
+	 * 
+	 * Obtiene la informacion de un formulario
+	 * @param int $idObject
+	 * @param int $idEmpresa
+	 */
+    public function getElementoById($idObject,$idEmpresa){
+    	$result     = Array();    	
+    	try{ 
+    		$sql = "SELECT X.ORDEN,X.SUBORDEN, X.ID_ELEMENTO AS ID, X.DEPENDE, X.ORDEN, X.DESCRIPCION AS N_ELEMENTO, 
+    					   X.ESTATUS, X.VALORES_CONFIG, X.REQUERIDO, E.DESCRIPCION AS TIPO, X.ID_TIPO , 
+    					   X.VALORES_MIN_MAX, X.ID_USR_CATALOGO, X.VALORES_MIN_MAX, E.REQ_OPCIONES,
+    					   X.ID_FORMULARIO, X.ID_ELEMENTO,X.ESPERA, R.VALORES_CONFIG AS N_OPCIONES
+					FROM  PROD_ELEMENTOS X
+					INNER JOIN PROD_TIPO_ELEMENTO E ON X.ID_TIPO          = E.ID_TIPO
+					 LEFT JOIN USR_CATALOGOS      C ON X.ID_USR_CATALOGO  = C.ID_CATALOGO
+					 LEFT JOIN PROD_ELEMENTOS     R ON X.DEPENDE       	  = R.ID_ELEMENTO
+					WHERE X.ID_ELEMENTO = $idObject LIMIT 1";
+			$query   = $this->query($sql);
+			if(count($query)>0){		  
+				$result = $query[0];			
+			}	
+	        
+			return $result;			
+    	}catch(Exception $e) {
+            echo $e->getMessage();
+            echo $e->getErrorMessage();
+        }
+    }    
+    
+	/**
+	 * 
+	 * Obtiene la informacion de un formulario
+	 * @param int $idObject
+	 * @param int $idEmpresa
+	 */
+    public function getElementosForm($idObject,$idFormulario){
+    	$result     = Array();    	
+    	try{ 
+    		$sql = "SELECT X.ORDEN,X.SUBORDEN, X.ID_ELEMENTO AS ID, X.DEPENDE, X.ORDEN, X.DESCRIPCION AS N_ELEMENTO, 
+    					   X.ESTATUS, X.VALORES_CONFIG, X.REQUERIDO, E.DESCRIPCION AS TIPO, X.ID_TIPO , 
+    					   X.VALORES_MIN_MAX, X.ID_USR_CATALOGO, X.VALORES_MIN_MAX, E.REQ_OPCIONES,
+    					   X.ID_FORMULARIO, X.ID_ELEMENTO, X.DESCRIPCION AS NAME
+					FROM  PROD_ELEMENTOS X
+					INNER JOIN PROD_TIPO_ELEMENTO E ON X.ID_TIPO          = E.ID_TIPO
+					 LEFT JOIN USR_CATALOGOS      C ON X.ID_USR_CATALOGO  = C.ID_CATALOGO
+					WHERE X.ID_FORMULARIO = $idFormulario 
+					  AND X.ID_ELEMENTO   NOT IN ($idObject)
+					  AND (X.DEPENDE IS NULL OR X.DEPENDE = -1)";
+    		
+			$query   = $this->query($sql);
+			if(count($query)>0){		  
+				$result = $query;			
+			}	
+	        			
+			return $result;			
+    	}catch(Exception $e) {
+            echo $e->getMessage();
+            echo $e->getErrorMessage();
+        }
+    }   
+
+    public function getAllItemsRel($idEmpresa,$idFormulario,$idElement){
+        $result     = Array();    	
+    	try{
+    		$sql = "SELECT F.TITULO, E.DESCRIPCION AS N_ELEMENTO, E.ID_ELEMENTO AS ID, E.ID_FORMULARIO AS ID_F, E.ID_TIPO
+					FROM PROD_ELEMENTOS E
+					INNER JOIN PROD_FORMULARIO F ON E.ID_FORMULARIO = F.ID_FORMULARIO
+					WHERE F.ID_EMPRESA = $idEmpresa
+						AND F.ID_FORMULARIO NOT IN ($idFormulario)
+					  	AND E.ID_ELEMENTO   NOT IN ($idElement)
+					  AND E.ID_TIPO  NOT IN (6,7,8,9,10,11,12)
+					  ORDER BY F.TITULO ASC, E.DESCRIPCION ASC";
+			$query   = $this->query($sql);
+			if(count($query)>0){		  
+				$result = $query;			
+			}	
+	        
+			return $result;			
+    	}catch(Exception $e) {
+            echo $e->getMessage();
+            echo $e->getErrorMessage();
+        }    	
+    }
+    
+    public function getELementsRel($idElement,$iOption=0){
+        $result     = Array();    	
+        $sqlHeader  = "";
+        
+        if($iOption==0){
+        	$sqlHeader = "SELECT GROUP_CONCAT(IF(V.ID_ELEMENTO = $idElement, V.ID_ELEMENTO_VINCULADO, V.ID_ELEMENTO) SEPARATOR ',') AS IDS";
+        }else{
+        	$sqlHeader = "SELECT GROUP_CONCAT(ID_ELEMENTO_VINCULOS  SEPARATOR ',') AS IDS";
+        }
+        
+    	try{
+    		$sql = "$sqlHeader
+					FROM   PROD_ELEMENTOS_VINCULO V 
+					WHERE (V.ID_ELEMENTO 		  = $idElement 
+					   OR V.ID_ELEMENTO_VINCULADO = $idElement)";
+			$query   = $this->query($sql);
+			if(count($query)>0){	
+				$result = $query[0]['IDS'];	
+			}
+			return $result;					
+    	}catch(Exception $e) {
+            echo $e->getMessage();
+            echo $e->getErrorMessage();
+        }    	
+    }
+    
+    public function delRelations($aIdsRelations){
+        $result     = Array();
+        $result['status']  = false;  
+        
+        $sql="DELETE FROM  PROD_ELEMENTOS_VINCULO
+					 WHERE ID_ELEMENTO_VINCULOS IN ($aIdsRelations)";   
+        try{            
+    		$query   = $this->query($sql,false);
+			if($query){
+				$result['status']  = true;					
+			}	
+        }catch(Exception $e) {
+            echo $e->getMessage();
+            echo $e->getErrorMessage();
+        }
+		return $result;    	
+    }
+    
+	public function setRelations($data){
+        $result     = Array();
+        $result['status']  = false;
+        $sql="INSERT INTO PROD_ELEMENTOS_VINCULO		 
+					SET ID_ELEMENTO 			=  ".$data['idElemento'].",
+						ID_ELEMENTO_VINCULADO	=  ".$data['idRelation'];
+        try{            
+    		$query   = $this->query($sql,false);
+    		$sql_id ="SELECT LAST_INSERT_ID() AS ID_LAST;";
+			$query_id   = $this->query($sql_id);
+			if(count($query_id)>0){
+				$result['id']	   = $query_id[0]['ID_LAST'];
+				$result['status']  = true;					
+			}	
+        }catch(Exception $e) {
+            echo $e->getMessage();
+            echo $e->getErrorMessage();
+        }
+		return $result;			
+	}    
 }

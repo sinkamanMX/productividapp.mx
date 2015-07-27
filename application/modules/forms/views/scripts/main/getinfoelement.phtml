@@ -1,0 +1,290 @@
+<?php $this->headScript()->appendFile('/assets/js/nestable/jquery.nestable.min.js') ?> 
+<?php $this->headScript()->appendFile('/js/modules/forms/jsValidateElement.js') ?> 
+<?php $this->headScript()->appendFile('/libs/jquery.sortable.js') ?> 
+<?php $this->headScript()->appendFile('/js/modules/functionGral.js') ?> 
+<?php $this->headScript()->captureStart() ?>
+    <?php $sOptions = ''; ?>
+    <?php foreach($this->aTipos as $key => $items):?> 
+        <?php $sOptions.= ($sOptions!="") ? ',' : ''; ?>
+        <?php $sOptions.= $items['ID'].":".$items['REQ_OPCIONES'];?>
+    <?php endforeach;?> 
+    var aOptions = {<?php echo $sOptions;?>}  
+
+
+    <?php $sOptions2   = ''; ?>
+    <?php foreach($this->aElementos as $key => $items):?> 
+
+        <?php $sOptions2.= ($sOptions2!="") ? ',' : ''; ?>
+        <?php $valOptis  = ($items['VALORES_CONFIG']!="") ? $items['VALORES_CONFIG']: '';?>
+        <?php $sOptions2.= $items['ID'].":'".$valOptis."|".$items['ORDEN']."'";?>
+    <?php endforeach;?>
+
+    var OptionsDepende = {<?php echo $sOptions2;?>}
+
+<?php $this->headScript()->captureEnd(); ?>
+   
+<?php if(@$this->errors['errorAction']):?>
+    <div class="alert alert-block alert-danger fade in block-inner">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h6><i class="icon-cancel-circle"></i><strong>¡Error!</strong> Se han encontrado uno ó mas problemas para guardar la información</h6>
+        <hr>
+        <p>
+            <?php if(count($this->aErrorFields)>0):?>
+            <br/>
+                <strong>Errores:</strong><br/>
+                <?php for($i=0;$i<count($this->aErrorFields);$i++):?>
+                    <?php echo $this->aErrorFields[$i]['MessageError'];?><br/>
+                <?php endfor;?>                       
+            <?php endif;?>    
+        </p>
+    </div>
+<?php endif;?>  
+<?php if(isset($this->resultOp) && @$this->resultOp=="okRegister"):?>
+    <script>
+        parent.closeElementDiv(1);
+    </script>
+<?php endif;?>  
+
+<?php if($this->resultOp=='updateElements' || $this->resultOp=='okRegister' ): ?>
+    <?php $this->headScript()->captureStart() ?>
+        $().ready(function(){                                        
+                showNotification('registerOk','');
+        });
+    <?php $this->headScript()->captureEnd() ?>                                                                
+<?php endif; ?>       
+
+<div class="row-min-h300  no-margin" id="divContenedor">
+    <ul class="nav nav-tabs" id="myTab">
+
+        <li class="<?php echo ($this->tabSelected==1 || !isset($this->tabSelected)) ? 'active':'tab';?>">
+            <a data-toggle="tab" href="#gral">Información</a>
+        </li>
+        <li class="<?php echo ($this->tabSelected==2 || !isset($this->tabSelected)) ? 'active':'tab';?>" style="display:<?php echo ($this->idToUpdate>0) ? 'block': 'none';?>;">
+            <a data-toggle="tab" href="#relacion">Preguntas Relacionadas</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="gral" class="tab-pane in <?php echo ($this->tabSelected==1) ? 'active': '';?>">
+            <form id="formDbman" class="form-horizontal" role="form" method="POST"  action="/forms/main/getinfoelement">
+                <input type="hidden" id="catId"             name="catId"            value="<?php echo $this->catId; ?>" id="catId" />
+                <input type="hidden" id="optReg"            name="optReg"           value="<?php echo ($this->idToUpdate>0) ? 'update': 'new';?>" />
+                <input type="hidden" id="inputFormulario"   name="inputFormulario"  value="<?php echo $this->iFormulario;?>" />
+                <input type="hidden" name="strTabSelected"  value="1" />
+
+                <div class="panel panel-default">
+                    <div class="panel-body no-margin no-padding">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="inputOrden" class="col-sm-3 control-label"> Orden</label>
+                                <div class="col-sm-3">
+                                    <input id="inputOrden" name="inputOrden" type="text" class="input-inline form-control"  value="<?php echo @$this->data['ORDEN'];?>"  autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div id="divSubOrden" class="form-group" style="display:<?php echo (@$this->data['DEPENDE']>-1) ? 'block': 'none';?>">
+                                <label for="inputSubOrden" class="col-sm-3 control-label"> Sub-Orden</label>
+                                <div class="col-sm-3">
+                                    <input id="inputSubOrden" name="inputSubOrden" type="text" class="input-inline form-control"  value="<?php echo @$this->data['SUBORDEN'];?>"  autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputDescripcion" class="col-sm-3 control-label"> Descripción</label>
+                                <div class="col-sm-9">
+                                    <input id="inputDescripcion" name="inputDescripcion" type="text" class="input-inline form-control"  value="<?php echo @$this->data['N_ELEMENTO'];?>"  autocomplete="off">
+                                </div>
+                            </div>  
+                                
+                            <div class="form-group">
+                                <label for="inputRequerido" class="col-sm-3 control-label"> Requerido</label>
+                                <div  class="col-xs-5">
+                                    <select id="inputRequerido" name="inputRequerido" class="col-xs-12">
+                                        <?php echo $this->selectReq ;?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputStatus" class="col-sm-3 control-label"> Estatus</label>
+                                <div  class="col-xs-5">
+                                    <select id="inputStatus" name="inputStatus" class="col-xs-12">                                                    
+                                        <?php echo $this->selectStatus ;?>
+                                    </select>
+                                </div>
+                            </div> 
+
+                            <div class="form-group">
+                                <label for="inputDepende" class="col-sm-3 control-label"> Depende de </label>
+                                <div  class="col-xs-9">
+                                    <select id="inputDepende" name="inputDepende" class="col-xs-12" onChange="validateDepend(this.value)">  
+                                        <option value="-1">Ninguna Pregunta</option>                                              
+                                        <?php echo $this->selectDepende ;?>
+                                    </select>
+                                </div>
+                            </div> 
+                            <div id="divRespuesta" class="form-group" style="display:<?php echo (@$this->data['DEPENDE']>-1) ? 'block': 'none;';?>;">
+                                <label for="inputEspera" class="col-sm-3 control-label"> Cuando sea</label>
+                                <div class="col-sm-9">
+                                    <input id="inputEspera" name="inputEspera" type="text" class="input-inline form-control"  value="<?php echo @$this->data['ESPERA'];?>"  autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6" style="height: 360px ! important;">
+
+                            <div class="form-group">
+                                <label for="inputTipo" class="col-sm-3 control-label"> Tipo</label>
+                                <div  class="col-xs-9">
+                                    <select id="inputTipo" name="inputTipo" class="col-xs-12" onChange="validateOption(this.value)">
+                                        <option value="-1">Seleccionar una opción</option>
+                                        <?php echo $this->selectTipos ;?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div style="height:190px;">
+
+                                <div id="divOptions" class="form-group iDivsopts" style="display:<?php echo ($this->catId !="-1" && $this->data['REQ_OPCIONES']=="1" ) ? 'block': 'none;';?>;">
+                                    <label for="inputOpciones" class="col-sm-3 control-label"> Opciones</label>
+                                     <div  class="col-xs-9">
+                                        <textarea id="inputOpciones" name="inputOpciones" rows="4" class="col-xs-12 no-padding"><?php echo @$this->data['VALORES_CONFIG'];?></textarea>
+                                        <span>Opciones (Delimitados por comas <i>ej:uno,dos,tres</i>):</span>
+                                    </div>
+                                </div>
+
+                                <div id="divOptsCat" class="form-group iDivsopts" style="display:<?php echo ($this->catId !="-1" && $this->data['REQ_OPCIONES']=="3" ) ? 'block': 'none;';?>;">
+                                    <label for="inputCatalogo" class="col-sm-3 control-label"> Catálogo</label>
+                                    <div  class="col-xs-9">
+                                       <select id="inputCatalogo" name="inputCatalogo">
+                                            <option value="-1">Seleccionar una opción</option>
+                                            <?php echo $this->selectCatalogs;?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <?php $aValuesMin = explode(',',@$this->data['VALORES_MIN_MAX']);?>
+                                <div id="divOptsMin" class="form-group iDivsopts divOptsMins" style="display:<?php echo ($this->catId !="-1" && $this->data['REQ_OPCIONES']=="2" ) ? 'block': 'none;';?>;">
+                                    <label for="inputCatalogo" class="col-sm-3 control-label"> Valor Mímino</label>
+                                    <div  class="col-xs-5">
+                                        <input id="inputMin" name="inputMin" type="text" class="input-inline form-control"  value="<?php echo @$aValuesMin[0];?>"  autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div id="divOptsMinMax" class="form-group iDivsopts divOptsMins" style="display:<?php echo ($this->catId !="-1" && $this->data['REQ_OPCIONES']=="2" ) ? 'block': 'none;';?>;">
+                                    <label for="inputCatalogo" class="col-sm-3 control-label"> Valor Máximo</label>
+                                    <div  class="col-xs-5">
+                                       <input id="inputMax" name="inputMax" type="text" class="input-inline form-control"  value="<?php echo @$aValuesMin[1];?>"  autocomplete="off">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <input type="hidden" value="<?php echo @$this->data['N_OPCIONES'];?>" id="inhiddenOpts">
+                            <div class="form-group" style="display:none;" id="formDataOpts">
+                                <label for="inputTipo" class="col-sm-3 control-label"> Opciones</label>
+                                <div  class="col-xs-9">
+                                    <div class="divOpsShow">
+                                        <ul id="ulElements" class="list-group">  
+                                            <?php $aOpciones = explode(',',$this->data['N_OPCIONES']);?>
+                                            <?php for($i=0;$i < count($aOpciones);$i++):?>
+                                                <li onClick="setOptionValue('<?php echo $aOpciones[$i];?>')" class="list-group-item"><span class="cursor-hand glyphicon glyphicon-arrow-left"></span> <?php echo $aOpciones[$i];?></li>
+                                            <?php endfor;?>
+                                        </ul>                              
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="pull-right" style="margin-top: 4%">
+                                    <button type="submit" class="btn btn-info">Guardar Cambios</button>
+                                    <button type="button" class="btn default" onClick="parent.closeElementDiv(0);">Cancelar</button>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="relacion" class="tab-pane in <?php echo ($this->tabSelected==2) ? 'active': '';?>">
+            <div class="panel panel-default">
+                <div class="panel-body no-margin no-padding">
+                    <div class="col-xs-6">
+                        <section>
+                            <span>Elementos</span>
+                                <div class="tableRel">
+                                    <table class="table table-sortable">
+                                        <thead>
+                                        <tr>   
+                                            <th class="col-md-1"></th>
+                                            <th>Formulario</th>
+                                            <th>Elemento</th>                                    
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach($this->aRelations as $key => $items):?>
+                                                <?php if($items['ASSOC']==0):?>
+                                                    <tr id="tr<?php echo $items['ID'];?>">
+                                                        <td>
+                                                            <span class="icon-drag glyphicon glyphicon-move cursor-hand"></span>
+                                                            <span class="icon-add  glyphicon glyphicon-arrow-right cursor-hand" style="display:none;" onClick="copyElement(<?php echo $items['ID'];?>);"></span>
+                                                            <input type="hidden" name="aElements[]" value="<?php echo $items['ID'];?>">
+                                                        </td>
+                                                        <td><?php echo $items['TITULO'];?></td>
+                                                        <td><?php echo $items['N_ELEMENTO'];?></td>
+                                                    </tr>
+                                                <?php endif;?>
+                                            <?php endforeach;?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </section>
+                    </div>
+                    <div class="col-xs-6">
+                        <form id="FormData3" class="form-horizontal" role="form" method="POST" action="/forms/main/getinfoelement?catId=<?php echo $this->catId; ?>&inputFormulario=<?php echo $this->iFormulario;?>&strTabSelected=2">
+                            <input type="hidden" id="catId"             name="catId"            value="<?php echo $this->catId; ?>" id="catId" />                            
+                            <input type="hidden" id="optReg"            name="optReg"           value="updateRelation" />
+                            <input type="hidden" id="inputEmpresa"      name="inputEmpresa"     value="<?php echo $this->dataUser['ID_EMPRESA'];?>" />
+                            <input type="hidden" id="inputFormulario"   name="inputFormulario"  value="<?php echo $this->iFormulario;?>" />
+                            <input type="hidden" name="strTabSelected" value="<?php echo $this->tabSelected;?>" />
+
+                            <section>
+                                <span>Elementos Relacionados</span>
+                                <div class="tableRel">
+                                    <table class="table table-sortable" id="table-relation">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-md-1"></th>
+                                            <th>Formulario</th>
+                                            <th>Elemento</th>                                    
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach($this->aRelations as $key => $items):?>
+                                                <?php if($items['ASSOC']==1):?>
+                                                    <tr id="tr<?php echo $items['ID'];?>">
+                                                        <td><span class="icon-drag glyphicon glyphicon-move cursor-hand"></span>
+                                                            <span class="icon-add glyphicon glyphicon-arrow-right cursor-hand" style="display:none;"></span>
+                                                            <input type="hidden" name="aElements[]" value="<?php echo $items['ID'];?>">
+                                                        </td>
+                                                        <td><?php echo $items['TITULO'];?></td>
+                                                        <td><?php echo $items['N_ELEMENTO'];?></td>
+                                                    </tr>        
+                                                <?php endif;?>
+                                            <?php endforeach;?>                                
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>                        
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="pull-right">
+                                        <button type="submit" class="btn btn-info">Guardar Cambios</button>
+                                        <button type="button" class="btn default" onClick="parent.closeElementDiv(<?php echo ($this->resultOp=='updateElements')? '1': '0';?>);">Cancelar</button>   
+                                    </div>
+                                </div>
+                            </div>                              
+                    </div>                                      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

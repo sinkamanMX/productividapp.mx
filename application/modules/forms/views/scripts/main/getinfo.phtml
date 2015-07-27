@@ -1,9 +1,9 @@
+<?php $this->headScript()->appendFile('/assets/js/nestable/jquery.nestable.min.js') ?> 
 <?php $this->headScript()->appendFile('/js/modules/forms/jsValidateForms.js') ?> 
 <?php $this->headScript()->appendFile('/js/modules/functionGral.js') ?> 
 <?php $disabled = ($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==1) ? 'disabled':'';?>	
 <?php $urlActions = ($this->DbmanInfo['CUSTOM_ACTIONS']==1) ? $this->DbmanInfo['CUSTOM_URL'] : '/dbman/main/getdatainfo?ssIdource='.$this->DbmanInfo['CLAVE_MODULO']; ?>
 <input type="hidden" id="inputModule" value="<?php echo $this->moduleInfo['SCRIPT']; ?>"/>
-    <!-- Page Header -->
     <div class="page-header position-relative">
         <div class="header-title">
             <h1>
@@ -12,383 +12,232 @@
             <small>administración</small>
         </div>        
         <div class="pull-right">
-            <a class="btn default" name="back" type="button" href="/location/main/index?action=information"><i class="fa fa-angle-left"></i> Regresar</a>           
+            <a class="btn default" name="back" type="button" href="/dbman/main/index?ssIdource=mforms&action=tablegral"><i class="fa fa-angle-left"></i> Regresar</a>           
         </div>        
     </div>
      <!--/Page Header -->     
     <div id="divBodyPage" class="page-body">
-    <?php if($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==0): ?>
-        <div class="alert alert-block alert-danger fade in block-inner">
-            <h6><i class="icon-cancel-circle"></i> Error</h6>
-            <hr>
-            <p>Usted no tiene permiso para ver esta información.</p>
-        </div>
-    <?php else:?>
-        <ul class="nav nav-tabs" id="tabInformation">
-            <li class="<?php echo ($this->tabSelected==1 || !isset($this->tabSelected)) ? 'active':'tab';?>">
-                <a data-toggle="tab" href="#formInit" aria-expanded="true" onClick="setTabSelected(1)">
-                    Información
-                </a>
-            </li>
-            <li class="tab <?php echo ($this->tabSelected==2) ? 'active': '';?>" style="display:<?php echo ($this->catId>0) ? 'block': 'none';?>;"> 
-                <a data-toggle="tab" href="#divTabElement" aria-expanded="false">
-                    Elementos
-                </a>
-            </li>
-        </ul>
+        <?php if($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==0): ?>
+            <div class="alert alert-block alert-danger fade in block-inner">
+                <h6><i class="icon-cancel-circle"></i> Error</h6>
+                <hr>
+                <p>Usted no tiene permiso para ver esta información.</p>
+            </div>
+        <?php else:?>
 
-        <div class="tab-content">
-            <div id="formInit" class="tab-pane <?php echo ($this->tabSelected==1 || !isset($this->tabSelected)) ? 'active':'';?>">
-                <form id="formDbman" class="form-horizontal" role="form" method="POST" action="<?php echo $urlActions;?>" <?php echo ($this->DbmanInfo['INCLUYE_ARCHIVOS']==1) ? 'enctype="multipart/form-data"' :'';?>>                                
-                    <input type="hidden" id="catId" name="catId"  value="<?php echo $this->catId; ?>" id="catId" />
-                    <input type="hidden" id="optReg" name="optReg" value="<?php echo ($this->idToUpdate>0) ? 'update': 'new';?>" />
-                    <input type="hidden" id="strTabSelected" name="strTabSelected" value="<?php echo $this->tabSelected;?>" />
-                    <input type="hidden" id="inputEmpresa"   name="inputEmpresa"   value="<?php echo $this->dataUser['ID_EMPRESA'];?>" />
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                                                   
-                            <?php if(@$this->errors['errorAction']):?>
-                                <div class="alert alert-block alert-danger fade in block-inner">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <h6><i class="icon-cancel-circle"></i><strong>¡Error!</strong> Se han encontrado uno ó mas problemas para guardar la información</h6>
-                                    <hr>
-                                    <p>
-                                        <?php if(count($this->aErrorFields)>0):?>
-                                        <br/>
-                                            <strong>Errores:</strong><br/>
-                                            <?php for($i=0;$i<count($this->aErrorFields);$i++):?>
-                                                <?php echo $this->aErrorFields[$i]['MessageError'];?><br/>
-                                            <?php endfor;?>                       
-                                        <?php endif;?>    
-                                    </p>
-                                </div>
-                            <?php endif;?>
 
-                            <div class="form-group">
-                                <label for="inputTitulo" class="col-sm-2 control-label"><span class="mandatory">*</span> Titulo</label>
-                                <div class="col-sm-10">
-                                    <input id="inputTitulo" name="inputTitulo" type="text" class="input-inline form-control"  value="<?php echo @$this->aDataInfo['TITULO'];?>"  autocomplete="off">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputDescripcion" class="col-sm-2 control-label"><span class="mandatory">*</span> Descripción</label>
-                                <div class="col-sm-10">
-                                    <input id="inputDescripcion" name="inputDescripcion" type="text" class="input-inline form-control"  value="<?php echo @$this->aDataInfo['DESCRIPCION'];?>"  autocomplete="off">
-                                </div>
-                            </div>  
-
-                            <div class="form-group">
-                                <label for="inputOrden" class="col-sm-2 control-label"><span class="mandatory">*</span> Orden</label>
-                                <div class="col-sm-2">
-                                    <input id="inputOrden" name="inputOrden" type="text" class="input-inline form-control"  value="<?php echo @$this->aDataInfo['ORDEN'];?>"  autocomplete="off">
-                                </div>
-                            </div>                                                         
-
-                            <div class="form-group">
-                                <label for="inputEstatus" class="col-sm-2 control-label"><span class="mandatory">*</span> Estatus</label>
-                                <div class="col-sm-2">
-                                    <select id="inputEstatus" name="inputEstatus" class="">
-                                        <?php echo $this->aEstatus ;?>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputLocate" class="col-sm-2 control-label"><span class="mandatory">*</span> Localización</label>
-                                <div class="col-sm-2">
-                                    <select id="inputLocate" name="inputLocate" class="">
-                                        <?php echo $this->aLocal ;?>
-                                    </select>
-                                </div>
-                            </div>                            
-
-                            <div class="form-group">
-                                <label for="inputPhotos" class="col-sm-2 control-label"><span class="mandatory">*</span> Fotos Extras</label>
-                                <div class="col-sm-2">
-                                    <select id="inputPhotos" name="inputPhotos" class="">
-                                        <?php echo $this->aFotos ;?>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputQrs" class="col-sm-2 control-label"><span class="mandatory">*</span> QR Extras</label>
-                                <div class="col-sm-2">
-                                    <select id="inputQrs" name="inputQrs" class="">
-                                        <?php echo $this->aQrs ;?>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputFirma" class="col-sm-2 control-label"><span class="mandatory">*</span> Firmas Extras</label>
-                                <div class="col-sm-2">
-                                    <select id="inputFirma" name="inputFirma" class="">
-                                        <?php echo $this->aFirms ;?>
-                                    </select>
-                                </div>
-                            </div>
-                        
-                            <?php if($disabled!='disabled'):?>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <div class="pull-right">
-                                            <button type="submit" class="btn btn-info">Guardar Cambios</button>
-                                            <button type="button" class="btn default" onClick="location.href=<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>   
+        <div class="row">    
+            <?php if(@$this->errors['errorAction']):?>
+                <div class="alert alert-block alert-danger fade in block-inner">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h6><i class="icon-cancel-circle"></i><strong>¡Error!</strong> Se han encontrado uno ó mas problemas para guardar la información</h6>
+                    <hr>
+                    <p>
+                        <?php if(count($this->aErrorFields)>0):?>
+                        <br/>
+                            <strong>Errores:</strong><br/>
+                            <?php for($i=0;$i<count($this->aErrorFields);$i++):?>
+                                <?php echo $this->aErrorFields[$i]['MessageError'];?><br/>
+                            <?php endfor;?>                       
+                        <?php endif;?>    
+                    </p>
+                </div>
+            <?php endif;?>          
+            <div id="divInfo" class="col-md-12">
+                <div id="divForm" class="widget radius-bordered">
+                    <div class="widget-header bg-blue">
+                        <span class="widget-caption">Información</span>
+                    </div>
+                    <div class="widget-body padding-5">
+                        <form id="formDbman" class="form-horizontal" role="form" method="POST" action="<?php echo $urlActions;?>" <?php echo ($this->DbmanInfo['INCLUYE_ARCHIVOS']==1) ? 'enctype="multipart/form-data"' :'';?>>                                
+                            <input type="hidden" id="catId" name="catId"  value="<?php echo $this->catId; ?>" id="catId" />
+                            <input type="hidden" id="optReg" name="optReg" value="<?php echo ($this->idToUpdate>0) ? 'update': 'new';?>" />
+                            <input type="hidden" id="strTabSelected" name="strTabSelected" value="<?php echo $this->tabSelected;?>" />
+                            <input type="hidden" id="inputEmpresa"   name="inputEmpresa"   value="<?php echo $this->dataUser['ID_EMPRESA'];?>" />
+                            <div class="panel panel-default">
+                                <div class="panel-body">                                                        
+                                    <div class="form-group">
+                                        <label for="inputTitulo" class="col-sm-3 control-label"><span class="mandatory">*</span> Titulo</label>
+                                        <div class="col-sm-9">
+                                            <input id="inputTitulo" name="inputTitulo" type="text" class="input-inline form-control"  value="<?php echo @$this->aDataInfo['TITULO'];?>"  autocomplete="off">
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="inputDescripcion" class="col-sm-3 control-label"><span class="mandatory">*</span> Descripción</label>
+                                        <div class="col-sm-9">
+                                            <input id="inputDescripcion" name="inputDescripcion" type="text" class="input-inline form-control"  value="<?php echo @$this->aDataInfo['DESCRIPCION'];?>"  autocomplete="off">
+                                        </div>
+                                    </div>  
+
+                                    <!--<div class="form-group">
+                                        <label for="inputOrden" class="col-sm-3 control-label"><span class="mandatory">*</span> Orden</label>
+                                        <div class="col-sm-2">
+                                            <input id="inputOrden" name="inputOrden" type="text" class="input-inline form-control"  value="<?php echo @$this->aDataInfo['ORDEN'];?>"  autocomplete="off">
+                                        </div>
+                                    </div>      -->                                                   
+
+                                    <div class="form-group">
+                                        <label for="inputEstatus" class="col-sm-3 control-label"><span class="mandatory">*</span> Estatus</label>
+                                        <div class="col-sm-2">
+                                            <select id="inputEstatus" name="inputEstatus" class="">
+                                                <?php echo $this->aEstatus ;?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputLocate" class="col-sm-3 control-label"><span class="mandatory">*</span> Localización</label>
+                                        <div class="col-sm-2">
+                                            <select id="inputLocate" name="inputLocate" class="">
+                                                <?php echo $this->aLocal ;?>
+                                            </select>
+                                        </div>
+                                    </div>                            
+
+                                    <div class="form-group">
+                                        <label for="inputPhotos" class="col-sm-3 control-label"><span class="mandatory">*</span> Fotos Extras</label>
+                                        <div class="col-sm-2">
+                                            <select id="inputPhotos" name="inputPhotos" class="">
+                                                <?php echo $this->aFotos ;?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputQrs" class="col-sm-3 control-label"><span class="mandatory">*</span> QR Extras</label>
+                                        <div class="col-sm-2">
+                                            <select id="inputQrs" name="inputQrs" class="">
+                                                <?php echo $this->aQrs ;?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputFirma" class="col-sm-3 control-label"><span class="mandatory">*</span> Firmas Extras</label>
+                                        <div class="col-sm-2">
+                                            <select id="inputFirma" name="inputFirma" class="">
+                                                <?php echo $this->aFirms ;?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                
+                                    <?php if($disabled!='disabled'):?>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <div class="pull-right">
+                                                    <button type="submit" class="btn btn-info">Guardar Cambios</button>
+                                                    <button type="button" class="btn default" onClick="location.href=<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endif;?>  
                                 </div>
-                            <?php endif;?>  
-                        </div>
-                    </div>                                                               
-                </form>
-            </div>
-            <?php $this->headScript()->captureStart() ?>
-                <?php $sOptions = ''; ?>
-                <?php foreach($this->aTipos as $key => $items):?> 
-                    <?php $sOptions.= ($sOptions!="") ? ',' : ''; ?>
-                    <?php $sOptions.= $items['ID'].":".$items['REQ_OPCIONES'];?>
-                <?php endforeach;?> 
-                var aOptions = {<?php echo $sOptions;?>}        
-            <?php $this->headScript()->captureEnd(); ?>
-
-            <div id="divTabElement" class="tab-pane <?php echo ($this->tabSelected==2) ? 'active': '';?>" >
-                <?php $control=0;?>
-                <div class="row-min-h300" id="divContenedor">
-                    <form id="FormData4" class="form-horizontal" role="form" method="POST" action="<?php echo $urlActions;?>">
-                        <input type="hidden" id="catId" name="catId"  value="<?php echo $this->catId; ?>" id="catId" />
-                        <input type="hidden" id="optReg" name="optReg" value="updateElements" />
-                        <input type="hidden" name="strTabSelected" value="2" />
-                        <table id="tableElements" class="table table-striped ">     
-                            <thead>
-                                <tr>
-                                    <th class="col-md-1">Orden</th>
-                                    <th class="col-md-4">Descripción</th>
-                                    <th class="col-md-1">Requerido</th>
-                                    <th class="col-md-1">Estatus</th>
-                                    <th class="col-md-2">Tipo</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach(@$this->aElements as $key => $items):?>
-                                    <tr>
-                                        <td>
-                                            <input name="aElements[<?php echo $control;?>][id]" type="hidden" value="<?php echo $items['ID'];?>"/>
-                                            <input id="inputOp<?php echo $control;?>" name="aElements[<?php echo $control;?>][op]" type="hidden" value="up"/>
-                                            <input id="inputElement<?php echo $control;?>" name="aElements[<?php echo $control;?>][orden]" type="text" class="input-inline form-control col-xd-2"    value="<?php echo @$items['ORDEN'];?>"  autocomplete="off">
-                                        </td>
-                                        <td>
-                                            <input id="inputDesc<?php echo $control;?>'" name="aElements[<?php echo $control;?>][desc]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo $items['N_ELEMENTO']; ?>"  autocomplete="off">
-                                        </td>
-                                        <td>
-                                           <select id="inputReq<?php echo $control;?>" name="aElements[<?php echo $control;?>][requerido]">
-                                                <?php echo $items['cboReq'];?>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select id="inputStat<?php echo $control;?>" name="aElements[<?php echo $control;?>][status]">
-                                                <?php echo $items['cboStatus'];?>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <select id="inputTipo<?php echo $control;?>" name="aElements[<?php echo $control;?>][tipo]" onChange="validateSelected(this.value,<?php echo $control;?>);">
-                                                <?php echo $items['cboTipo'];?>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <div class="col-xs-12 no-margin-l">
-                                                <div class="col-xs-4 no-margin-l">
-                                                    <button class="btn btn-default btn-sm icon-only" onClick="addSubElements(<?php echo $control;?>,<?php echo $items['ID'];?>);return false;"><i class="fa fa-plus-circle"></i></button>
-                                                </div>
-
-                                                <div class="col-xs-4 no-margin-l">
-                                                    <button id="buttonOps<?php echo $control;?>"  style="display:<?php echo ($items['REQ_OPCIONES']!="0") ? 'block': 'none';?>;" class="btn btn-default btn-sm icon-only" onClick="showCloseOptions(<?php echo $control;?>);return false;"><i id="spanOptions<?php echo $control;?>" class="fa fa-sort-down"></i></button>
-                                                </div>
-
-                                                <div class="col-xs-4 no-margin-l">
-                                                    <button class="btn btn-default btn-sm icon-only deleteLink" onClick="deleteFieldForm(this,<?php echo $control;?>);return false;"><i class="fa  fa-times-circle-o"></i></button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    
-                                    <?php $bVisible = ($items['REQ_OPCIONES']!="0" ) ? 'block;': 'none;';?>
-                                    <tr id="trOptions<?php echo $control;?>" style="background-color:#f5f5f5;" style="display:<?php echo $bVisible;?>">
-                                        <td colspan="6">
-                                            <div id="divOptions<?php echo $control;?>" class="col-md-12 iDivsopts<?php echo $control;?>" style="display:<?php echo ($items['REQ_OPCIONES']=="1" ) ? 'block': 'none;';?>;">
-                                                <div class="col-md-2">
-                                                    <span>Opciones (Delimitados por comas <i>ej:uno,dos,tres</i>):</span>
-                                                </div>
-                                                <div class="col-md-10">
-                                                    <textarea id="inputOps<?php echo $control;?>" name="aElements[<?php echo $control;?>][options]" rows="4" class="col-xs-12 no-padding"><?php echo $items['VALORES_CONFIG'];?></textarea>
-                                                </div>
-                                            </div>
-
-                                            <div id="divOptsCat<?php echo $control;?>" class="col-md-12 iDivsopts<?php echo $control;?>" style="display:<?php echo ($items['REQ_OPCIONES']=="3" ) ? 'block': 'none;';?>;">
-                                                <div class="col-md-2">
-                                                    <span>Catálogo</span>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <select id="inputCatalogo<?php echo $control;?>" name="aElements[<?php echo $control;?>][idcatalog]">
-                                                        <?php echo $items['cboCat'];?>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <?php $aValuesMin = explode(',',$items['VALORES_MIN_MAX']);?>
-                                            <div id="divOptsMins<?php echo $control;?>" class="col-md-12 iDivsopts<?php echo $control;?>" style="display:<?php echo ($items['REQ_OPCIONES']=="2" ) ? 'block': 'none;';?>;">
-                                                <div class="col-md-2">
-                                                    <span>Valor Mínimo</span>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input type="text" id="inputMin<?php echo $control;?>" name="aElements[<?php echo $control;?>][inputmin]" value="<?php echo @$aValuesMin[0];?>" class="input-inline form-control col-xd-2"/>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span>Valor Máximo</span>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input type="text" id="inputMax<?php echo $control;?>" name="aElements[<?php echo $control;?>][inputmax]" value="<?php echo @$aValuesMin[1];?>" class="input-inline form-control col-xd-2"/>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php $bVisibleSubs = (count(@$items['aSubElementos'])>0) ? '':'display:none;' ;?>
-
-                                    <tr id="divTableSubs<?php echo $control;?>" style="<?php echo $bVisibleSubs;?>;">
-                                        <td colspan="6">
-                                            <div class="col-md-12">
-                                                <table  class="table table-striped ">     
-                                                    <thead>
-                                                        <tr>
-                                                            <th></th>
-                                                            <th class="col-md-1">SubOrden</th>
-                                                            <th class="col-md-4">Descripción</th>
-                                                            <th class="col-md-1">Requerido</th>
-                                                            <th class="col-md-1">Estatus</th>
-                                                            <th class="col-md-2">Tipo</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php $subControl=0;?>
-                                                        <?php if(isset($items['aSubElementos'])):?>                                                            
-                                                            <?php foreach($items['aSubElementos'] as $key => $subItems):?>
-                                                                <tr>
-                                                                    <td>
-                                                                        <i class="fa fa-minus"></i>
-                                                                    </td>
-                                                                    <td>
-                                                                        <input name="aElements[<?php  echo $control;?>][subs][<?php echo $subControl; ?>][id]" type="hidden" value="-1"/>
-                                                                        <input id="inputSubOp<?php    echo $control;?>_<?php echo $subControl; ?>"  name="aElements[<?php echo $control;?>][subs][<?php echo $subControl; ?>][op]"        type="hidden"   value="up"/>
-                                                                        <input id="inputElement<?php  echo $control;?>_<?php echo $subControl; ?>"  name="aElements[<?php echo $control;?>][subs][<?php echo $subControl; ?>][orden]"     type="hidden"   class="input-inline form-control col-xd-2"  value="<?php echo $items['ORDEN']; ?>"  autocomplete="off">
-                                                                        <input id="inputSubOrden<?php echo $control;?>_<?php echo $subControl; ?>"  name="aElements[<?php echo $control;?>][subs][<?php echo $subControl; ?>][suborden]"  type="text"     class="input-inline form-control col-xd-2"  value="<?php echo $subItems['SUBORDEN']; ?>"  autocomplete="off">
-                                                                        <input id="inputDepende<?php  echo $control;?>_<?php echo $subControl; ?>"  name="aElements[<?php echo $control;?>][subs][<?php echo $subControl; ?>][depende]"   type="hidden"   class="input-inline form-control col-xd-2"  value="<?php echo $items['ID']; ?>"  autocomplete="off">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input id="inputDesc<?php echo $control;?>_<?php echo $subControl; ?>" name="aElements[<?php  echo $control;?>][subs][<?php echo $subControl; ?>][desc]" type="text" class="input-inline form-control col-xd-2"  value=""  autocomplete="off">
-                                                                    </td>
-                                                                    <td>
-                                                                        <select id="inputReq<?php echo $control;?>_<?php echo $subControl; ?>" name="aElements[<?php  echo $control;?>][subs][<?php echo $subControl; ?>][requerido]">
-                                                                           <?php echo $subItems['cboReq'];?>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td>
-                                                                        <select id="inputStat<?php echo $control;?>_<?php echo $subControl; ?>" name="aElements[<?php  echo $control;?>][subs][<?php echo $subControl; ?>][status]">
-                                                                           <?php echo $subItems['cboStatus'];?>
-                                                                        </select>
-                                                                    </td>
-                                                                    
-                                                                    <td>
-                                                                        <select id="inputTipo<?php echo $control;?>_<?php echo $subControl; ?>" name="aElements[<?php  echo $control;?>][subs][<?php echo $subControl; ?>][tipo]" onChange="validateSubSelected(this.value,'<?php echo $control."_".$subControl; ?>');">
-                                                                            <?php echo $subItems['cboTipo'];?>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="col-xs-12 no-margin-l">
-                                                                            <div class="col-xs-4 no-margin-l">
-                                                                                <button id="buttonOps<?php echo $control;?>_<?php echo $subControl; ?>" class="btn btn-default btn-sm icon-only" onClick="showCloseSubOptions('<?php echo $control;?>_<?php echo $subControl; ?>');return false;"><i id="spanSubOptions<?php echo $subControl; ?>" class="fa fa-sort-down"></i></button>
-                                                                            </div>
-                                                                            <div class="col-xs-4 no-margin-l">
-                                                                                <button class="btn btn-default btn-sm icon-only deleteLink" onClick="deleteSubFieldForm(this,'<?php echo $control; ?>_<?php echo $subControl; ?>','<?php echo $control; ?>');return false;"><i class="fa  fa-times-circle-o"></i></button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <?php $sOptions = ($subItems['REQ_OPCIONES']>0) ? '': 'display:none;';?>
-                                                                <tr id="trSubOptions<?php echo $control;?>_<?php echo $subControl; ?>" style="background-color:#f5f5f5;<?php echo $sOptions; ?>">
-                                                                    <td colspan="7">
-                                                                        <div id="divSubOptions<?php echo $control; ?>_<?php echo $subControl; ?>" class="col-md-12 iDivSubsopts<?php echo $control; ?>_<?php echo $subControl; ?>" style="<?php echo ($subItems['REQ_OPCIONES']==1) ? '': 'display:none;';?>">
-                                                                            <div class="col-md-2">
-                                                                                <span>Opciones (Delimitados por comas <i>ej:uno,dos,tres</i>):</span>
-                                                                            </div>
-                                                                            <div class="col-md-10">
-                                                                                <textarea id="inputOps<?php echo $control; ?>_<?php echo $subControl; ?>" name="aElements[<?php echo $control;?>][subs][<?php echo $subControl; ?>][options]" rows="4" class="col-xs-12 no-padding"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div id="divSubOptsCat<?php echo $control; ?>_<?php echo $subControl; ?>" class="col-md-12 iDivSubsopts<?php echo $control; ?>_<?php echo $subControl; ?>"  style="<?php echo ($subItems['REQ_OPCIONES']==3) ? '': 'display:none;';?>">
-                                                                            <div class="col-md-2">
-                                                                                <span>Catálogo</span>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <select id="inputCatalogo<?php echo $control; ?>_<?php echo $subControl; ?>" name="aElements[<?php echo $control;?>][subs][<?php echo $subControl; ?>][idcatalog]">
-                                                                                    <?php echo $subItems['cboCat'];?>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div id="divSubOptsMins<?php echo $control; ?>_<?php echo $subControl; ?>" class="col-md-12 iDivSubsopts<?php echo $control; ?>_<?php echo $subControl; ?>" style="<?php echo ($subItems['REQ_OPCIONES']==2) ? '': 'display:none;';?>">
-                                                                            <div class="col-md-2">
-                                                                                <span>Valor Mínimo</span>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <input type="text" id="inputMininputOps<?php echo $control; ?>_<?php echo $subControl; ?>" name="aElements[<?php echo $control;?>][subs][<?php echo $subControl; ?>][inputmin]" value="" class="input-inline form-control col-xd-2"/>
-                                                                            </div>
-                                                                            <div class="col-md-2">
-                                                                                <span>Valor Máximo</span>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <input type="text" id="inputMaxinputOps<?php echo $control; ?>_<?php echo $subControl; ?>" name="aElements[<?php echo $control;?>][subs][<?php echo $subControl; ?>][inputmax]" value="" class="input-inline form-control col-xd-2"/>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                 <?php $subControl++;?>
-                                                            <?php endforeach;?>
-                                                        <?php endif;?>    
-                                                        <input type="hidden" id="icountSubEl<?php echo $control; ?>" value="<?php echo $subControl;?>" />
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php $control++;?>                          
-                                <?php endforeach;?>
-                            </tbody>
-                            <tr>
-                                <td colspan="8">
-                                    <div class="block">
-                                        <button class="btn btn-block btn-success center-text" type="button" onClick="addFieldForm();"><i class="fa fa-plus-circle"></i> Agregar Elemento</button>                                            
-                                    </div>                                    
-                                </td>    
-                            </tr>                            
-                        </table>
-                        <div class="form-group  margin-t5px">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <div class="pull-right">
-                                    <button type="submit" class="btn btn-info">Guardar Cambios</button>
-                                    <button type="button" class="btn default" onClick="location.href=<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>   
-                                </div>
-                            </div>
-                        </div> 
-                        <input type="hidden" id="inputCountElements" name="inputCountElements" value="<?php echo $control; ?>"/>                                                             
-                    </form>
+                            </div>                                                               
+                        </form>
+                    </div>
                 </div>
-            </div>           
+            </div>
+            <div id="divElementos" class="col-md-5" style="display:none;">
+                <div class="widget radius-bordered">
+                    <div class="widget-header bg-blue">
+                        <span class="widget-caption">Elementos</span>
+                    </div>
+                    <div class="widget-body padding-5">
+                        <div class="block">
+                            <button class="btn btn-block btn-success center-text" type="button" onClick="showinfoElement(-1);"><i class="fa fa-plus-circle"></i> Agregar Elemento</button>
+                        </div> 
+
+                        <form id="formDbmanOrders" class="form-horizontal" role="form" method="POST" action="<?php echo $urlActions;?>" <?php echo ($this->DbmanInfo['INCLUYE_ARCHIVOS']==1) ? 'enctype="multipart/form-data"' :'';?>>                                
+                            <input type="hidden" id="catId"          name="catId"           value="<?php echo $this->catId; ?>" id="catId" />
+                            <input type="hidden" id="optReg"         name="optReg"          value="updateOrdes" />
+                            <input type="hidden" id="strTabSelected" name="strTabSelected"  value="<?php echo $this->tabSelected;?>" />
+                            <input type="hidden" id="inputEmpresa"   name="inputEmpresa"    value="<?php echo $this->dataUser['ID_EMPRESA'];?>" />
+
+                            <div class="dd dd-draghandle bordered listElements">
+                                <ol id="listElements" class="dd-list">
+                                    <?php $controlGRal=0;?>
+                                    <?php $control=1;?>
+                                    <?php foreach(@$this->aElements as $key => $items):?>
+                                        <li id="li_<?php echo $control;?>" class="dd-item dd2-item item1" data-id="<?php echo $control;?>">
+                                            <input type="hidden" name="aElements[<?php echo $controlGRal;?>][id]"         id="li_<?php echo $control;?>_id" value="<?php echo $items['ID'];?>"/>
+                                            <input type="hidden" name="aElements[<?php echo $controlGRal;?>][orden]"      id="li_<?php echo $control;?>_ordn" value="<?php echo $items['ORDEN'];?>"/>
+                                            <input type="hidden" name="aElements[<?php echo $controlGRal;?>][suborden]"   id="li_<?php echo $control;?>_subordn"  value="<?php echo $items['SUBORDEN'];?>"/>
+                                            <input type="hidden" name="aElements[<?php echo $controlGRal;?>][depende]"    id="li_<?php echo $control;?>_depd" value="<?php echo $items['DEPENDE'];?>"/>
+                                            <div class="dd-handle dd2-handle">
+                                                <span id="li_<?php echo $control;?>_span"><?php echo $control;?></span>
+                                                <i class="drag-icon fa fa-arrows-alt "></i>
+                                            </div>
+
+                                            <div class="dd2-content"><?php echo $items['N_ELEMENTO'];?>
+                                                <div class="pull-right"> 
+                                                    <a href="javascript:showinfoElement(<?php echo $items['ID']; ?>);" class="btn btn-info btn-xs icon-only shiny white"><i class="dropdown-icon fa fa-info-circle"></i></a>
+                                                    <a href="javascript:deleteElement(<?php echo $items['ID'];?>,<?php echo $this->idToUpdate;?>);" class="btn btn-danger btn-xs icon-only shiny white"><i class="dropdown-icon fa fa-times-circle"></i></a>
+                                                </div>
+                                            </div>
+                                            <?php if(isset($items['aSubElementos'])): ?>
+
+                                                <?php $controlInt=1;?>
+                                                <ol id="innerList_<?php echo $control;?>" class="dd-list innerList" style="">
+                                                    <?php foreach($items['aSubElementos'] as $key => $subItems): ?>          
+                                                        <?php $controlGRal++;?>                                          
+                                                        <li id="li_<?php echo $control.'_'.$controlInt;?>"  class="dd-item dd2-item item1" data-id="16">
+                                                            <input type="hidden" name="aElements[<?php echo $controlGRal;?>][id]"       id="li_<?php echo $control.'_'.$controlInt;?>_id"    value="<?php echo $subItems['ID'];?>"/>
+                                                            <input type="hidden" name="aElements[<?php echo $controlGRal;?>][orden]"    id="li_<?php echo $control.'_'.$controlInt;?>_ordn"  value="<?php echo $subItems['ORDEN'];?>"/>
+                                                            <input type="hidden" name="aElements[<?php echo $controlGRal;?>][suborden]" id="li_<?php echo $control.'_'.$controlInt;?>_subordn"  value="<?php echo $subItems['SUBORDEN'];?>"/>
+                                                            <input type="hidden" name="aElements[<?php echo $controlGRal;?>][depende]"  id="li_<?php echo $control.'_'.$controlInt;?>_depd"  value="<?php echo $subItems['DEPENDE'];?>"/>
+                                                            <div class="dd-handle dd2-handle">
+                                                                <span id="li_<?php echo $control.'_'.$controlInt;?>_span"><?php echo $control."-".$controlInt;?></span>
+                                                                <i class="drag-icon fa fa-arrows-alt "></i>
+                                                            </div>
+                                                            <div class="dd2-content"><?php echo $subItems['N_ELEMENTO'];?>
+                                                                <div class="pull-right"> 
+                                                                    <a href="javascript:showinfoElement(<?php echo $subItems['ID']; ?>);" class="btn btn-info btn-xs icon-only shiny white"><i class="dropdown-icon fa fa-info-circle"></i></a>
+                                                                    <a href="javascript:deleteElement(<?php echo $items['ID'];?>,<?php echo $this->idToUpdate;?>);" class="btn btn-danger btn-xs icon-only shiny white"><i class="dropdown-icon fa fa-times-circle"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <?php $controlInt++;?>
+                                                    <?php endforeach;?>
+                                                </ol>
+                                            <?php endif;?>
+                                        </li>
+                                        <?php $controlGRal++;?>  
+                                        <?php $control++;?>
+                                    <?php endforeach;?>                                                                                                                                            
+                                </ol>
+                                <input type="text" id="inputCountElements" name="inputCountElements" value="<?php echo $control; ?>" style="display:none;"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     <?php endif;?>
 </div>
 
+    <!--LArge Modal Templates-->
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="myLargeModalEl" aria-labelledby="myLargeModalEl" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+                    <h4 class="modal-title" id="myLargeModalLabel">Información del Elemento</h4>
+                </div>
+                <div class="modal-body">
+                    <!--<img id="loader1" class="col-xs-offset-4" src="/images/loading.gif" alt="loading gif"/>-->
+                    <iframe class="hmodal500" id="iFrameElement" src="" style="zoom:0" frameborder="0"  scrolling="no"></iframe>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!--End Large Modal Templates-->    
+
+
+
+
+<!--
 <div id="divSelectStatus" class="hide">
     <?php echo $this->selectStatus;?>
 </div>
@@ -408,3 +257,4 @@
 <div id="divSelectReq" class="hide">
     <?php echo $this->selectReq;?>
 </div>
+-->
