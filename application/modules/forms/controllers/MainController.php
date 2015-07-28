@@ -126,7 +126,7 @@ class forms_MainController extends My_Controller_Action
 			
 			$this->view->aDataInfo 	= $aDataInfo;
 		
-			$this->view->aEstatus	= $cFunctions->cboStatusString($aEstatus);
+			$this->view->aEstatus	= $cFunctions->cboStatus($aEstatus);
 			$this->view->aQrs		= $cFunctions->cboStatusYesNo($aQrs);
 			$this->view->aFirms		= $cFunctions->cboStatusYesNo($aFirms);
 			$this->view->aFotos		= $cFunctions->cboStatusYesNo($aFotos);
