@@ -161,7 +161,9 @@ class dbman_MainController extends My_Controller_Action
 						$items['INPUT']  .= $cFunctions->getCboHoursDate($valueInput);
 					}else if($method_name=='cboOptions'){
 						$items['INPUT']  .= $cFunctions->cboOptions($valueInput);
-					} 
+					}else if($method_name=='cboTipoCliente'){
+						$items['INPUT']  .= $cFunctions->cboTipoCliente($valueInput);
+					}  
 				}			
 				$items['INPUT']		.= '</select>';
 			}else if($items['ID_TIPO_CAMPO']==7){
@@ -255,7 +257,7 @@ class dbman_MainController extends My_Controller_Action
 			if($items['VALIDACION_QUERY']!=""){
 				$sQuery = str_ireplace('$idObject',$this->_idUpdate,$items['VALIDACION_QUERY']);
 				$sQuery = str_ireplace('$inputEmpresa',$this->_dataUser['ID_EMPRESA'],$sQuery);
-				$sQuery = str_ireplace('$'.$inputName,$this->_dataIn[$inputName],$sQuery);
+				$sQuery = str_ireplace('$'.$inputName,$this->_dataIn[$inputName],$sQuery);				
 				$qExecuteSql = $mFunctions->countResult($sQuery);
 				if($qExecuteSql){
 					$aItemsError = Array();

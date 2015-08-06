@@ -1,0 +1,24 @@
+<?php $this->headScript()->appendFile('/assets/js/fullcalendar/fullcalendar.js') ?>
+<?php $this->headScript()->appendFile('/js/modules/dashboard/jsCalendarDates.js') ?>
+     <!--/Page Header -->     
+    <div id="divBodyPage" class="page-body">
+    	<div id='calendar'></div>
+	</div>
+
+    <!--LArge Modal Templates-->
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="myLargeModalLabel" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myLargeModalLabel">Citas</h4>
+                </div>
+                <div class="modal-body">
+	            	<img id="loader1" class="col-xs-offset-4" src="/images/loading.gif" alt="loading gif"/>
+	                <iframe class="hmodal500" id="iFrameSearch" src="" style="zoom:0" frameborder="0"></iframe>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!--End Large Modal Templates-->    	

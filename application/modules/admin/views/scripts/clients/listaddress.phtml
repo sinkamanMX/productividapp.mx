@@ -1,0 +1,92 @@
+<?php $this->headScript()->appendFile('/js/modules/clients/jsValidateAddress.js') ?>     
+    <?php $control=0;?>
+    <div class="row-min-h300" id="divContenedor">
+        <form id="FormData3" class="form-horizontal" role="form" method="POST" action="/admin/clients/listaddress">
+            <input type="hidden" id="catId" name="catId"  value="<?php echo $this->catId; ?>" id="catId" />
+            <input type="hidden" id="optReg" name="optReg" value="updateElements" />
+            <input type="hidden" name="strTabSelected" value="2" />
+            <table id="tableElements" class="table table-striped ">     
+                <thead>
+                    <tr>
+                        <th class="col-md-1">Descripción</th>
+                        <th class="col-md-1">Estado</th> 
+                        <th class="col-md-1">Municipio</th> 
+                        <th class="col-md-1">Colonia</th> 
+                        <th class="col-md-1">Calle</th> 
+                        <th style="width:5%;">No. Ext</th>
+                        <th style="width:5%;">No. Int</th>
+                        <th style="width:5%;">CP</th> 
+                        <th class="col-md-1">Referencias</th> 
+                        <th class="col-md-1">Estatus</th>
+                        <th style="width:2%;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach(@$this->aAddress as $key => $items):?>
+                        <tr>
+                            <td>
+                                <input name="aElements[<?php echo $control?>][id]" type="hidden" value="<?php echo $items['ID_DOMICILIO'];?>"/>
+                                <input id="inputOp<?php echo $control?>" name="aElements[<?php echo $control?>][op]" type="hidden" value="up"/>
+                                <input id="inputLat<?php echo $control?>" name="aElements[<?php echo $control?>][lat]" type="hidden" value="0.000"/>
+                                <input id="inputLon<?php echo $control?>" name="aElements[<?php echo $control?>][lon]" type="hidden" value="0.000"/>
+                                <input id="inputDesc<?php echo $control?>" name="aElements[<?php echo $control?>][desc]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['DESCRIPCION'];?>"  autocomplete="off">
+                            </td>
+                            <td>
+                                <input id="inputEdo<?php echo $control?>" name="aElements[<?php echo $control?>][edo]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['ESTADO'];?>"  autocomplete="off">
+                            </td>
+                            <td>
+                                <input id="inputMun<?php echo $control?>" name="aElements[<?php echo $control?>][mun]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['MUNICIPIO'];?>"  autocomplete="off">
+                            </td>
+                            <td>
+                                <input id="inputCol<?php echo $control?>" name="aElements[<?php echo $control?>][col]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['COLONIA'];?>"  autocomplete="off">
+                            </td>
+                            <td>
+                                <input id="inputCalle<?php echo $control?>" name="aElements[<?php echo $control?>][calle]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['CALLE'];?>"  autocomplete="off">
+                            </td>
+                            <td>
+                                <input id="inputNoext<?php echo $control?>" name="aElements[<?php echo $control?>][noext]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['NUMERO_EXT'];?>"  autocomplete="off">
+                            </td>                            
+                            <td>
+                                <input id="inputNoint<?php echo $control?>" name="aElements[<?php echo $control?>][noint]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['NUMERO_INT'];?>"  autocomplete="off">
+                            </td>
+                            <td>
+                                <input id="inputCP<?php echo $control?>" name="aElements[<?php echo $control?>][cp]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['CP'];?>"  autocomplete="off">
+                            </td>
+                            <td>
+                                <input id="inputRefs<?php echo $control?>" name="aElements[<?php echo $control?>][refs]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['REFERENCIAS'];?>"  autocomplete="off">
+                            </td>
+                            <td> 
+                                <select id="inputStat<?php echo $control?>" name="aElements[<?php echo $control?>][status]">
+                                    <?php echo $items['cboStatus'];?>
+                                </select>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger btn-sm icon-only white" onClick="deleteFieldForm(this,<?php echo $control?>);" href="javascript:void(0)"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                        <?php $control++;?>                          
+                    <?php endforeach;?>
+                </tbody>
+                <tr>
+                    <td colspan="11">
+                        <div class="block">
+                            <button class="btn btn-block btn-success center-text" type="button" onClick="addFieldForm();"><i class="fa fa-plus-circle"></i> Agregar Dirección</button>                                            
+                        </div>                                    
+                    </td>    
+                </tr>                            
+            </table>
+            <div class="form-group  margin-t5px">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-info">Guardar Cambios</button>
+                        <button type="button" class="btn default" onClick="location.href='<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>   
+                    </div>
+                </div>
+            </div> 
+            <input type="hidden" id="inputCountElements" name="inputCountElements" value="<?php echo $control; ?>"/>                                                             
+        </form>
+    </div>
+
+<div id="divSelectStatus" class="hide">
+    <?php echo $this->aEstatus;?>
+</div>
