@@ -7,25 +7,27 @@
  */
 class My_Model_Citas extends My_Db_Table
 {
-    protected $_schema 	= 'SIMA';
+    protected $_schema 	= 'PRODUCTIVIDAPP';
 	protected $_name 	= 'PROD_CITAS';
 	protected $_primary = 'ID_CITA';
 	
 	public function insertRow($data){
         $result     = Array();
         $result['status']  = false;
-        
+
         $sql="INSERT INTO $this->_name
-				SET ID_TPO				= ".$data['inputTipo'].",
-					ID_EMPRESA  		= ".$data['ID_EMPRESA'].",
-					ID_ESTATUS  		= 2,
-					ID_CLIENTE          = ".$data['ID_CLIENTE'].",
-					ID_USUARIO_CREO 	= ".$data['ID_USUARIO'].",
-					FECHA_CITA			= '".$data['inputDate']."',
+				SET ID_TIPO				=  ".$data['inputTipo'].",
+					ID_EMPRESA  		=  ".$data['ID_EMPRESA'].",
+					ID_ESTATUS  		=  1,
+					ID_USUARIO_CREO 	=  ".$data['userCreate'].",
+					ID_CLIENTE          =  ".$data['inputCliente'].",
+					ID_USUARIO_ASIGNADO =  ".$data['bRadioInit'].",
+					FECHA_CITA			= '".$data['inputFecha']."',
 					HORA_CITA			= '".$data['inputHora']."',
-					CONTACTO 			= '".$data['inputContacto']."',
-					TELEFONO_CONTACTO   = '".$data['inputTelContacto']."', 		 					 
-					FECHA_MODIFICACION 	= CURRENT_TIMESTAMP";
+					CONTACTO 			= '".$data['inputCliente']."',
+					TELEFONO_CONTACTO   = '".$data['inputCliente']."', 		 	
+					FOLIO				= '".$data['inputFolio']."',	 
+					CREADO 	= CURRENT_TIMESTAMP";
         try{            
     		$query   = $this->query($sql,false);
     		$sql_id ="SELECT LAST_INSERT_ID() AS ID_LAST;";
@@ -41,22 +43,22 @@ class My_Model_Citas extends My_Db_Table
 		return $result;	   		
 	}
 	
-	public function insertDomCita($data){
+	public function insertAddress($data){
         $result     = Array();
         $result['status']  = false;
         
         $sql="INSERT INTO PROD_CITA_DOMICILIO
 				SET ID_CITA		=  ".$data['idCita'].",
-					CALLE		= '".$data['inputStreet']."',
-					COLONIA		= '".$data['scolonia']."',
-					NO_EXT		= '".$data['inputNoExt']."',
-					NO_INT		= '".$data['inputNoInt']."',
-					MUNICIPIO	= '".$data['sMunicipio']."',
-					CP			= '".$data['inputCP']."',
-					ESTADO		= '".$data['sEstado']."',
+					CALLE		= '".$data['inputCalle']."',
+					COLONIA		= '".$data['inputColonia']."',
+					NO_EXT		= '".$data['inputNext']."',
+					NO_INT		= '".$data['inputNint']."',
+					MUNICIPIO	= '".$data['inputMun']."',
+					CP			= '".$data['inputCp']."',
+					ESTADO		= '".$data['inputEdo']."',
 					REFERENCIAS	= '".$data['inputRefs']."',
-					LATITUD		=  ".$data['sLatitud'].",
-					LONGITUD	=  ".$data['sLongitud'];
+					LATITUD		=  ".$data['inputLatitud'].",
+					LONGITUD	=  ".$data['inputLongitud'];
         try{            
     		$query   = $this->query($sql,false);
     		$sql_id ="SELECT LAST_INSERT_ID() AS ID_LAST;";
@@ -70,14 +72,15 @@ class My_Model_Citas extends My_Db_Table
             echo $e->getErrorMessage();
         }
 		return $result;			
-	}
+	}	
 	
 	public function insertExtraCitas($data){
         $result     = false;            
-        $sql = "INSERT INTO PROD_CITA_EXTRAS 
+        $sql = "INSERT INTO PROD_CITAS_EXTRAS 
 				SET ID_CITA =  ".$data['idCita'].", 
-					TITULO  = '".$data['TITULO']."',
-					VALOR   = '".$data['VALOR']."'";
+					ID_EMPRESA=".$data['idEmpresa'].", 
+					TITULO  = '".$data['sTitulo']."',
+					VALOR   = '".$data['sValor']."'";
         try{
     		$query   = $this->query($sql,false);
     		$result	 = true;	
@@ -87,6 +90,111 @@ class My_Model_Citas extends My_Db_Table
         }
 		return $result;			
 	}
+	
+	public function getCitasCalendar($iType=1,$idEmpresa){
+		$result= Array();
+		$this->query("SET NAMES utf8",false);
+
+		if($iType==1){
+			$sql	= "SELECT 'true' AS allDay ,
+							E.COLOR AS borderColor,
+							E.COLOR AS color,
+							C.FECHA_CITA AS start,
+							C.FECHA_CITA AS end ,	
+							CONCAT(
+								T.DESCRIPCION,': ',COUNT(T.ID_TIPO) 
+							)  AS title,
+							GROUP_CONCAT(DISTINCT C.ID_CITA ORDER BY T.DESCRIPCION SEPARATOR ',') AS IDS
+			    			FROM PROD_CITAS C
+							INNER JOIN PROD_CLIENTES     L ON C.ID_CLIENTE = L.ID_CLIENTE
+							INNER JOIN PROD_ESTATUS_CITA E ON C.ID_ESTATUS = E.ID_ESTATUS
+							INNER JOIN PROD_TIPO_CITA	 T ON C.ID_TIPO	   = T.ID_TIPO
+			    			 LEFT JOIN USUARIOS          U ON C.ID_USUARIO_ASIGNADO = U.ID_USUARIO
+			    			WHERE C.FECHA_CITA BETWEEN CAST(DATE_SUB(NOW(), INTERVAL 15 DAY) AS DATE) AND  CAST(DATE_SUB(NOW(), INTERVAL -15 DAY) AS DATE)
+		    				  AND C.ID_EMPRESA = $idEmpresa			    			
+			    			GROUP BY T.ID_TIPO, C.FECHA_CITA
+			    			ORDER BY C.FECHA_CITA ASC";
+		}else{
+			$sql = "SELECT 'false' AS allDay ,
+					'#438eb9' AS borderColor,
+					'#438eb9' AS color,
+					CONCAT(C.FECHA_CITA,' ',C.HORA_CITA) AS start,				
+					CONCAT(C.FECHA_CITA,' ',TIME(DATE_ADD(CONCAT(C.FECHA_CITA,' ',C.HORA_CITA) , INTERVAL 1 HOUR)))  AS end,
+					GROUP_CONCAT(CONCAT(T.DESCRIPCION, ':@' ) ORDER BY T.DESCRIPCION SEPARATOR '<br/> ')   AS title,
+					C.FECHA_CITA,
+					C.HORA_CITA,
+					GROUP_CONCAT(DISTINCT C.ID_CITA ORDER BY T.DESCRIPCION SEPARATOR ',') AS IDS
+	    			FROM PROD_CITAS C
+						INNER JOIN PROD_CLIENTES     L ON C.ID_CLIENTE = L.ID_CLIENTE
+						INNER JOIN PROD_ESTATUS_CITA E ON C.ID_ESTATUS = E.ID_ESTATUS
+						INNER JOIN PROD_TIPO_CITA	 T ON C.ID_TIPO	   = T.ID_TIPO
+		    			 LEFT JOIN USUARIOS          U ON C.ID_USUARIO_ASIGNADO = U.ID_USUARIO
+	    			WHERE C.FECHA_CITA BETWEEN CAST(DATE_SUB(NOW(), INTERVAL 15 DAY) AS DATE) AND  CAST(DATE_SUB(NOW(), INTERVAL -15 DAY) AS DATE)    			
+	    			  AND C.ID_EMPRESA = $idEmpresa	
+	    			GROUP BY C.FECHA_CITA,C.HORA_CITA
+	    			ORDER BY C.FECHA_CITA ASC";
+		}
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;				
+	}	
+	
+	public function getResume($date,$hours){
+		$result= Array();
+		$this->query("SET NAMES utf8",false);		
+		$sql= "SELECT COUNT(C.ID_CITA) AS TOTAL, T.DESCRIPCION AS N_TITTLE, 
+					GROUP_CONCAT(DISTINCT C.ID_CITA ORDER BY T.DESCRIPCION SEPARATOR ',') AS IDS
+					FROM PROD_CITAS C
+					LEFT JOIN PROD_TIPO_CITA	   T ON C.ID_TIPO	  = T.ID_TIPO
+					WHERE FECHA_CITA = '$date' 
+					  AND HORA_CITA  = '$hours'    		    	
+					  GROUP BY C.ID_TIPO ";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;			
+	}	
+	
+	public function getDateByList($sIdDates){
+		$filter = '';
+		$result= Array();
+		$this->query("SET NAMES utf8",false); 
+		
+    	$sql ="SELECT C.ID_CITA AS ID, C.ID_ESTATUS AS IDE, S.DESCRIPCION, S.COLOR,				
+				P.RAZON_SOCIAL AS NOMBRE_CLIENTE,C.FOLIO,
+				C.FECHA_CITA AS F_PROGRAMADA,
+				C.HORA_CITA  AS H_PROGRAMADA,
+				IF(C.FECHA_INICIO  IS NULL ,'--',C.FECHA_INICIO) AS FECHA_INICIO,
+				IF(C.FECHA_TERMINO IS NULL ,'--',C.FECHA_TERMINO) AS FECHA_TERMINO,
+				IF(U.ID_USUARIO    IS NULL ,'Sin Asignar', CONCAT(U.NOMBRE,' ',U.APELLIDOS)) AS NOMBRE_TECNICO,
+				IF(C.FECHA_CITA<'2015-01-19 00:00:00','A','N') AS NEW_FORM,
+				T.DESCRIPCION AS N_TIPO,
+				CONCAT(D.CALLE,' ',D.COLONIA,' ',D.NO_EXT,' ',D.NO_INT,' ',D.MUNICIPIO,' ',D.ESTADO,',CP:',D.CP) AS DIRECCION,
+				IF(U.ID_USUARIO IS NULL,'0','1') AS TEC_ASIGNADO,
+				U.ID_USUARIO AS ID_USER
+				FROM PROD_CITAS C
+				INNER JOIN PROD_CITA_DOMICILIO D ON C.ID_CITA 	 = D.ID_CITA
+				INNER JOIN PROD_ESTATUS_CITA   S ON C.ID_ESTATUS = S.ID_ESTATUS
+				INNER JOIN PROD_CLIENTES       P ON C.ID_CLIENTE = P.ID_CLIENTE
+				 LEFT JOIN USUARIOS            U ON C.ID_USUARIO_ASIGNADO = U.ID_USUARIO 
+				INNER JOIN PROD_TIPO_CITA	   T ON C.ID_TIPO	 = T.ID_TIPO
+  	           WHERE C.ID_CITA IN ($sIdDates)
+				ORDER BY S.ID_ESTATUS";  
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;			
+	}		
+	
+	/*	
+
 
 	public function insertaFormCita($data){
         $result	= false;
@@ -501,64 +609,5 @@ class My_Model_Citas extends My_Db_Table
 		return $result;			
 	}	
 	
-	public function getFormsCita($idOject){
-		$result= Array();
-		$this->query("SET NAMES utf8",false); 		
-    	$sql ="SELECT B.ID_FORMULARIO,			
-	               B.TITULO,		
-			       B.FOTOS_EXTRAS,
-			       B.QRS_EXTRAS,
-			       B.FIRMAS_EXTRAS,
-			       B.LOCALIZACION
-				FROM PROD_CITA_FORMULARIO    A
-				  INNER JOIN PROD_FORMULARIO B ON A.ID_FORMULARIO = B.ID_FORMULARIO
-				WHERE A.ID_CITA = ".$idOject." AND
-				      B.ACTIVO = 'S'";
-		$query   = $this->query($sql);
-		if(count($query)>0){
-			$result = $query;
-		}	
-        
-		return $result;			
-	}
-	
-	public function getDataSendbyForms($idOject,$idForm){
-		$result= Array();
-		$this->query("SET NAMES utf8",false); 		
-    	$sql ="SELECT E.ID_TIPO,			
-				       IF (E.ID_TIPO = 8, 'ENCABEZADO','RESPUESTA') AS TIPO,			
-				       E.DESCIPCION AS DESCRIPCION,			
-				       B.CONTESTACION,			
-				       A.FECHA_CAPTURA_EQUIPO,
-				       L.ID_TIPO AS T_ELEMENTO		
-				FROM PROD_FORM_RESULTADO A			
-				  INNER JOIN PROD_FORM_DETALLE_RESULTADO B ON A.ID_RESULTADO = B.ID_RESULTADO			
-				  INNER JOIN PROD_FORMULARIO_ELEMENTOS C ON C.ID_ELEMENTO = B.ID_ELEMENTO			
-				  INNER JOIN PROD_CITA_FORMULARIO D ON D.ID_RESULTADO = A.ID_RESULTADO			
-				  INNER JOIN PROD_ELEMENTOS E ON E.ID_ELEMENTO = C.ID_ELEMENTO
-				  INNER JOIN PROD_TPO_ELEMENTO L ON E.ID_TIPO = L.ID_TIPO		
-				WHERE A.ID_FORMULARIO = $idForm AND			
-				      D.ID_CITA 	  = $idOject			
-				ORDER BY C.ORDEN ASC";
-		$query   = $this->query($sql);
-		if(count($query)>0){
-			$result = $query;
-		}	
-        
-		return $result;			
-	}
-	
-	public function getExtrasCita($idCita){
-		$result= Array();
-		$this->query("SET NAMES utf8",false); 		
-    	$sql ="SELECT *
-				FROM PROD_CITA_EXTRAS
-				WHERE  ID_CITA = $idCita";
-		$query   = $this->query($sql);
-		if(count($query)>0){
-			$result = $query;
-		}	
-        
-		return $result;				
-	}
+	*/
 }

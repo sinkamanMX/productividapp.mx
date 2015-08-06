@@ -82,6 +82,7 @@ class My_Model_Functions extends My_Db_Table
 				}
 			}
 		}
+		
 		return $sSqlHeader.$sSqlResult.$sSqlFooter;
 	}
 	

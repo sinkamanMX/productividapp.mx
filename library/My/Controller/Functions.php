@@ -286,4 +286,16 @@ class My_Controller_Functions
 		}
 	  	return $select;  		    		
 	}
+	
+	public function cboDelimit($sOption,$option='',$sDelimiter=','){	
+		$options='';
+		$aOptions  = explode($sDelimiter,$sOption);		
+		if(count($aOptions)>0){
+			for($i=0;$i<count($aOptions);$i++){
+				$select   = ($aOptions[$i]==@$option) ? 'selected':'';
+				$options .= '<option '.$select.' value="'.$aOptions[$i].'" >'.$aOptions[$i].'</option>';						
+			}
+		}
+	  	return $options;
+	}
 }

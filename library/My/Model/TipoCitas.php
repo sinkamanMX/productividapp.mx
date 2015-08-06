@@ -73,6 +73,86 @@ class My_Model_TipoCitas extends My_Db_Table
             echo $e->getErrorMessage();
         }
 		return $result['status'];	 		
-	}  	
+	} 
+
+	public function getCbo($idEmpresa){
+		$result= Array();
+		$this->query("SET NAMES utf8",false);
+		 		
+    	$sql ="SELECT ID_TIPO AS ID, DESCRIPCION AS NAME 
+				FROM PROD_TIPO_CITA
+				WHERE ID_EMPRESA = $idEmpresa";    	
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;			
+	}
 	    
+	public function getTipoCita($idEmpresa){
+		$result= Array();
+		$this->query("SET NAMES utf8",false);
+		 		
+    	$sql ="SELECT T.ID_TIPO AS ID, T.DESCRIPCION AS NAME, GROUP_CONCAT( CONCAT(R.ORDEN,'-', F.TITULO) ORDER BY R.ORDEN SEPARATOR ',' ) AS FORMULARIOS
+				FROM PROD_TIPO_CITA T
+				 LEFT JOIN PROD_TIPO_FORMULARIO R ON T.ID_TIPO = R.ID_TIPO_CITA
+				 LEFT JOIN PROD_FORMULARIO 		F ON R.ID_FORMULARIO  = F.ID_FORMULARIO 
+				WHERE T.ID_EMPRESA = $idEmpresa
+				GROUP BY T.ID_TIPO
+				ORDER BY R.ORDEN ASC, F.TITULO ASC";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;			
+	}	
+	
+	public function getFormularios($idTipo){
+		$result= Array();
+		$this->query("SET NAMES utf8",false);
+		 		
+    	$sql ="SELECT R.ORDEN, F.TITULO
+				FROM PROD_TIPO_FORMULARIO R
+				INNER JOIN PROD_FORMULARIO F ON R.ID_FORMULARIO = F.ID_FORMULARIO
+				WHERE ID_TIPO_CITA = $idTipo
+				ORDER BY F.TITULO ASC";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;			
+	}	
+	
+	public function getFieldsTipo($idTipo){
+		$result= Array();
+		$this->query("SET NAMES utf8",false); 		
+    	$sql ="SELECT E.*, T.ID_TIPO, T.DESCRIPCION AS N_TELEMENTO, V.DESCRIPCION AS N_VAL, V.OPCIONES, V.ID_VALIDACION
+				FROM PROD_TIPO_EXTRAS E
+				INNER JOIN PROD_TIPO_ELEMENTO T ON E.ID_TIPO_ELEMENTO = T.ID_TIPO
+				 LEFT JOIN DB_VALIDACIONES    V ON T.ID_VALIDACION	  = V.ID_VALIDACION
+				WHERE E.ID_TIPO_CITA = $idTipo
+				ORDER BY E.ORDEN ASC";  
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;
+		}        
+		return $result;			
+	}
+	
+	public function getElementosCatalogo($idCatalogo){
+		$result= Array();
+		$this->query("SET NAMES utf8",false); 		
+    	$sql ="SELECT DESCRIPCION AS ID, DESCRIPCION AS NAME
+				FROM USR_CATALOGOS_ELEMENTOS
+				WHERE ID_CATALOGO 	= $idCatalogo				
+				ORDER BY DESCRIPCION ASC";    	
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;
+		}        
+		return $result;	
+	}
 }

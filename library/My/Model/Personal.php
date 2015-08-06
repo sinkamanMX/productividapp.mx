@@ -23,7 +23,7 @@ class My_Model_Personal extends My_Db_Table
 		$this->query("SET NAMES utf8",false);
 		$sIdSearch = ($selectId==0) ? 'T.ID_TELEFONO': 'U.ID_USUARIO'; 		
     	$sql ="SELECT $sIdSearch AS ID, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME, U.ID_SUCURSAL
-				FROM USUARIOS  U   
+				FROM USUARIOS  U
 				INNER JOIN SUCURSALES S 	   ON U.ID_SUCURSAL= S.ID_SUCURSAL
 				INNER JOIN PROD_USR_TELEFONO T ON U.ID_USUARIO = T.ID_USUARIO
 				WHERE S.ID_EMPRESA = $idObject
@@ -129,6 +129,31 @@ class My_Model_Personal extends My_Db_Table
 		}	
         
 		return $result;				
+	}	
+	
+	
+	public function getToAssign($dataCita,$idEmpresa){
+		$result= Array();
+		$this->query("SET NAMES utf8",false);	
+    	$sql ="SELECT U.ID_USUARIO, U.USUARIO, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS N_USUARIO, U.EMAIL, 
+    			IF(R.ID_TELEFONO IS NULL,'No Logeado',CONCAT(T.DESCRIPCION,' ',T.IDENTIFICADOR))  AS N_TELEFONO, S.DESCRIPCION AS N_SUCURSAL
+				FROM USUARIOS U 
+				INNER JOIN SUCURSALES         S ON U.ID_SUCURSAL= S.ID_SUCURSAL
+				 LEFT JOIN PROD_USR_TELEFONO  R ON U.ID_USUARIO = R.ID_USUARIO 
+				 LEFT JOIN PROD_TELEFONOS     T ON R.ID_TELEFONO = T.ID_TELEFONO
+				 WHERE U.FLAG_OPERACIONES = 1
+				 	AND U.ID_USUARIO NOT IN (
+				 SELECT ID_USUARIO_ASIGNADO
+				 FROM PROD_CITAS
+				 WHERE FECHA_CITA = '".$dataCita['inputFecha']."'
+				  AND  HORA_CITA  = '".$dataCita['inputHora']."'
+				  AND ID_EMPRESA  = $idEmpresa)";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        		
+		return $result;			
 	}	
 	
 	/*
