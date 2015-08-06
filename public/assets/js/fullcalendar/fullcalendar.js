@@ -61,19 +61,19 @@ var defaults = {
 	// locale
 	isRTL: false,
 	firstDay: 0,
-	monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-	monthNamesShort: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-	dayNames: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-	dayNamesShort: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+	monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Dicimbre"],
+	monthNamesShort: ["En", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+	dayNames: ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"],
+	dayNamesShort: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
 	buttonText: {
 		prev: "<span class='fc-text-arrow'>&lsaquo;</span>",
 		next: "<span class='fc-text-arrow'>&rsaquo;</span>",
 		prevYear: "<span class='fc-text-arrow'>&laquo;</span>",
 		nextYear: "<span class='fc-text-arrow'>&raquo;</span>",
-		today: 'today',
-		month: 'month',
-		week: 'week',
-		day: 'day'
+		today: 'Hoy',
+		month: 'Mes',
+		week:  'Semana',
+		day:   'Dia'
 	},
 	
 	// jquery-ui theming
@@ -493,7 +493,7 @@ function Calendar(element, options, eventSources) {
 
 
 	function renderEvents(modifiedEventID) { // TODO: remove modifiedEventID hack
-		if (elementVisible()) {
+		if (elementVisible()) {			
 			currentView.setEventData(events); // for View.js, TODO: unify with renderEvents
 			currentView.renderEvents(events, modifiedEventID); // actually render the DOM elements
 			currentView.trigger('eventAfterAllRender');
@@ -1089,7 +1089,7 @@ function EventManager(options, _sources) {
 		if ($.isFunction(source) || $.isArray(source)) {
 			source = { events: source };
 		}
-		else if (typeof source == 'string') {
+		else if (typeof source == 'string') {			
 			source = { url: source };
 		}
 		if (typeof source == 'object') {
@@ -1249,8 +1249,16 @@ function EventManager(options, _sources) {
 			event.end = null;
 		}
 		event._end = event.end ? cloneDate(event.end) : null;
+
+		event.allDay = (event.allDay=='false') ? false: true;
+
+		//event.allDay = (eval (event.allDay) == true); // TRUE
+		//event.allDay = (eval (event.allDay) == false); // FALSE
+		
 		if (event.allDay === undefined) {
 			event.allDay = firstDefined(source.allDayDefault, options.allDayDefault);
+		}else{
+			console.log("no entro aqui");
 		}
 		if (event.className) {
 			if (typeof event.className == 'string') {
@@ -2509,6 +2517,7 @@ function BasicView(element, calendar, viewName) {
 	
 	
 	function renderSelection(startDate, endDate, allDay) {
+		console.log(allDay);
 		renderDayOverlay(startDate, addDays(cloneDate(endDate), 1), true); // rebuild every time???
 	}
 	
@@ -2752,8 +2761,8 @@ function AgendaDayView(element, calendar) {
 ;;
 
 setDefaults({
-	allDaySlot: true,
-	allDayText: 'all-day',
+	allDaySlot: false,
+	allDayText: 'Todo el Dia',
 	firstHour: 6,
 	slotMinutes: 30,
 	defaultEventMinutes: 120,
