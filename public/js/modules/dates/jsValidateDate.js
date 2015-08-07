@@ -12,7 +12,9 @@ $().ready(function(){
     $('#inputFecha').datepicker({
         format: 'yyyy-mm-dd',
         autoclose: true
-    });
+    }).on('changeDate', function(ev) {
+        $('#formDbman').bootstrapValidator('revalidateField', 'inputFecha');
+    }); 
 
     $('#inputHora').timepicker({ 
         showMeridian:false,
@@ -33,6 +35,53 @@ $().ready(function(){
                 validating: 'icon-spinner7'
             },
             fields: {
+                inputContacto: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo requerido'
+                        }
+                    }
+                },
+                inputTelContacto: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo requerido'
+                        },
+                        numeric: {
+                            message: 'Este campo acepta solo números'
+                        },
+                        stringLength: {
+                            message: 'El Teléfono debe de ser de 10 dígitos',
+                            max: 10 ,
+                            min: 10 ,                        
+                        },
+                    }
+                },
+                inputHora: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo requerido'
+                        }
+                    }
+                },
+                inputFecha: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo requerido'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            message: 'Favor de ingresar una fecha valida'
+                        }
+                    }
+                },
+                inputFolio: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Campo requerido'
+                        }
+                    }
+                },
                 inputCliente: {
                     validators: {
                         callback: {
@@ -62,6 +111,17 @@ $().ready(function(){
                     }
                 }
             }
+        }).on('success.form.fv', function(e) {
+            $('.loading-container').removeClass('loading-inactive');
+                e.preventDefault();
+                var $form = $(e.target);
+                var fv = $form.data('FormDataGral');
+                    fv.defaultSubmit();
+        }).on('err.field.fv', function(e, data) {
+               // data.fv.disableSubmitButtons(false);
+            })
+        .on('success.field.fv', function(e, data) {
+            //data.fv.disableSubmitButtons(false);
         });
 
 

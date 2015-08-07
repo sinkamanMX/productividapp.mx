@@ -24,8 +24,8 @@ class My_Model_Citas extends My_Db_Table
 					ID_USUARIO_ASIGNADO =  ".$data['bRadioInit'].",
 					FECHA_CITA			= '".$data['inputFecha']."',
 					HORA_CITA			= '".$data['inputHora']."',
-					CONTACTO 			= '".$data['inputCliente']."',
-					TELEFONO_CONTACTO   = '".$data['inputCliente']."', 		 	
+					CONTACTO 			= '".$data['inputContacto']."',
+					TELEFONO_CONTACTO   = '".$data['inputTelContacto']."', 		 	
 					FOLIO				= '".$data['inputFolio']."',	 
 					CREADO 	= CURRENT_TIMESTAMP";
         try{            
@@ -171,7 +171,7 @@ class My_Model_Citas extends My_Db_Table
 				C.HORA_CITA  AS H_PROGRAMADA,
 				IF(C.FECHA_INICIO  IS NULL ,'--',C.FECHA_INICIO) AS FECHA_INICIO,
 				IF(C.FECHA_TERMINO IS NULL ,'--',C.FECHA_TERMINO) AS FECHA_TERMINO,
-				IF(U.ID_USUARIO    IS NULL ,'Sin Asignar', CONCAT(U.NOMBRE,' ',U.APELLIDOS)) AS NOMBRE_TECNICO,
+				IF(U.ID_USUARIO    IS NULL ,'Sin Asignar', U.NOMBRE_COMPLETO) AS NOMBRE_TECNICO,
 				IF(C.FECHA_CITA<'2015-01-19 00:00:00','A','N') AS NEW_FORM,
 				T.DESCRIPCION AS N_TIPO,
 				CONCAT(D.CALLE,' ',D.COLONIA,' ',D.NO_EXT,' ',D.NO_INT,' ',D.MUNICIPIO,' ',D.ESTADO,',CP:',D.CP) AS DIRECCION,

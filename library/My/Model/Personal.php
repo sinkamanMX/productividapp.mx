@@ -135,7 +135,7 @@ class My_Model_Personal extends My_Db_Table
 	public function getToAssign($dataCita,$idEmpresa){
 		$result= Array();
 		$this->query("SET NAMES utf8",false);	
-    	$sql ="SELECT U.ID_USUARIO, U.USUARIO, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS N_USUARIO, U.EMAIL, 
+    	$sql ="SELECT U.ID_USUARIO, U.USUARIO, U.NOMBRE_COMPLETO AS N_USUARIO, U.EMAIL, 
     			IF(R.ID_TELEFONO IS NULL,'No Logeado',CONCAT(T.DESCRIPCION,' ',T.IDENTIFICADOR))  AS N_TELEFONO, S.DESCRIPCION AS N_SUCURSAL
 				FROM USUARIOS U 
 				INNER JOIN SUCURSALES         S ON U.ID_SUCURSAL= S.ID_SUCURSAL
