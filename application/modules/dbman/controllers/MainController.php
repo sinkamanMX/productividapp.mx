@@ -34,7 +34,8 @@ class dbman_MainController extends My_Controller_Action
     public function indexAction(){
     	try{
     		$cFunctions   	  = new My_Model_Functions();
-    		$inputEmpresa     = $this->_dataUser['ID_EMPRESA'];    		    		
+    		$inputEmpresa     = $this->_dataUser['ID_EMPRESA'];
+    		    		    		
     		$sQuery 		  = str_ireplace('$inputEmpresa',$inputEmpresa,$this->aDbManInfo['TABLA_QUERY']);
 			    		
     		$this->view->aTittles    = explode(',',$this->aDbManInfo['TABLA_TITULOS']);
@@ -139,7 +140,7 @@ class dbman_MainController extends My_Controller_Action
 		$aResultFields = Array();			  
 		$inputEmpresa  = $this->_dataUser['ID_EMPRESA'];   
 		
-		foreach($aFields as $key => $items){	
+		foreach($aFields as $key => $items){
 			$inputName = 'input'.$items['INPUT_NAME'];	
 			$sAction   = (isset($items['ACCION'])) ? $items['ACCION'] : '' ;
 			$valueInput= (isset($items['VALUE_INPUT'])) ? $items['VALUE_INPUT'] : '' ;
@@ -216,6 +217,8 @@ class dbman_MainController extends My_Controller_Action
 				$items['INPUT']		 = '<input id="'.$inputName.'" name="'.$inputName.'" type="password" class="input-inline form-control"  value="'.$valueInput.'"  autocomplete="off"  '.$sAction.'>';
 			}else if($items['ID_TIPO_CAMPO']==13){
 				$items['INPUT']		 = '<input id="'.$inputName.'" name="'.$inputName.'" type="hidden" class="input-inline form-control"  value="'.$valueInput.'"  autocomplete="off" '.$sAction.'>';
+			}else if($items['ID_TIPO_CAMPO']==14){
+				$items['INPUT']		 = '<input id="'.$inputName.'" name="'.$inputName.'" type="hidden" class="input-inline form-control"  value="'.$items['VALUE'].'"  autocomplete="off" '.$sAction.'>';
 			}
 			
 			

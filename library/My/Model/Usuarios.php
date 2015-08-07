@@ -148,7 +148,7 @@ class My_Model_Usuarios extends My_Db_Table
     public function getData($idObject){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 
-    	$sql ="SELECT  U.*,P.*,S.*, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS N_USER
+    	$sql ="SELECT  U.*,P.*,S.*, U.NOMBRE_COMPLETO AS N_USER
 				FROM USUARIOS U
 				INNER JOIN PERFILES    P ON P.ID_PERFIL  = U.ID_PERFIL
 				INNER JOIN SUCURSALES  S ON U.ID_SUCURSAL = S.ID_SUCURSAL

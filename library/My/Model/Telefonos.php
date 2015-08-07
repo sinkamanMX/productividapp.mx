@@ -105,7 +105,7 @@ class My_Model_Telefonos extends My_Db_Table
 					   	T.TELEFONO,
 					   	T.IDENTIFICADOR,
 					   	T.ACTIVO,
-					   	IF(R.ID_TELEFONO IS NOT NULL,CONCAT(U.NOMBRE,' ',U.APELLIDOS),'0') AS ASIGNADO,
+					   	IF(R.ID_TELEFONO IS NOT NULL,U.NOMBRE_COMPLETO,'0') AS ASIGNADO,
 					   	T.ID_MODELO,
 					   	M.ID_MARCA
 				FROM PROD_TELEFONOS T
