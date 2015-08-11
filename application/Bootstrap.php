@@ -71,7 +71,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 		return $moduleloader;
 		
-		
 	}  	
 	/**
 	 * Configura base de datos dinamicamente
@@ -100,8 +99,29 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     }    
     
+	protected function _initCache(){
+	    $cacheManager = new Zend_Cache_Manager();
+	    $frontendOptions = array(
+		    'caching'  => true,
+		    'lifetime' => 1800,
+		    'automatic_serialization' => true
+	    );
+	    $backendOptions = array(
+	        'cache_dir' => '/tmp/'
+	    );
+	    
+	    $coreCache = Zend_Cache::factory(
+	                'Core', 
+	                'File', 
+	                $frontendOptions, 
+	                $backendOptions
+	            );
+
+		Zend_Registry::set('cacheMan', $coreCache);			
+	}    
+    
     protected function _initRequest()
-    {
+    {    	
     	/*
     	try{
 	        $config = $this->getOptions();

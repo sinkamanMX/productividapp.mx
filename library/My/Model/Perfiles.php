@@ -10,6 +10,7 @@ class My_Model_Perfiles extends My_Db_Table
     protected $_schema 	= 'gtp_bd';
 	protected $_name 	= 'PERFILES';
 	protected $_primary = 'ID_PERFIL';
+	protected $_useCache= true;	
 	
 	public function getCbo($idEmpresa){
 		$result= Array();
@@ -44,33 +45,74 @@ class My_Model_Perfiles extends My_Db_Table
 
 	public function getModules($idObject){
 		$result= Array();
-		$this->query("SET NAMES utf8",false); 		
-    	$sql ="SELECT M.*, M.DESCRIPCION AS M_DESCRIPCION,N.DESCRIPCION AS N_DESCRIPCION,N.ID_MENU AS IDMENU, N.*, M.SCRIPT AS S_MODULE, M.ICONO AS M_ICONO
-				FROM MODULOS_PERFIL MP
-				INNER JOIN MODULOS M ON MP.ID_MODULO = M.ID_MODULO
-				INNER JOIN MENU    N ON M.ID_MENU    = N.ID_MENU 
-				WHERE MP.ID_PERFIL = ".$idObject." AND M.ACTIVO = 1
-				ORDER BY N_DESCRIPCION ASC, M.DESCRIPCION ASC";
-		$query   = $this->query($sql);
-		if(count($query)>0){		  
-			$result = $query;			
-		}	
+		
+		if($this->_useCache && $this->_manCache!=NULL){
+			if( ($result = $this->_manCache->load('getModules')) === false) {				
+				$this->query("SET NAMES utf8",false); 		
+		    	$sql ="SELECT M.*, M.DESCRIPCION AS M_DESCRIPCION,N.DESCRIPCION AS N_DESCRIPCION,N.ID_MENU AS IDMENU, N.*, M.SCRIPT AS S_MODULE, M.ICONO AS M_ICONO
+						FROM MODULOS_PERFIL MP
+						INNER JOIN MODULOS M ON MP.ID_MODULO = M.ID_MODULO
+						INNER JOIN MENU    N ON M.ID_MENU    = N.ID_MENU 
+						WHERE MP.ID_PERFIL = ".$idObject." AND M.ACTIVO = 1
+						ORDER BY N_DESCRIPCION ASC, M.DESCRIPCION ASC";
+				$query   = $this->query($sql);
+				if(count($query)>0){		  
+					$result = $query;			
+				}
+							
+				$this->_manCache->save($result,'getModules');
+			}else{				
+				$result = $this->_manCache->load('getModules');
+			}	
+		}else{
+			$this->query("SET NAMES utf8",false); 		
+	    	$sql ="SELECT M.*, M.DESCRIPCION AS M_DESCRIPCION,N.DESCRIPCION AS N_DESCRIPCION,N.ID_MENU AS IDMENU, N.*, M.SCRIPT AS S_MODULE, M.ICONO AS M_ICONO
+					FROM MODULOS_PERFIL MP
+					INNER JOIN MODULOS M ON MP.ID_MODULO = M.ID_MODULO
+					INNER JOIN MENU    N ON M.ID_MENU    = N.ID_MENU 
+					WHERE MP.ID_PERFIL = ".$idObject." AND M.ACTIVO = 1
+					ORDER BY N_DESCRIPCION ASC, M.DESCRIPCION ASC";
+			$query   = $this->query($sql);
+			if(count($query)>0){		  
+				$result = $query;			
+			}				
+		}
         
 		return $result;			
 	}
 	
 	public function getDataModule($classObject){
 		$result= Array();
-		$this->query("SET NAMES utf8",false); 
-    	$sql ="SELECT MODULOS.*, MENU.DESCRIPCION AS N_MENU
-				FROM  MODULOS
-				INNER JOIN MENU ON MODULOS.ID_MENU = MENU.ID_MENU
-				WHERE MODULOS.CLASE = '".$classObject."' LIMIT 1";	
-		$query   = $this->query($sql);
-		if(count($query)>0){		  
-			$result = $query[0];			
-		}	
-        
+		
+			if($this->_useCache && $this->_manCache!=NULL){
+			if( ($result = $this->_manCache->load('getDataModule'.$classObject)) === false) {				
+		
+				$this->query("SET NAMES utf8",false); 
+		    	$sql ="SELECT MODULOS.*, MENU.DESCRIPCION AS N_MENU
+						FROM  MODULOS
+						INNER JOIN MENU ON MODULOS.ID_MENU = MENU.ID_MENU
+						WHERE MODULOS.CLASE = '".$classObject."' LIMIT 1";	
+				$query   = $this->query($sql);
+				if(count($query)>0){		  
+					$result = $query[0];			
+				}					
+			
+				$this->_manCache->save($result,'getDataModule'.$classObject);
+			}else{				
+				$result = $this->_manCache->load('getDataModule'.$classObject);
+			}	
+		}else{		
+			$this->query("SET NAMES utf8",false); 
+	    	$sql ="SELECT MODULOS.*, MENU.DESCRIPCION AS N_MENU
+					FROM  MODULOS
+					INNER JOIN MENU ON MODULOS.ID_MENU = MENU.ID_MENU
+					WHERE MODULOS.CLASE = '".$classObject."' LIMIT 1";	
+			$query   = $this->query($sql);
+			if(count($query)>0){		  
+				$result = $query[0];			
+			}							
+		}
+
 		return $result;	 		
 	}
 	

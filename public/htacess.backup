@@ -1,3 +1,4 @@
+
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
@@ -15,3 +16,17 @@ RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php
      Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
   </ifModule>
 </filesMatch>
+
+
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
+RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php
+
+<FilesMatch "\.(js|css|gif|jpg|jpeg|png)$">
+        Header set Cache-Control "max-age=172800, proxy-revalidate"
+</FilesMatch>

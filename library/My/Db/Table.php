@@ -27,7 +27,13 @@ class My_Db_Table extends Zend_Db_Table_Abstract
      * @var unknown_type
      */
     private $_totalRows;
-
+    
+	public  $_manCache   = NULL;
+    
+	public function init(){
+		$this->_manCache = Zend_Registry::get('cacheMan');
+	}
+	 
     /**
      * Obtiene el total de registros y obtiene el TOTAL de elementos en la tabla!
      *
