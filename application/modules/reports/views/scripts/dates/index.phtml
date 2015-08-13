@@ -1,0 +1,138 @@
+<?php $this->headLink()->appendStylesheet('/assets/css/datetimepicker.css') ?>
+<?php $this->headScript()->appendFile('/assets/js/datetime/bootstrap-datepicker.js') ?>  
+<?php $this->headScript()->appendFile('/assets/js/datetime/bootstrap-timepicker.js') ?>  
+<?php $this->headScript()->appendFile('/assets/js/datetime/moment.js') ?>  
+<?php $this->headScript()->appendFile('/assets/js/datetime/daterangepicker.js') ?> 
+<?php $this->headScript()->appendFile('/assets/js/bootstrap-datetimepicker.js') ?>  
+<?php $this->headScript()->appendFile('/js/reports/jsReportDates.js') ?>
+
+<?php $this->headScript()->captureStart() ?>
+    <?php $sOptions = ''; ?>
+    <?php foreach($this->aPersonal as $key => $items):?> 
+        <?php $sOptions.= ($sOptions!="") ? ',' : ''; ?>
+        <?php $sOptions.= $items['ID_SUCURSAL'].": '".$items['N_PERSONAL']."' ";?>
+    <?php endforeach;?> 
+    var aPersonal = {<?php echo $sOptions;?>}  
+<?php $this->headScript()->captureEnd(); ?>
+
+	<input type="hidden" id="istatus" value="<?php echo $this->iStatus?>"/>	
+	<!-- /Page Header -->
+    <div class="page-header position-relative">
+        <div class="header-title">
+            <h1>
+                Reportes
+            </h1>
+            <small>Reportes de Citas</small>
+        </div>
+        <div class="header-buttons">
+
+        </div>
+    </div>    
+    <!-- /Page Header -->
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+
+		        <div class="row">
+		            <div class="col-xs-3 col-md-3">
+
+						<div class="widget">
+                            <div class="widget-header bg-blue">
+                                <i class="widget-icon fa fa-search"></i>
+                                <span class="widget-caption">Buscar</span>
+                                <div class="widget-buttons">
+                                   
+                                </div><!--Widget Buttons-->
+                            </div><!--Widget Header-->
+                            <div class="widget-body">
+				            	<form id="formDbman" role="form" method="POST" action="/reports/dates/index">
+				            		<input type="hidden" id="optReg" name="optReg" value="search" />
+				            		<div class="form-group">
+                                        <label class="" for="inputFechaIn">Fecha Inicio</label>
+                                        <input readonly type="text" class="form-control" name="inputFechaIn" id="inputFechaIn" placeholder="Fecha Inicio" value="<?php echo @$this->data['inputFechaIn'];?>">
+                                    </div>
+				            		<div class="form-group">
+                                        <label class="" for="inputFechaFin">Fecha Final</label>
+                                        <input readonly  type="text" class="form-control" name="inputFechaFin" id="inputFechaFin" placeholder="Fecha Final" value="<?php echo @$this->data['inputFechaFin'];?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="" for="exampleInputPassword2">Sucursal</label>
+                                        <select class="chzn-select"  id="cboInstalacion" name="cboInstalacion" onChange="showPersonal(this.value);">
+											<option value="-1">Todas</option>
+											<?php echo $this->aSucursales;?>
+										</select>	
+                                    </div> 
+                                    <div class="form-group">
+                                        <label class="cboPersonal" for="cboPersonal">Personal</label>
+                                        <select class="chzn-select"  id="cboPersonal" name="cboPersonal" >
+											<option value="-1">Todos</option>
+											<?php echo $this->aCboPersonal;?>
+										</select>	
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="" for="cboTipoCita">Tipo de Cita</label>
+                                        <select class="chzn-select"  id="cboTipoCita" name="cboTipoCita" >
+											<option value="-1">Todas</option>
+											<?php echo $this->aTcitas;?>
+										</select>	
+                                    </div> 
+                                    <div class="form-group">
+                                        <label class="" for="cboEstatus">Estatus Cita</label>
+                                        <select class="chzn-select"  id="cboEstatus" name="cboEstatus" >
+											<option value="-1">Todos</option>
+											<?php echo $this->aEstatus;?>
+										</select>	
+                                    </div>
+                                    <div class="form-group">
+                                    	<input type="submit" class="btn btn-blue active btn-block" value="Buscar">
+                                    </div>
+				            	</form>
+                            </div><!--Widget Body-->
+                        </div>
+		            </div>
+		            <div class="col-xs-9 col-md-9">
+						<div class="widget">
+                            <div class="widget-header bordered-bottom bordered-sky">
+                                <span class="widget-caption">Resultado de la Búsqueda</span>
+                            </div>
+                            <div class="widget-body">                                
+		                        <table class="table table-striped table-hover table-bordered">
+		                            <thead> 
+		                                <tr role="row">
+		                                    <th>Folio</th>
+                                            <th>Tipo</th>
+		                                    <th>Estatus</th>
+		                                    <th>Cliente</th>
+		                                    <th>Personal</th>
+		                                    <th>Fecha/Hora Cita</th>
+		                                    <th>Opciones</th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <?php foreach($this->aDataTable as $key => $items):?>
+		                                    <tr>
+                                                <td><?php echo $items['FOLIO'];?></td>
+                                                <td><?php echo $items['N_TIPO'];?></td>
+                                                <td><?php echo $items['N_ESTATUS'];?></td>
+                                                <td><?php echo $items['N_CLIENTE'];?></td>
+                                                <td><?php echo $items['N_PERSONAL'];?></td>
+                                                <td><?php echo $items['N_FECHA'];?></td>
+                                                <td>
+                                                    <?php if($items['ID_ESTATUS']!=4):?>
+                                                        <a class="btn btn-info btn-xs" href="<?php echo $urlActions.$items['ID_CITA'] ?>" data-toggle="tooltip" data-placement="top" data-original-title="Información de la Cita"><i class="fa fa-info-circle"></i></a>
+                                                    <?php else:?>
+                                                        <a class="btn btn-palegreen btn-xs" onclick="beforeDelete('<?php echo $items['ID_CITA']; ?>')" data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar"><i class="fa fa-times "></i></a>
+                                                    <?php endif;?>                                                    
+                                                </td>
+		                                    </tr>
+		                                <?php endforeach;?>
+		                            </tbody>
+		                        </table>
+                            </div>
+                        </div>
+		            </div>				            
+				</div>
+        	</div>
+    	</div>
+	</div>
