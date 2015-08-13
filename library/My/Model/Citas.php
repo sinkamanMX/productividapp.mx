@@ -191,7 +191,22 @@ class My_Model_Citas extends My_Db_Table
 		}	
         
 		return $result;			
-	}		
+	}
+
+	public function getCboTipoCitas(){
+		$result= Array();
+		$this->query("SET NAMES utf8",false); 
+		
+    	$sql ="SELECT ID_ESTATUS AS ID, DESCRIPCION AS NAME
+				FROM PROD_ESTATUS_CITA
+				ORDER BY ID_ESTATUS ASC";  
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;				
+	}
 	
 	/*	
 

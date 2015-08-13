@@ -240,3 +240,11 @@
     left: 0;
     right: 0;
 }
+
+.select2-container {
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+    width: 100% !important;
+}

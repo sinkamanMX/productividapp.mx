@@ -83,8 +83,12 @@ class My_Controller_Action extends Zend_Controller_Action
     *
     * @return void
     */
-    public function init() {		
-		
+    public function init() {
+    	$manCache = Zend_Registry::get('cacheMan');		
+		$dataInput = $this->_request->getParams();
+		if($dataInput['flush']=='all'){
+			$manCache->clean();
+		}
     }
  
 

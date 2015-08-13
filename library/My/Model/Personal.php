@@ -156,15 +156,29 @@ class My_Model_Personal extends My_Db_Table
 		return $result;			
 	}	
 	
-	/*
-	public function getCbo($idObject){
+	public function getCboByCompany($idEmpresa){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
-    	$sql ="SELECT U.ID_USUARIO AS ID, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME
-				FROM USUARIOS U 										
-				WHERE ID_SUCURSAL = $idObject
-				  AND U.FLAG_OPERACIONES = 1
-				ORDER BY NAME ASC";
+    	$sql ="SELECT S.ID_SUCURSAL, IF(U.ID_SUCURSAL IS NULL,'SP',GROUP_CONCAT(CONCAT(ID_USUARIO,'|',NOMBRE_COMPLETO) SEPARATOR ',')) AS N_PERSONAL
+				FROM SUCURSALES S
+				LEFT JOIN USUARIOS U ON S.ID_SUCURSAL = U.ID_SUCURSAL AND U.FLAG_OPERACIONES = 1
+				WHERE S.ID_EMPRESA = $idEmpresa
+				GROUP BY S.ID_SUCURSAL";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;			
+	}	
+
+	public function getCbo($idEmpresa){
+		$result= Array();
+		$this->query("SET NAMES utf8",false); 		
+    	$sql ="SELECT ID_USUARIO AS ID, NOMBRE_COMPLETO AS NAME
+    			FROM USUARIOS 
+				WHERE ID_EMPRESA = $idEmpresa
+				 AND FLAG_OPERACIONES   = 1";
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
 			$result = $query;			
@@ -173,8 +187,7 @@ class My_Model_Personal extends My_Db_Table
 		return $result;			
 	}	
 	
-
-	
+	/*	
 	public function getTecnicosBySucursal($values,$idEmpresa){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		

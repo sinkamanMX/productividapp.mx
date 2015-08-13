@@ -61,5 +61,49 @@ class My_Model_Resumen extends My_Db_Table
 		}	
         
 		return $result;			
-	}		
+	}
+
+	public function getDataReport($aDataFilter){
+		$result= Array();
+		$this->query("SET NAMES utf8",false);
+		$sFilter    = '';
+		
+		$aDateIn	= explode(' ',$aDataFilter['inputFechaIn']);
+		$aDateFin	= explode(' ',$aDataFilter['inputFechaFin']);
+		
+		if(isset($aDataFilter['cboTipoCita']) && $aDataFilter['cboTipoCita']!='-1'){
+			$sFilter    .= 'AND C.ID_TIPO 	= '.$aDataFilter['cboTipoCita'];
+		}
+		
+		if(isset($aDataFilter['cboEstatus']) && $aDataFilter['cboEstatus']!='-1'){
+			$sFilter    .= 'AND C.ID_ESTATUS 	= '.$aDataFilter['cboEstatus'];
+		}		
+		
+		if(isset($aDataFilter['cboInstalacion'])){
+			if($aDataFilter['cboInstalacion']!='-1'){
+				$sFilter    .= 'AND C.ID_USUARIO_ASIGNADO IN(48)';				
+			}else if(isset($aDataFilter['cboPersonal']) && $aDataFilter['cboPersonal']!='-1'){
+				$sFilter    .= 'AND C.ID_USUARIO_ASIGNADO IN('.$aDataFilter['cboPersonal'].')';
+			}
+		}
+		
+		$sql ="SELECT C.ID_CITA ,C.FOLIO,T.DESCRIPCION AS N_TIPO, S.DESCRIPCION AS N_ESTATUS, 
+					  L.RAZON_SOCIAL AS N_CLIENTE, U.NOMBRE_COMPLETO AS N_PERSONAL,CONCAT(C.FECHA_CITA,' ',C.HORA_CITA) AS N_FECHA
+					  , C.ID_ESTATUS
+				FROM PROD_CITAS C
+				INNER JOIN PROD_ESTATUS_CITA S ON C.ID_ESTATUS = S.ID_ESTATUS
+				INNER JOIN PROD_CLIENTES     L ON C.ID_CLIENTE = L.ID_CLIENTE
+				INNER JOIN USUARIOS 		 U ON C.ID_USUARIO_ASIGNADO  = U.ID_USUARIO
+				INNER JOIN PROD_TIPO_CITA    T ON C.ID_TIPO    = T.ID_TIPO
+				WHERE FECHA_CITA BETWEEN '".$aDateIn[0]."' AND '".$aDateFin[0]."'
+				  AND HORA_CITA  BETWEEN '".$aDateIn[1]."' AND '".$aDateFin[1]."'	  
+				  $sFilter
+				ORDER BY FECHA_CITA ASC, HORA_CITA ASC";		
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;			
+	}
 }
