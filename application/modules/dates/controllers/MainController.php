@@ -329,4 +329,69 @@ class dates_MainController extends My_Controller_Action
 		}
 		return $aResultFields;
 	}
+	
+    public function getdateinfoAction(){
+		try{	
+			$this->view->layout()->setLayout('layout_blank');
+			$cTipoCita 	= new My_Model_TipoCitas();
+			$cFuntions	= new My_Controller_Functions();
+			$cClientes	= new My_Model_Clientes();
+						
+			$aCbocitas  = $cTipoCita->getCbo($this->_dataUser['ID_EMPRESA']);
+			$aTcitas	= $cTipoCita->getTipoCita($this->_dataUser['ID_EMPRESA']);
+			
+			$sTipoCita 	= "";
+			$saCliente	= "";
+			$aFormularios= Array();
+			$aData		= Array();
+			
+			$aClientes	= $cClientes->getCbo($this->_dataUser['ID_EMPRESA']);
+			$aNamespace = new Zend_Session_Namespace("sService");
+									
+			if($this->_dataOp=='new' || $this->_dataOp=='update'){
+				if(isset($aNamespace->infoService)){
+					unset($aNamespace->infoService);
+				}
+				
+				$aNamespace->infoService = $this->_dataIn;
+	            $this->_redirect('/dates/main/location');	            
+			}
+			
+			if(isset($aNamespace->infoService)){
+				$aData  	= $aNamespace->infoService;
+				$sTipoCita	= $aData['inputTipo'];
+				$saCliente	= $aData['inputCliente'];
+				$aFormularios = $cTipoCita->getFormularios($aData['inputTipo']);	
+			}			
+			
+			$this->view->aData		= $aData;
+			$this->view->aEstatus	= $cFuntions->cboStatus();			
+			$this->view->aCbocitas 	= $cFuntions->selectDb($aCbocitas,$sTipoCita);
+			$this->view->aClientes 	= $cFuntions->selectDb($aClientes,$saCliente);
+			$this->view->aFormluarios= $aFormularios;
+			$this->view->aTcitas 	= $aTcitas;			
+			$this->view->errors 	= $this->_aErrors;	
+			$this->view->resultOp   = $this->_resultOp;
+			$this->view->catId		= $this->_idUpdate;
+			$this->view->idToUpdate = $this->_idUpdate;
+			$this->view->aErrorFields= $this->_aErrorsFields;   			
+			
+			
+		} catch (Zend_Exception $e) {
+            echo "Caught exception: " . get_class($e) . "\n";
+        	echo "Message: " . $e->getMessage() . "\n";                
+        } 	
+    }
+
+    public function getlocationAction(){
+		try{	
+			$this->view->layout()->setLayout('layout_blank');
+			
+			
+			
+		} catch (Zend_Exception $e) {
+            echo "Caught exception: " . get_class($e) . "\n";
+        	echo "Message: " . $e->getMessage() . "\n";                
+        } 	
+    }	    
 }

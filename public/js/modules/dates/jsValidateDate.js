@@ -82,6 +82,7 @@ $().ready(function(){
                         }
                     }
                 },
+                /*
                 inputCliente: {
                     validators: {
                         callback: {
@@ -95,7 +96,7 @@ $().ready(function(){
                             }
                         }
                     }
-                },
+                },*/
                 inputTipo: {
                     validators: {
                         callback: {

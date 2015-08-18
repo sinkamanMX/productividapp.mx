@@ -121,7 +121,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	}    
     
     protected function _initRequest()
-    {    	
+    {
+		$request = new Zend_Controller_Request_Http();    		
+        $manCache = Zend_Registry::get('cacheMan');	        
+		$dataInput = $request->getParams();
+		if(isset($dataInput['flush']) && $dataInput['flush']=='all'){
+			$manCache->clean();
+		}
     	/*
     	try{
 	        $config = $this->getOptions();

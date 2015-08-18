@@ -120,9 +120,9 @@
                                                 <td><?php echo $items['N_FECHA'];?></td>
                                                 <td>
                                                     <?php if($items['ID_ESTATUS']!=4):?>
-                                                        <a class="btn btn-info btn-xs" href="<?php echo $urlActions.$items['ID_CITA'] ?>" data-toggle="tooltip" data-placement="top" data-original-title="Información de la Cita"><i class="fa fa-info-circle"></i></a>
+                                                        <a class="btn btn-info btn-xs" href="javascript:showInfoDate(<?php echo $items['ID_CITA'] ?>);" data-toggle="tooltip" data-placement="top" data-original-title="Información de la Cita"><i class="fa fa-info-circle"></i></a>
                                                     <?php else:?>
-                                                        <a class="btn btn-palegreen btn-xs" onclick="beforeDelete('<?php echo $items['ID_CITA']; ?>')" data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar"><i class="fa fa-times "></i></a>
+                                                        <a class="btn btn-success btn-xs" href="/reports/dates/dateresult?strInput=<?php echo $items['ID_CITA'] ?>&calledFrom=rdates" data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar"><i class="fa fa-times "></i></a>
                                                     <?php endif;?>                                                    
                                                 </td>
 		                                    </tr>
@@ -136,3 +136,21 @@
         	</div>
     	</div>
 	</div>
+
+    <!--LArge Modal Templates-->
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="myLargeModalLabel" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myLargeModalLabel">Información de la Cita</h4>
+                </div>
+                <div class="modal-body">
+                    <img id="loader1" class="col-xs-offset-4" src="/images/loading.gif" alt="loading gif"/>
+                    <iframe class="hmodal500" id="iFrameSearch" src="" style="zoom:0" frameborder="0"></iframe>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!--End Large Modal Templates-->

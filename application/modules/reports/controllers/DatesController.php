@@ -63,5 +63,5 @@ class reports_DatesController extends My_Controller_Action
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
         }     	
-    }
+    }       
 }

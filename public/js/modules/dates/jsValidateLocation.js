@@ -79,6 +79,7 @@ $().ready(function(){
                     },
                 }
             },  
+            /*
             inputCp: {
                 validators: {
                     notEmpty: {
@@ -88,7 +89,7 @@ $().ready(function(){
                         message: 'Este campo acepta solo números'
                     },
                 }
-            },
+            },*/
             inputLatitud: {
                 validators: {
                     numeric: {
@@ -175,7 +176,7 @@ function validateOption(inputValue){
     $('#formDbman').bootstrapValidator('updateStatus', 'inputColonia', 'NOT_VALIDATED');
     $('#formDbman').bootstrapValidator('updateStatus', 'inputEdo', 'NOT_VALIDATED');
     $('#formDbman').bootstrapValidator('updateStatus', 'inputMun', 'NOT_VALIDATED');
-    $('#formDbman').bootstrapValidator('updateStatus', 'inputCp', 'NOT_VALIDATED');
+    /*$('#formDbman').bootstrapValidator('updateStatus', 'inputCp', 'NOT_VALIDATED');*/
     $('#formDbman').bootstrapValidator('updateStatus', 'inputNext', 'NOT_VALIDATED');
     $('#formDbman').bootstrapValidator('updateStatus', 'inputLatitud', 'NOT_VALIDATED');
     $('#formDbman').bootstrapValidator('updateStatus', 'inputLongitud', 'NOT_VALIDATED');

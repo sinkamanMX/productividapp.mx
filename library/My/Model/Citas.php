@@ -47,6 +47,9 @@ class My_Model_Citas extends My_Db_Table
         $result     = Array();
         $result['status']  = false;
         
+        $iLatitud	= (isset($data['inputLatitud'])  && $data['inputLatitud']!="") ? $data['inputLatitud'] : 0;
+        $iLongitud	= (isset($data['inputLongitud']) && $data['inputLongitud']!="") ? $data['inputLongitud'] : 0;
+        
         $sql="INSERT INTO PROD_CITA_DOMICILIO
 				SET ID_CITA		=  ".$data['idCita'].",
 					CALLE		= '".$data['inputCalle']."',
@@ -57,8 +60,9 @@ class My_Model_Citas extends My_Db_Table
 					CP			= '".$data['inputCp']."',
 					ESTADO		= '".$data['inputEdo']."',
 					REFERENCIAS	= '".$data['inputRefs']."',
-					LATITUD		=  ".$data['inputLatitud'].",
-					LONGITUD	=  ".$data['inputLongitud'];
+					LATITUD		=  ".$iLatitud.",
+					LONGITUD	=  ".$iLongitud;
+        Zend_Debug::dump($sql);
         try{            
     		$query   = $this->query($sql,false);
     		$sql_id ="SELECT LAST_INSERT_ID() AS ID_LAST;";
