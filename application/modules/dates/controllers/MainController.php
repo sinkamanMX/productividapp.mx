@@ -59,7 +59,7 @@ class dates_MainController extends My_Controller_Action
 			$this->view->resultOp   = $this->_resultOp;
 			$this->view->catId		= $this->_idUpdate;
 			$this->view->idToUpdate = $this->_idUpdate;
-			$this->view->aErrorFields= $this->_aErrorsFields;    		    		
+			$this->view->aErrorFields= $this->_aErrorsFields;
         }catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
 			echo "Message: " . $e->getMessage() . "\n";                
@@ -107,6 +107,7 @@ class dates_MainController extends My_Controller_Action
 			echo "Message: " . $e->getMessage() . "\n";                
         }
     }
+    
     /**
      * 
      * Muestra las oopciones extras que tenga el tipo de formulario
@@ -201,6 +202,7 @@ class dates_MainController extends My_Controller_Action
 							foreach($aFieldsValues as $key => $items){
 								$aDataExtra = Array();
 								$aDataExtra['idCita']	= $idCita;
+								$aDataExtra['idExtra']	= $items['ID_EXTRA'];
 								$aDataExtra['sTitulo'] 	= $items['DESCRIPCION'];
 								$aDataExtra['sValor'] 	= $items['VALUE_INPUT'];
 								$aDataExtra['idEmpresa']= $this->_dataUser['ID_EMPRESA'];	
@@ -336,32 +338,37 @@ class dates_MainController extends My_Controller_Action
 			$cTipoCita 	= new My_Model_TipoCitas();
 			$cFuntions	= new My_Controller_Functions();
 			$cClientes	= new My_Model_Clientes();
+			$cCitas		= new My_Model_Citas();
+			$idEmpresa  = $this->_dataUser['ID_EMPRESA'];
 						
-			$aCbocitas  = $cTipoCita->getCbo($this->_dataUser['ID_EMPRESA']);
-			$aTcitas	= $cTipoCita->getTipoCita($this->_dataUser['ID_EMPRESA']);
+			$aCbocitas  = $cTipoCita->getCbo($idEmpresa);
+			$aTcitas	= $cTipoCita->getTipoCita($idEmpresa);
 			
 			$sTipoCita 	= "";
 			$saCliente	= "";
 			$aFormularios= Array();
 			$aData		= Array();
 			
-			$aClientes	= $cClientes->getCbo($this->_dataUser['ID_EMPRESA']);
-			$aNamespace = new Zend_Session_Namespace("sService");
-									
-			if($this->_dataOp=='new' || $this->_dataOp=='update'){
-				if(isset($aNamespace->infoService)){
-					unset($aNamespace->infoService);
-				}
-				
-				$aNamespace->infoService = $this->_dataIn;
-	            $this->_redirect('/dates/main/location');	            
-			}
+			$aClientes	= $cClientes->getCbo($idEmpresa);
 			
-			if(isset($aNamespace->infoService)){
-				$aData  	= $aNamespace->infoService;
-				$sTipoCita	= $aData['inputTipo'];
-				$saCliente	= $aData['inputCliente'];
-				$aFormularios = $cTipoCita->getFormularios($aData['inputTipo']);	
+			if($this->_idUpdate >-1){
+				$aData 		= $cCitas->getData($this->_idUpdate,$idEmpresa);
+				$sTipoCita	= $aData['ID_TIPO'];
+				$saCliente	= $aData['ID_CLIENTE'];
+				$aFormularios = $cTipoCita->getFormularios($aData['ID_TIPO']);
+			}
+									
+			if($this->_dataOp=='update'){
+				$updated = $cCitas->updateRow($this->_dataIn);
+				if($updated['status']){					
+					$aData 		= $cCitas->getData($this->_idUpdate,$idEmpresa);
+					$sTipoCita	= $aData['ID_TIPO'];
+					$saCliente	= $aData['ID_CLIENTE'];
+					$aFormularios = $cTipoCita->getFormularios($aData['ID_TIPO']);
+					$this->_resultOp = 'updated';					
+				}else{
+					$this->_aErrors['problem'] = 1;	
+				}					           
 			}			
 			
 			$this->view->aData		= $aData;
@@ -374,9 +381,7 @@ class dates_MainController extends My_Controller_Action
 			$this->view->resultOp   = $this->_resultOp;
 			$this->view->catId		= $this->_idUpdate;
 			$this->view->idToUpdate = $this->_idUpdate;
-			$this->view->aErrorFields= $this->_aErrorsFields;   			
-			
-			
+			$this->view->aErrorFields= $this->_aErrorsFields;
 		} catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
@@ -386,12 +391,162 @@ class dates_MainController extends My_Controller_Action
     public function getlocationAction(){
 		try{	
 			$this->view->layout()->setLayout('layout_blank');
+			$cTipoCita 	= new My_Model_TipoCitas();
+			$cFuntions	= new My_Controller_Functions();
+			$cCitas		= new My_Model_Citas();
+			$idEmpresa  = $this->_dataUser['ID_EMPRESA'];
+						
+			$aData		= Array();
+			$aDataLocation = Array();		
 			
+			if($this->_idUpdate >-1){
+				$aData 			= $cCitas->getData($this->_idUpdate,$idEmpresa);	
+				$aDataLocation  = $cCitas->getLocation($this->_idUpdate);	
+			}
+									
+			if($this->_dataOp=='update'){
+				$updated = $cCitas->updateLocationRow($this->_dataIn);
+				if($updated['status']){					
+					$aData 			= $cCitas->getData($this->_idUpdate,$idEmpresa);	
+					$aDataLocation  = $cCitas->getLocation($this->_idUpdate);
+					$this->_resultOp = 'updated';
+				}else{
+					$this->_aErrors['problem'] = 1;	
+				}           
+			}			
 			
-			
+			$this->view->aData		 = $aData;
+			$this->view->aDataLocation= $aDataLocation;		
+			$this->view->errors 	= $this->_aErrors;	
+			$this->view->resultOp   = $this->_resultOp;
+			$this->view->catId		= $this->_idUpdate;
+			$this->view->idToUpdate = $this->_idUpdate;
+			$this->view->aErrorFields= $this->_aErrorsFields;
 		} catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
         } 	
-    }	    
+    }	 
+        
+    /**
+     * 
+     * Muestra las oopciones extras que tenga el tipo de formulario
+     * Int tipo de servicio
+     */
+    public function getextrasAction(){
+		try{
+			$this->view->layout()->setLayout('layout_blank');
+			$cTipoCita 	= new My_Model_TipoCitas();
+			$cFuntions	= new My_Controller_Functions();
+			$cClientes	= new My_Model_Clientes();  
+			$cCitas		= new My_Model_Citas();
+			  		
+			$aData		= Array();	
+			$aDataExtras= Array();
+			$aDataFields= Array();
+			$aProcessFields= Array();
+			$idEmpresa  = $this->_dataUser['ID_EMPRESA'];
+
+			if($this->_idUpdate >-1){
+				$aData 		  	= $cCitas->getData($this->_idUpdate,$idEmpresa);
+				$aDataExtras  	= $cCitas->getDataExtras($this->_idUpdate);
+				
+				$aDataFields  	= $cTipoCita->getFieldsTipo($aData['ID_TIPO']);
+				$aFieldsValues  = $this->setValuesDb($aDataFields,$aDataExtras);
+				$aProcessFields = $this->processFields($aFieldsValues);	
+			}
+									
+			if($this->_dataOp=='update'){
+				$iError=0;				
+				$aFieldsValues  = $this->setValuesFields($aDataFields,$this->_dataIn);							
+				foreach($aFieldsValues as $key => $items){
+					$aDataExtra = Array();
+					$aDataExtra['idCita']	= $this->_idUpdate;
+					$aDataExtra['idExtra']	= $items['ID_EXTRA'];
+					$aDataExtra['sTitulo'] 	= $items['DESCRIPCION'];
+					$aDataExtra['sValor'] 	= $items['VALUE_INPUT'];
+					$aDataExtra['idEmpresa']= $this->_dataUser['ID_EMPRESA'];	
+					
+					$insertExtra = $cCitas->updateExtraCitas($aDataExtra);
+					if(!$insertExtra){
+						$iError++;
+					}
+				} 
+
+				if($iError=0){
+					$aData 		  	= $cCitas->getData($this->_idUpdate,$idEmpresa);
+					$aDataExtras  	= $cCitas->getDataExtras($this->_idUpdate);
+					
+					$aDataFields  	= $cTipoCita->getFieldsTipo($aData['ID_TIPO']);
+					$aFieldsValues  = $this->setValuesDb($aDataFields,$aDataExtras);
+					$aProcessFields = $this->processFields($aFieldsValues);						
+					$this->_resultOp = 'updated';
+				}
+			}		
+			
+    		$this->view->aFields	= $aProcessFields;
+			$this->view->errors 	= $this->_aErrors;
+			$this->view->resultOp   = $this->_resultOp;
+			$this->view->aErrorFields= $this->_aErrorsFields;
+			$this->view->aData		= $aData;
+			$this->view->aDataExtras= $aDataExtras;			
+		}catch (Zend_Exception $e) {
+            echo "Caught exception: " . get_class($e) . "\n";
+			echo "Message: " . $e->getMessage() . "\n";                
+        } 	
+    }
+    
+    public function setValuesDb($aFields,$dataIn){
+		$cFunctions    = new My_Controller_Functions();
+		$mFunctions    = new My_Model_Functions();
+		$aResultFields = Array();
+		
+		foreach($aFields as $key => $itemsFields){
+			foreach($dataIn as $key => $iValueInput){
+				if($itemsFields['ID_EXTRA'] == $iValueInput['ID_EXTRA']){
+					$itemsFields['VALUE_INPUT']   = $iValueInput['VALOR'];
+					$aResultFields[] = $itemsFields;
+				}
+			}
+		}
+				
+		return $aResultFields;
+    }
+
+    public function getpersonalAction(){
+    	try{
+			$this->view->layout()->setLayout('layout_blank');
+			$cFuntions	= new My_Controller_Functions();
+			$cCitas		= new My_Model_Citas();
+			$cPersonal  = new My_Model_Personal();
+			  		
+			$aData		= Array();				
+			$idEmpresa  = $this->_dataUser['ID_EMPRESA'];
+			    		
+    		if($this->_idUpdate >-1){
+				$aData 		  	= $cCitas->getData($this->_idUpdate,$idEmpresa);
+			}			
+			
+			if($this->_dataOp=='update'){
+				$updated = $cCitas->updatePersonal($this->_dataIn);
+				if($updated['status']){
+					$aData 		  	= $cCitas->getData($this->_idUpdate,$idEmpresa);	
+					$this->_resultOp = 'updated';
+				}else{
+					$this->_aErrors['problem'] = 1;	
+				}
+			}
+			
+			$aPersonal	= $cPersonal->getUpdateAssign($aData,$this->_dataUser['ID_EMPRESA']);			
+			$this->view->aDataTable = $aPersonal; 
+			$this->view->errors 	= $this->_aErrors;
+			$this->view->resultOp   = $this->_resultOp;
+			$this->view->aErrorFields= $this->_aErrorsFields;
+			$this->view->aData		= $aData;			
+			$this->view->aErrors	= $this->_aErrors;
+		}catch (Zend_Exception $e) {
+            echo "Caught exception: " . get_class($e) . "\n";
+			echo "Message: " . $e->getMessage() . "\n";                
+        } 	
+    }
 }

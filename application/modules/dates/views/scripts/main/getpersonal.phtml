@@ -1,0 +1,99 @@
+<?php $this->headScript()->appendFile('/assets/js/fuelux/wizard/wizard-custom.js') ?> 
+<?php $this->headScript()->appendFile('/assets/js/datetime/bootstrap-datepicker.js') ?> 
+<?php $this->headScript()->appendFile('/assets/js/datetime/bootstrap-timepicker.js') ?> 
+<?php $this->headScript()->appendFile('/assets/js/select2/select2.js') ?> 
+<?php $this->headScript()->appendFile('/js/modules/functionGral.js') ?>
+<?php $this->headScript()->appendFile('/js/modules/dates/jsValidateEdPersonal.js') ?> 
+<?php $bDisabled = (@$this->aData['ID_ESTATUS']!=1) ? 'disabled': '';?>
+<?php if($this->resultOp=='updated' ): ?>
+    <script>
+        parent.assignValue('1');
+    </script>       
+    <?php $this->headScript()->captureStart() ?>
+        $().ready(function(){
+            console.log("paso algo");
+                showNotification('registerOk','');
+        });
+    <?php $this->headScript()->captureEnd() ?>                                                                
+<?php endif; ?>    
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget row-min-h300">
+                    <div class="widget-body">
+                        <?php if(@$this->errors['errorProcess']):?>
+                            <div class="alert alert-danger fade in">
+                                <button class="close" data-dismiss="alert">
+                                    ×
+                                </button>
+                                <i class="fa-fw fa fa-times"></i>
+                                <strong>¡Error!</strong> Se han encontrado uno ó mas problemas para guardar la información                                
+                            </div>                  
+                        <?php endif;?>
+                        <form id="formDbman" class="form-horizontal" role="form" method="POST" action="/dates/main/getpersonal">
+                            <input type="hidden" id="catId" name="catId"  value="<?php echo $this->catId; ?>"/>
+                            <input type="hidden" id="optReg" name="optReg" value="update" />
+                            <input type="hidden" id="inputAsignado" name="inputAsignado" value="<?php echo $this->aData['ID_USUARIO_ASIGNADO'];?>" />
+
+                            <div id="WiredWizard" class="wizard wizard-wired" data-target="#WiredWizardsteps">
+                                <ul class="steps">
+
+
+                                    <li data-target="#wiredstep1"><a href="/dates/main/getdateinfo?catId=<?php echo $this->catId; ?> "><span class="step">1</span><span class="title">Información General</span><span class="chevron"></span></a></li>
+                                    <li data-target="#wiredstep2"><a href="/dates/main/getlocation?catId=<?php echo $this->catId; ?> "><span class="step">2</span><span class="title">Ubicación</span> <span class="chevron"></span></a></li>
+                                    <li data-target="#wiredstep2"><a href="/dates/main/getextras?catId=<?php echo $this->catId;  ?>"><span class="step">3</span><span class="title">Información Adicional</span> <span class="chevron"></span></a></li>
+                                    <li data-target="#wiredstep2" class="active"><span class="step">4</span><span class="title">Personal</span> <span class="chevron"></span></li>
+
+
+                                </ul>
+
+                            </div>                          
+
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead> 
+                                    <tr role="row">
+                                        <th>Sucursal</th>
+                                        <th>Usuario</th>
+                                        <th>Email</th>
+                                        <th>Logeado en</th>
+                                        <th class="col-xs-1 col-md-1">
+                                            Asignar
+                                        </th>
+                                    </tr>                                
+                                </thead>                          
+                                <tbody>                      
+                                    <?php foreach($this->aDataTable as $key => $items):?>
+                                        <tr>
+                                            <td><?php echo $items['N_SUCURSAL'];?></td>
+                                            <td><?php echo $items['USUARIO'];?></td>
+                                            <td><?php echo $items['EMAIL'];?></td>
+                                            <td><?php echo $items['N_TELEFONO'];?></td>
+                                            <td>
+                                                <div id="divCheckini<?php echo $items['ID_USUARIO'];?>" class="radio" style="display:block';?>" >
+                                                <label>
+                                                    <input name="bRadioInit" type="radio" class="colored-blue" value="<?php echo $items['ID_USUARIO'];?>" >
+                                                    <span class="text"> </span>
+                                                </label>
+                                            </div></td>
+                                        </tr>
+                                    <?php endforeach;?>
+                                </tbody>
+                            </table>
+
+                            <div class="row margin-t5px">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="pull-right">
+                                        <?php if(@$this->aData['ID_ESTATUS']==1):?>
+                                            <button type="submit" class="btn btn-info">Guardar Cambios</button>
+                                        <?php endif;?>   
+                                    </div>
+                                </div>
+                            </div>                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->    

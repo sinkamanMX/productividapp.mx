@@ -472,26 +472,18 @@
 	"buffers":
 	[
 		{
-			"file": "application/modules/reports/views/scripts/dates/index.phtml",
+			"file": "application/modules/dates/views/scripts/main/getdateinfo.phtml",
 			"settings":
 			{
-				"buffer_size": 8180,
+				"buffer_size": 10650,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/js/reports/jsReportDates.js",
+			"file": "application/modules/dates/views/scripts/main/getlocation.phtml",
 			"settings":
 			{
-				"buffer_size": 6162,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/css/style.css",
-			"settings":
-			{
-				"buffer_size": 3412,
+				"buffer_size": 12782,
 				"line_ending": "Unix"
 			}
 		}
@@ -524,9 +516,26 @@
 	},
 	"file_history":
 	[
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dbman/views/scripts/main/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dbman/views/scripts/main/getdatainfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/getdateinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/getlocation.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/getextras.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateDate.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateEditInfo.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/datetime/bootstrap-timepicker.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateLocation.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/extras.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/reports/views/scripts/dates/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/reports/jsReportDates.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/location.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/dateinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/header.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/style.css",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/forms/views/scripts/main/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dbman/views/scripts/main/getdatainfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/reports/views/scripts/dates/dateinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/css/font-awesome.min.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dbman/views/scripts/main/index.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/forms/views/scripts/main/getinfoelement.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/beyond.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/gantt/index.phtml",
@@ -536,24 +545,17 @@
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/libs/gantt/js/jquery.fn.gantt.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/library/My/Model/Mensajes.php",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/htacess.backup",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/header.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/library/Zend/View/Helper/HeadScript.php",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/dates/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateDate.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/main/index.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dashboard/jsCalendarDates.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/dates/getlistdates.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/fullcalendar/fullcalendar.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/location.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/confirm.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/extras.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateLocation.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateConfirm.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/users/jsValidateProfiles.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/information/index.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/forms/jsValidateElement.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/style.css",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/location/reporteRastreo.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateExtras.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateConfirm",
@@ -561,7 +563,6 @@
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dbman/views/scripts/main/scriptvalidation.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/location/rastreotels.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/forms/jsValidateForms.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/datetime/bootstrap-timepicker.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/datetime/bootstrap-datepicker.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/clients/jsValidateAddress.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/views/scripts/clients/listaddress.phtml",
@@ -642,16 +643,7 @@
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/backups_layouts/menu.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/backups_layouts/header.phtml",
 		"/Users/itecno2/Downloads/products_WB06R48S4/html/form-validation.html",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/Usaruo.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/css/animate.css",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/custom/ui-toastr.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/custom/custom.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/plugins/bootstrap-toastr/toastr.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/app.css",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/messages/controllers/MainController.php",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/users/getinfo.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/messages/views/scripts/main/newmessage.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/users/validateUsers.js"
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/Usaruo.phtml"
 	],
 	"find":
 	{
@@ -659,7 +651,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"<open folders>",
@@ -672,6 +664,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"inputCp",
 			"sidebar-collapse",
 			"getDataMenu",
 			"A.NOMBRE_COMPLETO",
@@ -798,8 +791,7 @@
 			"contact",
 			"checkMessages",
 			"chat",
-			"console.log",
-			"rtl-support"
+			"console.log"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -878,88 +870,63 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/modules/reports/views/scripts/dates/index.phtml",
+					"file": "application/modules/dates/views/scripts/main/getdateinfo.phtml",
 					"settings":
 					{
-						"buffer_size": 8180,
+						"buffer_size": 10650,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2880,
-								2880
+								8212,
+								8212
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
 							"word_wrap": false
 						},
-						"translation.x": 461.0,
-						"translation.y": 526.0,
+						"translation.x": 344.0,
+						"translation.y": 656.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "public/js/reports/jsReportDates.js",
+					"file": "application/modules/dates/views/scripts/main/getlocation.phtml",
 					"settings":
 					{
-						"buffer_size": 6162,
+						"buffer_size": 12782,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1876,
-								1876
+								11486,
+								11486
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 317.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "public/css/style.css",
-					"settings":
-					{
-						"buffer_size": 3412,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3409,
-								3409
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3555.0,
+						"translation.y": 1792.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

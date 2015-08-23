@@ -185,6 +185,31 @@ class My_Model_Personal extends My_Db_Table
 		}	
         
 		return $result;			
+	}
+	
+	public function getUpdateAssign($dataCita,$idEmpresa){
+		$result= Array();
+		$this->query("SET NAMES utf8",false);	
+    	$sql ="SELECT U.ID_USUARIO, U.USUARIO, U.NOMBRE_COMPLETO AS N_USUARIO, U.EMAIL, 
+    			IF(R.ID_TELEFONO IS NULL,'No Logeado',CONCAT(T.DESCRIPCION,' ',T.IDENTIFICADOR))  AS N_TELEFONO, S.DESCRIPCION AS N_SUCURSAL
+				FROM USUARIOS U 
+				INNER JOIN SUCURSALES         S ON U.ID_SUCURSAL= S.ID_SUCURSAL
+				 LEFT JOIN PROD_USR_TELEFONO  R ON U.ID_USUARIO = R.ID_USUARIO 
+				 LEFT JOIN PROD_TELEFONOS     T ON R.ID_TELEFONO = T.ID_TELEFONO				 
+				 WHERE U.FLAG_OPERACIONES = 1
+				 	AND ( U.ID_USUARIO NOT IN (
+				 SELECT ID_USUARIO_ASIGNADO
+				 FROM PROD_CITAS
+				 WHERE FECHA_CITA = '".$dataCita['FECHA_CITA']."'
+				  AND  HORA_CITA  = '".$dataCita['HORA_CITA']."'
+				  AND ID_EMPRESA  = $idEmpresa)
+				  OR U.ID_USUARIO = ".$dataCita['ID_USUARIO_ASIGNADO'].")";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        		
+		return $result;			
 	}	
 	
 	/*	

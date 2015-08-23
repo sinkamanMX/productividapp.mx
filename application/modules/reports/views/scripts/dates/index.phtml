@@ -4,6 +4,7 @@
 <?php $this->headScript()->appendFile('/assets/js/datetime/moment.js') ?>  
 <?php $this->headScript()->appendFile('/assets/js/datetime/daterangepicker.js') ?> 
 <?php $this->headScript()->appendFile('/assets/js/bootstrap-datetimepicker.js') ?>  
+<?php $this->headScript()->appendFile('/js/modules/functionGral.js') ?>
 <?php $this->headScript()->appendFile('/js/reports/jsReportDates.js') ?>
 
 <?php $this->headScript()->captureStart() ?>
@@ -143,7 +144,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <button type="button" class="close" aria-hidden="true" onClick="closeWindow()">×</button>
                     <h4 class="modal-title" id="myLargeModalLabel">Información de la Cita</h4>
                 </div>
                 <div class="modal-body">

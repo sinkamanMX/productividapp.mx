@@ -1,26 +1,21 @@
 <?php $this->headScript()->appendFile('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false') ?>
 <?php $this->headScript()->appendFile('/assets/js/fuelux/wizard/wizard-custom.js') ?> 
 <?php $this->headScript()->appendFile('/assets/js/select2/select2.js') ?> 
-<?php $this->headScript()->appendFile('/js/modules/dates/jsValidateLocation.js') ?> 
-<?php $this->headScript()->captureStart() ?>
-    <?php $sAddress = ''; ?>
-    <?php foreach($this->aAddress as $key => $items):?> 
-        <?php $sAddress.= ($sAddress!="") ? ',' : ''; ?>
-        <?php $dataItem = $items['ESTADO'].",".
-                          $items['MUNICIPIO'].",".
-                          $items['COLONIA'].",".
-                          $items['CALLE'].",".
-                          $items['CP'].",".
-                          $items['NUMERO_INT'].",".
-                          $items['NUMERO_EXT'].",".
-                          $items['REFERENCIAS'].",".
-                          $items['LATITUD'].",".
-                          $items['LONGITUD'];?>
-        <?php $sAddress.= $items['ID_DOMICILIO'].":'".$dataItem."'";?>
-    <?php endforeach;?> 
-    var aDataAddress = {<?php echo $sAddress;?>}
-<?php $this->headScript()->captureEnd(); ?>
-
+<?php $this->headScript()->appendFile('/js/modules/functionGral.js') ?>
+<?php $this->headScript()->appendFile('/js/modules/dates/jsValidateEditLocation.js') ?> 
+<?php $bDisabled = (@$this->aData['ID_ESTATUS']!=1) ? 'disabled': '';?>
+     
+<?php if($this->resultOp=='updated' ): ?>
+    <script>
+        parent.assignValue('1');
+    </script>       
+    <?php $this->headScript()->captureStart() ?>
+        $().ready(function(){
+            console.log("paso algo");
+                showNotification('registerOk','');
+        });
+    <?php $this->headScript()->captureEnd() ?>                                                                
+<?php endif; ?>
      <!--/Page Header -->     
     <div id="divBodyPage" class="page-body">
         <?php if($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==0): ?>
@@ -35,19 +30,17 @@
 
                     <div id="WiredWizard" class="wizard wizard-wired" data-target="#WiredWizardsteps">
                         <ul class="steps">
-
-                            <li data-target="#wiredstep1"><a href="/dates/main/getdateinfo?strInput=98&calledFrom=<?php echo $this->aReturn;?>"><span class="step">1</span><span class="title">Información General</span><span class="chevron"></span></a></li>
+                            <li data-target="#wiredstep1"><a href="/dates/main/getdateinfo?catId=<?php echo $this->catId; ?> "><span class="step">1</span><span class="title">Información General</span><span class="chevron"></span></a></li>
                             <li data-target="#wiredstep2" class="active"><span class="step">2</span><span class="title">Ubicación</span> <span class="chevron"></span></li>
-
-                            <li data-target="#wiredstep2"><span class="step">3</span><span class="title">Información Adicional</span> <span class="chevron"></span></li>
-                            <li data-target="#wiredstep2"><span class="step">4</span><span class="title">Confirmar</span> <span class="chevron"></span></li>                            
+                            <li data-target="#wiredstep2"><a href="/dates/main/getextras?catId=<?php echo $this->catId;  ?>"><span class="step">3</span><span class="title">Información Adicional</span> <span class="chevron"></span></a></li>
+                            <li data-target="#wiredstep2"><a href="/dates/main/getpersonal?catId=<?php echo $this->catId;  ?>"><span class="step">4</span><span class="title">Personal</span> <span class="chevron"></span></a></li>
                         </ul>
 
                     </div>
                     <div class="step-content" id="WiredWizardsteps">
-                        <form id="formDbman" class="form-horizontal" role="form" method="POST" action="/dates/main/location">
-                            <input type="hidden" id="optReg" name="optReg" value="<?php echo (@$this->aData['inputFolio']!="") ? 'update': 'new';?>" />
-                            <input type="hidden" id="strTabSelected" name="strTabSelected" value="<?php echo $this->tabSelected;?>" />                        
+                        <form id="formDbman" class="form-horizontal" role="form" method="POST" action="/dates/main/getlocation">
+                            <input type="hidden" id="catId" name="catId"  value="<?php echo $this->catId; ?>"/>
+                            <input type="hidden" id="optReg" name="optReg" value="<?php echo (@$this->aData['FOLIO']!="") ? 'update': 'new';?>" />
                             <div class="step-pane active" id="wiredstep1">
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-6 col-xs-6">
@@ -55,20 +48,20 @@
                                             <div class="form-group">
                                                 <label for="inputCalle" class="col-sm-2 control-label no-padding-right">Calle</label>
                                                 <div class="col-sm-10">
-                                                    <input autocomplete="off"  type="text" class="form-control formInput" name="inputCalle" id="inputCalle" placeholder="Calle" value="<?php echo @$this->aDataLocation['inputCalle'];?>" readonly>
+                                                    <input autocomplete="off"  type="text" class="form-control formInput" name="inputCalle" id="inputCalle" placeholder="Calle" value="<?php echo @$this->aDataLocation['CALLE'];?>"  <?php echo $bDisabled; ?> >
                                                 </div>
                                             </div>                                           
                                             <div class="form-group">
                                                 <label for="inputNext" class="col-sm-2 control-label no-padding-right">No. Ext.</label>
                                                 <div class="col-sm-10">
                                                      <div class="col-lg-4 col-sm-4 col-xs-4 no-padding">
-                                                        <input  autocomplete="off" type="text" class="form-control formInput" name="inputNext" id="inputNext" placeholder="No. Ext." value="<?php echo @$this->aDataLocation['inputNext'];?>" readonly>                                          
+                                                        <input  autocomplete="off" type="text" class="form-control formInput" name="inputNext" id="inputNext" placeholder="No. Ext." value="<?php echo @$this->aDataLocation['NO_EXT'];?>"  <?php echo $bDisabled; ?> >                                          
                                                      </div>
                                                      <div class="col-lg-6 col-sm-6 col-xs-6 no-padding">
                                                         <div class="form-group no-padding no-margin">
                                                             <label for="inputNint" class="col-sm-4 control-label no-padding-right">No. Int.</label>
                                                             <div class="col-sm-8">
-                                                                <input autocomplete="off"  type="text" class="form-control formInput" name="inputNint" id="inputNint" placeholder="No. Int." value="<?php echo @$this->aDataLocation['inputNint'];?>" readonly>                                       
+                                                                <input autocomplete="off"  type="text" class="form-control formInput" name="inputNint" id="inputNint" placeholder="No. Int." value="<?php echo @$this->aDataLocation['NO_INT'];?>"  <?php echo $bDisabled; ?> >                                       
                                                             </div>
                                                         </div> 
                                                      </div>
@@ -77,26 +70,26 @@
                                             <div class="form-group">
                                                 <label for="inputColonia" class="col-sm-2 control-label no-padding-right">Colonia</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" autocomplete="off"  class="form-control formInput" name="inputColonia" id="inputColonia" placeholder="Colonia" value="<?php echo @$this->aDataLocation['inputColonia'];?>" readonly>                                          
+                                                    <input type="text" autocomplete="off"  class="form-control formInput" name="inputColonia" id="inputColonia" placeholder="Colonia" value="<?php echo @$this->aDataLocation['COLONIA'];?>"  <?php echo $bDisabled; ?> >                                          
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="inputMun" class="col-sm-2 control-label no-padding-right">Municipio</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" autocomplete="off"  class="form-control formInput" name="inputMun" id="inputMun" placeholder="Municipio" value="<?php echo @$this->aDataLocation['inputMun'];?>" readonly>                                          
+                                                    <input type="text" autocomplete="off"  class="form-control formInput" name="inputMun" id="inputMun" placeholder="Municipio" value="<?php echo @$this->aDataLocation['MUNICIPIO'];?>"  <?php echo $bDisabled; ?> >                                          
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="inputEdo" class="col-sm-2 control-label no-padding-right">Estado</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" autocomplete="off"  class="form-control formInput" name="inputEdo" id="inputEdo" placeholder="Estado" value="<?php echo @$this->aDataLocation['inputEdo'];?>" readonly>
+                                                    <input type="text" autocomplete="off"  class="form-control formInput" name="inputEdo" id="inputEdo" placeholder="Estado" value="<?php echo @$this->aDataLocation['ESTADO'];?>"  <?php echo $bDisabled; ?> >
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="inputCp" class="col-sm-2 control-label no-padding-right">CP</label>
                                                 <div class="col-sm-10">
                                                     <div class="col-lg-4 col-sm-4 col-xs-4 no-padding">
-                                                        <input type="text" autocomplete="off"  class="form-control formInput" name="inputCp" id="inputCp" placeholder="No. Ext." value="<?php echo @$this->aDataLocation['inputCp'];?>" readonly>
+                                                        <input type="text" autocomplete="off"  class="form-control formInput" name="inputCp" id="inputCp" placeholder="No. Ext." value="<?php echo @$this->aDataLocation['CP'];?>"  <?php echo $bDisabled; ?> >
                                                     </div>
                                                     <div id="btnOnMap" class="col-lg-8 col-sm-8 col-xs-8 no-padding centerButton">
                                                         <a href="javascript:searchAddress()" class="btn btn-palegreen pull-right"><i class="fa fa-map-marker"></i>Buscar Posición</a>
@@ -106,7 +99,7 @@
                                             <div class="form-group">
                                                 <label for="inputRefs" class="col-sm-2 control-label no-padding-right">Referencias</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" autocomplete="off"  class="form-control formInput" name="inputRefs" id="inputRefs" placeholder="Referencias" value="<?php echo @$this->aDataLocation['inputRefs'];?>" readonly>                                       
+                                                    <input type="text" autocomplete="off"  class="form-control formInput" name="inputRefs" id="inputRefs" placeholder="Referencias" value="<?php echo @$this->aDataLocation['REFERENCIAS'];?>"  <?php echo $bDisabled; ?> >                                       
                                                 </div>
                                             </div>                                               
                                         </div>     
@@ -119,26 +112,27 @@
                                         <div class="form-group">
                                             <label for="inputLatitud" class="col-sm-2 control-label no-padding-right">Latitud</label>
                                             <div class="col-sm-6">
-                                                <input type="text"  autocomplete="off" class="form-control formInput" name="inputLatitud" id="inputLatitud" placeholder="Latitud" value="<?php echo @$this->aDataLocation['inputLatitud'];?>" readonly>
+                                                <input type="text"  autocomplete="off" class="form-control formInput" name="inputLatitud" id="inputLatitud" placeholder="Latitud" value="<?php echo @$this->aDataLocation['LATITUD'];?>"  <?php echo $bDisabled; ?> >
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputLongitud" class="col-sm-2 control-label no-padding-right">Longitud</label>
                                             <div class="col-sm-6">
-                                                <input type="text"  autocomplete="off" class="form-control formInput" name="inputLongitud" id="inputLongitud" placeholder="Longitud" value="<?php echo @$this->aDataLocation['inputLongitud'];?>" readonly>
+                                                <input type="text"  autocomplete="off" class="form-control formInput" name="inputLongitud" id="inputLongitud" placeholder="Longitud" value="<?php echo @$this->aDataLocation['LONGITUD'];?>"  <?php echo $bDisabled; ?> >
                                             </div>
                                             <div class="col-sm-3 centerButton">
-                                                <a href="javascript:centerOnMap(1);" class="btn btn-palegreen pull-right"><i class="fa fa-map-marker"></i>Buscar Coordenadas</a>
+                                                <a href="javascript:centerOnMap(1);" class="btn btn-palegreen "><i class="fa fa-map-marker"></i>Buscar Coordenadas</a>
                                             </div>
                                         </div>
                                         <div id="map"  style="width:100%;height:230px;"></div>    
                                     </div>
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <div class="pull-right">
-                                            <button type="submit" class="btn btn-info">Guardar Cambios</button>
+                                            <?php if(@$this->aData['ID_ESTATUS']==1):?>
+                                                <button type="submit" class="btn btn-info">Guardar Cambios</button>
+                                            <?php endif;?>   
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="row">
                                     

@@ -1,3 +1,5 @@
+var bChangeFlag = 0;
+
 $( document ).ready(function() {
     $("#sidebar").addClass("menu-compact");
     $(".sidebar-toggler").toggleClass("active");
@@ -104,15 +106,15 @@ $( document ).ready(function() {
             }
         }).on('success.form.fv', function(e) {
             $('.loading-container').removeClass('loading-inactive');
-                e.preventDefault();
+                //e.preventDefault();
                 var $form = $(e.target);
                 var fv = $form.data('FormDataGral');
                     fv.defaultSubmit();
         }).on('err.field.fv', function(e, data) {
-              data.fv.disableSubmitButtons(false);
-            })
+        //      data.fv.disableSubmitButtons(false);
+        })
         .on('success.field.fv', function(e, data) {
-            data.fv.disableSubmitButtons(false);
+        //    data.fv.disableSubmitButtons(false);
         });
 
   var oTable = $('.table').dataTable({
@@ -193,35 +195,17 @@ $( document ).ready(function() {
 function showInfoDate(inputValue){ 
     $("#loader1").show(); 
     $('#iFrameSearch').hide();
-    $('#iFrameSearch').attr('src','/dates/main/getdateinfo?strInput='+inputValue+'&calledFrom=rdates');
+    $('#iFrameSearch').attr('src','/dates/main/getdateinfo?catId='+inputValue+'&calledFrom=rdates');
     $("#myLargeModalLabel").modal("show");
 }
 
-
-/*
-var sNameAssignInput = '';
-
-  
-
-function openSearch(sOptions,sNameinput){
-  sNameAssignInput = sNameinput;
-    $("#loader1").show(); 
-    $('#iFrameSearch').hide();
-    $('#iFrameSearch').attr('src','/dbman/search/index?ssIdource='+sOptions);
-    $("#myLargeModalLabel").modal("show");
+function assignValue(option){
+  bChangeFlag = option;
 }
 
-function assignValue(nameValue,IdValue){
-    $("#"+sNameAssignInput).val(IdValue);
-    $("#inputSearch").val(nameValue);
-    $("#myLargeModalLabel").modal("hide");
+function closeWindow(){
+  $("#myLargeModalLabel").modal("hide");
+  if(bChangeFlag=='1'){
+    $('#formDbman').bootstrapValidator('defaultSubmit',true);
+  }
 }
-
-function cleanSearch(sNameinput){
-    $("#"+sNameinput).val("NULL");
-    $("#inputSearch").val("");
-    $("#spanSearchOff").hide('slow');
-    $("#spanSearchOn").show('slow');
-}
-*/
-
