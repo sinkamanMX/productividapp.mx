@@ -120,13 +120,19 @@
                                                 <td><?php echo $items['N_PERSONAL'];?></td>
                                                 <td><?php echo $items['N_FECHA'];?></td>
                                                 <td>
+
                                                     <?php if($items['ID_ESTATUS']!=4):?>
-                                                        <a class="btn btn-info btn-xs" href="javascript:showInfoDate(<?php echo $items['ID_CITA'] ?>);" data-toggle="tooltip" data-placement="top" data-original-title="Información de la Cita"><i class="fa fa-info-circle"></i></a>
-                                                    <?php else:?>
-                                                        <a class="btn btn-success btn-xs" href="/reports/dates/dateresult?strInput=<?php echo $items['ID_CITA'] ?>&calledFrom=rdates" data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar"><i class="fa fa-times "></i></a>
-                                                    <?php endif;?>                                                    
+                                                        <a class="btn btn-info btn-xs tooltip-info" href="javascript:showInfoDate(<?php echo $items['ID_CITA'] ?>);" data-toggle="tooltip" data-placement="top" data-original-title="Información de la Cita"><i class="fa fa-info-circle"></i></a>
+                                                    <?php elseif($items['ID_ESTATUS']== 4 ):?>
+                                                        <a class="btn btn-info btn-xs tooltip-info" href="/reports/dates/dateresult?strInput=<?php echo $items['ID_CITA'] ?>&calledFrom=rdates" data-toggle="tooltip" data-placement="bottom" data-original-title="Ver Resultados"><i class="fa fa-eye"></i></a>
+                                                        <a class="btn btn-success btn-xs tooltip-success" href="/reports/dates/dateresult?strInput=<?php echo $items['ID_CITA'] ?>&calledFrom=rdates" data-toggle="tooltip" data-placement="bottom" data-original-title="Exportar Todo"><i class="fa fa-file-pdf-o"></i></a>
+                                                    <?php endif;?>
+                                                    <?php if($items['ID_ESTATUS']== 1 || $items['ID_ESTATUS']== 5 ):?>
+                                                        <a class="btn btn-warning btn-xs tooltip-warning" href="javascript:reprogramation(<?php echo $items['ID_CITA'] ?>);" data-toggle="tooltip" data-placement="bottom" data-original-title="Reprogramar Cita"><i class="fa fa-clock-o"></i></a>
+                                                        <a class="btn btn-danger btn-xs  tooltip-danger"  href="javascript:cancelDate(<?php echo $items['ID_CITA'] ?>);" data-toggle="tooltip" data-placement="bottom" data-original-title="Cancelar Cita"><i class="fa fa-times-circle"></i></a>
+                                                    <?php endif;?>
                                                 </td>
-		                                    </tr>
+		                                  </tr>
 		                                <?php endforeach;?>
 		                            </tbody>
 		                        </table>
@@ -138,7 +144,7 @@
     	</div>
 	</div>
 
-    <!--LArge Modal Templates-->
+    <!--Large Modal Templates-->
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="myLargeModalLabel" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -155,3 +161,71 @@
         </div><!-- /.modal-dialog -->
     </div>
     <!--End Large Modal Templates-->
+
+
+    <!--Danger Modal Templates-->
+    <div id="divModalRep" class="modal modal-message modal-warning fade" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">                    
+                    <!--<i class="glyphicon glyphicon-fire"></i>-->
+                </div>
+                <div class="modal-title">Reprogramación de la Cita</div>
+                <div class="modal-body">  
+
+                    <form id="formReprog" role="form" method="POST" action="/reports/dates/index">                    
+                        <input type="hidden" id="catidReprog" name="catId" value="-1"/>
+                        <input type="hidden" id="optReg" name="optReg" value="reprog" />
+                        <div class="form-group col-md-12 col-xs-12">
+                            <label for="inputFecha" class="col-sm-3 control-label no-padding-right">Fecha</label>                                                
+                            <div class="col-sm-9">    
+                                <input onChange="validateReprog()" autocomplete="off" class="form-control date-picker" name="inputFecha" id="inputFecha" type="text" data-date-format="yyyy-mm-dd" readonly value="">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12 col-xs-12">
+                            <label for="inputHora" class="col-sm-3 control-label no-padding-right">Hora</label>
+                            <div class="col-sm-9">  
+                                <input onChange="validateReprog()"  autocomplete="off" class="form-control" name="inputHora" id="inputHora" type="text" value="" readonly>
+                            </div>
+                        </div>                          
+                        <span>Indique el motivo de la reprogramación:</span><br/>
+                        <textarea id="txtCommentRep" onkeyup="validateReprog()" name="txtCommentRep" rows="3" class="col-md-12 col-xs-12"></textarea>
+                        <br/>
+                    </form>
+                    </br>                    
+                </div>
+                <div class="modal-footer">
+                    <button id="btnReprog" type="submit" class="btn btn-warning" onClick="confirmReprog()">Confirmar Reprogramación</button>
+                </div>
+            </div> <!-- / .modal-content -->
+        </div> <!-- / .modal-dialog -->
+    </div>
+    <!--End Danger Modal Templates-->    
+  
+
+
+    <!--Danger Modal Templates-->
+    <div id="divModalCancel" class="modal modal-message modal-danger fade" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">                    
+                    <!--<i class="glyphicon glyphicon-fire"></i>-->
+                </div>
+                <div class="modal-title">Cancelación de Cita</div>
+                <div class="modal-body">  
+                    <form id="formCancel" role="form" method="POST" action="/reports/dates/index">                    
+                        <input type="hidden" id="catidCancel" name="catId" value="-1"/>
+                        <input type="hidden" id="optReg" name="optReg" value="cancel" />
+                        <span>Indique el motivo de cancelación:</span><br/>
+                        <textarea id="txtCancelComment" onkeyup="validateComment(this.value)" name="txtCancelComment" rows="3" class="col-md-12 col-xs-12"></textarea>                    
+                    </form>
+                    </br>
+                    </br>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnConfirmc" type="submit" class="btn btn-danger" onClick="confirmCancel()">Cancelar la Cita</button>
+                </div>
+            </div> <!-- / .modal-content -->
+        </div> <!-- / .modal-dialog -->
+    </div>
+    <!--End Danger Modal Templates-->    

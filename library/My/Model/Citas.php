@@ -350,5 +350,45 @@ class My_Model_Citas extends My_Db_Table
             echo $e->getErrorMessage();
         }
 		return $result;
-    }  	
+    }
+    
+    public function cancelDate($data){
+       	$result     = Array();
+        $result['status']  = false;
+
+        $sql="UPDATE $this->_name
+				SET ID_ESTATUS	    = 3
+			WHERE $this->_primary   = ".$data['catId']." LIMIT 1";
+        try{            
+    		$query   = $this->query($sql,false);
+			if($query){
+				$result['status']  = true;					
+			}	
+        }catch(Exception $e) {
+            echo $e->getMessage();
+            echo $e->getErrorMessage();
+        }
+		return $result;
+    }
+    
+    public function reprogDate($data){
+       	$result     = Array();
+        $result['status']  = false;
+
+        $sql="UPDATE $this->_name
+				SET ID_ESTATUS	    = 5,
+					FECHA_CITA	    = '".$data['inputFecha']."',
+					HORA_CITA		= '".$data['inputHora']."'
+			WHERE $this->_primary   = ".$data['catId']." LIMIT 1";
+        try{            
+    		$query   = $this->query($sql,false);
+			if($query){
+				$result['status']  = true;					
+			}	
+        }catch(Exception $e) {
+            echo $e->getMessage();
+            echo $e->getErrorMessage();
+        }
+		return $result;
+    }       
 }

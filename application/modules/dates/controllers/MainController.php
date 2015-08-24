@@ -549,4 +549,46 @@ class dates_MainController extends My_Controller_Action
 			echo "Message: " . $e->getMessage() . "\n";                
         } 	
     }
+    
+    public function canceldateAction(){
+    	try{
+    		$this->_helper->layout->disableLayout();
+			$this->_helper->viewRenderer->setNoRender();   			
+	        $answer = Array('answer' => 'no-data');
+    		
+    		if($this->_idUpdate !="" && $this->_dataOp=='cancel'){
+    			$cCitas = new My_Model_Citas();
+    			$canceled = $cCitas->cancelDate($this->_dataIn);
+    			if($canceled['status']){
+    				$answer = Array('answer' => 'canceled');
+    			}
+    		}
+    		
+	        echo Zend_Json::encode($answer);
+		}catch (Zend_Exception $e) {
+            echo "Caught exception: " . get_class($e) . "\n";
+			echo "Message: " . $e->getMessage() . "\n";                
+        }
+    }
+    
+    public function reprogdateAction(){
+        try{
+    		$this->_helper->layout->disableLayout();
+			$this->_helper->viewRenderer->setNoRender();   			
+	        $answer = Array('answer' => 'no-data');
+    		
+    		if($this->_idUpdate !="" && $this->_dataOp=='reprog'){
+    			$cCitas = new My_Model_Citas();
+    			$canceled = $cCitas->reprogDate($this->_dataIn);
+    			if($canceled['status']){
+    				$answer = Array('answer' => 'updated');
+    			}
+    		}
+    		
+	        echo Zend_Json::encode($answer);
+		}catch (Zend_Exception $e) {
+            echo "Caught exception: " . get_class($e) . "\n";
+			echo "Message: " . $e->getMessage() . "\n";                
+        }
+    }
 }

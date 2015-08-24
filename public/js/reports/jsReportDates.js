@@ -49,7 +49,6 @@ $( document ).ready(function() {
         allowClear: true
     });  
 
-
     $('#formDbman')
         .bootstrapValidator({
             live: 'true',
@@ -208,4 +207,82 @@ function closeWindow(){
   if(bChangeFlag=='1'){
     $('#formDbman').bootstrapValidator('defaultSubmit',true);
   }
+}
+
+function reprogramation(inputValue){
+  $("#catidReprog").val(inputValue);
+  $("#btnReprog").prop( "disabled", true );
+  $("#divModalRep").modal("show");  
+
+  $('#inputFecha').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      startDate: '2015-04-23'
+  });
+
+  $('#inputHora').timepicker({ 
+      showMeridian:false,
+      template: 'dropdown',
+      showSeconds:true,
+      showInputs:false,
+      modalBackdrop:true,
+  });  
+}
+
+function validateReprog(){
+  var sDate       = $("#inputFecha").val();
+  var sHour       = $("#inputHora").val();
+  var sTxtComment = $("#txtCommentRep").val();
+
+  if(sDate!="" && sHour!="" && sTxtComment!=""){
+    $("#btnReprog").prop( "disabled", false );
+  }else{
+    $("#btnReprog").prop( "disabled", true );
+  }
+}
+
+function confirmReprog(){
+  var form = $( '#formReprog');
+    $.ajax( {
+      type: "POST",
+      url: "/dates/main/reprogdate",
+      dataType : 'json',
+      data: form.serialize(),
+        success: function(data) {
+            var result = data.answer;
+            if(result == 'updated'){
+              $('#formDbman').bootstrapValidator('defaultSubmit',true);
+            }            
+        }
+    });  
+}
+
+function cancelDate(inputValue){
+  $("#btnConfirmc").prop( "disabled", true );
+  $("#catidCancel").val(inputValue);
+  $("#divModalCancel").modal("show");     
+}
+
+function validateComment(dataInput){
+  if(dataInput!=""){
+    $("#btnConfirmc").prop( "disabled", false );
+  }else{
+    $("#btnConfirmc").prop( "disabled", true );
+  }
+}
+
+function confirmCancel(){
+  var form = $( '#formCancel');
+    $.ajax( {
+      type: "POST",
+      url: "/dates/main/canceldate",
+      dataType : 'json',
+      data: form.serialize(),
+        success: function(data) {
+            var result = data.answer;
+            if(result == 'canceled'){
+              $('#formDbman').bootstrapValidator('defaultSubmit',true);
+            }            
+        }
+    });
 }
