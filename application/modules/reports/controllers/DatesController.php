@@ -62,6 +62,56 @@ class reports_DatesController extends My_Controller_Action
 		} catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
-        }     	
-    }       
+        }
+    }
+    
+    public function getdateinfoAction(){
+    	try{
+    		$cCitas 	= new My_Model_Citas();
+    		$cResultado = new My_Model_DetailDates();
+    		$idEmpresa  = $this->_dataUser['ID_EMPRESA']; 
+    		$aDataCita	= Array();
+    		$aDataLocation = Array();
+    		$aFormularios= Array();
+    		$aResult    = Array();
+    		if(isset($this->_dataIn['strInput'])){
+    			$idDate    = $this->_dataIn['strInput'];
+    			$aDataCita = $cCitas->getData($idDate,$idEmpresa);
+    			$aDataLocation = $cCitas->getLocation($idDate);
+    			$aFormularios  = $cResultado->getFormularios($aDataCita['ID_TIPO']);
+    			$aDataResult   = $cResultado->getAllData($idDate);
+    			
+				$aResult = $this->processResult($aFormularios, $aDataResult);
+    		}else{
+    			$this->redirect("/reports/dates/index");	
+    		}
+    		
+    		$this->view->aData 		   = $aDataCita;
+    		$this->view->aDataLocation = $aDataLocation;	
+    		$this->view->aFormluarios  = $aResult;
+    	} catch (Zend_Exception $e) {
+            echo "Caught exception: " . get_class($e) . "\n";
+        	echo "Message: " . $e->getMessage() . "\n";                
+        }
+    }
+    
+    public function processResult($aFormularios, $aDataResult){
+    	$aResult = Array();
+    	try{
+    		
+    		foreach($aFormularios as $key => $items){
+    			foreach($aDataResult as $key => $iResults){
+    				if($items['ID_FORMULARIO']==$iResults['ID_FORMULARIO']){    					
+    					$items['result'][] = $iResults;
+    				}
+    			}
+    			$aResult[] = $items;
+    		}
+    		
+    	return $aResult;
+        }catch(Zend_Exception $e) {
+            echo "Caught exception: " . get_class($e) . "\n";
+        	echo "Message: " . $e->getMessage() . "\n";                
+        }
+    }
 }

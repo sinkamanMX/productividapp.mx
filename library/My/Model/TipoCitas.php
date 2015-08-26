@@ -113,7 +113,7 @@ class My_Model_TipoCitas extends My_Db_Table
 		$result= Array();
 		$this->query("SET NAMES utf8",false);
 		 		
-    	$sql ="SELECT R.ORDEN, F.TITULO
+    	$sql ="SELECT R.ORDEN, F.TITULO, R.ID_FORMULARIO
 				FROM PROD_TIPO_FORMULARIO R
 				INNER JOIN PROD_FORMULARIO F ON R.ID_FORMULARIO = F.ID_FORMULARIO
 				WHERE ID_TIPO_CITA = $idTipo
