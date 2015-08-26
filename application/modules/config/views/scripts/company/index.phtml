@@ -1,446 +1,435 @@
 <?php $this->headScript()->appendFile('/js/modules/config/validateConfig.js') ?>
-<!-- BEGIN PAGE HEADER-->
-	<div class="row">
-		<div class="col-md-12">
-			<!-- BEGIN PAGE TITLE & BREADCRUMB-->
-			<h3 class="page-title">
-			Configuración <small>general</small>
-			</h3>
-			<!-- END PAGE TITLE & BREADCRUMB-->
-		</div>
-	</div>
-	<!-- END PAGE HEADER-->
-	<!-- BEGIN PAGE CONTENT-->
-	<div class="row">
-		<div class="col-md-6">
-			<div class="portlet box blue">
-				<div class="portlet-title">
-					<div class="caption">
-						<i class="fa fa-reorder"></i>Datos de la Empresa
-					</div>
-					<div class="tools">
-						<a href="javascript:;" class="reload">
-						</a>						
-					</div>
-				</div>
-				<div class="portlet-body form">
-					<!-- BEGIN FORM-->
-					<form id="FormDataGral" class="form-horizontal" role="form" method="POST" action="/config/company/index">
-						<input type="hidden" name="optReg" value="updateCompany" />
-						<div id="divErrorForm1" class="alert alert-danger display-hide">
-							<button class="close" data-close="alert"></button>
-							El registro contiene uno o mas errores, favor de verificarlos.
-						</div>	
 
-				        <?php if($this->resultOp=='okCompany'): ?>
-				            <div class="alert alert-success alert-dismissable">
-				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-				                Datos se almacenaron correctamente.
-				            </div>  	
-				        <?php endif; ?>		
-				            	              
-		            	<?php if(@$this->errors['errorCompany']):?>
-				            <div class="alert alert-danger alert-dismissable">
-				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-							  <h4>Error</h4>
-							  <div>Ha oocurrido un error al actualizar la información.</div>
-							</div>	                	
-		            	<?php endif;?>													
-						<div class="form-body minh-420">
-							<div class="form-group">
-								<label class="control-label col-md-4">Nombre de la Empresa
-									<span class="required">*</span>
-								</label>
-								<div class="col-md-8">
-									<input id="txtNameCompany" name="txtNameCompany" type="text" value="<?php echo @$this->aDataInfo['NOMBRE']; ?>" class="form-control" placeholder="Nombre de la Empresa">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-4">Razón Social
-									<span class="required">*</span>
-								</label>
-								<div class="col-md-8">
-									<input id="txtNameRazon" name="txtNameRazon"  type="text" value="<?php echo @$this->aDataInfo['RAZON_SOCIAL']; ?>"  class="form-control" placeholder="Razón Social">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-4">Dirección
-									<span class="required">*</span>
-								</label>
-								<div class="col-md-8">
-									<input id="txtNameDir" name="txtNameDir"  type="text" value="<?php echo @$this->aDataInfo['DIRECCION']; ?>"  class="form-control" placeholder="Razón Social">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-4">Responsable
-									<span class="required">*</span>
-								</label>
-								<div class="col-md-8">
-									<input id="txtNameResp" name="txtNameResp"  type="text" value="<?php echo @$this->aDataInfo['NOMBRE_RESPONSABLE']; ?>"  class="form-control" placeholder="Nombre del Responsable">
-								</div>
-							</div>							
-							<div class="form-group">
-								<label class="control-label col-md-4">Teléfono
-									<span class="required">*</span>
-								</label>
-								<div class="col-md-8">
-									<input id="txtNameTel" name="txtNameTel"  type="text" value="<?php echo @$this->aDataInfo['TELEFONO']; ?>"  class="form-control" placeholder="Telefono">
-								</div>
-							</div>							
-							<div class="form-group">
-								<label class="control-label col-md-4">Email
-									<span class="required">*</span>
-								</label>
-								<div class="col-md-8">
-									<input id="txtNameEMail" name="txtNameEMail"  type="text" value="<?php echo @$this->aDataInfo['EMAIL']; ?>"  class="form-control" placeholder="Email">
-								</div>
-							</div>
-						</div>
-						<div class="form-actions">
-							<div class="pull-right">
-								<button type="submit" class="btn blue btnSave">Guardar Cambios</button>
-								<!--<button type="button" class="btn default" onClick="location.href='<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>-->
-							</div>
-						</div>
-					</form>
-					<!-- END FORM-->
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="portlet box blue">
-				<div class="portlet-title">
-					<div class="caption">
-						<i class="fa fa-reorder"></i>Configuraciòn General
-					</div>
-					<div class="tools">
-						<a href="javascript:;" class="reload">
-						</a>						
-					</div>
-				</div>
-				<div class="portlet-body form">
-					<form id="FormConfTel" class="form-horizontal" role="form" method="POST" action="/config/company/index">
-						<input type="hidden" name="optReg" value="updatePhoneConf" />
-						<input type="hidden" id="boolLocalizar" name="boolLocalizar" value="?php echo (@$this->aConfig['LOCALIZACION']) ;?>" />
-						<div id="divErrorForm2" class="alert alert-danger display-hide">
-							<button class="close" data-close="alert"></button>
-							El registro contiene uno o mas errores, favor de verificarlos.
-						</div>	
-				        <?php if($this->resultOp=='okPhoneConf'): ?>
-				            <div class="alert alert-success alert-dismissable">
-				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-				                Datos se almacenaron correctamente.
-				            </div>  	
-				        <?php endif; ?>		
-				            	              
-		            	<?php if(@$this->errors['errorPhoneConf']):?>
-				            <div class="alert alert-danger alert-dismissable">
-				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-							  <h4>Error</h4>
-							  <div>Ha oocurrido un error al actualizar la información.</div>
-							</div>	                	
-		            	<?php endif;?>							
-						<div class="form-body minh-420">
-							<div class="form-group">
-								<label class="control-label col-md-3">Localización de Teléfonos
-								<span class="required">
-									 *
-								</span>
-								</label>
-								<div class="col-md-4">
-									<select id="cboLocalizar" class="form-control" name="cboLocalizar" class="select2me" onChange="onChangeLoc(this.value)">
-										<?php echo $this->Localizar; ?>
-									</select>
-								</div>
-							</div>
-							<div id="divOptionsTime" style="display:<?php echo (@$this->aConfig['LOCALIZACION']==0) ? 'none': 'block';?>">
-								<div class="form-group">
-									<label class="col-md-3 control-label">Tiempo de Reporte</label>
-									<div class="col-md-9">
-										<input id="txtTimeReporte" name="txtTimeReporte" type="text" class="form-control input-inline input-small" placeholder="30" value="<?php echo @$this->aConfig['TIEMPO_REPORTE']; ?>">
-										 minutos.
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label">Tiempo Encendido</label>
-									<div class="col-md-9">
-										<input id="txtTimeEncendido" name="txtTimeEncendido"  type="text" class="form-control input-inline input-small" placeholder="30" value="<?php echo @$this->aConfig['TIEMPO_ENCENDIDO']; ?>">
-										minutos.
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label">Tiempo Apagado</label>
-									<div class="col-md-9">
-										<input id="txtTimeApagado" name="txtTimeApagado"  type="text" class="form-control input-inline input-small" placeholder="> 1500" value="<?php echo @$this->aConfig['TIEMPO_APAGADO']; ?>">
-										minutos.
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label">Tiempo sin Reportar</label>
-									<div class="col-md-9">
-										<input id="txtTimeSinRep" name="txtTimeSinRep"  type="text" class="form-control input-inline input-small" placeholder="180" value="<?php echo @$this->aConfig['TIEMPO_SIN_REPORTAR']; ?>">
-										minutos.
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label">Titulo Tiempo sin reportar</label>
-									<div class="col-md-9">
-										<input id="txtTituloReporteX" name="txtTituloReporteX"  type="text" class="form-control input-inline input-large" placeholder="X" value="<?php echo @$this->aConfig['TITULO_TIEMPO_X_SIN_REPORTAR']; ?>">
-									</div>
-								</div>							
-								<div class="form-group">
-									<label class="col-md-3 control-label">Tiempo</label>
-									<div class="col-md-9">
-										<input id="txtTimeReporteX" name="txtTimeReporteX"  type="text" class="form-control input-inline input-small" placeholder="X" value="<?php echo @$this->aConfig['TIEMPO_X_SIN_REPORTAR']; ?>">
-										minutos sin reportar
-									</div>
-								</div>		
-							</div>					
-						</div>
-						<div class="form-actions" id="divFooterTime" style="display:<?php echo (@$this->aConfig['LOCALIZACION']==0) ? 'none': 'block';?>">
-							<div class="pull-right">
-								<button type="submit" class="btn blue btnSave">Guardar Cambios</button>
-								<button type="button" class="btn default" onClick="location.href='<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>
-							</div>
-						</div>
-					</form>					
-					<!-- END FORM-->
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="page-header position-relative">
+        <div class="header-title">
+            <h1>
+                Configuración
+            </h1>
+            <small>general</small>
+        </div>
+        <!--Header Buttons-->
+        <div class="header-buttons">
 
-<div class="row">
-		<div class="col-md-6">
-			<div class="portlet box blue">
-				<div class="portlet-title">
-					<div class="caption">
-						<i class="fa fa-reorder"></i>Resumen del plan
-					</div>
-					<div class="tools">						
-						<a href="javascript:;" class="reload">
-						</a>						
-					</div>
-				</div>
-				<div class="portlet-body form">
-					<!-- BEGIN FORM-->
-					<form action="#">
-						<div class="form-body minh-420">	
-							<div class="row">
-								<div class="form-group">
-									<label class="control-label col-md-3">Plan Contratado</label>
-									<div class="col-md-9">
-										<p class="control-label">
-											<b>
-											 <?php echo @$this->aConsumo['N_PLAN']; ?>
-											</b>
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="form-group">
-									<label class="control-label col-md-3">Periodo</label>
-									<div class="col-md-9">
-										<p class="control-label"><b>
-											 <?php echo @$this->aConsumo['MES']."-".@$this->aConsumo['ANIO']; ?>
-											</b>
-										</p>
-									</div>
-								</div>			
-							</div>	
-							<div class="row">
-								<div class="form-group">
-									<label class="control-label col-md-3">Estatus Pago</label>
-									<div class="col-md-9">
-										<p class="control-label"><b>
-										 <?php echo ($this->aConsumo['PAGADO']!=1) ? 'Pendiente': 'Pagado'; ?>
-										</b>
-										</p>
-									</div>
-								</div>			
-							</div>	
-							<div class="row">
-								<div class="col-md-12">
-									<h4>Fotos</h4>
-								</div>								
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-5">Utilizadas</label>
-										<div class="col-md-7">
-											<p class="control-label"><b>
-											 <?php echo @$this->aConsumo['TOTAL_FOTOS']; ?>
-											</b>
-											</p>
-										</div>
-									</div>			
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-5">Disponibles</label>
-										<div class="col-md-7">
-											<p class="control-label"><b>
-											 <?php echo (@$this->aConsumo['D_FOTOS']-@$this->aConsumo['TOTAL_FOTOS']); ?>
-											</b>
-											</p>
-										</div>
-									</div>			
-								</div>
-							</div>	
-							<div class="row">
-								<div class="col-md-12">
-									<h4>Actividades</h4>
-								</div>								
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-5">Utilizadas</label>
-										<div class="col-md-7">
-											<p class="control-label"><b>
-											 <?php echo @$this->aConsumo['TOTAL_ALTA_ACTIVIDADES']; ?>
-											</b>
-											</p>
-										</div>
-									</div>			
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-5">Disponibles</label>
-										<div class="col-md-7">
-											<p class="control-label"><b>
-											<?php echo (@$this->aConsumo['D_ACTIVIDADES']-@$this->aConsumo['TOTAL_ALTA_ACTIVIDADES']); ?>
-											</b>
-											</p>
-										</div>
-									</div>			
-								</div>	
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h4>Formularios</h4>
-								</div>								
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-5">Utilizadas</label>
-										<div class="col-md-7">
-											<p class="control-label"><b>
-											 <?php echo @$this->aConsumo['TOTAL_FORMULARIOS']; ?>
-											</b>
-											</p>
-										</div>
-									</div>			
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-5">Disponibles</label>
-										<div class="col-md-7">
-											<p class="control-label"><b>
-											<?php echo (@$this->aConsumo['D_FORMULARIOS']-@$this->aConsumo['TOTAL_FORMULARIOS']); ?>
-											</b>
-											</p>
-										</div>
-									</div>			
-								</div>	
-							</div>	
-							<div class="row">
-								<div class="col-md-12">
-									<h4>Actividades Capturadas</h4>
-								</div>								
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-5">Utilizadas</label>
-										<div class="col-md-7">
-											<p class="control-label"><b>
-											 <?php echo @$this->aConsumo['TOTAL_CAPTURA_ACTIVIDADES']; ?>
-											</b>
-											</p>
-										</div>
-									</div>			
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-5">Disponibles</label>
-										<div class="col-md-7">
-											<p class="control-label"><b>
-											 <?php echo (@$this->aConsumo['D_CAPTURA']-@$this->aConsumo['TOTAL_CAPTURA_ACTIVIDADES']); ?>
-											</b>
-											</p>
-										</div>
-									</div>			
-								</div>	
-							</div>																														
-						</div>														
-					</form>
-					<!-- END FORM-->
-				</div>
-			</div>
-		</div>	
-		<div class="col-md-6">
-		<!-- BEGIN PORTLET-->
-		<div class="portlet box blue">
-			<div class="portlet-title">
-				<div class="caption">
-					<i class="fa fa-reorder"></i>Modulos Disponibles
-				</div>
-				<div class="tools">
-					<a class="reload" href="javascript:;">
-					</a>
-				</div>
-			</div>			
-			<div class="portlet-body form minh-420 ">
-				<form id="FormData3" class="form-horizontal" role="form" method="POST" action="/config/company/index">
-					<input type="hidden" name="optReg" value="updateModules" />
-					<div id="divErrorForm3" class="alert alert-danger display-hide">
-						<button class="close" data-close="alert"></button>
-						Debes seleccionar al menos una opción.
-					</div>	
+        </div>
+        <!--Header Buttons End-->
+    </div>
+    <!-- /Page Header -->
 
-			        <?php if($this->resultOp=='okModules'): ?>
-			            <div class="alert alert-success alert-dismissable">
-			                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-			                Datos se almacenaron correctamente.
-			            </div>  	
-			        <?php endif; ?>		
-			            	              
-	            	<?php if(@$this->errors['errorModules']):?>
-			            <div class="alert alert-danger alert-dismissable">
-			                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-						  <h4>Error</h4>
-						  <div>Ha oocurrido un error al actualizar la información.</div>
-						</div>	                	
-	            	<?php endif;?>											
-					<table class="table table-striped table-bordered table-hover">
-						<thead>
-							<tr>
-								<th class="table-checkbox">
-									<input onClick="optionAll(this.checked);" type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes"/>
-								</th>
-								<th>
-									 Menú
-								</th>
-								<th>
-									 Modulo
-								</th>			
-							</tr>
-						</thead>
-						<tbody class="scrollY400">
-							<?php foreach(@$this->aModules as $key => $items):?>
-	                    		<tr>
-	                    			<td><input name="formsValues[]"  value="<?php echo $items['ID_MODULO'];?>" class="chkOn" type="checkbox" <?php echo ($items['VISIBLE']) ? 'checked':'';?> ></td>
-	                    			<td><?php echo $items['MENU'];?></td>
-	                    			<td><?php echo $items['MODULO'];?></td>
-	                    		</tr>
-							<?php endforeach;?>				
-						</tbody>
-					</table>
-					<div class="form-actions" id="divFooterTime" style="display:<?php echo (@$this->aConfig['LOCALIZACION']==0) ? 'none': 'block';?>">
-						<div class="pull-right">
-							<button type="button" onClick="validateModules()" class="btn blue btnSave">Guardar Cambios</button>
-							<button type="button" class="btn default" onClick="location.href='<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>
-						</div>
-					</div>	
-				</form>							
-			</div>
-		</div>
-		<!-- END PORTLET-->
-	</div>
-</div>
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="row">
+
+					<div class="tabbable">
+					    <ul class="nav nav-tabs" id="myTab">					    
+					        <li class="<?php echo ($this->resultOp=='okPhoneConf' || !isset($this->resultOp) || @$this->errors['errorPhoneConf']) ? 'active':'tab-blue'; ?>">
+					        	<a data-toggle="tab" href="#home">Configuraciòn General</a>
+					        </li>
+					        <li class="<?php echo ($this->resultOp=='okCompany' || @$this->errors['errorCompany']) ? 'active':'tab-blue'; ?>">
+					            <a data-toggle="tab" href="#profileCompany">Datos de la Empresa</a>
+					        </li>
+					        <li class="tab-blue <?php echo ($this->resultOp=='okModules' ||  @$this->errors['errorModules']) ? 'active':'tab-blue'; ?>">
+					            <a data-toggle="tab" href="#tabModules">Modulos Disponibles</a>
+					        </li>					        
+					        <li class="tab-blue">
+					            <a data-toggle="tab" href="#tabPlan">Resumen del plan</a>
+					        </li>					        
+					    </ul>
+
+					    <div class="tab-content">
+					        <div id="home" class="tab-pane <?php echo ($this->resultOp=='okPhoneConf' || !isset($this->resultOp) || @$this->errors['errorPhoneConf']) ? 'in active':''; ?>">							            
+
+                                <div id="horizontal-form  minh-420">
+									<form id="FormConfTel" class="form-horizontal" role="form" method="POST" action="/config/company/index">
+										<input type="hidden" name="optReg" value="updatePhoneConf" />
+										<input type="hidden" id="boolLocalizar" name="boolLocalizar" value="?php echo (@$this->aConfig['LOCALIZACION']) ;?>" />
+								        <?php if($this->resultOp=='okPhoneConf'): ?>
+											<div class="alert alert-success fade in">
+	                                            <button class="close" data-dismiss="alert">
+	                                                ×
+	                                            </button>
+	                                            <i class="fa-fw fa fa-check"></i>
+	                                            <strong> OK </strong> Datos se almacenaron correctamente.
+	                                        </div>	
+								        <?php endif; ?>		
+								            	              
+						            	<?php if(@$this->errors['errorPhoneConf']):?>
+											<div class="alert alert-danger fade in">
+	                                            <button class="close" data-dismiss="alert">
+	                                                ×
+	                                            </button>
+	                                            <i class="fa-fw fa fa-times"></i>
+	                                            <strong>Error!</strong> Ha ocurrido un error al actualizar la información.
+	                                        </div>	              	
+						            	<?php endif;?>	
+
+										<div class="form-group">
+											<label for="cboLocalizar" class="col-lg-3 no-padding-right">Localización de Teléfonos <sup>*</sup></label>
+											<div class="col-sm-2">
+												<select id="cboLocalizar" class="form-control col-sm-5" name="cboLocalizar" class="select2me" onChange="onChangeLoc(this.value)">
+													<?php echo $this->Localizar; ?>
+												</select>
+											</div>
+										</div>
+										<div id="divOptionsTime" style="display:<?php echo (@$this->aConfig['LOCALIZACION']==0) ? 'none': 'block';?>">
+											<div class="form-group">
+												<label for="cboLocalizar" class="col-lg-3 no-padding-right">Tiempo de Reporte (mins.)</label>
+												<div class="col-sm-3">													
+													<input id="txtTimeReporte" name="txtTimeReporte" type="text" class="form-control input-inline input-small  col-sm-5" placeholder="30" value="<?php echo @$this->aConfig['TIEMPO_REPORTE']; ?>">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="cboLocalizar" class="col-lg-3 no-padding-right">Tiempo Encendido (mins.)</label>
+												<div class="col-sm-3">
+													<input id="txtTimeEncendido" name="txtTimeEncendido"  type="text" class="form-control input-inline input-small" placeholder="30" value="<?php echo @$this->aConfig['TIEMPO_ENCENDIDO']; ?>">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="cboLocalizar" class="col-lg-3 no-padding-right">Tiempo Apagado (mins.)</label>
+												<div class="col-sm-3">
+													<input id="txtTimeApagado" name="txtTimeApagado"  type="text" class="form-control input-inline input-small" placeholder="> 1500" value="<?php echo @$this->aConfig['TIEMPO_APAGADO']; ?>">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="cboLocalizar" class="col-lg-3 no-padding-right">Tiempo sin Reportar (mins.)</label>
+												<div class="col-sm-3">
+													<input id="txtTimeSinRep" name="txtTimeSinRep"  type="text" class="form-control input-inline input-small" placeholder="180" value="<?php echo @$this->aConfig['TIEMPO_SIN_REPORTAR']; ?>">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="cboLocalizar" class="col-lg-3 no-padding-right">Titulo Tiempo sin reportar</label>
+												<div class="col-sm-3">
+													<input id="txtTituloReporteX" name="txtTituloReporteX"  type="text" class="form-control input-inline input-large" placeholder="X" value="<?php echo @$this->aConfig['TITULO_TIEMPO_X_SIN_REPORTAR']; ?>">
+												</div>
+											</div>							
+											<div class="form-group">
+												<label for="cboLocalizar" class="col-lg-3 no-padding-right">Tiempo (mins.) </label>
+												<div class="col-sm-3">
+													<input id="txtTimeReporteX" name="txtTimeReporteX"  type="text" class="form-control input-inline input-small" placeholder="X" value="<?php echo @$this->aConfig['TIEMPO_X_SIN_REPORTAR']; ?>">
+												</div>
+											</div>		
+										</div>	
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+												<div class="pull-right">
+													<button type="submit" class="btn btn-info shiny">Guardar Cambios</button>
+												</div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+					        </div>
+
+					        <div id="profileCompany" class="tab-pane <?php echo ($this->resultOp=='okCompany' || @$this->errors['errorCompany']) ? 'in active' : ''; ?>">					            
+                                <div id="horizontal-form">
+                                    <form class="form-horizontal" role="form" id="FormDataGral" method="POST" action="/config/company/index" >
+										<input type="hidden" name="optReg" value="updateCompany" />
+								        <?php if($this->resultOp=='okCompany'): ?>
+											<div class="alert alert-success fade in">
+	                                            <button class="close" data-dismiss="alert">
+	                                                ×
+	                                            </button>
+	                                            <i class="fa-fw fa fa-check"></i>
+	                                            <strong> OK </strong> Datos se almacenaron correctamente.
+	                                        </div>								            
+								        <?php endif; ?>										            	              
+						            	<?php if(@$this->errors['errorCompany']):?>
+											<div class="alert alert-danger fade in">
+	                                            <button class="close" data-dismiss="alert">
+	                                                ×
+	                                            </button>
+	                                            <i class="fa-fw fa fa-times"></i>
+	                                            <strong>Error!</strong> Ha ocurrido un error al actualizar la información.
+	                                        </div>											              	
+						            	<?php endif;?>	                                    	
+                                        <div class="form-group">
+                                            <label for="txtNameCompany" class="col-lg-3 no-padding-right">Nombre de la Empresa <sup>*</sup></label>
+                                            <div class="col-sm-7">
+                                            	<input id="txtNameCompany" name="txtNameCompany" type="text" value="<?php echo @$this->aDataInfo['NOMBRE']; ?>" class="form-control" placeholder="Nombre de la Empresa">
+                                            </div>
+                                        </div>
+
+										<div class="form-group">
+											<label for="txtNameRazon" class="col-lg-3 no-padding-right">Razón Social <sup>*</sup></label>
+											<div class="col-sm-7">
+												<input id="txtNameRazon" name="txtNameRazon"  type="text" value="<?php echo @$this->aDataInfo['RAZON_SOCIAL']; ?>"  class="form-control" placeholder="Razón Social">
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="txtNameDir" class="col-lg-3 no-padding-right">Dirección <sup>*</sup></label>
+											<div class="col-sm-7">
+												<input id="txtNameDir" name="txtNameDir"  type="text" value="<?php echo @$this->aDataInfo['DIRECCION']; ?>"  class="form-control" placeholder="Razón Social">
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="txtNameResp" class="col-lg-3 no-padding-right">Responsable <sup>*</sup></label>
+											<div class="col-sm-7">
+												<input id="txtNameResp" name="txtNameResp"  type="text" value="<?php echo @$this->aDataInfo['NOMBRE_RESPONSABLE']; ?>"  class="form-control" placeholder="Nombre del Responsable">
+											</div>
+										</div>	
+
+										<div class="form-group">
+											<label for="txtNameTel" class="col-lg-3 no-padding-right">Teléfono <sup>*</sup></label>
+											<div class="col-sm-7">
+												<input id="txtNameTel" name="txtNameTel"  type="text" value="<?php echo @$this->aDataInfo['TELEFONO']; ?>"  class="form-control" placeholder="Telefono">
+											</div>
+										</div>				
+
+										<div class="form-group">
+											<label for="txtNameEMail" class="col-lg-3 no-padding-right">Email <sup>*</sup></label>
+											<div class="col-sm-7">
+												<input id="txtNameEMail" name="txtNameEMail"  type="text" value="<?php echo @$this->aDataInfo['EMAIL']; ?>"  class="form-control" placeholder="Email">
+											</div>
+										</div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+												<div class="pull-right">
+													<button type="submit" class="btn btn-info shiny">Guardar Cambios</button>
+												</div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+					        </div>
+ 							<div id="tabModules" class="tab-pane <?php echo ($this->resultOp=='okModules' ||  @$this->errors['errorModules']) ? 'active':''; ?>">	
+								<form id="FormData3" class="form-horizontal" role="form" method="POST" action="/config/company/index">
+									<input type="hidden" name="optReg" value="updateModules" />
+
+									<div id="divErrorForm3" class="alert alert-danger fade in" style="display:none;">
+                                        <button class="close" data-dismiss="alert">
+                                            ×
+                                        </button>
+                                        <i class="fa-fw fa fa-times"></i>
+                                        <strong>Error!</strong> Debes seleccionar al menos una opción.
+                                    </div>
+							        <?php if($this->resultOp=='okModules'): ?>
+										<div class="alert alert-success fade in">
+                                            <button class="close" data-dismiss="alert">
+                                                ×
+                                            </button>
+                                            <i class="fa-fw fa fa-check"></i>
+                                            <strong> OK </strong> Datos se almacenaron correctamente.
+                                        </div>								            
+							        <?php endif; ?>		
+							            	              
+					            	<?php if(@$this->errors['errorModules']):?>
+										<div class="alert alert-danger fade in">
+                                            <button class="close" data-dismiss="alert">
+                                                ×
+                                            </button>
+                                            <i class="fa-fw fa fa-times"></i>
+                                            <strong>Error!</strong> Ha ocurrido un error al actualizar la información.
+                                        </div>	                	
+					            	<?php endif;?>	
+									<table class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="table-checkbox">
+													<div class="checkbox">
+                                                        <label>
+                                                            <input onClick="optionAll(this.checked);" type="checkbox">
+                                                            <span class="text">Todos</span>
+                                                        </label>
+                                                    </div>
+												</th>
+												<th>
+													 Menú
+												</th>
+												<th>
+													 Modulo
+												</th>			
+											</tr>
+										</thead>
+										<tbody class="scrollY400">
+											<?php foreach(@$this->aModules as $key => $items):?>
+					                    		<tr>
+					                    			<td>
+					                    				<label>
+                                                            <input class="chkOn" name="formsValues[]" value="<?php echo $items['ID_MODULO'];?>" type="checkbox" <?php echo ($items['VISIBLE']==1) ? 'checked':'';?> >
+                                                            <span class="text"></span>
+                                                        </label>					                    				
+					                    			</td>
+					                    			<td><?php echo $items['MENU'];?></td>
+					                    			<td><?php echo $items['MODULO'];?></td>
+					                    		</tr>
+											<?php endforeach;?>				
+										</tbody>
+									</table>
+									<div class="horizontal-space"></div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+											<div class="pull-right">
+												<button type="button" onClick="validateModules()" class="btn btn-info shiny">Guardar Cambios</button>
+												<button type="button" class="btn default" onClick="location.href='<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>	
+											</div>
+                                        </div>
+                                    </div>									
+								</form>
+ 							</div>
+ 							<div id="tabPlan" class="tab-pane">
+
+								<!-- BEGIN FORM-->
+								<form action="#">
+									<div class="form-body minh-420">	
+										<div class="row">
+											<div class="form-group">
+												<label class="control-label col-md-3">Plan Contratado</label>
+												<div class="col-md-9">
+													<p class="control-label">
+														<b>
+														 <?php echo @$this->aConsumo['N_PLAN']; ?>
+														</b>
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group">
+												<label class="control-label col-md-3">Periodo</label>
+												<div class="col-md-9">
+													<p class="control-label"><b>
+														 <?php echo @$this->aConsumo['MES']."-".@$this->aConsumo['ANIO']; ?>
+														</b>
+													</p>
+												</div>
+											</div>			
+										</div>	
+										<div class="row">
+											<div class="form-group">
+												<label class="control-label col-md-3">Estatus Pago</label>
+												<div class="col-md-9">
+													<p class="control-label"><b>
+													 <?php echo ($this->aConsumo['PAGADO']!=1) ? 'Pendiente': 'Pagado'; ?>
+													</b>
+													</p>
+												</div>
+											</div>			
+										</div>	
+										<div class="row">
+											<div class="col-md-12">
+												<h4>Fotos</h4>
+											</div>								
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label col-md-5">Utilizadas</label>
+													<div class="col-md-7">
+														<p class="control-label"><b>
+														 <?php echo @$this->aConsumo['TOTAL_FOTOS']; ?>
+														</b>
+														</p>
+													</div>
+												</div>			
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label col-md-5">Disponibles</label>
+													<div class="col-md-7">
+														<p class="control-label"><b>
+														 <?php echo (@$this->aConsumo['D_FOTOS']-@$this->aConsumo['TOTAL_FOTOS']); ?>
+														</b>
+														</p>
+													</div>
+												</div>			
+											</div>
+										</div>	
+										<div class="row">
+											<div class="col-md-12">
+												<h4>Actividades</h4>
+											</div>								
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label col-md-5">Utilizadas</label>
+													<div class="col-md-7">
+														<p class="control-label"><b>
+														 <?php echo @$this->aConsumo['TOTAL_ALTA_ACTIVIDADES']; ?>
+														</b>
+														</p>
+													</div>
+												</div>			
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label col-md-5">Disponibles</label>
+													<div class="col-md-7">
+														<p class="control-label"><b>
+														<?php echo (@$this->aConsumo['D_ACTIVIDADES']-@$this->aConsumo['TOTAL_ALTA_ACTIVIDADES']); ?>
+														</b>
+														</p>
+													</div>
+												</div>			
+											</div>	
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<h4>Formularios</h4>
+											</div>								
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label col-md-5">Utilizadas</label>
+													<div class="col-md-7">
+														<p class="control-label"><b>
+														 <?php echo @$this->aConsumo['TOTAL_FORMULARIOS']; ?>
+														</b>
+														</p>
+													</div>
+												</div>			
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label col-md-5">Disponibles</label>
+													<div class="col-md-7">
+														<p class="control-label"><b>
+														<?php echo (@$this->aConsumo['D_FORMULARIOS']-@$this->aConsumo['TOTAL_FORMULARIOS']); ?>
+														</b>
+														</p>
+													</div>
+												</div>			
+											</div>	
+										</div>	
+										<div class="row">
+											<div class="col-md-12">
+												<h4>Actividades Capturadas</h4>
+											</div>								
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label col-md-5">Utilizadas</label>
+													<div class="col-md-7">
+														<p class="control-label"><b>
+														 <?php echo @$this->aConsumo['TOTAL_CAPTURA_ACTIVIDADES']; ?>
+														</b>
+														</p>
+													</div>
+												</div>			
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label col-md-5">Disponibles</label>
+													<div class="col-md-7">
+														<p class="control-label"><b>
+														 <?php echo (@$this->aConsumo['D_CAPTURA']-@$this->aConsumo['TOTAL_CAPTURA_ACTIVIDADES']); ?>
+														</b>
+														</p>
+													</div>
+												</div>			
+											</div>	
+										</div>																														
+									</div>														
+								</form>
+								<!-- END FORM-->
+
+
+ 							</div>
+					    </div>
+					</div>
+					<div class="horizontal-space"></div>
+                </div>               
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->

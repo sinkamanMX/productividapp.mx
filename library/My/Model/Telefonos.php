@@ -31,7 +31,7 @@ class My_Model_Telefonos extends My_Db_Table
 		}	
         
 		return $result;			
-	}  	
+	}
 	
 	public function getReporte($data){
 		$result= Array();
@@ -50,8 +50,34 @@ class My_Model_Telefonos extends My_Db_Table
         
 		return $result;			
 	}	
+	
+	public function getRecorrido($data,$typeSearch="auto"){
+		$result= Array();
+		$filter= "";
+		$this->query("SET NAMES utf8",false);
 
-	public function getData($idObject){
+		if($typeSearch=="auto"){
+			$filter = "AND DATE_ADD(NOW(), INTERVAL -".$data['iTime']." HOUR)  < P.FECHA_GPS";
+		}else{
+			$filter = "AND  P.FECHA_GPS  BETWEEN '".$data['inputFechaIn']."'
+				 					         AND '".$data['inputFechaFin']."'";
+		}		
+		
+    	$sql ="SELECT P.ID_TELEFONO, P.FECHA_TELEFONO, P.TIPO_GPS, P.LATITUD, P.LONGITUD,P.VELOCIDAD, P.NIVEL_BATERIA,P.UBICACION, E.DESCRIPCION_EVENTO AS EVENTO
+				FROM PROD_HISTORICO_POSICION P
+				INNER JOIN PROD_EVENTOS E ON P.ID_EVENTO = E.ID_EVENTO
+				WHERE P.ID_TELEFONO = ".$data['strInput']."
+				 $filter
+				 ORDER BY P.FECHA_TELEFONO ASC";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;			
+	}		
+
+	public function getData($idObject,$idEmpresa){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
     	$sql ="SELECT T.DESCRIPCION, T.IDENTIFICADOR AS IMEI, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS ASIGNADO, M.DESCRIPCION AS MODELO, P.DESCRIPCION AS MARCA
@@ -60,7 +86,8 @@ class My_Model_Telefonos extends My_Db_Table
 			INNER JOIN USUARIOS          U ON R.ID_USUARIO  = U.ID_USUARIO
 			INNER JOIN PROD_MODELO_TELEFONO M ON T.ID_MODELO = M.ID_MODELO
 			INNER JOIN PROD_MARCA_TELEFONO  P ON M.ID_MARCA  = P.ID_MARCA
-			WHERE T.ID_TELEFONO = $idObject";
+			WHERE T.ID_TELEFONO = $idObject
+			 AND  T.ID_EMPRESA  = $idEmpresa";
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
 			$result = $query[0];			
@@ -68,7 +95,7 @@ class My_Model_Telefonos extends My_Db_Table
         
 		return $result;			
 	}	
-	
+
 	public function getDataRow($idObject){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
@@ -78,7 +105,7 @@ class My_Model_Telefonos extends My_Db_Table
 					   	T.TELEFONO,
 					   	T.IDENTIFICADOR,
 					   	T.ACTIVO,
-					   	IF(R.ID_TELEFONO IS NOT NULL,CONCAT(U.NOMBRE,' ',U.APELLIDOS),'0') AS ASIGNADO,
+					   	IF(R.ID_TELEFONO IS NOT NULL,U.NOMBRE_COMPLETO,'0') AS ASIGNADO,
 					   	T.ID_MODELO,
 					   	M.ID_MARCA
 				FROM PROD_TELEFONOS T
@@ -95,7 +122,6 @@ class My_Model_Telefonos extends My_Db_Table
 		return $result;			
 	}	
 
-	
 	public function getEventos($idObject){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
@@ -115,7 +141,7 @@ class My_Model_Telefonos extends My_Db_Table
         
 		return $result;		
 	}
-	
+
 	public function getRelEventos($idObject){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
@@ -130,15 +156,14 @@ class My_Model_Telefonos extends My_Db_Table
         
 		return $result;				
 	}
-	
+
 	public function getDataNoAssign($idEmpresa){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
     	$sql ="SELECT U.USUARIO, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME, U.ID_USUARIO
 					FROM USUARIOS U
-					INNER JOIN USR_EMPRESA E ON U.ID_USUARIO  = E.ID_USUARIO
-					INNER JOIN SUCURSALES  L ON E.ID_SUCURSAL = L.ID_SUCURSAL					
-					INNER JOIN EMPRESAS    S ON L.ID_EMPRESA  = S.ID_EMPRESA	
+					INNER JOIN SUCURSALES  L ON U.ID_SUCURSAL = L.ID_SUCURSAL					
+					INNER JOIN EMPRESAS    S ON L.ID_EMPRESA  = S.ID_EMPRESA		
 					WHERE U.FLAG_OPERACIONES = 1
 					 AND S.ID_EMPRESA	 	 = $idEmpresa
 					 AND U.ID_USUARIO NOT IN
@@ -146,8 +171,7 @@ class My_Model_Telefonos extends My_Db_Table
 					 SELECT U.ID_USUARIO
 					 FROM PROD_USR_TELEFONO T
 					 INNER JOIN USUARIOS    U ON T.ID_USUARIO  = U.ID_USUARIO
-					 INNER JOIN USR_EMPRESA E ON U.ID_USUARIO  = E.ID_USUARIO
-					 INNER JOIN SUCURSALES  L ON E.ID_SUCURSAL = L.ID_SUCURSAL
+					 INNER JOIN SUCURSALES  L ON U.ID_SUCURSAL = L.ID_SUCURSAL
 					 INNER JOIN EMPRESAS    S ON L.ID_EMPRESA  = S.ID_EMPRESA
 					WHERE S.ID_EMPRESA = $idEmpresa
 					 )
@@ -175,8 +199,7 @@ class My_Model_Telefonos extends My_Db_Table
         
 		return $result;		    	
     }	
-    
-    
+     
     public function insertRow($data){
         $result     = Array();
         $result['status']  = false;
@@ -196,6 +219,7 @@ class My_Model_Telefonos extends My_Db_Table
     		$sql_id ="SELECT LAST_INSERT_ID() AS ID_LAST;";
 			$query_id   = $this->query($sql_id);
 			if(count($query_id)>0){
+				$this->insertAllEvents($query_id[0]['ID_LAST']);
 				$result['id']	   = $query_id[0]['ID_LAST'];
 				$result['status']  = true;					
 			}	
@@ -206,6 +230,48 @@ class My_Model_Telefonos extends My_Db_Table
 		return $result;	
     }
     
+    public function insertAllEvents($idObject){
+		$result= false;
+		$this->query("SET NAMES utf8",false); 		
+    	$sql ="INSERT INTO PROD_EVENTO_TELEFONO (ID_EVENTO,ID_TELEFONO)
+				( SELECT ID_EVENTO AS ID, $idObject
+					FROM PROD_EVENTOS
+					WHERE ID_EVENTO NOT IN
+							(
+								SELECT ID_EVENTO
+								FROM PROD_EVENTO_TELEFONO
+								WHERE ID_TELEFONO = $idObject
+							)
+				)";    	
+		$query   = $this->query($sql,false);
+		if($query){		  
+			$result = true;			
+		}	
+        
+		return $result;			
+    }
+    
+
+    public function setUser($idObject,$idUsuario){
+        $result  = false;
+        try{   
+	        $sqlDel  = "DELETE FROM PROD_USR_TELEFONO WHERE ID_TELEFONO = $idObject";
+	        $queryDel   = $this->query($sqlDel,false);
+	        
+	        $sql="INSERT INTO PROD_USR_TELEFONO		 
+						SET ID_TELEFONO =  $idObject,
+						ID_USUARIO		=  $idUsuario";
+    		$query   = $this->query($sql,false);
+			if($query){
+				$result = true;					
+			}	
+        }catch(Exception $e) {
+            echo $e->getMessage();
+            echo $e->getErrorMessage();
+        }
+		return $result;	    	
+    }  
+        
     public function updateRow($data){
        $result     = Array();
         $result['status']  = false;
@@ -254,27 +320,6 @@ class My_Model_Telefonos extends My_Db_Table
 		return $result;	     	
     }   
 
-    public function setUser($idObject,$idUsuario){
-        $result  = false;
-        try{   
-	        $sqlDel  = "DELETE FROM PROD_USR_TELEFONO WHERE ID_TELEFONO = $idObject";
-	        $queryDel   = $this->query($sqlDel,false);
-	        
-	        $sql="INSERT INTO PROD_USR_TELEFONO		 
-						SET ID_TELEFONO =  $idObject,
-						ID_USUARIO		=  $idUsuario";
-         
-    		$query   = $this->query($sql,false);
-			if($query){
-				$result = true;					
-			}	
-        }catch(Exception $e) {
-            echo $e->getMessage();
-            echo $e->getErrorMessage();
-        }
-		return $result;	    	
-    }  
-
     public function deleteRelAction($data){
     	try{    	
        		$result     = Array();
@@ -312,21 +357,18 @@ class My_Model_Telefonos extends My_Db_Table
         }
 		return $result;			
 	}
-	
-	public function setAllEventos($data){
+
+	public function setAllEventos($idObject,$idModel){
         $result     = Array();
         $result['status']  = false;        
 		$sql = "INSERT INTO PROD_EVENTO_TELEFONO (ID_EVENTO,ID_TELEFONO)
-				(
-					SELECT ID_EVENTO, ".$data['catId']." 
-					FROM PROD_EVENTOS
-					WHERE ID_EVENTO NOT IN 
-					(
-						SELECT ID_EVENTO
-						FROM PROD_EVENTO_TELEFONO
-						WHERE ID_TELEFONO = ".$data['catId']."
-					)
-				)";      
+				(SELECT M.ID_EVENTO AS ID, $idObject
+					FROM PROD_EVENTOS_MODELO M
+					INNER JOIN PROD_EVENTOS E ON M.ID_EVENTO  = E.ID_EVENTO
+					 LEFT JOIN PROD_EVENTO_TELEFONO T ON M.ID_EVENTO = T.ID_EVENTO AND T.ID_TELEFONO = $idObject
+					WHERE M.ID_MODELO 	= $idModel
+					 AND T.ID_EVENTO_TELEFONO IS NULL
+					ORDER BY M.ID_EVENTO ASC)";      
         try{    
     		$query   = $this->query($sql,false);
 			if($query){
@@ -338,13 +380,14 @@ class My_Model_Telefonos extends My_Db_Table
         }
 		return $result;			
 	}	
-	
-	public function deleteRelEvent($idRel){
+
+
+	public function deleteRelEvent($idObject){
         $result     = Array();
         $result['status']  = false;
 
         $sql="DELETE FROM  PROD_EVENTO_TELEFONO
-					 WHERE ID_EVENTO_TELEFONO = ".$idRel."  LIMIT 1";
+					 WHERE ID_TELEFONO = $idObject";
         try{            
     		$query   = $this->query($sql,false);
 			if($query){
@@ -354,6 +397,7 @@ class My_Model_Telefonos extends My_Db_Table
             echo $e->getMessage();
             echo $e->getErrorMessage();
         }
-		return $result;	 		
+		return $result['status'];	 		
 	}    
+
 }

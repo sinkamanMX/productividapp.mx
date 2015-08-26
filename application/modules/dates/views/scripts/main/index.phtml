@@ -1,0 +1,136 @@
+<?php $this->headScript()->appendFile('/assets/js/fuelux/wizard/wizard-custom.js') ?> 
+<?php $this->headScript()->appendFile('/assets/js/datetime/bootstrap-datepicker.js') ?> 
+<?php $this->headScript()->appendFile('/assets/js/datetime/bootstrap-timepicker.js') ?> 
+<?php $this->headScript()->appendFile('/assets/js/select2/select2.js') ?> 
+<?php //$this->headScript()->appendFile('/js/modules/forms/jsValidateForms.js') ?> 
+<?php $this->headScript()->appendFile('/js/modules/dates/jsValidateDate.js') ?> 
+
+<?php $this->headScript()->captureStart() ?>
+    <?php $sCitas = ''; ?>
+    <?php foreach($this->aTcitas as $key => $items):?> 
+        <?php $sCitas.= ($sCitas!="") ? ',' : ''; ?>
+        <?php $sCitas.= $items['ID'].":'".$items['FORMULARIOS']."'";?>
+    <?php endforeach;?> 
+    var aTcitas = {<?php echo $sCitas;?>}
+<?php $this->headScript()->captureEnd(); ?>
+
+<input type="hidden" id="inputModule" value="<?php echo $this->moduleInfo['SCRIPT']; ?>"/>
+    <div class="page-header position-relative">
+        <div class="header-title">
+            <h1>
+                Citas
+            </h1>
+            <small>Nueva Cita</small>
+        </div>
+    </div>
+     <!--/Page Header -->     
+    <div id="divBodyPage" class="page-body">
+        <?php if($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==0): ?>
+            <div class="alert alert-block alert-danger fade in block-inner">
+                <h6><i class="icon-cancel-circle"></i> Error</h6>
+                <hr>
+                <p>Usted no tiene permiso para ver esta información.</p>
+            </div>
+        <?php else:?>
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+
+                    <div id="WiredWizard" class="wizard wizard-wired" data-target="#WiredWizardsteps">
+                        <ul class="steps">
+                            <li data-target="#wiredstep1" class="active"><span class="step">1</span><span class="title">Información General</span><span class="chevron"></span></li>
+                            <li data-target="#wiredstep2"><span class="step">2</span><span class="title">Ubicación</span> <span class="chevron"></span></li>
+                            <li data-target="#wiredstep2"><span class="step">3</span><span class="title">Información Adicional</span> <span class="chevron"></span></li>
+                            <li data-target="#wiredstep2"><span class="step">4</span><span class="title">Confirmar</span> <span class="chevron"></span></li>                            
+                        </ul>
+
+                    </div>
+                    <div class="step-content" id="WiredWizardsteps">
+                        <form id="formDbman" class="form-horizontal" role="form" method="POST" action="/dates/main/index">
+
+                            <input type="hidden" id="optReg" name="optReg" value="<?php echo (@$this->aData['inputFolio']!="") ? 'update': 'new';?>" />
+                            <input type="hidden" id="strTabSelected" name="strTabSelected" value="<?php echo $this->tabSelected;?>" />                        
+                            <div class="step-pane active" id="wiredstep1">
+                                <div class="row">          
+                                        <div class="col-lg-6 col-sm-6 col-xs-6">                                        
+                                            <div class="form-group">
+                                                <label for="inputFolio" class="col-sm-2 control-label no-padding-right">Folio</label>
+                                                <div class="col-sm-5">
+                                                    <input autocomplete="off" type="text" class="form-control" name="inputFolio" id="inputFolio" placeholder="Folio" value="<?php echo @$this->aData['inputFolio'];?>" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputFecha" class="col-sm-2 control-label no-padding-right">Fecha</label>                                                
+                                                <div class="col-sm-5">    
+                                                    <input autocomplete="off" class="form-control date-picker" name="inputFecha" id="inputFecha" type="text" data-date-format="yyyy-mm-dd" readonly value="<?php echo @$this->aData['inputFecha'];?>" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputHora" class="col-sm-2 control-label no-padding-right">Hora</label>
+                                                <div class="col-sm-5">  
+                                                    <input autocomplete="off" class="form-control" name="inputHora" id="inputHora" type="text" value="<?php echo @$this->aData['inputHora'];?>" >
+                                                </div>
+                                            </div>                                                                                                                      
+                                            <div class="form-group">
+                                                <label for="inputCliente" class="col-sm-2 control-label no-padding-right">Cliente</label>
+                                                <div class="col-sm-10">
+                                                    <select id="inputCliente" name="inputCliente" style="width:100%;">
+                                                        <option value="-1">Seleccione una opción</option>
+                                                        <?php echo $this->aClientes;?>
+                                                    </select>
+                                                </div>
+                                            </div> 
+
+
+                                            <div class="form-group">
+                                                <label for="inputContacto" class="col-sm-2 control-label no-padding-right">Contacto</label>
+                                                <div class="col-sm-10">
+                                                    <input autocomplete="off" type="text" class="form-control" name="inputContacto" id="inputContacto" placeholder="Nombre de Contacto" value="<?php echo @$this->aData['inputContacto'];?>" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputTelContacto" class="col-sm-2 control-label no-padding-right">Tel. de Contacto</label>
+                                                <div class="col-sm-10">
+                                                    <input autocomplete="off" type="text" class="form-control" name="inputTelContacto" id="inputTelContacto" placeholder="Tel. de Contacto" value="<?php echo @$this->aData['inputTelContacto'];?>" >
+                                                </div>
+                                            </div>                                                                                                                             
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label for="inputTipo" class="col-sm-2 control-label no-padding-right">Tipo Cita</label>
+                                                <div class="col-sm-10">
+                                                    <select id="inputTipo" name="inputTipo" style="width:100%;" onChange="validateTipo(this.value)">
+                                                        <option value="-1">Seleccione una opción</option>
+                                                        <?php  echo $this->aCbocitas;?>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label no-padding-right">Formularios</label>
+                                                <div class="col-sm-10">
+                                                    <div class="divOpsShow">
+                                                        <ul id="ulElements" class="list-group">  
+                                                            <?php foreach(@$this->aFormluarios as $key => $items):?>
+                                                                <li class="list-group-item"> <?php echo $items['ORDEN']."-".$items['TITULO'];?></li>
+                                                            <?php endforeach;?>
+                                                        </ul> 
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                        </div>                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <div class="pull-right">
+                                            <button type="submit" class="btn btn-info">Siguiente <i class="fa fa-angle-right"></i></button>
+                                            <button type="button" class="btn default" onClick="location.href='/dates/main/index';">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>                        
+                            </div> 
+                        </form>                            
+                    </div>
+                </div>
+            </div>
+        <?php endif;?>
+    </div>

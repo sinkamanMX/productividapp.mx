@@ -1,77 +1,125 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--Head-->
 <head>
-    <meta charset="UTF-8">
-    <title>Productividapp</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <meta content="" name="description"/>
-    <meta content="" name="author"/>
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
-    <link href="/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-    <!-- END GLOBAL MANDATORY STYLES -->
-    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-    <link href="/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>
-    <!-- END PAGE LEVEL PLUGIN STYLES -->
-    <!-- BEGIN THEME STYLES -->
-    <link href="/assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/css/plugins.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/css/pages/tasks.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
-    <link href="/assets/css/print.css" rel="stylesheet" type="text/css" media="print"/>
-    <link href="/assets/css/custom.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/css/pages/login-soft.css" rel="stylesheet" type="text/css"/>
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    <link rel="stylesheet" type="text/css" href="/assets/plugins/select2/select2.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/plugins/select2/select2-metronic.css"/>
-    <!-- END PAGE LEVEL SCRIPTS -->    
-    <link rel="stylesheet" href="/css/app.css">
-    <link rel="shortcut icon" href="favicon.ico"/>
+    <meta charset="utf-8" />
+    <title>Iniciar Sesión</title>
+
+    <meta name="description" content="login page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!--Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
+
+    <link id="beyond-link" href="/assets/css/beyond.css" rel="stylesheet" />
+    <!--Beyond styles-->
+    
+    <link href="/assets/css/demo.min.css" rel="stylesheet" />
+    <link href="/assets/css/animate.min.css" rel="stylesheet" />
+    <link id="skin-link" href="" rel="stylesheet" type="text/css" />
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="/assets/js/skins.min.js"></script>
 </head>
-<body class="login">
-    <?php echo $this->layout()->content; ?>
+<!--Head Ends-->
+<!--Body-->
+<body>
+    <div class="login-container animated flipInY">
+        <div class="loginbox bg-white">
+            <div class="loginbox-title">Login</div>
+            <!--
+            <div class="loginbox-social">
+                <div class="social-title ">Connect with Your Social Accounts</div>
+                <div class="social-buttons">
+                    <a href="" class="button-facebook">
+                        <i class="social-icon fa fa-facebook"></i>
+                    </a>
+                    <a href="" class="button-twitter">
+                        <i class="social-icon fa fa-twitter"></i>
+                    </a>
+                    <a href="" class="button-google">
+                        <i class="social-icon fa fa-google-plus"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="loginbox-or">
+                <div class="or-line"></div>
+                <div class="or">OR</div>
+            </div>-->
+            <div id="divpErrorLogin" class="alert alert-danger fade in" style="display:none;">
+                <button class="close" data-dismiss="alert">
+                    ×
+                </button>
+                <i class="fa-fw fa fa-times"></i>
+                <strong>Error!</strong>
+                <div id="pErrorLogin"></div>
+            </div> 
+        <!--
+            <form id="accountForm" method="post" class="form-horizontal bv-form" novalidate="novalidate">
+                <div class="loginbox-textbox">
+                    <input type="text" class="form-control" name="inputUser" data-bv-field="inputUser" placeholder="Email" ><i class="form-control-feedback" data-bv-field="inputUser" style="display: none;"></i>
+                </div>
+                <div class="loginbox-textbox">
+                    <input type="text" class="form-control" name="inputPassword" data-bv-field="inputPassword"  placeholder="Contraseña" ><i class="form-control-feedback" data-bv-field="inputPassword" style="display: none;"></i>
+                </div>
+                <div class="loginbox-forgot">
+                    <a href="">Olvide mi Contraseña</a>
+                </div>
+                <div class="loginbox-submit">
+                    <input type="submit" class="btn btn-primary btn-block" value="Ingresar">
+                </div>
+            </form> 
+        -->
+         <form id="accountForm" method="post" class="form-horizontal bv-form" novalidate="novalidate">
+            <div class=" loginbox-textbox ">
+                <div class="form-group has-feedback ">                
+                    <div class="col-lg-12">
+                        <input type="text"  class="form-control" name="inputUsuario" data-bv-field="inputUsuario" placeholder="Usuario"><i class="form-control-feedback" data-bv-field="inputUsuario" style="display: none;"></i>
+                    </div>
+                </div>
+            </div>
 
+            <div class="form-group has-feedback loginbox-textbox">
+                <div class="col-lg-12">
+                    <input type="password" class="form-control" name="inputPassword" data-bv-field="inputPassword" placeholder="Contraseña"><i class="form-control-feedback" data-bv-field="inputPassword" style="display: none;"></i>
+                </div>
+            </div>
 
-    <script src="/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-    <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-    <script src="/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-    <script src="/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="/assets/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-    <script src="/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script src="/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-    <script src="/assets/plugins/jquery.cokie.min.js" type="text/javascript"></script>
-    <script src="/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-    <!-- END CORE PLUGINS -->
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <input id="bSubmit" type="submit" class="btn btn-primary btn-block" value="Ingresar">
+                </div>
+            </div>
+        </form>
 
-    <!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
-    <script src="/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-    <script src="/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js" type="text/javascript"></script>
-    <script src="/assets/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-    <script src="/assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="/assets/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="/assets/plugins/select2/select2.min.js"></script>    
-    <!-- END PAGE LEVEL PLUGINS -->
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="/assets/scripts/core/app.js" type="text/javascript"></script>
-    <script src="/assets/scripts/custom/index.js" type="text/javascript"></script>
-    <script src="/assets/scripts/custom/tasks.js" type="text/javascript"></script>
-      <?php echo $this->headLink() ?>
-      <?php echo $this->headStyle() ?>
-      <?php echo $this->headScript() ?>          
-    <script>
-        jQuery(document).ready(function() {     
-          App.init();
-        });
-    </script> 
+            <div class="loginbox-signup">
+                <a href="register.html">Registrarme</a>
+            </div>
+        </div>
+        <div class="logobox">
+        </div>
+    </div>
+
+    <!--Basic Scripts-->
+    <script src="/assets/js/jquery-2.0.3.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!--Beyond Scripts-->
+    <script src="/assets/js/beyond.min.js"></script>
+
+    <!--Page Related Scripts-->
+    <script src="/assets/js/validation/bootstrapValidator.js"></script>
+    <script src="/js/modules/login/login.js"></script>
+
 </body>
+<!--Body Ends-->
 </html>

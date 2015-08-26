@@ -1,0 +1,129 @@
+<?php $this->headLink()->appendStylesheet('/assets/plugins/bootstrap-datepicker/css/datepicker.css') ?>
+<?php $this->headLink()->appendStylesheet('/assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css') ?>
+<?php $this->headLink()->appendStylesheet('/assets/plugins/bootstrap-datetimepicker/css/datetimepicker.css') ?>
+
+<?php $this->headScript()->appendFile('/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') ?>  
+<?php $this->headScript()->appendFile('/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js') ?>  
+<?php $this->headScript()->appendFile('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false') ?>
+<?php $this->headScript()->appendFile('/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') ?>  
+<?php $this->headScript()->appendFile('/js/modules/location/reporteRastreo.js') ?>  
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-6">
+			<h3 class="page-title">
+			Usuarios <small>administración</small>
+			</h3>
+		</div>
+		<div class="col-md-6">
+			<h3 class="page-title pull-right">		
+				<a href="<?php echo $this->moduleInfo['SCRIPT'];?>" type="button" name="back" class="btn default"><i class="fa fa-angle-left"></i> Regresar</a>		
+				<?php if($this->typeSearch=="auto"):?>
+					<small>Ùltimas <?php echo $this->iTime; ?> Horas</small>
+				<?php elseif($this->typeSearch=="manual"):?>
+					<small>De: <?php echo $this->data['inputFechaIn'];?> Al: <?php echo $this->data['inputFechaFin']; ?></small>
+				<?php endif;?>			
+			</h3>
+		</div>
+	</div>
+</div>
+<div id="divError" class="alert alert-block alert-danger fade in" style="display:none;">
+	<button type="button" class="close" data-dismiss="alert"></button>
+	<h4 class="alert-heading">Sin Reporte</h4>
+	<p>
+		 El teléfono que selecciono no cuenta con reportes en el tiempo seleccionado.
+	</p>	
+</div>
+<div class="portlet box blue no-margin-b">
+	<div class="portlet-title">
+		<div class="caption col-md-12 tittlePortlet">
+			<div class="col-md-4">
+				<small>	
+					<b>Usuario: </b><?php  echo $this->dataInfo['ASIGNADO'];?><br/>
+					<b>IMEI: </b><?php  echo $this->dataInfo['IMEI'];?><br/>  
+					<b>Ult.Reporte: </b><?php  echo $this->dataPos[0]['FECHA_GPS'];?> </small>
+			</div>	
+			<div class="col-md-8">
+				<div class="divToolsMap pull-right">					
+					<small>	Ver: </small>
+					<button type="button" onClick="<?php echo ($this->typeSearch!="auto" OR $this->iTime!='24') ? 'getReportAuto(24)': '';?>" class="btn btn-sm blue <?php echo ($this->typeSearch=="auto" && $this->iTime=='24') ? 'active': '';?> "><i class="fa fa-clock-o"></i> 24 Horas</button>
+					<button type="button" onClick="<?php echo ($this->typeSearch!="auto" OR $this->iTime!='12') ? 'getReportAuto(12)': '';?>" class="btn btn-sm blue <?php echo ($this->typeSearch=="auto" && $this->iTime=='12') ? 'active': '';?>"><i class="fa fa-clock-o"></i> 12 Horas</button>
+					<button type="button" onClick="<?php echo ($this->typeSearch!="auto" OR $this->iTime!='8')  ? 'getReportAuto(8)': '';?>" class="btn btn-sm blue  <?php echo ($this->typeSearch=="auto" && $this->iTime=='8')  ? 'active': '';?>"><i class="fa fa-clock-o"></i> 8 Horas</button>
+					<button type="button" onClick="<?php echo ($this->typeSearch!="auto" OR $this->iTime!='6')  ? 'getReportAuto(6)': '';?>" class="btn btn-sm blue  <?php echo ($this->typeSearch=="auto" && $this->iTime=='6')  ? 'active': '';?>"><i class="fa fa-clock-o"></i> 6 Horas</button>
+					<a class="btn btn-sm blue <?php echo ($this->typeSearch=="manual") ? 'active': '';?>" href="#form_modal2" data-toggle="modal">
+						 <i class="fa fa-calendar"></i> Rango de Fechas 
+					</a>
+					<?php if(count($this->aRecorrido)>0): ?>
+						<div class="btn-group">
+						 <a target="_blank" href="/location/main/exportsearch?strInput=<?php echo $this->data['strInput']; ?>&inputFechaIn=<?php echo @$this->data['inputFechaIn'];?>&inputFechaFin=<?php echo @$this->data['inputFechaFin'];?>"><button class="btn blue btn-sm"><i class="fa fa-file-o"></i> Exportar</button></a>
+						</div>
+					<?php endif;?>				
+				</div>	
+
+			</div>		
+		</div>
+
+	</div>
+	<div class="portlet-body form">			
+		<div id="MapReport" style="width:100%;height:420px;"></div>
+	</div>
+</div>
+
+<form method="POST" action="/location/main/reporte?strInput=<?php echo $this->data['strInput']; ?>" id="FormData" class="form-horizontal formcustom">
+	<input type="hidden" name="optReg"     value="search" />
+	<input type="hidden" name="typeSearch" value="auto" />
+	<input type="hidden" id="strInput"     name="strInput" value="<?php echo $this->data['strInput']; ?>" />	
+	<input type="hidden" id="iTime" 	   name="iTime"    value="<?php echo $this->iTime;?>" />
+</form>
+
+<?php $result = '';?>
+<?php foreach($this->aRecorrido as $key => $items): ?>
+	<?php $result .= ($result!="") ? "!" : "";?>
+	<?php $result .= $items['ID_TELEFONO']."|".
+					 $items['FECHA_TELEFONO']."|".
+					 $items['TIPO_GPS']."|".
+					 $items['EVENTO']."|".
+					 $items['LATITUD']."|".
+					 $items['LONGITUD']."|".
+					 round($items['VELOCIDAD'],2)."|".
+					 round($items['NIVEL_BATERIA'],2)."|".
+					 $items['UBICACION'];?>
+<?php  endforeach;?>
+<div id="positionsRep" class="hide"><?php echo $result; ?></div> 
+
+<div id="form_modal2" class="modal fade" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<form method="POST" action="/location/main/reporte?strInput=<?php echo $this->data['strInput']; ?>" id="FormData2" class="form-horizontal formcustom">
+			<input type="hidden" name="optReg"     value="search" />
+			<input type="hidden" name="typeSearch" value="manual" />
+			<input type="hidden" id="strInput"     name="strInput" value="<?php echo $this->data['strInput']; ?>" />						
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+				<h4 class="modal-title">Buscar por Rango de Fechas</h4>
+			</div>
+			<div class="modal-body">			
+
+					<div class="form-group">
+						<label class="control-label col-md-2">Del</label>
+						<div class="col-md-8">
+
+							<div class="input-group">
+								<input readonly id="inputFechaIn" name="inputFechaIn" data-required="1"  type="text" class="form-control" value="<?php echo @$this->data['inputFechaIn']; ?>">
+								<span class="input-group-addon">
+									Al
+								</span>
+								<input readonly type="text" id="inputFechaFin" name="inputFechaFin" class="form-control" value="<?php echo (@$this->data['inputFechaFin']); ?>">	
+							</div>
+						</div>
+					</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+				<button onClick="getReportManual();" data-dismiss="modal" class="btn green">Buscar</button>
+			</div>
+		</div>
+		</form>
+	</div>
+</div>
+<!-- END FORM-->

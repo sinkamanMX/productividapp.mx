@@ -6,26 +6,8 @@ class location_MainController extends My_Controller_Action
     public function init()
     {
     	try{    		
-    		$sessions = new My_Controller_Auth();
-			$perfiles = new My_Model_Perfiles();
-	        if($sessions->validateSession()){
-		        $this->_dataUser   = $sessions->getContentSession(); 	
-			}else{
-				$this->_redirect("/main/main/index");
-			}    		
-			$this->view->dataUser   = $this->_dataUser;
-			$this->view->modules    = $perfiles->getModules($this->_dataUser['ID_PERFIL']);
-			$this->view->moduleInfo = $perfiles->getDataModule($this->_clase);
-						
-			$this->_dataIn 					= $this->_request->getParams();
-			$this->_dataIn['userCreate']	= $this->_dataUser['ID_USUARIO'];
-	    	if(isset($this->_dataIn['optReg'])){
-				$this->_dataOp = $this->_dataIn['optReg'];				
-			}
-			
-			if(isset($this->_dataIn['catId'])){
-				$this->_idUpdate = $this->_dataIn['catId'];				
-			}			
+    		$this->validateSession();
+			$this->chatOptions();			
 						
 		} catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
@@ -34,20 +16,63 @@ class location_MainController extends My_Controller_Action
     }
 
     public function indexAction()
-    {    	
-		try{
+    {
+    	try{
 			$cInstalaciones = new My_Model_Cinstalaciones();
 			$cFunciones		= new My_Controller_Functions();
 			$cTecnicos		= new My_Model_Personal();
-			
+			$cEmpresas		= new My_Model_Empresas();			
 			$dataCenter		= $cInstalaciones->getCbo($this->_dataUser['ID_EMPRESA']);
-			$this->view->cInstalaciones = $cFunciones->selectDb($dataCenter);
+			$idSucursal     = -1;			
+			$codeStatus		= (isset($this->_dataIn['iStatus']) && $this->_dataIn['iStatus']!="") ? $this->_dataIn['iStatus'] : "S";
+			
+			if($this->_dataOp=="search" && $this->_dataUser['VISUALIZACION']==2){
+				$idSucursal = $this->_dataIn['cboInstalacion'];
+			}else{
+				$idSucursal = $this->_dataUser['ID_SUCURSAL'];
+			}
 
-			$this->view->aPersonal = $cTecnicos->getAll($this->_dataUser['ID_EMPRESA']);			
+			$this->view->cInstalaciones = $cFunciones->selectDb($dataCenter,$idSucursal);			
+			$aPositions     = $cTecnicos->getPositions($this->_dataUser['ID_EMPRESA'],$idSucursal);
+			$aConfig        = $cEmpresas->getConfiguracion($this->_dataUser['ID_EMPRESA']);			
+			$aProcess		= $cTecnicos->processInfo($aConfig,$aPositions,$idSucursal);
+	
+			$this->view->aLastPositions = $aProcess;
+			$this->view->iStatus		= $codeStatus;			
+    	 } catch (Zend_Exception $e) {
+            echo "Caught exception: " . get_class($e) . "\n";
+        	echo "Message: " . $e->getMessage() . "\n";                
+        }			    	
+    	//Zend_Debug::dump($this->_dataUser);
+    	//die();
+    	/*
+		try{						
+			$cInstalaciones = new My_Model_Cinstalaciones();
+			$cFunciones		= new My_Controller_Functions();
+			$cTecnicos		= new My_Model_Personal();
+			$cEmpresas		= new My_Model_Empresas();			
+			$dataCenter		= $cInstalaciones->getCbo($this->_dataUser['ID_EMPRESA']);
+			$idSucursal     = -1;			
+			$codeStatus		= (isset($this->_dataIn['iStatus']) && $this->_dataIn['iStatus']!="") ? $this->_dataIn['iStatus'] : "S";
+			
+			if($this->_dataOp=="search" && $this->_dataUser['VISUALIZACION']==2){
+				$idSucursal = $this->_dataIn['cboInstalacion'];
+			}else{
+				$idSucursal = $this->_dataUser['ID_SUCURSAL'];
+			}
+
+			$this->view->cInstalaciones = $cFunciones->selectDb($dataCenter,$idSucursal);			
+			$aPositions     = $cTecnicos->getPositions($this->_dataUser['ID_EMPRESA'],$idSucursal);
+			$aConfig        = $cEmpresas->getConfiguracion($this->_dataUser['ID_EMPRESA']);			
+			$aProcess		= $cTecnicos->processInfo($aConfig,$aPositions,$idSucursal);
+	
+			$this->view->aLastPositions = $aProcess;
+			$this->view->iStatus		= $codeStatus;
         } catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
         }
+        */
     }
     
     public function getlastpAction(){
@@ -82,22 +107,47 @@ class location_MainController extends My_Controller_Action
         }     	
     }
 
-    public function reporteAction(){
-		$this->view->layout()->setLayout('layout_blank');    	
+    public function reporteAction(){ 	
         try{
-        	$dataRecorrido = Array();
+        	$typeSearch    = "auto";
+        	$iTime         = 24;
+        	$dataRecorrido = Array();      
+        		
         	if(isset($this->_dataIn['strInput']) && $this->_dataIn['strInput']!=""){
         		$cTelefonos = new My_Model_Telefonos();
-				
-        		if(!isset($this->_dataIn['optReg'])){
-        			$this->_dataIn['inputFechaIn']  = Date("Y-m-d 00:00:00"); 
-        			$this->_dataIn['inputFechaFin'] = Date("Y-m-d 23:59:00");        				        		
-        		}
-        		$dataRecorrido =  $cTelefonos->getReporte($this->_dataIn);
+				$cTecnicos  = new My_Model_Personal();
+							
+        		$dataInfo   = $cTelefonos->getData($this->_dataIn['strInput'],$this->_dataUser['ID_EMPRESA']);	
+        		if(count($dataInfo)>0){
+	        		if($this->_dataOp=="search"){
+	        			if($this->_dataIn['typeSearch']=="manual"){	        					
+	        				$typeSearch    = "manual";
+	        			}elseif($this->_dataIn['typeSearch']=="auto"){
+	        				$iTime         = $this->_dataIn['iTime'];
+	        				$typeSearch    = "auto";
+	        			}
+	        		}else{
+	        			$this->_dataIn['inputFechaIn']  = Date("Y-m-d 00:00:00"); 
+        				$this->_dataIn['inputFechaFin'] = Date("Y-m-d 23:59:00");  
+	        		}
+	        		
+	        		$this->_dataIn['iTime'] = $iTime;
+	        		$this->_dataIn['typeSearch'] = $typeSearch;
+	        		$dataRecorrido =  $cTelefonos->getRecorrido($this->_dataIn,$this->_dataIn['typeSearch']);        			
+        		}else{
+        			$this->_redirect("/main/main/index");
+        		}        		
+        		
+        		$this->view->dataPos    = $cTecnicos->getLastPositions($this->_dataIn['strInput']);	
+        		$this->view->dataInfo   = $dataInfo;
+				$this->view->aRecorrido = $dataRecorrido;
+				$this->view->data		= $this->_dataIn;
+				$this->view->iTime		= $iTime;
+				$this->view->typeSearch = $typeSearch;	        		
+        	}else{
+        		$this->_redirect("/main/main/index");
         	}
-        	
-			$this->view->aRecorrido = $dataRecorrido;
-			$this->view->data		= $this->_dataIn;
+		
         } catch (Zend_Exception $e) {
             echo "Caught exception: " . get_class($e) . "\n";
         	echo "Message: " . $e->getMessage() . "\n";                
@@ -115,7 +165,7 @@ class location_MainController extends My_Controller_Action
 			   isset($this->_dataIn['inputFechaFin']) && $this->_dataIn['inputFechaFin']!=""){
 			   	
 			   	
-				$dataInfo    = $cTelefonos->getData($this->_dataIn['strInput']);	
+				$dataInfo    = $cTelefonos->getData($this->_dataIn['strInput'],$this->_dataUser['ID_EMPRESA']);	
 				$nameClient = $this->view->dataUser['N_EMPRESA']." - ".$this->view->dataUser['N_SUCURSAL']; 
 				$dateCreate = date("d-m-Y H:i");
 				$createdBy	= $this->view->dataUser['USUARIO']; 			   	

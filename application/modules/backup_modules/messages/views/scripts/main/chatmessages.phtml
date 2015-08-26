@@ -1,0 +1,128 @@
+<div class="chats">                 
+    <div class="messages-contact">
+        <div class="contact-avatar">
+            <img src="/images/icons/icon-user.png" />
+        </div>
+        <div class="contact-info">
+            <div class="contact-name"><?php echo $this->aDataChatUser['N_USER']; ?></div>
+            <div class="contact-status">
+                <?php if(@$this->aDataChatUser['CONECTADO']==1): ?>
+                    <div class="online"></div>
+                    <div class="status">Disponible</div>
+                <?php else:?>
+                    <div class="offline"></div>
+                    <div class="status">No Disponible</div>
+                <?php endif;?>                                
+            </div>
+            <div class="last-chat-time">
+                <!-- a moment ago -->
+            </div>
+            <div onClick="backToContacts()" class="back">
+                <i class="fa fa-arrow-circle-left"  onClick="backToContacts()"></i>
+            </div>
+        </div>
+    </div>
+    <ul id="chatsMessages" class="messages-list">
+    	<?php foreach($this->aConversacion as $key => $items):?>
+			<?php if($items['RECIBIO']==$this->dataUser['ID_USUARIO']):?>
+                <li class="message reply">
+                    <div class="message-info">
+                        <div class="bullet"></div>
+                        <div class="contact-name"><?php echo $items['N_ENVIA'];?></div>
+                        <div class="message-time"><?php echo $items['CREADO'];?>	</div>
+                    </div>
+                    <div class="message-body">
+                        <?php echo $items['MENSAJE'];?>	
+                    </div>
+                </li>
+			<?php else:?>
+                <li class="message">
+                    <div class="message-info">
+                        <div class="bullet"></div>
+                        <div class="contact-name">Yo</div>
+                        <div class="message-time">												
+                        		<?php $color= '';?>
+								<?php if(isset($items['LEIDO']) && $items['PROCESADO']!="LEIDO"): ?>
+									<img src="/images/icons/double.png"/>
+								<?php elseif(isset($items['PROCESADO']) && $items['PROCESADO']!="NULL"): ?>
+									<img src="/images/icons/single.png"/>													
+								<?php else:?>
+									<i class="fa fa-clock-o"></i>
+								<?php endif; ?>
+								<?php echo $items['CREADO'];?>
+						</div>
+                    </div>
+                    <div class="message-body">
+                        <?php echo $items['MENSAJE'];?>
+                    </div>
+                </li>
+			<?php endif;?>	
+    	<?php endforeach;?>
+    </ul>
+    <div class="send-message">
+        <span class="input-icon icon-right">
+            <textarea id="inputMessage" rows="4" class="form-control" placeholder="Nuevo Mensaje"></textarea>                            
+            <i onClick="sendMessage()" class="fa fa-arrow-right themeprimary cursor-hand"></i>
+        </span>
+    </div>
+</div>
+
+
+
+
+<!--
+<ul class="chats" id="listChats">
+	<?php foreach($this->aConversacion as $key => $items):?>
+		<?php if($items['RECIBIO']==$this->dataUser['ID_USUARIO']):?>
+			<li class="in">
+				<img class="avatar img-responsive" alt="" src="/images/icons/icon-user.png"/>
+				<div class="message">
+					<span class="arrow">
+					</span>
+					<span class="body">
+						<?php echo $items['MENSAJE'];?>								
+					</span>					
+					<div class="name">
+						<?php echo $items['N_ENVIA'];?> <?php //echo ($items['TEL_RECIBE']!="NULL" && $items['TEL_RECIBE']!=NULL) ? ' - Tel. '.$items['TEL_RECIBE'] : '';?>
+						<span class="aTimeAgoMsg">
+							<span class="badge badge-success badge-roundless pand0">
+								<i class="fa fa-check "></i> 								
+							</span>							
+							<?php echo $items['CREADO'];?>															 	
+						</span>									 
+					</div>
+				</div>					
+			</li>
+		<?php else:?>
+			<li class="out">
+				<img class="avatar img-responsive" alt="" src="/images/icons/icon-user.png"/>
+				<div class="message">
+					<span class="arrow">
+					</span>
+					<span class="body">
+						<?php echo $items['MENSAJE'];?>
+					</span>					
+					<div class="name">
+						<span class="aTimeAgoMsg">
+							<?php $color= '';?>
+
+							<?php if(isset($items['LEIDO']) && $items['PROCESADO']!="LEIDO"): ?>
+								<span class="badge badge-success badge-roundless pand0">
+									<i class="fa fa-check "></i> 								
+								</span>	
+							<?php elseif(isset($items['PROCESADO']) && $items['PROCESADO']!="NULL"): ?>
+								<span class="badge badge-default badge-roundless pand0">
+									<i class="fa fa-check"></i> 								
+								</span>	
+							<?php else:?>
+								<i class="fa fa-clock-o"></i>
+							<?php endif; ?>
+							<?php echo $items['CREADO'];?>
+						</span>
+					</div>							
+
+				</div>
+			</li>
+		<?php endif;?>				
+	<?php endforeach;?>
+</ul>-->	

@@ -1,0 +1,127 @@
+<?php $this->headScript()->appendFile('/assets/js/fuelux/spinbox/fuelux.spinbox.min.js') ?> 
+<?php $this->headScript()->appendFile('/assets/js/select2/select2.js') ?> 
+<?php $this->headScript()->appendFile('/js/modules/functionGral.js') ?>
+<?php $this->headScript()->appendFile('/js/modules/dates/jsValidateExtras.js') ?> 
+
+<?php if($this->resultOp=='updated' ): ?>
+    <script>
+        parent.assignValue('1');
+    </script>       
+    <?php $this->headScript()->captureStart() ?>
+        $().ready(function(){
+            console.log("paso algo");
+                showNotification('registerOk','');
+        });
+    <?php $this->headScript()->captureEnd() ?>                                                                
+<?php endif; ?>
+
+<?php $this->headScript()->captureStart() ?>
+$().ready(function(){
+    $('#formDbman').bootstrapValidator({
+        live: 'true',
+        excluded: [':disabled'],
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            <?php foreach($this->aFields as $key => $items):?>
+                <?php echo 'input'.$items['ID_EXTRA'];?>: {
+                    validators: {
+                        <?php if($items['REQUERIDO']==1):?>
+                            notEmpty: {
+                                message: 'Campo requerido'
+                            },
+                        <?php endif;?>
+                        <?php if($items['ID_TIPO']==0):?>
+                            numeric: {
+                                message: 'Este campo acepta solo números'
+                            },
+                        <?php endif;?>
+                    }
+                },                                
+            <?php endforeach;?>           
+        }
+    }).on('success.form.fv', function(e) {
+        e.preventDefault();
+        var $form = $(e.target);
+        var fv = $form.data('FormDataGral');
+            fv.defaultSubmit();
+    });   
+});
+<?php $this->headScript()->captureEnd() ?>   
+    <div id="divBodyPage" class="page-body">
+        <?php if($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==0): ?>
+            <div class="alert alert-block alert-danger fade in block-inner">
+                <h6><i class="icon-cancel-circle"></i> Error</h6>
+                <hr>
+                <p>Usted no tiene permiso para ver esta información.</p>
+            </div>
+        <?php else:?>
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+
+                    <div id="WiredWizard" class="wizard wizard-wired" data-target="#WiredWizardsteps">
+                        <ul class="steps">
+                            <li data-target="#wiredstep1"><a href="/dates/main/getdateinfo?catId=<?php echo $this->catId; ?> "><span class="step">1</span><span class="title">Información General</span><span class="chevron"></span></a></li>
+                            <li data-target="#wiredstep2"><a href="/dates/main/getlocation?catId=<?php echo $this->catId; ?> "><span class="step">2</span><span class="title">Ubicación</span> <span class="chevron"></span></a></li>
+                            <li data-target="#wiredstep2" class="active"><a href="/dates/main/getextras?catId=<?php echo $this->catId;  ?>"><span class="step">3</span><span class="title">Información Adicional</span> <span class="chevron"></span></a></li>
+                            <li data-target="#wiredstep2"><a href="/dates/main/getpersonal?catId=<?php echo $this->catId;  ?>"><span class="step">4</span><span class="title">Personal</span> <span class="chevron"></span></a></li>
+                        </ul>
+
+                    </div>
+                    <div class="step-content" id="WiredWizardsteps">
+                        <div id="horizontal-form">
+                            <form id="formDbman" class="form-horizontal" role="form" method="POST" action="/dates/main/getextras">
+                                <input type="hidden" id="catId" name="catId"  value="<?php echo $this->catId; ?>"/>
+                                <input type="hidden" id="optReg" name="optReg" value="<?php echo (@$this->aData['FOLIO']!="") ? 'update': 'new';?>" />
+                                <div class="step-pane active" id="wiredstep1">
+                                    <?php if(@$this->errors['errorAction']):?>
+                                        <div class="alert alert-danger fade in">
+                                            <button class="close" data-dismiss="alert">
+                                                ×
+                                            </button>
+                                            <i class="fa-fw fa fa-times"></i>
+                                            <strong>¡Error!</strong> Se han encontrado uno ó mas problemas para guardar la información
+                                            <?php if(count($this->aErrorFields)>0):?>
+                                            <br/>
+                                                <strong>Errores:</strong><br/>
+                                                <?php for($i=0;$i<count($this->aErrorFields);$i++):?>
+                                                    <?php echo $this->aErrorFields[$i]['MessageError'];?><br/>
+                                                <?php endfor;?>                       
+                                            <?php endif;?>
+                                        </div>                  
+                                    <?php endif;?>
+                                    <?php foreach($this->aFields as $key => $items):?>
+                                        <?php if($items['ID_TIPO']==8):?>
+                                            <div class="center-text">
+                                                <h4><?php echo $items['DESCRIPCION'];?></h4>
+                                            </div>
+                                        <?php else:?>
+                                            <div class="form-group">
+                                                <label for="input<?php echo $items['ID_EXTRA'];?>" class="col-md-3 col-xs-3  no-padding-right"><?php echo $items['DESCRIPCION'];?> <?php echo (@$items['REQUERIDO']!=0) ? '<sup>*</sup>':'' ;?></label>
+                                                <div class="col-sm-8">
+                                                    <?php echo $items['INPUT'];?>
+                                                </div>
+                                            </div>
+                                        <?php endif;?>
+                                    <?php endforeach;?>
+                                    <div class="row margin-t5px">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <div class="pull-right">
+                                                <?php if(@$this->aData['ID_ESTATUS']==1):?>
+                                                    <button type="submit" class="btn btn-info">Guardar Cambios</button>
+                                                <?php endif;?>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif;?>
+    </div>

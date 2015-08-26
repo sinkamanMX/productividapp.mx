@@ -1,0 +1,250 @@
+.loaderSecondary {
+    animation: 1s linear 0s alternate none infinite running typing;
+    border-radius: 50%;
+    height: 6px;
+    left: 45%;
+    position: relative;
+    top: 50%;
+    width: 6px;
+}
+.background-blue {
+    background-color: #2dc3e8 !important;
+}
+
+.cursor-hand{
+  cursor: pointer;
+}
+
+.minh-420{
+  min-height: 420px;
+}
+.h-350{
+  height: 350px !important;
+}
+
+.footer_custom{
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+}
+
+.center-text{
+  text-align: center !important
+}
+.image-map{
+
+}
+.p-bottom{
+  margin-bottom: 10px;
+}
+
+.hmodal300 {
+  height: 300px;
+  width: 99.9%;
+}
+/*This will work for firefox*/
+@-moz-document url-prefix() {
+    .hmodal300{
+    height: 300px;
+    width: 99.9%;
+  }
+}
+
+.hmodal280 {
+  height: 280px;
+  width: 99.9%;
+}
+/*This will work for firefox*/
+@-moz-document url-prefix() {
+    .hmodal280{
+    height: 280px;
+    width: 99.9%;
+  }
+}
+
+.hmodal500 {
+  height: 500px;
+  width: 99.9%;
+}
+/*This will work for firefox*/
+@-moz-document url-prefix() {
+    .hmodal500{
+    height: 500px;
+    width: 99.9%;
+  }
+}
+.hmodal550 {
+  height: 550px;
+  width: 99.9%;
+}
+/*This will work for firefox*/
+@-moz-document url-prefix() {
+    .hmodal550{
+    height: 550px;
+    width: 99.9%;
+  }
+}
+
+.hmodal350 {
+  height: 350px;
+  width: 99.9%;
+}
+/*This will work for firefox*/
+@-moz-document url-prefix() {
+    .hmodal350{
+    height: 350px;
+    width: 99.9%;
+  }
+}
+
+.hmodal400 {
+  height: 400px;
+  width: 99.9%;
+}
+/*This will work for firefox*/
+@-moz-document url-prefix() {
+    .hmodal400{
+    height: 400px;
+    width: 99.9%;
+  }
+}
+
+.row-min-h300{
+  min-height: 300px;
+  margin-top: 15px;
+}
+
+.no-max-w{
+  max-width: 100% !important;
+}
+
+
+.m-top-1{
+  margin-top: 1%;
+}
+.m-top-3{
+  margin-top: 3%;
+}
+.m-top-10{
+  margin-top: 10%;
+}
+.m-top-20{
+  margin-top: 20%;
+}
+.m-top-30{
+  margin-top: 30%;
+}
+.margin-t5px{
+  margin-top: 5px !important;
+}
+.margin-30{
+  margin: 30px 0 0;
+}
+
+
+.bg-white{
+  background-color: #FFFFFF;
+}
+
+.no-margin-t{
+  margin-top: 0px !important;
+}
+
+.no-margin-l{
+  margin-left:  0px !important;
+}
+
+.no-margin-r{
+  margin-right:  0px !important;
+}
+
+.no-margin-b{
+  margin-bottom:  0px !important;
+}
+
+.row-min-h{
+  min-height: 550px;
+  margin-top: 15px;
+}
+.row-min-h300{
+  min-height: 300px;
+}
+
+.row-min-h300{
+  min-height: 300px;
+  margin-top: 15px;
+}
+.formcustom {
+  margin: 0 0 0px !important;
+}
+
+.row-margin-left25 {
+    margin-left: 25px !important;
+}
+.row-margin-left5 {
+    margin-left: 5% !important;
+}
+.row-margin-r5{
+  margin-right: 5% !important;
+}
+.row-margin-left5px {
+    margin-left: 5px !important;
+}
+
+.no-border{
+  border: 0px !important;
+}
+.no-padding{
+  padding: 0px !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.no-padding-top {
+  padding-top: 0px !important;
+}
+.no-clear{
+  clear: none !important;
+}
+
+.no-margin{
+  margin: 0px !important;
+}
+
+.custom-margin-t{
+    margin: 0 !important;
+    padding: 0 !important;
+    top: -7px;
+}
+
+.padding-5{
+  padding: 5px !important;
+}
+
+.table-sortable {
+    position: relative;
+}
+.table-sortable .sortable-placeholder {
+    height: 37px;
+}
+.table-sortable .sortable-placeholder:after {
+    position: absolute;
+    z-index: 10;
+    content: " ";
+    height: 37px;
+    background: #f9f9f9;
+    left: 0;
+    right: 0;
+}
+
+.select2-container {
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+    width: 100% !important;
+}

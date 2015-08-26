@@ -1,0 +1,144 @@
+<?php $this->headScript()->appendFile('/js/modules/extras/jsValidateExtras.js') ?>  
+<?php $controls=0;?>
+
+<?php $this->headScript()->captureStart() ?>
+    var aOptions = Array();
+    <?php foreach($this->aTipos as $key => $items):?>
+        aOptions[<?php echo $items['ID'];?>] = '<?php echo $items['REQ_OPCIONES'];?>';
+    <?php endforeach;?>
+<?php $this->headScript()->captureEnd() ?>
+<div class="row-min-h300" id="divContenedor">
+    <form id="FormData4" class="form-horizontal" role="form" method="POST" action="/admin/tdates/extras">
+        <input type="hidden" id="catId" name="catId"  value="<?php echo $this->catId; ?>" id="catId" />
+        <input type="hidden" id="optReg" name="optReg" value="updateElements" />
+        <input type="hidden" name="strTabSelected" value="3" />
+        <table id="tableExtras" class="table table-striped ">     
+            <thead>
+                <tr>
+                    <th class="col-md-1">Orden</th>
+                    <th class="col-md-5">Descripción</th>
+                    <th class="col-md-1">Requerido</th>
+                    <th class="col-md-1">Estatus</th>
+                    <th class="col-md-2">Tipo</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="scrollY400">
+                <?php $control=0;?>
+                <?php foreach(@$this->aElements as $key => $items):?>
+                    <tr>
+                        <td>
+                            <input name="aElements[<?php echo $control?>][id]" type="hidden" value="<?php echo $items['ID'];?>"/>
+                            <input id="inputOp<?php echo $control?>" name="aElements[<?php echo $control?>][op]" type="hidden" value="up"/>
+                            <input id="inputElement<?php echo $control?>" name="aElements[<?php echo $control?>][orden]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['ORDEN'];?>"  autocomplete="off">                                                 
+                        </td>
+                        <td>
+                            <input id="inputDesc<?php echo $control?>" name="aElements[<?php echo $control?>][desc]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['N_ELEMENTO'];?>"  autocomplete="off">                                                 
+                        </td>
+                        <td> 
+                            <select id="inputReq<?php echo $control?>" name="aElements[<?php echo $control?>][requerido]">
+                                <?php echo $items['cboReq'];?>
+                            </select>
+                        </td>                        
+                        <td> 
+                            <select id="inputStat<?php echo $control?>" name="aElements[<?php echo $control?>][status]">
+                                <?php echo $items['cboStatus'];?>
+                            </select>
+                        </td>
+                        
+                        <td>
+                            <select id="inputTipo<?php echo $control?>" name="aElements[<?php echo $control?>][tipo]" onChange="validateSelected(this.value,<?php echo $control;?>);">
+                                <?php echo $items['cboTipo'];?>
+                            </select>
+                        </td>
+                        <td>
+                            <div class="col-xs-12 no-margin-l">
+                                    <div class="col-xs-6 no-margin-l">
+                                        <?php $biconSet = ($items['REQ_OPCIONES']!="0") ? 'fa-sort-up': 'fa-sort-down';?>
+                                        <button id="buttonOps<?php echo $control; ?>" class="btn btn-default btn-sm icon-only" onClick="showCloseOptions(<?php echo $control; ?>);return false;"><i id="spanOptions<?php echo $control;?>" class="fa <?php echo $biconSet;?>"></i></button>
+                                    </div>
+
+                                    <div class="col-xs-6 no-margin-l">
+                                        <button class="btn btn-default btn-sm icon-only deleteLink" onClick="deleteFieldForm(this,<?php echo $control?>);return false;"><i class="fa  fa-times-circle-o"></i></button>
+                                    </div>                                                
+                            </div> 
+                        </td>                                                                     
+                    </tr>
+                    
+                    <?php $bVisible = ($items['REQ_OPCIONES']!="0") ? '': 'display:none;';?>
+                    <tr id="trOptions<?php echo $control?>" style="background-color:#f5f5f5;<?php echo $bVisible;?>">
+                        <td colspan="6">
+                            <div id="divOptions<?php echo $control;?>" class="col-md-12 iDivsopts<?php echo $control;?>" style="<?php echo ($items['REQ_OPCIONES']=="1") ? '': 'display:none;';?>">
+                                <div class="col-md-2"> 
+                                    <span>Opciones (Delimitados por comas <i>ej:uno,dos,tres</i>):</span>
+                                </div>
+                                <div class="col-md-10"> 
+                                    <textarea id="inputOps<?php echo $control?>" name="aElements[<?php echo $control?>][options]" rows="4" class="col-xs-12 no-padding"><?php echo $items['VALORES_CONFIG'];?></textarea>                                
+                                </div>                            
+                            </div>
+
+                            <div id="divOptsCat<?php echo $control;?>" class="col-md-12 iDivsopts<?php echo $control;?>"  style="<?php echo ($items['REQ_OPCIONES']=="3") ? '': 'display:none;';?>">
+                                <div class="col-md-2"> 
+                                    <span>Catálogo</span>
+                                </div>
+                                <div class="col-md-4"> 
+                                    <select id="inputCatalogo<?php echo $control?>" name="aElements[<?php echo $control?>][idcatalog]">
+                                        <?php echo $items['cboCat'];?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="divOptsMins<?php echo $control;?>" class="col-md-12 iDivsopts<?php echo $control;?>" style="<?php echo ($items['REQ_OPCIONES']=="2") ? '': 'display:none;';?>">
+                                <?php $sMinMax = explode(',',$items['VALORES_MIN_MAX']);?>
+                                <div class="col-md-2"> 
+                                    <span>Valor Mínimo</span>
+                                </div>
+                                <div class="col-md-4"> 
+                                    <input type="text" id="inputMin<?php echo $control?>" name="aElements[<?php echo $control?>][inputmin]" value="<?php echo $sMinMax[0];?>" class="input-inline form-control col-xd-2"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <span>Valor Máximo</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="inputMax<?php echo $control?>" name="aElements[<?php echo $control?>][inputmax]" value="<?php echo $sMinMax[1];?>" class="input-inline form-control col-xd-2"/>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>          
+                    <?php $control++;?>                          
+                <?php endforeach;?>
+            </tbody>
+            <tr>
+                <td colspan="8">
+                    <div class="block">
+                        <button class="btn btn-block btn-success center-text" type="button" onClick="addFieldForm();"><i class="fa fa-plus-circle"></i> Agregar Elemento</button>                                            
+                    </div>                                    
+                </td>    
+            </tr>                            
+        </table>
+        <div class="form-group  margin-t5px">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-info">Guardar Cambios</button>
+                    <button type="button" class="btn default" onClick="location.href='<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>   
+                </div>
+            </div>
+        </div> 
+        <input type="hidden" id="inputCountElements" name="inputCountElements" value="<?php echo $control; ?>"/>                                                             
+    </form>
+</div>
+
+<div id="divSelectStatus" class="hide">
+    <?php echo $this->selectStatus;?>
+</div>
+
+<div id="divSelectTipos" class="hide">
+    <?php echo $this->selectTipos;?>
+</div>
+
+<div id="divSelectCats" class="hide">
+    <?php echo $this->selectCatalogs;?>
+</div>
+
+<div id="divSelectReq" class="hide">
+    <?php echo $this->selectReq;?>
+</div>

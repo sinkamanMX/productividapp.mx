@@ -23,7 +23,7 @@ class My_Model_Personal extends My_Db_Table
 		$this->query("SET NAMES utf8",false);
 		$sIdSearch = ($selectId==0) ? 'T.ID_TELEFONO': 'U.ID_USUARIO'; 		
     	$sql ="SELECT $sIdSearch AS ID, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME, U.ID_SUCURSAL
-				FROM USUARIOS  U   
+				FROM USUARIOS  U
 				INNER JOIN SUCURSALES S 	   ON U.ID_SUCURSAL= S.ID_SUCURSAL
 				INNER JOIN PROD_USR_TELEFONO T ON U.ID_USUARIO = T.ID_USUARIO
 				WHERE S.ID_EMPRESA = $idObject
@@ -33,31 +33,84 @@ class My_Model_Personal extends My_Db_Table
 		if(count($query)>0){		  
 			$result = $query;			
 		}	
-        
+        		
 		return $result;			
 	}	
 	
-	public function getCbo($idObject){
+	function getPositions($idObject,$option=-1){
 		$result= Array();
-		$this->query("SET NAMES utf8",false); 		
-    	$sql ="SELECT U.ID_USUARIO AS ID, CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME
-				FROM USUARIOS U 										
-				WHERE ID_SUCURSAL = $idObject
+		$this->query("SET NAMES utf8",false);
+		$optionSuc = ($option!=-1) ? ' AND U.ID_SUCURSAL = '.$option: ''; 					
+		$sql = "SELECT P.ID_TELEFONO AS ID,
+				CONCAT(U.NOMBRE,' ',U.APELLIDOS) AS NAME,
+				P.FECHA_TELEFONO AS FECHA_GPS,
+				E.DESCRIPCION_EVENTO AS EVENTO,
+				P.LATITUD,
+				P.LONGITUD,
+				P.TIPO_GPS,
+				P.VELOCIDAD,
+				P.NIVEL_BATERIA,
+				P.ANGULO,
+				P.UBICACION,
+				TIMESTAMPDIFF(MINUTE,P.FECHA_TELEFONO,CURRENT_TIMESTAMP) AS UREPORTE				
+				FROM USUARIOS  U   
+				INNER JOIN SUCURSALES S 	   ON U.ID_SUCURSAL= S.ID_SUCURSAL
+				INNER JOIN PROD_USR_TELEFONO T ON U.ID_USUARIO = T.ID_USUARIO
+				INNER JOIN PROD_ULTIMA_POSICION P ON T.ID_TELEFONO = P.ID_TELEFONO
+				INNER JOIN PROD_EVENTOS       E ON P.ID_EVENTO = E.ID_EVENTO
+				WHERE S.ID_EMPRESA       = $idObject
+				  $optionSuc
 				  AND U.FLAG_OPERACIONES = 1
-				ORDER BY NAME ASC";
+				ORDER BY U.ID_SUCURSAL ASC, NAME ASC";
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
 			$result = $query;			
 		}	
         
-		return $result;			
-	}	
+		return $result;				
+	}
+	
+	
+	public function processInfo($aConfig,$aDataPositions){
+		$aResult  = Array();
+		
+		foreach($aDataPositions as $items){	
+			$items['STATREP']   = '';	
+			$items['STATCOLOR'] = '';					
+			/* Se valida que el equipo este encendido*/
+			if($items['UREPORTE']<=$aConfig['TIEMPO_ENCENDIDO']){
+				$items['STATREP']   = 'catEncendido';
+				$items['STATCOLOR'] = 'btn-palegreen';
+				$items['STATEXT']   = 'Encendido';
+			/* Se valida que el equipo no halla reportado  */	
+			}else if($items['UREPORTE']>$aConfig['TIEMPO_ENCENDIDO'] && $items['UREPORTE']<$aConfig['TIEMPO_APAGADO']){
+				$items['STATREP']   = 'catNoReporte';
+				$items['STATCOLOR'] = 'btn-darkorange';
+				$items['STATEXT']   = 'Sin Reportar';
+			/* Se valida que el equipo este apagado  */
+			}else if($items['UREPORTE']>$aConfig['TIEMPO_APAGADO']){
+				$items['STATREP']  = 'catApagado';
+				$items['STATCOLOR'] = 'btn-purple';
+				$items['STATEXT']   = 'Apagado';							
+			}
+			
+			/* Se valida que el X tiempo sin reportar */
+			if($items['UREPORTE']>$aConfig['TIEMPO_X_SIN_REPORTAR']){
+				$items['STATREP']   = 'catXsinReporte';
+				$items['STATCOLOR'] = 'btn-yellow';
+				$items['STATEXT']   = $aConfig['TITULO_TIEMPO_X_SIN_REPORTAR'];
+			}
+					
+			$aResult[] = $items;
+		}
+		return $aResult;
+	}
 	
 	public function getLastPositions($values){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
     	$sql ="SELECT U.ID_TELEFONO AS ID,
-				U.FECHA_TELEFONO AS FECHA_GPS,
+				U.FECHA_GPS AS FECHA_GPS,
 				E.DESCRIPCION_EVENTO AS EVENTO,
 				U.LATITUD,
 				U.LONGITUD,
@@ -68,15 +121,98 @@ class My_Model_Personal extends My_Db_Table
 				U.UBICACION
 				FROM PROD_ULTIMA_POSICION U
 				INNER JOIN PROD_EVENTOS   E ON U.ID_EVENTO = E.ID_EVENTO
-				WHERE U.ID_TELEFONO IN ($values)"; 	
+				WHERE U.ID_TELEFONO IN ($values)
+				GROUP BY U.ID_TELEFONO"; 	
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
 			$result = $query;			
 		}	
         
 		return $result;				
+	}	
+	
+	
+	public function getToAssign($dataCita,$idEmpresa){
+		$result= Array();
+		$this->query("SET NAMES utf8",false);	
+    	$sql ="SELECT U.ID_USUARIO, U.USUARIO, U.NOMBRE_COMPLETO AS N_USUARIO, U.EMAIL, 
+    			IF(R.ID_TELEFONO IS NULL,'No Logeado',CONCAT(T.DESCRIPCION,' ',T.IDENTIFICADOR))  AS N_TELEFONO, S.DESCRIPCION AS N_SUCURSAL
+				FROM USUARIOS U 
+				INNER JOIN SUCURSALES         S ON U.ID_SUCURSAL= S.ID_SUCURSAL
+				 LEFT JOIN PROD_USR_TELEFONO  R ON U.ID_USUARIO = R.ID_USUARIO 
+				 LEFT JOIN PROD_TELEFONOS     T ON R.ID_TELEFONO = T.ID_TELEFONO
+				 WHERE U.FLAG_OPERACIONES = 1
+				 	AND U.ID_USUARIO NOT IN (
+				 SELECT ID_USUARIO_ASIGNADO
+				 FROM PROD_CITAS
+				 WHERE FECHA_CITA = '".$dataCita['inputFecha']."'
+				  AND  HORA_CITA  = '".$dataCita['inputHora']."'
+				  AND ID_EMPRESA  = $idEmpresa)";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        		
+		return $result;			
+	}	
+	
+	public function getCboByCompany($idEmpresa){
+		$result= Array();
+		$this->query("SET NAMES utf8",false); 		
+    	$sql ="SELECT S.ID_SUCURSAL, IF(U.ID_SUCURSAL IS NULL,'SP',GROUP_CONCAT(CONCAT(ID_USUARIO,'|',NOMBRE_COMPLETO) SEPARATOR ',')) AS N_PERSONAL
+				FROM SUCURSALES S
+				LEFT JOIN USUARIOS U ON S.ID_SUCURSAL = U.ID_SUCURSAL AND U.FLAG_OPERACIONES = 1
+				WHERE S.ID_EMPRESA = $idEmpresa
+				GROUP BY S.ID_SUCURSAL";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;			
+	}	
+
+	public function getCbo($idEmpresa){
+		$result= Array();
+		$this->query("SET NAMES utf8",false); 		
+    	$sql ="SELECT ID_USUARIO AS ID, NOMBRE_COMPLETO AS NAME
+    			FROM USUARIOS 
+				WHERE ID_EMPRESA = $idEmpresa
+				 AND FLAG_OPERACIONES   = 1";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        
+		return $result;			
 	}
 	
+	public function getUpdateAssign($dataCita,$idEmpresa){
+		$result= Array();
+		$this->query("SET NAMES utf8",false);	
+    	$sql ="SELECT U.ID_USUARIO, U.USUARIO, U.NOMBRE_COMPLETO AS N_USUARIO, U.EMAIL, 
+    			IF(R.ID_TELEFONO IS NULL,'No Logeado',CONCAT(T.DESCRIPCION,' ',T.IDENTIFICADOR))  AS N_TELEFONO, S.DESCRIPCION AS N_SUCURSAL
+				FROM USUARIOS U 
+				INNER JOIN SUCURSALES         S ON U.ID_SUCURSAL= S.ID_SUCURSAL
+				 LEFT JOIN PROD_USR_TELEFONO  R ON U.ID_USUARIO = R.ID_USUARIO 
+				 LEFT JOIN PROD_TELEFONOS     T ON R.ID_TELEFONO = T.ID_TELEFONO				 
+				 WHERE U.FLAG_OPERACIONES = 1
+				 	AND ( U.ID_USUARIO NOT IN (
+				 SELECT ID_USUARIO_ASIGNADO
+				 FROM PROD_CITAS
+				 WHERE FECHA_CITA = '".$dataCita['FECHA_CITA']."'
+				  AND  HORA_CITA  = '".$dataCita['HORA_CITA']."'
+				  AND ID_EMPRESA  = $idEmpresa)
+				  OR U.ID_USUARIO = ".$dataCita['ID_USUARIO_ASIGNADO'].")";
+		$query   = $this->query($sql);
+		if(count($query)>0){		  
+			$result = $query;			
+		}	
+        		
+		return $result;			
+	}	
+	
+	/*	
 	public function getTecnicosBySucursal($values,$idEmpresa){
 		$result= Array();
 		$this->query("SET NAMES utf8",false); 		
@@ -112,5 +248,5 @@ class My_Model_Personal extends My_Db_Table
 		}
         
 		return $result;			
-	}
+	}*/
 }

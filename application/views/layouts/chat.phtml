@@ -1,0 +1,60 @@
+            <!-- Chat Bar -->
+            <div id="chatbar" class="page-chatbar">
+                <div id="divChatContacts" class="chatbar-contacts">
+                    <div class="contacts-search">
+                        <input type="text" class="searchinput" placeholder="Buscar Contacto" />
+                        <i class="searchicon fa fa-search"></i>
+                        <div class="searchhelper">Buscar Contacto</div>
+                    </div>
+                    <ul id="classContacts" class="contacts-list">
+                        <?php $counter=0; $idFirst=-1; $nameContact='';?>
+                        <?php  foreach($this->listContact as $key => $items):?>
+                            <?php if($counter==0):?>
+                                <?php $idFirst      = $items['ID'];?>
+                                <?php $nameContact  = $items['NOMBRE'];?>
+                                <?php $lastMessage  = $items['ID_MENSAJE'];?>                               
+                            <?php endif;?>
+                            <?php $counter++;?>
+
+                            <li class="contact" id="aList<?php echo $items['ID']; ?>" onClick="getConversation(<?php echo $items['ID'];?>,'','');">                                
+                                <div class="contact-avatar">
+                                    <img src="/images/icons/icon-user.png" />
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-name"><?php echo $items['NOMBRE'];?></div>
+                                    <div class="contact-status">
+                                        <?php if($items['CONECTADO']==1): ?>
+                                            <div class="online"></div>
+                                            <div class="status">Disponible</div>
+                                        <?php else:?>
+                                            <div class="offline"></div>
+                                            <div class="status">No Disponible</div>
+                                        <?php endif;?>
+                                    </div>
+                                    <div class="last-chat-time">
+                                        <span class="aTimeAgo">
+                                         <i class="fa fa-clock-o"></i> 
+                                            <?php if($items['HAGODAYS']>0):?>
+                                                Mas de <?php echo $items['HAGODAYS'];?> dia (s).
+                                            <?php elseif($items['HAGOHOURS']>0): ?>
+                                                Hace <?php echo $items['HAGOHOURS'];?> hora (s).
+                                            <?php elseif($items['HAGOMINS']>0): ?>
+                                                Hace <?php echo $items['HAGOMINS'];?> minuto (s).
+                                            <?php else: ?>                                          
+                                                Menos de 1 minuto
+                                            <?php endif;?>                                        
+                                    </div>
+                                </div>
+                            </li>                     
+                        <?php endforeach;?>
+                        <input type="hidden" id="txtContactFirst" value="<?php echo $idFirst;?>"/>
+                        <input type="hidden" id="txtNameFirst"    value="<?php echo $nameContact;?>"/>
+                        <input type="hidden" id="txtLastMessage"  value="<?php echo $lastMessage;?>"/>
+                        <input type="hidden" id="txtInput" value=""/>
+                    </ul>
+                </div>
+                <div id="divChatMessage" class="chatbar-messages background-blue" style="display: none;">
+
+                </div>
+            </div>
+            <!-- /Chat Bar -->

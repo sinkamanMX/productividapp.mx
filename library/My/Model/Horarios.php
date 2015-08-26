@@ -84,7 +84,6 @@ class My_Model_Horarios extends My_Db_Table
 					  AND H.ID_HORARIO =  $idHorario
 				 )
 				 ORDER BY U.ID_USUARIO ASC LIMIT 1";	
-    	Zend_Debug::dump($sql);
 		$query   = $this->query($sql);
 		if(count($query)>0){		  
 			$result = $query[0]['ID_USUARIO'];			
@@ -221,7 +220,7 @@ class My_Model_Horarios extends My_Db_Table
         $result = false;
         $sql=" INSERT INTO PROD_HORARIO_USUARIO
 				 SET ID_USUARIO	= ".$data['catId'].",
-				 ID_HORARIO		= ".$data['inputhorario'];
+				 ID_HORARIO		= ".$data['inputhorario'];        
         try{
     		$query   = $this->query($sql,false);
 			if($query){
@@ -234,12 +233,12 @@ class My_Model_Horarios extends My_Db_Table
 		return $result;			
 	}
 	
-	public function deleteByUser($data){
+	public function deleteByUser($idObject){
     	try{    	
        		$result     = Array();
         	$result['status']  = false;
         
-			$sql  	= "DELETE FROM PROD_HORARIO_USUARIO WHERE ID_USUARIO = ".$data['catId'];
+			$sql  	= "DELETE FROM PROD_HORARIO_USUARIO WHERE ID_USUARIO = ".$idObject;
     		$query   = $this->query($sql,false);
 			if($query){
 				$result['status']  = true;					

@@ -5,12 +5,9 @@ var infoLocation;
 var markersRep = [];
 var boundsRep;
 var arrayTravelsRep="";
-parent.App.startPageLoading();
-$( document ).ready(function() {
 
-  /*$(".chosen-select").chosen({disable_search_threshold: 10});*/
-    $('#tabs').tab();
-    var nowTemp = new Date();
+$( document ).ready(function() {
+     var nowTemp = new Date();
     var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
     var dateInter  = parseInt(nowTemp.getMonth())+1;  
     var todayMonth = (dateInter<10) ? "0"+dateInter : dateInter;
@@ -25,13 +22,14 @@ $( document ).ready(function() {
     }
     
     var checkin = $('#inputFechaIn').datetimepicker({
-        format: "yyyy-mm-dd HH:ii",
+        format: "yyyy-mm-dd hh:ii",
         showMeridian: false,
         autoclose: true,
         todayBtn: true,
-        startDate:"1920-01-01 01:01:01"
+        startDate:"2000-01-01 01:01"
     }).on('changeDate', function(ev) {
       if(ev.date.valueOf() > $('#inputFechaFin').datetimepicker('getDate').valueOf()){
+        console.log(ev.date);
         $('#inputFechaFin').datetimepicker('setDate', ev.date);   
       }
 
@@ -41,55 +39,28 @@ $( document ).ready(function() {
     });
 
     var checkout = $('#inputFechaFin').datetimepicker({
-        format: "yyyy-mm-dd HH:ii",
+        format: "yyyy-mm-dd hh:ii",
         showMeridian: false,
         autoclose: true,
         todayBtn: true,
-        startDate:"1920-01-01 01:01:01"
+        startDate:"1920-01-01 01:01"
     }).on('changeDate', function(ev) {
-      /*if(ev.date.valueOf() < $('#inputFechaIn').datetimepicker('getDate').valueOf()){
-        $('#inputFechaIn').datetimepicker('setDate', ev.date);   
-      }*/
+
       $('#inputFechaIn').datetimepicker('setEndDate', ev.date);
     });
-    $('#dataTableRep').dataTable( {
-        "sDom": "<'row'<' 'l><' 'f>r>t<'row'<' 'i><' 'p>>",
-        "sPaginationType": "bootstrap",
-        "bDestroy": true,
-        "bLengthChange": false,
-        "bPaginate": true,
-        "bFilter": false,
-        "bSort": true,
-        "bJQueryUI": true,
-        "iDisplayLength": 5,      
-        "bProcessing": true,
-        "bAutoWidth": true,
-        "bSortClasses": false,
-          "oLanguage": {
-              "sInfo": "",
-              "sEmptyTable": "",
-              "sInfoEmpty" : "",
-              "sInfoFiltered": "",
-              "sLoadingRecords": "Leyendo informaci√≥n",
-              "sProcessing": "Procesando",
-              "sSearch": "Buscar:",
-              "sZeroRecords": "Sin registros",
-              "oPaginate": {
-                "sPrevious": "Anterior",
-                "sNext": "Siguiente"
-              }          
-          }
-    } );  
-  
-    setTimeout(function(){
-        initMapToDraw();
-        google.maps.event.trigger(mapReport, "resize");
-        mapReport.setZoom( mapReport.getZoom() );
-        
-    }, 1000);  
-    App.stopPageLoading();
+
+    initMapToDraw();
 });
 
+
+function getReportAuto(timeAuto){
+  $("#iTime").val(timeAuto);
+  $("#FormData").submit();
+}
+
+function getReportManual(){
+  $("#FormData2").submit();
+}
 
 function initMapToDraw(){
   infoWindowRep = new google.maps.InfoWindow;
@@ -155,8 +126,8 @@ function printPositionsMap(){
       if(arrayTravelsRep.length>1){        
         var iconsetngs = {
             path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-            strokeColor: '#155B90',
-            fillColor: '#155B90',
+            strokeColor: '#4b8df8',
+            fillColor: '#0362fd',
             fillOpacity: 1,
             strokeWeight: 4        
         };
@@ -164,7 +135,7 @@ function printPositionsMap(){
         
         var line = new google.maps.Polyline({
           path: markersRep,
-          strokeColor: "#098EF3",
+          strokeColor: "#0362fd",
           strokeOpacity: 1.0,
           strokeWeight: 2,
             icons: [{
@@ -179,7 +150,10 @@ function printPositionsMap(){
         mapReport.setZoom(13);
         mapReport.panTo(markerTable.getPosition());  
       }   
-  }    
+  }else{
+    $("#divError").show();
+  }
+
 }
 
 function infoMarkerTableRep(marker,content){ 

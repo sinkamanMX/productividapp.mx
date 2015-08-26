@@ -1,0 +1,69 @@
+<?php $this->headScript()->appendFile('/js/modules/messages/newmessages.js') ?>
+<input type="hidden" id="inputShowAlert" value="<?php echo (isset($this->aErrors['PROBLEM'])) ?  '1': '0'; ?>"/>     
+<div class="row">
+	<div class="col-md-12">
+		<h3 class="page-title">
+		Mensajes <small>Nuevo Mensaje.</small>
+		</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-7">
+			<h3 class="page-title">
+				<small>Destinatarios:</small>
+			</h3>			
+				<table class="table table-striped table-bordered table-hover" id="dataTable">
+                <thead>
+                    <tr>
+						<th class="table-checkbox">
+							<input type="checkbox"  id="checkAll" class="group-checkable" data-set="#dataTable .checkboxes"/>
+						</th>                                                            
+                        <th>Nombre</th>
+                        <th>Dispositivo</th>
+                    </tr>
+                </thead>
+				<tbody>
+                    <?php foreach($this->dataTable as $key => $items): ?>  
+                    <tr class="odd gradeX">    
+						<td class="table-checkbox">
+							<input type="checkbox" class="checkboxes" value="<?php echo $items['ID_USUARIO'];?>"/>
+						</td>          
+						<td>
+							<?php echo $items['NOMBRE'];?>
+						</td>
+						<td>
+							<?php if(isset($items['IDENTIFICADOR'])):?>
+								<?php echo $items['DESCRIPCION'];?>
+								<?php if(isset($items['TELEFONO'])):?>
+									<small>( <?php echo $items['TELEFONO'];?> )</small>
+								<?php endif;?>
+							<?php else:?>
+								Sin Dispositivo
+							<?php endif;?>
+						</td>
+                    </tr>    
+                    <?php endforeach;?>							
+				</tbody>
+			</table>			
+		</div>
+		<div class="col-md-5">
+			<form name="FormData" id="FormData" method="POST" action="<?php echo str_replace('index', 'newmessage', $this->moduleInfo['SCRIPT']); ;?>" class="form-horizontal">			
+				<input type="hidden" name="optReg" value="newGroup" />
+				<input type="hidden" name="idContacts" id="idContacts" value="" />					
+				<h3 class="page-title">
+					<small>Mensaje:</small>
+				</h3>			
+				<div class="form-group">
+					<textarea name="inputMessage" id="inputMessage" rows="15" class="form-control"><?php echo $this->data['inputMessage'];?></textarea>
+				</div>			
+				<div class="fluid">
+					<div class="pull-right">
+						<button type="submit" class="btn blue btnSave" >Enviar</button>
+						<button type="button" class="btn default" onClick="location.href='<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>
+					</div>
+				</div>	
+			</form>			
+		</div>		
+	</div>
+</div>	

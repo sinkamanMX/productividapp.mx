@@ -1,0 +1,60 @@
+<?php $this->headScript()->appendFile('/js/modules/typeforms/jsValidateListForms.js') ?> 
+<div class="row-min-h300" id="divContenedor">
+	<form id="FormData3" class="form-horizontal" role="form" method="POST" action="/admin/tdates/listforms">
+		<input type="hidden" id="catId" name="catId"  value="<?php echo $this->catId; ?>" id="catId" />
+		<input type="hidden" id="optReg" name="optReg" value="updateElements" />
+		<input type="hidden" name="strTabSelected" value="<?php echo $this->tabSelected;?>" />
+ 
+		<table class="table table-striped table-hover table-bordered tablelist">
+		    <thead> 
+		        <tr role="row">
+		        	<th class="table-checkbox col-xs-2">
+						<div class="checkbox">
+		                    <!--<label>
+		                        <input name="checkAllItems" onClick="optionAll(this.checked);" type="checkbox">
+		                        <span class="text">Todos</span>
+		                    </label>-->
+		                </div>
+					</th>
+					<th>Título</th>
+					<th>Descripción</th>
+					<th>Orden</th>
+		        </tr>                                
+		    </thead>                        
+		    <tbody>      
+		    	<?php $control = 0;?>                
+		        <?php foreach(@$this->aDataForms as $key => $items):?>
+					<tr>
+		    			<td class="col-xs-2">
+		    				<label>
+		                        <input onChange="selectOption(this.checked,<?php echo $items['ID'];?>)"  class="chkOn" name="formsValues[<?php echo $control;?>][id]" value="<?php echo $items['ID'];?>" type="checkbox" <?php echo ($items['ASIGNADO']==1) ? 'checked':'';?> >
+		                        <span class="text"></span>
+		                    </label>					                    				
+		    			</td>
+		    			<td><?php echo $items['TITULO'];?></td>
+		    			<td><?php echo $items['DESCRIPCION'];?></td>
+		    			<td class="col-xs-2">		    				
+		    				<div id="divCheckini<?php echo $items['ID'];?>" class="" style="display:<?php echo ($items['ASIGNADO']==1) ? 'block' : 'none';?>">
+								<input id="formsValues[<?php echo $control;?>][orden]" name="formsValues[<?php echo $control;?>][orden]" type="text" class="col-xs-5"  value="<?php echo @$items['ORDEN'];?>"  autocomplete="off">
+                            </div>		    					
+                            <!--<label>
+                                <input name="bRadioInit" type="radio" class="colored-blue" value="<?php echo $items['ID'];?>" <?php echo ($items['INICIO']==1) ? 'checked':'';?> >
+                                <span class="text"> </span>
+                            </label>-->
+
+                    	</td>
+		    		</tr>
+		    		<?php $control++;?>
+		        <?php endforeach;?>
+		    </tbody>
+		</table>
+		<div class="form-group">
+	        <div class="col-sm-offset-2 col-sm-10">
+				<div class="pull-right">
+					<button type="button" onClick="validateListCheksCustom('FormData3')" class="btn btn-info">Guardar Cambios</button>
+					<button type="button" class="btn default" onClick="location.href='<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>	
+				</div>
+	        </div>
+	    </div>										
+	</form>
+</div>

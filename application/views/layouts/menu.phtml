@@ -1,77 +1,40 @@
-    <div class="page-sidebar-wrapper">
-        <div class="page-sidebar navbar-collapse collapse">        
-            <!-- BEGIN SIDEBAR MENU -->
-            <ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="200">
-                <li class="sidebar-toggler-wrapper">
-                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-                    <div class="sidebar-toggler hidden-phone">
-                    </div>
-                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-                </li>
-                <!--
-                <li class="sidebar-search-wrapper">
-                    
-                    <form class="sidebar-search" action="extra_search.html" method="POST">
-                        <div class="form-container">
-                            <div class="input-box">
-                                <a href="javascript:;" class="remove">
-                                </a>
-                                <input type="text" placeholder="Search..."/>
-                                <input type="button" class="submit" value=" "/>
-                            </div>
-                        </div>
-                    </form>
-                </li>
-                -->
-                <li class="start ">
-                    <a href="/main/main/inicio">
-                        <i class="fa fa-home"></i>
-                        <span class="title">
-                            Inicio
-                        </span>
-                    </a>
-                </li>                
-
-                <?php $controlMenu = -1; ?>
-                <?php foreach($this->modules as $key => $items): ?>
-                    <?php if($items['SUBMENU']==0): ?>                    
-                        <li class="<?php echo ($this->moduleInfo['ID_MENU']==$items['ID_MENU']) ? 'active': ''; ?>">
-                            <a href="<?php echo $items['SCRIPT'];?>">
-                                <i class="<?php echo $items['ICONO'];?>"></i>
-                                <span class="title">
-                                    <?php echo $items['N_DESCRIPCION'];?>
-                                </span>
+    <ul class="nav sidebar-menu ">
+        <?php $controlMenu = -1; ?>
+        <?php foreach($this->modules as $key => $items): ?>
+            <?php if($items['SUBMENU']==0): ?>
+                <?php foreach($this->modules as $key => $itemsModule): ?>
+                    <?php if($itemsModule['ID_MENU'] == $items['ID_MENU']):?>
+                        <li class="<?php echo ($this->moduleInfo['ID_MENU']==$items['ID_MENU']) ? 'active open': ''; ?>">
+                            <a href="<?php echo $itemsModule['S_MODULE'];?>&ssKeyConfigTokenAction=<?php echo $this->nRandom.''.rand(5, 255);?>">
+                                <i class="menu-icon <?php echo $items['ICONO'];?>"></i>
+                                <span class="menu-text"> <?php echo $items['N_DESCRIPCION'];?> </span>
                             </a>
                         </li>
-                    <?php else:?>
-
-                        <?php if($controlMenu!=$items['IDMENU']): ?>
-                            <?php $controlMenu=$items['IDMENU']; ?>
-                            <li class="<?php echo ($this->moduleInfo['ID_MENU']==$items['ID_MENU']) ? 'active': ''; ?>">
-                                <a href="javascript:;">
-                                    <i class="<?php echo $items['ICONO'];?>"></i>
-                                    <span class="title">
-                                        <?php echo $items['N_DESCRIPCION'];?>
-                                    </span>
-                                    <span class="arrow ">
-                                    </span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <?php foreach($this->modules as $key => $itemsModule): ?>
-                                        <?php if($itemsModule['ID_MENU'] == $items['ID_MENU']):?>
-                                            <li class="<?php echo ($this->moduleInfo['ID_MODULO']==$itemsModule['ID_MODULO']) ? 'active': ''; ?>">
-                                                <a href="<?php echo $itemsModule['S_MODULE'];?>">
-                                                    <i class="<?php echo $itemsModule['M_ICONO']; ?>"></i>
-                                                    <?php echo $itemsModule['M_DESCRIPCION']; ?>
-                                                </a>
-                                            </li>    
-                                        <?php endif;?>
-                                    <?php endforeach;?>
-                                </ul>
-                            </li>                                    
                     <?php endif;?>
+                <?php endforeach;?>
+            <?php else:?>
+                <?php if($controlMenu!=$items['IDMENU']): ?>
+                    <?php $controlMenu=$items['IDMENU']; ?>
+                        <li class="<?php echo ($this->moduleInfo['ID_MENU']==$items['ID_MENU']) ? 'active open': ''; ?>">
+                            <a href="#" class="menu-dropdown">
+                                <i class="menu-icon <?php echo $items['ICONO'];?>"></i>
+                                <span class="menu-text"> <?php echo $items['N_DESCRIPCION'];?> </span>
+                                <i class="menu-expand"></i>
+                            </a>
+                            <ul class="submenu">
+                                <?php foreach($this->modules as $key => $itemsModule): ?>
+                                    <?php if($itemsModule['ID_MENU'] == $items['ID_MENU']):?>
+                                        <li class="<?php echo ($this->moduleInfo['ID_MODULO']==$itemsModule['ID_MODULO']) ? 'active': ''; ?>">
+                                            <a href="<?php echo $itemsModule['S_MODULE'];?>&ssKeyConfigTokenAction=<?php echo $this->nRandom.''.rand(5, 255);?>">
+                                                <span class="menu-text"><?php echo $itemsModule['M_DESCRIPCION']; ?></span>
+                                            </a>
+                                        </li>    
+                                    <?php endif;?>
+                                <?php endforeach;?>
+                            </ul>
+                        </li>                                       
                 <?php endif;?>
-            <?php endforeach;?> 
-            <!-- END SIDEBAR MENU -->
-        </div>
-    </div>
+            <?php endif;?>
+        <?php endforeach;?>
+    </ul>
+</div>

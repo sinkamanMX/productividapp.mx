@@ -1,0 +1,66 @@
+<?php $this->headScript()->appendFile('/js/modules/usercatalogs/jsValidateFields.js') ?>     
+    <?php $control=0;?>
+    <div class="row-min-h300" id="divContenedor">
+        <form id="FormData3" class="form-horizontal" role="form" method="POST" action="/admin/usercatalogs/listoptions">
+            <input type="hidden" id="catId" name="catId"  value="<?php echo $this->catId; ?>" id="catId" />
+            <input type="hidden" id="optReg" name="optReg" value="updateElements" />
+            <input type="hidden" name="strTabSelected" value="2" />
+            <table id="tableElements" class="table table-striped ">     
+                <thead>
+                    <tr>
+                        <th class="col-md-9">Descripción</th>                        
+                        <th class="col-md-3">Estatus</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach(@$this->aElements as $key => $items):?>
+                        <tr>
+                        	<td>
+                                <input id="inputDesc<?php echo $control?>" name="aElements[<?php echo $control?>][desc]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['DESCRIPCION'];?>"  autocomplete="off">                                                 
+                            </td>
+                            <td> 
+                                <select id="inputStat<?php echo $control?>" name="aElements[<?php echo $control?>][status]">
+                                    <?php echo $items['cboStatus'];?>
+                                </select>
+                            </td>
+                        </tr>                       
+                        <?php $control++;?>                          
+                    <?php endforeach;?>
+                </tbody>
+                <tr>
+                    <td colspan="2">
+                        <div class="block">
+                            <button class="btn btn-block btn-success center-text" type="button" onClick="addFieldForm();"><i class="fa fa-plus-circle"></i> Agregar Elemento</button>                                            
+                        </div>                                    
+                    </td>    
+                </tr>                            
+            </table>
+            <div class="form-group  margin-t5px">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-info">Guardar Cambios</button>
+                        <button type="button" class="btn default" onClick="location.href='<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>   
+                    </div>
+                </div>
+            </div> 
+            <input type="hidden" id="inputCountElements" name="inputCountElements" value="<?php echo $control; ?>"/>                                                             
+        </form>
+    </div>
+
+<div id="divSelectStatus" class="hide">
+    <?php echo $this->selectStatus;?>
+</div>
+
+<!--
+<div id="divSelectTipos" class="hide">
+    <?php echo $this->selectTipos;?>
+</div>
+
+<div id="divSelectVal" class="hide">
+    <?php echo $this->selectVal;?>
+</div>
+
+<div id="divSelectOpts" class="hide">
+    <?php echo $this->selectOpts;?>
+</div>-->

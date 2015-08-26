@@ -4,6 +4,126 @@
 		"selected_items":
 		[
 			[
+				"ada",
+				"aDataPersonal"
+			],
+			[
+				"else",
+				"enableTextSelection"
+			],
+			[
+				"sC",
+				"sCp"
+			],
+			[
+				"add",
+				"address"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"data",
+				"dataOpciones"
+			],
+			[
+				"id",
+				"idElement"
+			],
+			[
+				"Arra",
+				"ArrCad"
+			],
+			[
+				"sOp",
+				"sOptions2"
+			],
+			[
+				"con",
+				"controlInt"
+			],
+			[
+				"modu",
+				"moduleForm"
+			],
+			[
+				"sub",
+				"subItems"
+			],
+			[
+				"c",
+				"control"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"ma",
+				"max-width"
+			],
+			[
+				"co",
+				"countElement"
+			],
+			[
+				"cbo",
+				"cboCats"
+			],
+			[
+				"contr",
+				"controlSub"
+			],
+			[
+				"TR",
+				"tr	Tag"
+			],
+			[
+				"input",
+				"inputValue"
+			],
+			[
+				"a",
+				"aOptions"
+			],
+			[
+				"s",
+				"shtmlOptions"
+			],
+			[
+				"val",
+				"valueMin"
+			],
+			[
+				"chec",
+				"checkType"
+			],
+			[
+				"in",
+				"inputFile"
+			],
+			[
+				"t",
+				"type"
+			],
+			[
+				"da",
+				"dataTab"
+			],
+			[
+				"itm",
+				"items"
+			],
+			[
+				"usuario",
+				"Usuario"
+			],
+			[
+				"sh",
+				"showNotif"
+			],
+			[
 				"str",
 				"strUrlSend"
 			],
@@ -16,24 +136,12 @@
 				"LatLng"
 			],
 			[
-				"mar",
-				"margin-top"
-			],
-			[
-				"c",
-				"change	.change()"
-			],
-			[
 				"module",
 				"moduleInfo"
 			],
 			[
 				"items",
 				"itemsModule"
-			],
-			[
-				"contr",
-				"controlMenu"
 			],
 			[
 				"fun",
@@ -44,24 +152,8 @@
 				"click  (function)"
 			],
 			[
-				"va",
-				"valueInput"
-			],
-			[
-				"da",
-				"datapersonal"
-			],
-			[
 				"fu",
 				"function"
-			],
-			[
-				"data",
-				"datainfo"
-			],
-			[
-				"id",
-				"idValue"
 			],
 			[
 				"le",
@@ -70,10 +162,6 @@
 			[
 				"res",
 				"resultY"
-			],
-			[
-				"s",
-				"showDetail"
 			],
 			[
 				"sho",
@@ -110,10 +198,6 @@
 			[
 				"lo",
 				"longitude"
-			],
-			[
-				"add",
-				"addMaker"
 			],
 			[
 				"op",
@@ -174,10 +258,6 @@
 			[
 				"ba",
 				"background-color"
-			],
-			[
-				"co",
-				"color"
 			],
 			[
 				"font-",
@@ -260,10 +340,6 @@
 				"pesoProduct"
 			],
 			[
-				"input",
-				"input-append"
-			],
-			[
 				"spa",
 				"span-precio"
 			],
@@ -282,10 +358,6 @@
 			[
 				"car-",
 				"car-item"
-			],
-			[
-				"ma",
-				"margin"
 			],
 			[
 				"h",
@@ -400,74 +472,18 @@
 	"buffers":
 	[
 		{
-			"file": "application/modules/location/views/scripts/main/index.phtml",
+			"file": "application/modules/dates/views/scripts/main/getdateinfo.phtml",
 			"settings":
 			{
-				"buffer_size": 3562,
+				"buffer_size": 10650,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/js/modules/location/rastreotels.js",
+			"file": "application/modules/dates/views/scripts/main/getlocation.phtml",
 			"settings":
 			{
-				"buffer_size": 9065,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/modules/location/views/scripts/main/reporte.phtml",
-			"settings":
-			{
-				"buffer_size": 4931,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/js/modules/location/reporteRastreo.js",
-			"settings":
-			{
-				"buffer_size": 6861,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js",
-			"settings":
-			{
-				"buffer_size": 52681,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/views/layouts/layout.phtml",
-			"settings":
-			{
-				"buffer_size": 7221,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/views/layouts/layout_blank.phtml",
-			"settings":
-			{
-				"buffer_size": 6316,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/css/app.css",
-			"settings":
-			{
-				"buffer_size": 2089,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js",
-			"settings":
-			{
-				"buffer_size": 11391,
+				"buffer_size": 12782,
 				"line_ending": "Unix"
 			}
 		}
@@ -500,134 +516,134 @@
 	},
 	"file_history":
 	[
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js",
-		"/Users/itecno2/Desktop/modificacionespetLocator",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/location/views/scripts/main/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/location/rastreotels.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/users/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/layout.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/custom/table-managed.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/core/app.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/app.css",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/css/plugins.css",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/jquery.countdown360.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/users/getinfo.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/main/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/config/views/scripts/company/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/config/validateConfig.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/users/validateProfiles.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/css/custom.css",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/controllers/UsersController.php",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/controllers/MainController.php",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/library/My/Model/Perfiles.php",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/library/My/Controller/Functions.php",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/library/My/Model/Usuarios.php",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/controllers/ProfilesController.php",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/profiles/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/controllers/MainController.php",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/views/scripts/main/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/configuracion/controllers/confGeneralController.php",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/users/validateUsers.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/users/views/scripts/profiles/getinfo.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/core/datatable.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/gralTables.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/functionGral.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/views/scripts/profiles/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/menu.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/getdateinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/getlocation.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/getextras.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateDate.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateEditInfo.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/datetime/bootstrap-timepicker.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateLocation.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/extras.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/reports/views/scripts/dates/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/reports/jsReportDates.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/location.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/dateinfo.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/header.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/blank.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/css/style-responsive.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/style.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/forms/views/scripts/main/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dbman/views/scripts/main/getdatainfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/reports/views/scripts/dates/dateinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/css/font-awesome.min.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dbman/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/forms/views/scripts/main/getinfoelement.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/beyond.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/gantt/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dashboard/jsDashboardGantt.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/test.php",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/libs/gantt/css/style.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/libs/gantt/js/jquery.fn.gantt.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/library/My/Model/Mensajes.php",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/htacess.backup",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/library/Zend/View/Helper/HeadScript.php",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/dates/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dashboard/jsCalendarDates.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/dates/getlistdates.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/fullcalendar/fullcalendar.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/confirm.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateConfirm.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/users/jsValidateProfiles.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/information/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/forms/jsValidateElement.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/location/reporteRastreo.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateExtras.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/dates/jsValidateConfirm",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dates/views/scripts/main/svalidation.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dbman/views/scripts/main/scriptvalidation.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/location/rastreotels.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/forms/jsValidateForms.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/datetime/bootstrap-datepicker.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/clients/jsValidateAddress.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/views/scripts/clients/listaddress.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/library/My/Model/Citas.php",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/general/jGeneralOptionsSearch.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/main/validatePhones.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/libs/jquery.sortable.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/views/scripts/phones/formlistevents.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/forms/controllers/MainController.php",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/controllers/PhonesController.php",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/controllers/UsersController.php",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/general/chat.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/validation/bootstrapValidator.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/config/views/scripts/company/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/landing/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/location/controllers/MainController.php",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/extras/jsValidateExtras.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/views/scripts/tdates/listforms.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/backup_modules/config/views/scripts/company/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/views/scripts/tdates/extras.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/functionGral.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/gralTables.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/typeforms/jsValidateListForms.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/usercatalogs/jsValidateFields.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/views/scripts/tdates/untitled",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/modules/jsValidateFields.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/views/scripts/modules/listfields.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/error.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/views/scripts/profiles/divRadio.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/views/scripts/typeforms/listforms.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/controllers/TypeFormsController.php",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/landing.phtml",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/layout_login.phtml",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/footer.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/layout.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/skins.min.js",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/layout_blank.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/landing/index.html",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/phones/sjValidatePhones.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/views/scripts/users/listhorarios.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/backup_modules/users/views/scripts/users/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/admin/views/scripts/profiles/listmodules.phtml",
+		"/private/var/folders/xg/lt4w3ztj27l4zjhjht4rjhww0000gn/T/fz3temp-1/app.ini",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dbman/views/scripts/validators/scriptvalidation.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/css/beyond.min.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/datatable/dataTables.tableTools.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/datatable/dataTables.bootstrap.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/css/beyond.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/datatable/dataTables.tableTools.min.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/config/validateConfig.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/phones/untitled",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/general/jGeneralSearch.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dbman/views/scripts/search/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/blank.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/backup_modules/users/views/scripts/profiles/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/location/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/location/views/scripts/main/reporte.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/css/portfolio.css",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/controllers/FunctionsController.php",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/controllers/MainController.php",
 		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/login/login.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/scripts/custom/login-soft.js",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/docs.css",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/public/css/foundation.css",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dashboard/views/scripts/index.phtml",
-		"/Users/itecno2/Downloads/image.php",
-		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/atn/views/scripts/rastreo/reporte.phtml",
-		"/Users/itecno2/Documents/workspace/zendblog.net/payipn.php",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/callcenter/newservice.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/newservice/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/callservice/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/callservice/cardetail.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/callservice/datefinish.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/newservice/datefinish.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/newservice/cardetail.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/callcenter/cardetail.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/callcenter/datefinish.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/main/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/controllers/MainController.php",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/main/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/layout_blank.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/layout_login.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/layout.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/siames/index.html",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/assets/styles.css",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/modules/login.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/activos/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/validateActivos.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/activos/getinfo.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/equipment/getinfo.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/tableUser.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/tableActivos.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/tableProfiles.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/phones/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/units/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/units/getinfo.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/validateUsers.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/users/getinfo.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/validatePhones.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/phones/getinfo.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/profiles/getinfo.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/controllers/PhonesController.php",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/controllers/MapController.php",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/blank.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/footer.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/profiles/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/validateProfile.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/users/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/validateEquipments.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/equipment/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/infoEquipments.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/modules/functionGral.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/phones/searchactivos.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/searchActivos.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/infoPhones.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/controllers/EquipmentController.php",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/callcenter/lastStepCall.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/callservice/finish.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/callservice/instalation.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/callcenter/instalation.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/rastreotels.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/rastreo/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/services/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/rastreo/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/rastreo/reporte.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/service.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/mainDetalle.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/reporteRastreo.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/rastreo/mapa.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/assets/DT_bootstrap.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/controllers/RastreoController.php",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/services/getinformation.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/services/ .phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/vendors/graphs/js/jquery.circliful.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/newservice/instalation.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/callcenter/mapDetail.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/main/map.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/map/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/views/scripts/main/index.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/css/slider.css",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/views/layouts/menu.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/jquery.countdown360.js",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/callcenter/controllers/MainController.php",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/vendors/fullcalendar/fullcalendar.css",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/main/views/scripts/equipment/searchactivos.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/main/searchcitas.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/application/modules/atn/views/scripts/main/citadetalle.phtml",
-		"/Users/itecno2/Documents/workspace/productividad.mx/public/js/atn/mainAtnSearch.js"
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/backup_modules/users/views/scripts/profiles/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/menu.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/s_backup_files/assets/scripts/core/datatable.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/bootbox/bootbox.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/dbman/controllers/MainController.php",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/views/scripts/phones/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/main/views/scripts/phones/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/chat.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/messages/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/modules/messages/views/scripts/main/chatmessages.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/slimscroll/jquery.slimscroll.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/js/modules/messages/index.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/toastr/toastr.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/public/assets/js/skins.js",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/footer.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/backups_layouts/layout.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/backups_layouts/menu.phtml",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/backups_layouts/header.phtml",
+		"/Users/itecno2/Downloads/products_WB06R48S4/html/form-validation.html",
+		"/Users/itecno2/Documents/workspace/productividapp.mx/application/views/layouts/Usaruo.phtml"
 	],
 	"find":
 	{
@@ -635,7 +651,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"<open folders>",
@@ -648,134 +664,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"ajax-modal",
-			"startPageLoading",
-			"progress",
-			"line",
-			"poly",
-			"map",
-			"arrayTravels",
-			"printPositionsMap",
-			"bounds",
-			"markers",
-			"Jan",
-			"infoWindow",
-			"map",
-			"myModalMapa",
-			"divSliderC",
-			"Loading...",
-			"startPageLoading",
-			"CHOSEN",
-			"aTecnicos",
-			"init",
-			"aPerfiles",
-			"/img/loading-spinner-grey.gif",
-			";?>			            	              ",
-			">\n",
-			"/img/loading-spinner-grey.gif",
-			"loading",
-			"span6 m-wrap",
-			"startPageLoading",
-			"ajax",
-			"handleUniform",
-			"Zend",
-			"width",
-			"min-width",
-			"handleResponsive()",
-			"handleResponsiveOnResize",
-			"min-hei",
-			"ro",
-			"src=\"assets/",
-			">",
-			"label",
-			"image",
-			"images",
-			"top-bar",
-			"bar",
-			"top-bar",
-			"Rellene",
-			"rellene",
+			"inputCp",
+			"sidebar-collapse",
+			"getDataMenu",
+			"A.NOMBRE_COMPLETO",
+			"headScript",
+			"dateStart",
+			"float",
+			"allDay",
+			"addEventSource",
+			"getAndRenderEvents",
+			"renderEvents",
+			"events",
+			"allDays",
+			"events",
+			"allDay",
+			"allDat",
 			"button",
-			"sucess\nsucess",
-			"sucess",
-			"btn",
-			"/newservice/",
-			"ico",
-			"equipment/",
-			"/phones/",
-			"My_model_Activos()",
-			"eventAction",
-			"layout_blank",
-			"moder",
-			"/users/",
-			"/main/",
-			"/users/",
-			"=\"\"",
-			"/equipment/",
-			"/phones/",
-			"/equipment/",
-			"confirmDelete",
-			"text",
-			"/equipment/",
-			"equipment",
-			"/callcenter/newservice/",
-			"/callcenter/newservice/index",
-			"2D66F5",
-			"getAll",
-			"sDom",
-			"nPaging",
-			"Data",
-			"filter",
-			"span6",
-			"inputTecnico",
-			"margin",
-			"chosen",
-			"ORDER BY NAME ASC",
-			"inputTipo",
-			"margin-left",
-			"CONSOLE.LO",
-			"timerUpdate",
-			"startingOp",
-			"setDataTable",
-			"console.log",
-			"timerUpdate()",
-			"margin-top",
-			"margin",
-			"padding",
-			"COLOR",
-			"refresh",
-			"h500",
-			"h300",
-			"margin-left",
-			"margin",
-			"rules",
-			"margin",
-			"min-he",
-			"infoMarkerTable",
-			"getselect",
-			"<div class=\"span6\">",
-			"control-label",
-			"boostrap",
-			"gpsTrackerIMEI",
-			"                \n",
-			"Categorias",
-			"gree",
-			"calendar.html",
-			"/admin_css/",
-			"https://www.paypal.com/cgi-bin/webscr",
+			"min",
+			"inputNint",
+			"on",
+			"onChane",
+			"disabled",
+			"readonly",
+			"placeholder",
+			"place",
+			"template",
+			"showMeridian",
+			"close",
+			"PROD_TPO_ELEMENTO",
+			"tabselecte",
+			"hugedomains",
+			"ww1",
+			"dummy",
+			"trigger",
+			"tools",
+			";\n",
+			"transformer",
+			"inputSubOrden",
+			"addField",
+			"removeField",
+			"inputEspera",
+			"remove",
 			"validate",
-			"Debug",
-			"echo",
-			"Zend_Debug",
-			"row",
-			"margin-le",
-			"margin-top",
-			"text",
-			"bottom",
-			"margin-top",
-			"orange",
-			"margin-bottom",
-			"text"
+			"divElementos",
+			"deleteRowRel",
+			"modal",
+			">\n",
+			"Tipo",
+			"optionAll",
+			"inputCountElements",
+			"console",
+			"timeOut",
+			"time",
+			"console.log",
+			"scrolling",
+			"HOLA MUNDO",
+			"'<",
+			">'+",
+			"$$controlSub;",
+			"$$",
+			"scrollY",
+			"td",
+			"PAGADO",
+			"A.CONECTADO",
+			"VISUALIZACION",
+			"src=\"assets/",
+			"href=\"assets/",
+			"map",
+			"beyond.min.css",
+			"MIN.CSS",
+			"beyond",
+			"assets",
+			"min",
+			"beyond",
+			"src=\"assets/",
+			"href=\"assets/",
+			"countdown",
+			"src=\"images/",
+			"src=\"js/",
+			"href=\"css/",
+			"bootbox",
+			"bootbox-close-button",
+			"/",
+			"messages",
+			"page-body",
+			"beyon",
+			"page-body",
+			"col",
+			"6",
+			"-6",
+			"buttonSet",
+			"data",
+			"validateFormA",
+			"col-lg-3",
+			"loading",
+			"loader",
+			"load",
+			"loade",
+			"loader",
+			"confirm",
+			"t",
+			"t(",
+			"_t(",
+			"locales",
+			"Cancel",
+			"Ok",
+			"sLengthMenu",
+			"records",
+			"select",
+			"señect",
+			"aButtons",
+			"aLengthMenu",
+			" records per page",
+			"editabledatatable_length",
+			"per page",
+			"assets/sound/alert.mp3",
+			"txtInput",
+			"back",
+			"toast",
+			"txtLastMessage",
+			"scrollto",
+			"loadin",
+			"loading",
+			"setNameContact",
+			"contact",
+			"checkMessages",
+			"chat",
+			"console.log"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -783,6 +799,24 @@
 		"regex": true,
 		"replace_history":
 		[
+			"readonly",
+			"disabled",
+			"disable",
+			"<",
+			"",
+			"src=\"/assets/",
+			"href=\"/assets/",
+			"src=\"/assets/",
+			"href=\"/assets/",
+			"src=\"/landing/images/",
+			"src=\"/landing/js/",
+			"href=\"/landing/css/",
+			"col-lg-5",
+			"",
+			"=\"/assets/",
+			"href=\"/assets/img/",
+			"href=\"assets/img/",
+			"/assets/img/",
 			"arrayTravelsRep",
 			"boundsRep",
 			"markersRep",
@@ -836,251 +870,63 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/modules/location/views/scripts/main/index.phtml",
+					"file": "application/modules/dates/views/scripts/main/getdateinfo.phtml",
 					"settings":
 					{
-						"buffer_size": 3562,
+						"buffer_size": 10650,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3562,
-								3562
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "public/js/modules/location/rastreotels.js",
-					"settings":
-					{
-						"buffer_size": 9065,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9065,
-								9065
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 3923.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "application/modules/location/views/scripts/main/reporte.phtml",
-					"settings":
-					{
-						"buffer_size": 4931,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "public/js/modules/location/reporteRastreo.js",
-					"settings":
-					{
-						"buffer_size": 6861,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								140,
-								140
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "public/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js",
-					"settings":
-					{
-						"buffer_size": 52681,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								40651,
-								40651
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 18394.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "application/views/layouts/layout.phtml",
-					"settings":
-					{
-						"buffer_size": 7221,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5708,
-								5708
+								8212,
+								8212
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": true,
+							"word_wrap": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": 344.0,
+						"translation.y": 656.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "application/views/layouts/layout_blank.phtml",
+					"buffer": 1,
+					"file": "application/modules/dates/views/scripts/main/getlocation.phtml",
 					"settings":
 					{
-						"buffer_size": 6316,
+						"buffer_size": 12782,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6171,
-								6171
+								11486,
+								11486
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 685.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "public/css/app.css",
-					"settings":
-					{
-						"buffer_size": 2089,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2089,
-								2089
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1345.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "public/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js",
-					"settings":
-					{
-						"buffer_size": 11391,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1792.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1148,6 +994,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 255.0,
+	"side_bar_width": 277.0,
 	"status_bar_visible": true
 }

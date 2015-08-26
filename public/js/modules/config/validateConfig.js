@@ -1,156 +1,153 @@
-$().ready(function() {
+$().ready(function(){
     var formData = $('#FormDataGral');
-    var dError   = $('#divErrorForm1', formData);
-
-    formData.validate({
-        errorElement: 'span', //default input error message container
-        errorClass  : 'help-block', // default input error message class
-        focusInvalid: false, // do not focus the last invalid input
-        ignore      : "",
-        rules: {
-            txtNameCompany  : "required",
-            txtNameRazon    : "required",
-            txtNameDir      : "required",
-            txtNameResp     : "required",
-            txtNameTel      : {
-                required: true,
-                number: true,
-                minlength: 10,
-                maxlength: 10
+    $('#FormDataGral').bootstrapValidator({
+        live: 'enabled',
+        excluded: [':disabled'],
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            txtNameCompany  : {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    }
+                }
             },
-            txtNameEMail    : {
-                required: true,
-                email: true
-            }
-        },
-        messages: {
-            txtNameCompany  : "Campo Requerido",
-            txtNameRazon    : "Campo Requerido",
-            txtNameDir      : "Campo Requerido",
-            txtNameResp     : "Campo Requerido",
+            txtNameRazon : {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    }
+                }
+            },
+            txtNameDir  : {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    }
+                }
+            },
+            txtNameResp  : {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    }
+                }
+            },
             txtNameTel      : {
-                required  : "Campo Requerido",
-                number    : "Este campo acepta solo números",
-                minlength : "El Teléfono debe de ser de 10 dígitos",
-                maxlength : "El Teléfono debe de ser de 10 dígitos"
-            }, 
-            txtNameEMail    : {
-                required: "Campo Requerido",
-                email: "Debe de ingresar un mail válido"
-            }                         
-        },
-
-        invalidHandler: function (event, validator) { //display error alert on form submit              
-            dError.show();
-            App.scrollTo(dError, -200);
-        },
-
-        highlight: function (element) { // hightlight error inputs
-            $(element)
-                .closest('.form-group').addClass('has-error'); // set error class to the control group
-        },
-
-        unhighlight: function (element) { // revert the change done by hightlight
-            $(element)
-                .closest('.form-group').removeClass('has-error'); // set error class to the control group
-        },
-
-        success: function (label) {
-            label
-                .closest('.form-group').removeClass('has-error'); // set success class to the control group
-        },
-
-        submitHandler: function (form) {
-            App.startPageLoading();         
-            $('.btnSave').attr("disabled", true);
-            form.submit();             
-        } 
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    },
+                    numeric: {
+                        message: 'Este campo acepta solo números'
+                    },
+                    stringLength: {
+                        message: 'El Teléfono debe de ser de 10 dígitos',
+                        max: 10 ,
+                        min: 10 ,                        
+                    },
+                }
+            },
+            txtNameEMail : {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    },
+                    emailAddress: {
+                        message: 'Favor de ingresar un email válido'
+                    }
+                }
+            }
+        }
+    }).on('success.form.fv', function(e) {
+        e.preventDefault();
+        var $form = $(e.target);
+        var fv = $form.data('FormDataGral');
+            fv.defaultSubmit();
     });
 
-    var formData2 = $('#FormConfTel');
-    var dError2   = $('#divErrorForm2', formData2);
-
-    formData2.validate({
-        errorElement: 'span', //default input error message container
-        errorClass  : 'help-block', // default input error message class
-        focusInvalid: false, // do not focus the last invalid input
-        ignore      : "",
-        rules: {
-            cboLocalizar    : "required",
-            txtTimeReporte  : {
-                required: true,
-                number: true
+    $('#FormConfTel').bootstrapValidator({
+        live: 'enabled',
+        excluded: [':disabled'],
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            cboLocalizar  : {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    }
+                }
             },
-            txtTimeEncendido: {
-                required: true,
-                number: true
+            txtTimeReporte : {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    },
+                    numeric: {
+                        message: 'Este campo acepta solo números'
+                    }
+                }
+            },
+            txtTimeEncendido  : {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    },
+                    numeric: {
+                        message: 'Este campo acepta solo números'
+                    }
+                }
             },
             txtTimeApagado  : {
-                required: true,
-                number: true
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    },
+                    numeric: {
+                        message: 'Este campo acepta solo números'
+                    }
+                }
             },
-            txtTimeSinRep   : {
-                required: true,
-                number: true
+            txtTimeSinRep      : {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    },
+                    numeric: {
+                        message: 'Este campo acepta solo números'
+                    }
+                }
             },
-            txtTituloReporteX: "required",
+            txtTituloReporteX : {
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    }
+                }
+            },
             txtTimeReporteX: {
-                required: true,
-                number: true
-            },
-        },
-        messages: {
-            cboLocalizar    :  "Campo Requerido",
-            txtTimeReporte  : {
-                required  : "Campo Requerido",
-                number    : "Este campo acepta solo números"
-            }, 
-            txtTimeEncendido: {
-                required  : "Campo Requerido",
-                number    : "Este campo acepta solo números"
-            }, 
-            txtTimeApagado: {
-                required  : "Campo Requerido",
-                number    : "Este campo acepta solo números"
-            }, 
-            txtTimeSinRep: {
-                required  : "Campo Requerido",
-                number    : "Este campo acepta solo números"
-            },
-            txtTituloReporteX: "Campo Requerido",
-            txtTimeReporteX: {
-                required  : "Campo Requerido",
-                number    : "Este campo acepta solo números"
-            },            
-        },
-
-        invalidHandler: function (event, validator) { //display error alert on form submit              
-            dError2.show();
-            App.scrollTo(dError2, -200);
-        },
-
-        highlight: function (element) { // hightlight error inputs
-            $(element)
-                .closest('.form-group').addClass('has-error'); // set error class to the control group
-        },
-
-        unhighlight: function (element) { // revert the change done by hightlight
-            $(element)
-                .closest('.form-group').removeClass('has-error'); // set error class to the control group
-        },
-
-        success: function (label) {
-            label
-                .closest('.form-group').removeClass('has-error'); // set success class to the control group
-        },
-
-        submitHandler: function (form) {
-            App.startPageLoading();         
-            $('.btnSave').attr("disabled", true);
-            form.submit();             
-        } 
+                validators: {
+                    notEmpty: {
+                        message: 'Campo requerido'
+                    }
+                }
+            }
+        }
+    }).on('success.form.fv', function(e) {
+        e.preventDefault();
+        var $form = $(e.target);
+        var fv = $form.data('FormDataGral');
+            fv.defaultSubmit();
     });
-
+    
     if($("#boolLocalizar").val()=="0"){
         $("#txtTimeReporte").rules("remove", "required");
         $("#txtTimeEncendido").rules("remove", "required");

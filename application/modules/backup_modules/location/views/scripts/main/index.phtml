@@ -1,0 +1,76 @@
+<!--
+<input type="hidden" id="istatus" value="<?php echo $this->iStatus?>"/>
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-8">
+			<h3 class="page-title">
+				Rastreo <small>Localización de Teléfonos</small>			
+				
+			</h3>	
+		</div>
+		<?php if(@$this->dataUser['VISUALIZACION']==2): ?>
+		<div class="col-md-4">
+			<div class="pull-right">							
+				<small>Seleccione una Sucursal:</small>
+				<form method="POST" action="/location/main/index" id="FormData" class="form-horizontal formcustom">
+					<input type="hidden" name="optReg" value="search" />								
+					<select class="chzn-select" id="cboInstalacion" name="cboInstalacion" onChange="filterSearch(this.value);">
+						<option value="-1">Seleccionar una opción</option>
+						<?php echo $this->cInstalaciones;?>
+					</select>
+				</form>	
+			</div>				
+		</div>	
+		<?php endif;?>	
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="margin-top-10">
+			<ul class="mix-filter">
+				<li id="liAll" class="filter btn " data-filter="all">
+					 Todos
+				</li>
+				<li id="li1"  class="filter btn green " data-filter="catEncendido">
+					Encendidos
+				</li>
+				<li id="li2"  class="filter btn red " data-filter="catApagado">
+					Apagados
+				</li>
+				<li id="li3"  class="filter btn dark " data-filter="catNoReporte">
+					 Sin reportar
+				</li>
+				<li id="li4"  class="filter btn brown" data-filter="catXsinReporte">
+					 Más de 24 hrs sin Reportar
+				</li>
+			</ul>
+			<div class="row mix-grid">
+				<?php foreach($this->aLastPositions as $items):?>
+					<div class="col-md-3 mix <?php  echo $items['STATREP'];?>">
+						<div class="portlet <?php  echo $items['STATCOLOR'];?>">
+							<div class="divLocation textLocation text-center">
+								<?php  echo $items['NAME'];?>
+							</div>	
+							<div class="thumbnail text-center" style="background: transparent url(http://maps.googleapis.com/maps/api/staticmap?center=<?php echo $items['LATITUD']?>,<?php echo $items['LONGITUD']?>&zoom=17&size=280x200&sensor=true_or_false&markers=icon:http://tinyurl.com/qfbutda%26chld=cafe%7size:small%7C<?php echo $items['LATITUD']?>,<?php echo $items['LONGITUD']?>) no-repeat top; height: 200px; width:100%;margin-bottom: 0 !important;" />
+							  
+							</div>						
+							<div class="timeline-footer">
+								<div class="textLocation text-center" >
+								  	<div class="divLocation">
+								  		<?php echo $items['UBICACION'];?>
+								  	</div>	
+									<a href="javascript:goToReport(<?php echo $items['ID'];?>);" class=" btn <?php  echo $items['STATCOLOR'];?> col-md-12">
+										 Ult. Reporte : <?php echo $items['FECHA_GPS'];?>&nbsp;&nbsp;&nbsp;									 
+										 <i class="m-icon-swapright m-icon-white"></i>
+									</a>  							   	
+								  </div>
+							</div>
+						</div>
+					</div>											
+				<?php endforeach;?>
+			</div>
+		</div>		
+	</div>
+</div>	
+-->	

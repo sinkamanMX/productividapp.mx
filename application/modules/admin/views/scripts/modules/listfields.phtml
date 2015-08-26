@@ -1,0 +1,182 @@
+<?php $this->headScript()->appendFile('/js/modules/modules/jsValidateFields.js') ?>     
+    <?php $control=0;?>
+    <div class="row-min-h300" id="divContenedor">
+        <form id="FormData3" class="form-horizontal" role="form" method="POST" action="/admin/modules/listfields">
+            <input type="hidden" id="catId" name="catId"  value="<?php echo $this->catId; ?>" id="catId" />
+            <input type="hidden" id="optReg" name="optReg" value="updateElements" />
+            <input type="hidden" name="strTabSelected" value="2" />
+            <table id="tableElements" class="table table-striped ">     
+                <thead>
+                    <tr>
+                        <th class="col-md-1">Orden</th>
+                        <th class="col-md-1">Tipo</th>
+                        <th class="col-md-1">Validación</th>
+                        <th class="col-md-2">Descripcion</th>
+                        <th class="col-md-2">Nombre DB</th>
+                        <th class="col-md-1">Estatus</th>
+                        <th class="col-md-1">Visible</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach(@$this->aElements as $key => $items):?>
+                        <tr>
+                            <td>
+                                <input name="aElements[<?php echo $control?>][id]" type="hidden" value="<?php echo $items['ID_DB_CAMPO'];?>"/>
+                                <input id="inputOp<?php echo $control?>" name="aElements[<?php echo $control?>][op]" type="hidden" value="up"/>
+                                <input id="inputElement<?php echo $control?>" name="aElements[<?php echo $control?>][orden]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['ORDEN'];?>"  autocomplete="off">                                                 
+                            </td>
+                            <td>
+                                <select id="inputTipo<?php echo $control?>" name="aElements[<?php echo $control?>][tipo]">
+                                    <?php echo $items['cboTipo'];?>
+                                </select>
+                            </td>
+                            <td> 
+                                <select id="inputVal<?php echo $control?>" name="aElements[<?php echo $control?>][validacion]">
+                                    <?php echo $items['cboValida'];?>
+                                </select>
+                            </td>
+                            <td>
+                                <input id="inputDesc<?php echo $control?>" name="aElements[<?php echo $control?>][desc]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['DESCRIPCION'];?>"  autocomplete="off">                                                 
+                            </td>
+                            <td>
+                                <input id="inputNameBd<?php echo $control?>" name="aElements[<?php echo $control?>][namebd]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['NOMBRE_BD'];?>"  autocomplete="off">                                                 
+                            </td>
+                            <td> 
+                                <select id="inputStat<?php echo $control?>" name="aElements[<?php echo $control?>][status]">
+                                    <?php echo $items['cboStatus'];?>
+                                </select>
+                            </td>
+                            <td> 
+                                <select id="inputVisible<?php echo $control?>" name="aElements[<?php echo $control?>][visible]">
+                                    <?php echo $items['cboVisible'];?>
+                                </select>
+                            </td>                            
+                            <td>
+                                <div class="col-xs-12 no-margin-l">
+                                        <div class="col-xs-6 no-margin-l">
+                                            <button class="btn btn-default btn-sm icon-only" onClick="showCloseOptions(<?php echo $control; ?>);return false;"><i id="spanOptions<?php echo $control;?>" class="fa fa-sort-down"></i></button>
+                                        </div>
+
+                                        <div class="col-xs-6 no-margin-l">
+                                            <button class="btn btn-default btn-sm icon-only deleteLink" onClick="deleteFieldForm(this,<?php echo $control?>);return false;"><i class="fa  fa-times-circle-o"></i></button>
+                                        </div>                                                
+                                </div> 
+                            </td>
+                        </tr>
+                       
+                        <tr id="trOptions<?php echo $control?>" style="background-color:#f5f5f5;display:none;">
+                            <td colspan="8">
+                                <table style="width:100%;" class="table table-striped ">
+                                    <tr>
+                                        <th>On Div</th>
+                                        <th>On Inserts</th>
+                                        <th>On Updates</th>
+                                        <th>Input Name</th>
+                                        <th>Tipo Dato</th>
+                                        <th>Input Value</th>
+                                        <th>Accion</th>
+                                        <th>Ops Ajax</th>
+                                        <th>Ops Función</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <select id="inputContenedor<?php echo $control?>" name="aElements[<?php echo $control?>][contenedor]">
+                                                <?php echo $items['cboContenedor'];?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select id="inputOninserts<?php echo $control?>" name="aElements[<?php echo $control?>][oninserts]">
+                                                <?php echo $items['cboOninsert'];?>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select id="inputOnupdates<?php echo $control?>" name="aElements[<?php echo $control?>][onupdates]">
+                                                <?php echo $items['cboOnupdate'];?>
+                                            </select>
+                                        </td>                                        
+                                        <td>
+                                            <input id="inputNamei<?php echo $control?>" name="aElements[<?php echo $control?>][namein]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['INPUT_NAME'];?>"  autocomplete="off">
+                                        </td>
+                                        <td>
+                                            <input id="inputTdato<?php echo $control?>" name="aElements[<?php echo $control?>][tdato]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['TIPO'];?>"  autocomplete="off">
+                                        </td>
+                                        <td>
+                                            <input id="inputIvalue<?php echo $control?>" name="aElements[<?php echo $control?>][invalue]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['VALUE'];?>"  autocomplete="off">
+                                        </td>
+                                        <td>
+                                            <input id="inputAccion<?php echo $control?>" name="aElements[<?php echo $control?>][accion]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['ACCION'];?>"  autocomplete="off">
+                                        </td>
+                                        <td>
+                                            <input id="inputOpsAjax<?php echo $control?>" name="aElements[<?php echo $control?>][opsajax]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['OPCIONES_AJAX'];?>"  autocomplete="off">
+                                        </td>
+                                        <td>
+                                            <input id="inputFuncion<?php echo $control?>" name="aElements[<?php echo $control?>][opsfuncion]" type="text" class="input-inline form-control col-xd-2"  value="<?php echo @$items['OPCIONES_FUNCTIONS'];?>"  autocomplete="off">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="1">Usar Query</th>
+                                        <th colspan="2">Opciones Query</th>
+                                        <th colspan="2">Replace on Ops Query</th>
+                                        <th colspan="2">Validación Query</th>
+                                        <th colspan="2">Mensaje Validacion</th>                                        
+                                    </tr>                                    
+                                    <tr>
+                                        <th colspan="1"> 
+                                            <select id="inputUsequery<?php echo $control?>" name="aElements[<?php echo $control?>][usequery]">
+                                                <?php echo $items['cboUsQuery'];?>
+                                            </select></th>                                        
+                                        <td colspan="2">
+                                            <textarea  id="inputOpsquery<?php echo $control?>" name="aElements[<?php echo $control?>][opsquery]" rows="5" style="width:100%;"><?php echo @$items['OPCIONES_QUERY'];?></textarea>
+                                        </td>
+                                        <td colspan="2">
+                                            <textarea  id="inputOpsreplace<?php echo $control?>" name="aElements[<?php echo $control?>][opsreplace]" rows="5" style="width:100%;"><?php echo @$items['REPLACE_QUERY'];?></textarea>
+                                        </td>                          
+                                        <th colspan="2">
+                                            <textarea  id="inputvalquery<?php echo $control?>" name="aElements[<?php echo $control?>][valquery]" rows="5" style="width:100%;"><?php echo @$items['VALIDACION_QUERY'];?></textarea>
+                                        </th>
+                                        <th colspan="2">
+                                            <textarea  id="inputMsgVal<?php echo $control?>" name="aElements[<?php echo $control?>][msgval]"  rows="5" style="width:100%;"><?php echo @$items['VALIDACION_MENSAJE'];?></textarea>
+                                        </th>                                                      
+                                    </tr>
+                                </table>
+                            </td>                                  
+                        </tr>  
+                        <?php $control++;?>                          
+                    <?php endforeach;?>
+                </tbody>
+                <tr>
+                    <td colspan="8">
+                        <div class="block">
+                            <button class="btn btn-block btn-success center-text" type="button" onClick="addFieldForm();"><i class="fa fa-plus-circle"></i> Agregar Elemento</button>                                            
+                        </div>                                    
+                    </td>    
+                </tr>                            
+            </table>
+            <div class="form-group  margin-t5px">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-info">Guardar Cambios</button>
+                        <button type="button" class="btn default" onClick="location.href='<?php echo $this->moduleInfo['SCRIPT']; ?>';">Cancelar</button>   
+                    </div>
+                </div>
+            </div> 
+            <input type="hidden" id="inputCountElements" name="inputCountElements" value="<?php echo $control; ?>"/>                                                             
+        </form>
+    </div>
+
+<div id="divSelectStatus" class="hide">
+    <?php echo $this->selectStatus;?>
+</div>
+
+<div id="divSelectTipos" class="hide">
+    <?php echo $this->selectTipos;?>
+</div>
+
+<div id="divSelectVal" class="hide">
+    <?php echo $this->selectVal;?>
+</div>
+
+<div id="divSelectOpts" class="hide">
+    <?php echo $this->selectOpts;?>
+</div>

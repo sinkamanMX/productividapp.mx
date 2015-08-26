@@ -66,7 +66,7 @@ class My_Model_Configuracion extends My_Db_Table
         
         $sql="UPDATE EMPRESAS_MODULOS
 				SET VISIBLE = 0
-				WHERE ID_EMPRESA =   ".$idEmpresa;  
+				WHERE ID_EMPRESA =   ".$idEmpresa;   
         try{            
     		$query   = $this->query($sql,false);
 			if($query){
