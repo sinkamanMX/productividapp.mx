@@ -1,6 +1,9 @@
+<?php $this->headLink()->appendStylesheet('/libs/magnific-popup/magnific-popup.css') ?>    
 <?php $this->headScript()->appendFile('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false') ?>
+<?php $this->headScript()->appendFile('/libs/magnific-popup/jquery.magnific-popup.min.js') ?>
 <?php $this->headScript()->appendFile('/js/reports/jsReportInfo.js') ?>
-<input type="hidden" id="istatus" value="<?php echo $this->iStatus?>"/>	
+
+<input type="hidden" id="istatus" value="<?php echo $this->iStatus?>"/>
 	<!-- /Page Header -->
     <div class="page-header position-relative">
         <div class="header-title">
@@ -134,17 +137,25 @@
                                             <?php endforeach;?>
                                         </ul>
 
-                                        <div class="tab-content">
+                                        <div class="tab-content row-min-h350">
                                             <?php $controlTab=0;?>
                                             <?php foreach(@$this->aFormluarios as $key => $items):?>
                                                 <div id="tab_<?php echo $items['ID_FORMULARIO']; ?>" class="tab-pane in <?php echo ($controlTab==0)  ? 'active': '';?>">
-                                                    <div class="">
-                                                        <div class="col-md-8 col-sm-8">
-                                                            <table  class="table table-striped table-hover table-bordered">
+                                                    <div class="">                                                        
+                                                        <div class="col-md-10 col-sm-10">
+                                                            <table  class="table table-striped table-hover table-bordered" id="tableResult">
                                                                 <?php foreach($items['result'] as $key => $aresults):?>
                                                                     <tr>
                                                                         <?php if($aresults['ID_TIPO']=="8"): ?>
                                                                             <td colspan="2" class="text-center"><b><?php echo $aresults['DESCRIPCION'];?></b></td>
+                                                                        <?php elseif($aresults['ID_TIPO']=="9" || $aresults['ID_TIPO']=="10"): ?>
+                                                                            <td class="col-md-6"><b><?php echo $aresults['DESCRIPCION'];?></b></td>
+                                                                            <td class=" text-primary">
+                                                                                <a title="<?php echo $aresults['DESCRIPCION'];?>" href="http://media.parvadapps.com/images/<?php echo $aresults['CONTESTACION'];?>" class="thumbnails">                                                                                
+                                                                                    <i class="fa fa-picture-o text-primary"></i> Ver
+                                                                                    <img style="height: 80px; width: 100%; display: none;" src="http://media.parvadapps.com/images/<?php echo $aresults['CONTESTACION'];?>" data-holder-rendered="true">
+                                                                                </a>
+                                                                            </td>
                                                                         <?php else: ?>
                                                                             <td class="col-md-6"><b><?php echo $aresults['DESCRIPCION'];?></b></td>
                                                                             <td><?php echo (isset($aresults['CONTESTACION'])) ? $aresults['CONTESTACION'] : '--';?></td>
@@ -153,21 +164,28 @@
                                                                 <?php endforeach;?>
                                                             </table>
                                                         </div>
-                                                        <div class="col-md-4 col-sm-4">
-                                                            <?php $controlMedia = 0;?>
-                                                            <?php foreach($items['result'] as $key => $aresults):?>
-                                                                <tr>
-                                                                    <?php if($aresults['ID_TIPO']=="9" || $aresults['ID_TIPO']=="10"): ?>
-                                                                        <td colspan="2" class="text-center"><b><?php echo $aresults['DESCRIPCION'];?></b></td>
-                                                                    <?php endif;?>
-                                                                </tr>
-                                                            <?php endforeach;?>
-                                                            <?php if($controlMedia==0):?>
-                                                                <div class="col-md-12 text-center">
-                                                                    <img class="col-md-12 col-sm-12" src="/assets/img/no-media.png" />
-                                                                    <h4>No hay información multimedia</h4>
-                                                                </div>
-                                                            <?php endif;?>
+                                                        <div class="col-md-2 col-sm-2">
+                                                            <div  id="rowGallery">
+                                                                <?php $controlMedia = 0;?>
+                                                                <?php foreach($items['result'] as $key => $aresults):?>
+                                                                    <div class="row popup-gallery">
+                                                                        <?php if($aresults['ID_TIPO']=="9" || $aresults['ID_TIPO']=="10"): ?>
+                                                                            <div class="col-xs-12 col-md-12">
+                                                                                <a title="<?php echo $aresults['DESCRIPCION'];?>" href="http://media.parvadapps.com/images/<?php echo $aresults['CONTESTACION'];?>" class="thumbnail image-popup-no-margins">
+                                                                                  <img style="height: 80px; width: 100%; display: block;" src="http://media.parvadapps.com/images/<?php echo $aresults['CONTESTACION'];?>" data-holder-rendered="true">
+                                                                                </a>
+                                                                            </div>
+                                                                            <?php $controlMedia++;?>
+                                                                        <?php endif;?>
+                                                                    </div>
+                                                                <?php endforeach;?>
+                                                                <?php if($controlMedia==0):?>
+                                                                    <div class="text-center">
+                                                                        <img style="height:80px;width:100%" src="/assets/img/no-media.png" />
+                                                                        <h4>Sin multimedia</h4>
+                                                                    </div>
+                                                                <?php endif;?>
+                                                            </div>
                                                         </div>
                                                     </div>                                                    
                                                 </div>
